@@ -1,0 +1,108 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Create a fable - Step 1{% endblock %}
+
+{% block extraheader %}<script src="/js/gennames.js"></script>
+
+{% endblock %}
+
+{% block maincontent %}
+
+    <!-- Main Content Section -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) 
+    but to be to the right of the nav on larger screens -->
+    <div class="large-9 push-4 columns">
+        <div class="row">
+            <h3>
+                The protagonist
+            </h3>
+        </div>
+        <div class="row">
+                <form method="get" action="/step">
+                <table>
+                    <!-- SEX -->
+                    <tr>
+                        <td width="200" id="questionnaire">We are talking about:</td>
+                        <td width="300" id="questionnaire">
+                        {% if heroheroine == "hero" %}
+                            <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&refresh=1';">&nbsp;A hero (Male)
+                            &nbsp;<br/>
+                            <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&refresh=1';">&nbsp;A heroine (Female)
+                        {% else %}
+                            <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&refresh=1';">&nbsp;A hero (Male)
+                            &nbsp;<br/>
+                            <input type="radio" name="value" value="F" checked="checked"  onclick="window.location='/step?s=1&value=F&refresh=1';">&nbsp;A heroine (Female)
+                        {% endif %}
+                        </td>
+                    </tr>
+                    <!-- DYNAMIC PICTURE -->
+                    <tr>
+                        <td id="questionnaire">&nbsp;</td>
+                        <td id="questionnaire">
+                        {% if heroheroine == "heroine" %}
+                            <img id="mainImage" src="/img/pic06.jpg" width="220px" alt="A female Protagonist">
+                        {% else %}
+                            <img id="mainImage" src="/img/peter.jpg" width="220px" alt="A male Protagonist">    
+                        {% endif %}   
+                        </td>
+                    </tr>
+                    <!-- NAME -->
+                    <tr>
+                        <td id="questionnaire" >Name:</td>
+                        <td id="questionnaire" ><input type="text" id="txtname" name="value" value="{{heroname}}" size="30">
+                        <input type="button" name="generator" value="  Generate!  " onClick="setName();">
+                        </td>
+                    </tr>
+                    <!-- DATE OF BIRTH -->
+                    <tr>
+                        <td id="questionnaire" >Date of birth:</td>
+                        <td id="questionnaire" ><input type="date" name="value" value="{{birthdate}}">
+                        <input type='hidden' name='s' value='2'></td>
+                    </tr>
+                </table>
+                <input type="button" value="Previous" class="radius secondary large button">&nbsp;
+                <input type="submit" value="Next" class="radius large button">
+                </form>
+                
+        </div>
+        <div class="row">
+            <h3>
+                &nbsp;
+            </h3>
+        </div>
+
+    </div><!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-3 pull-9 columns">
+        <h3>
+            Steps
+        </h3>
+        <ul class="side-nav">
+            <li>
+                <a href="/step?s=0">1. Start</a>
+            </li>
+            <li>
+                <a href="/step?s=1">2. Choose a template</a>
+            </li>
+            <li>
+                <a href="/step?s=2"><b>3. Child information</b></a>
+            </li>
+            <li>
+                <a href="/step?s=3">4. Dedication</a>
+            </li>
+            <li>
+                <a href="/step?s=4">5. Summary</a>
+            </li>
+            <li>
+                <a href="#">6. Preview</a>
+            </li>
+        </ul>
+        <p>
+            <img src="img/Step2.jpg">
+        </p>
+    </div>
+    
+{% endblock %}
+
+
+

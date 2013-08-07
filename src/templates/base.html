@@ -1,0 +1,99 @@
+{% extends "skeleton.html" %}
+
+{% block nav %}
+<!-- Begin navigation block -->
+        <nav class="top-bar">
+            <ul class="title-area">
+                <!-- Title Area -->
+                <li class="name">
+                    <h1>
+                        <a href="/">FableMe.com</a>
+                    </h1>
+                </li>
+                <li class="toggle-topbar menu-icon">
+                    <a href="#"><span>menu</span></a>
+                </li>
+            </ul>
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li>
+                        <a href="/create">Create a fable</a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Fables</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="/fables/My_voyage_to_Aragon_final_static.html">My voyage to Aragon</a>
+                            </li>
+                            <li>
+                                <a href="/fables/When_I_met_the_Pirates_final_static.html">When I met the pirates</a>
+                            </li>
+                            <li>
+                                <a href="#">Arborea</a>
+                            </li>
+                            <li>
+                                <a href="#">See all +</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                        {% if nickname %}
+                        <li class="has-dropdown">
+                            <a href="#">My FableMe</a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="#">My account</a>
+                                </li>
+                                <li>
+                                    <a href="#">My fables</a>
+                                </li>
+                                <li>
+                                    <a href="{{logout_url}}">Log out</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{{login_url}}">My FableMe</a>
+                        </li>
+                        {% endif %}
+                        
+                    
+                    <li>
+                        <a href="/howitworks">How it works</a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Contacts</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="contact.html">Support</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">Customer Support</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">Contacts</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+  <!-- End navigation block -->
+{% endblock %}
+
+{% block main %}{% endblock %}  
+
+{% block latejavascripts %}
+
+    <script>
+      document.write('<script src=/js/vendor/' +
+      ('__proto__' in {} ? 'zepto' : 'jquery') +
+      '.js><\/script>')
+	</script>
+    <script src="/js/foundation.min.js"></script>
+    <script>$(document).foundation();</script>
+
+{% endblock %}
+

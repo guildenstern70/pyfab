@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main %}
+        <div class="row">
+        
+        {% block maincontent %}{% endblock %}
+        {% block footer %}
+        
+        <footer class="row">
+            <div class="large-12 columns">
+              <hr />
+              <div class="row">
+                <div class="large-6 columns">
+                  <p class="small">
+                    &copy; 2013
+                    <a href="http://www.fableme.com/">FableMe.com</a> v.{{version}}
+                    - All rights reserved.
+                  </p>
+                </div>
+                <div class="large-6 columns">
+                  <ul class="inline-list right">
+                    <li>
+                      <a href="#" class="webicon facebook">Like us on Facebook</a>
+                    </li>
+                    <li>
+                      <a href="#" class="webicon googleplus">Like us on Google+</a>
+                    </li>
+                    <li>
+                      <a href="#" class="webicon twitter">Follow us on Twitter</a>
+                    </li>
+                    <li>
+                      <a href="#" class="webicon pinterest">Like us on Pinterest</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      </footer>
+      {% endblock %}
+        
+      </div>
+{% endblock %}

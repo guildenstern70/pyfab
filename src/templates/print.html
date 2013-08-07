@@ -1,0 +1,65 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Create a fable - Print{% endblock %}
+
+{% block maincontent %}
+
+    <!-- Main Content Section -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) 
+    but to be to the right of the nav on larger screens -->
+    <div class="large-9 push-4 columns">
+        <div class="row">
+            <h3>
+                Your fable is ready!
+            </h3>
+        </div>
+        <div class="row">
+
+            <h2><br/><a href="#">{{title}}</a></h2>
+            <textarea name='fableText' rows='20' cols='60'>
+            {{fable_contents}}
+            </textarea>
+              
+        </div>
+        <div class="row">
+            <h3>What now?</h3><br /><br />
+            <p>You may:</p>
+            <ul>
+                <li><a href="/print/pdf">Download PDF!</a></li>
+                <li><a href="#">Purchase a digital copy</a></li>
+                <li><a href="#">Have the book sent<br/> to your home</a></li>
+            </ul>
+        </div>
+
+    </div><!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-3 pull-9 columns">
+        <h3>
+            Steps
+        </h3>
+        <ul class="side-nav">
+            <li>
+                <a href="/step?s=0">1. Start</a>
+            </li>
+            <li>
+                <a href="/step?s=1">2. Choose a template</a>
+            </li>
+            <li>
+                <a href="/step?s=2">3. Child information</a>
+            </li>
+            <li>
+                <a href="/step?s=3">4. Dedication</a>
+            </li>
+            <li>
+                <a href="/step?s=4">5. Summary</a>
+            </li>
+            <li>
+                <a href="/print"><b>6. Preview</b></a>
+            </li>
+        </ul>
+        <p>
+            <img src="img/Step6.jpg">
+        </p>
+    </div>
+  
+{% endblock %}

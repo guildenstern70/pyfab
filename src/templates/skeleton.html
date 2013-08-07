@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en">
+  <![endif]-->
+  <!--[if gt IE 8]>
+  <!-->
+  <html class="no-js" lang="en">
+    <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0" />
+    <meta name="application-name" content="FableMe.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{% block title %}{% endblock %}</title>
+    <link href='http://fonts.googleapis.com/css?family=Paprika' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/foundation.css">
+    <link rel="stylesheet" href="/css/webicons.css">
+    <link rel="stylesheet" href="/css/fableme.css">
+    <script src="/js/vendor/custom.modernizr.js"></script>
+    {% block extraheader %}{% endblock %} 
+</head>
+
+
+<body>
+   
+   {% block nav %}{% endblock %}
+   
+   {% block main %}{% endblock %}
+   
+   {% block latejavascripts %}{% endblock %}
+
+</body>
+</html>

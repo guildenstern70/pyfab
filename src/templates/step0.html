@@ -1,0 +1,87 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Create a fable - Step 0{% endblock %}
+
+{% block maincontent %}
+
+    <!-- Main Content Section -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) 
+    but to be to the right of the nav on larger screens -->
+    <div class="large-9 push-4 columns">
+        <div class="row">
+            <h3>
+                Choose your story
+            </h3>
+        </div>
+        <div class="row">
+                <form method="get" action="/step">
+                    <table>
+                    
+                    <thead>
+                        <tr>
+                          <th width="300">Recommeded for boys</th>
+                          <th width="300">Recommeded for girls</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <tr>
+                        <td align="center"><a href="book?bookid=0"><img src="/img/peterandpirates.jpg" alt="Peter and the Pirates" /></a></td>
+                        <td align="center"><a href="book?bookid=1"><img src="/img/annatoaragon.jpg" alt="Anna goes to Aragon" /></a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="center"><div align="center"><input type="radio" checked="checked" name="value" value="Peter and the pirates" /></div></td>
+                        <td align="center"><div align="center"><input type="radio" name="value" value="Anna goes to Aragon" /></div></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="center"><a href="book?bookid=0">More details</a></td>
+                        <td align="center"><a href="book?bookid=1">More details</a><input type='hidden' name='s' value='1'></td>
+                    </tr>
+                    </tbody>
+                    
+                     </table>
+                     <input type="submit" value="Proceed" class="radius large button">
+              </form>
+              
+        </div>
+        <div class="row">
+            <h3>
+                &nbsp;
+            </h3>
+        </div>
+
+    </div><!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-3 pull-9 columns">
+        <h3>
+            Steps
+        </h3>
+        <ul class="side-nav">
+            <li>
+                <a href="/step?s=0">1. Start</a>
+            </li>
+            <li>
+                <a href="/step?s=1"><b>2. Choose a template</b></a>
+            </li>
+            <li>
+                <a href="/step?s=2">3. Child information</a>
+            </li>
+            <li>
+                <a href="/step?s=3">4. Dedication</a>
+            </li>
+            <li>
+                <a href="/step?s=4">5. Summary</a>
+            </li>
+            <li>
+                <a href="#">6. Preview</a>
+            </li>
+        </ul>
+        <p>
+            <img src="img/Step1.jpg">
+        </p>
+    </div>
+    
+{% endblock %}
+
