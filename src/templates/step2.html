@@ -25,12 +25,11 @@
                 <tr>
                     <!-- DEDICATION -->
                     <td id="questionnaire">Dedication</td>
-                    <td id="questionnaire"><textarea style="width: 290px; height: 150px;" name="value" value="{{dedication}}"
-                            placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">
-                    </textarea></td>
+                    <td id="questionnaire"><textarea style="width: 290px; height: 150px;" name="value"
+                            placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea></td>
                 </tr>
             </table>
-            <input type="button" value="Previous" class="radius secondary large button">&nbsp; 
+            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=1';">&nbsp; 
             <input type="submit" value="Next" class="radius large button">
         </form>
 
@@ -46,22 +45,19 @@
     <h3>Steps</h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Start</a>
+                <a href="/step?s=0">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1">2. Choose a template</a>
+                <a href="/step?s=1">2. Child information</a>
             </li>
             <li>
-                <a href="/step?s=2">3. Child information</a>
+                <a href="/step?s=2"><b>3. Dedication</b></a>
             </li>
             <li>
-                <a href="/step?s=3"><b>4. Dedication</b></a>
+                <a href="#">4. Summary</a>
             </li>
             <li>
-                <a href="/step?s=4">5. Summary</a>
-            </li>
-            <li>
-                <a href="#">6. Preview</a>
+                <a href="#">5. Preview</a>
             </li>
         </ul>
     <p>

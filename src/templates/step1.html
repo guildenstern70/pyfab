@@ -50,7 +50,7 @@
                     <tr>
                         <td id="questionnaire" >Name:</td>
                         <td id="questionnaire" ><input type="text" id="txtname" name="value" value="{{heroname}}" size="30">
-                        <input type="button" name="generator" value="  Generate!  " onClick="setName();">
+                        <input type="button" name="generator" value="  Generate!  " onclick="setName();">
                         </td>
                     </tr>
                     <!-- DATE OF BIRTH -->
@@ -60,7 +60,7 @@
                         <input type='hidden' name='s' value='2'></td>
                     </tr>
                 </table>
-                <input type="button" value="Previous" class="radius secondary large button">&nbsp;
+                <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=0';">&nbsp;
                 <input type="submit" value="Next" class="radius large button">
                 </form>
                 
@@ -79,22 +79,19 @@
         </h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Start</a>
+                <a href="/step?s=0">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1">2. Choose a template</a>
+                <a href="/step?s=1"><b>2. Child information</b></a>
             </li>
             <li>
-                <a href="/step?s=2"><b>3. Child information</b></a>
+                <a href="#">3. Dedication</a>
             </li>
             <li>
-                <a href="/step?s=3">4. Dedication</a>
+                <a href="#">4. Summary</a>
             </li>
             <li>
-                <a href="/step?s=4">5. Summary</a>
-            </li>
-            <li>
-                <a href="#">6. Preview</a>
+                <a href="#">5. Preview</a>
             </li>
         </ul>
         <p>
