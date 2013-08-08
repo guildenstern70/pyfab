@@ -1,0 +1,4 @@
+*.py[cod]
+/img
+/static
+/favicon.ico
