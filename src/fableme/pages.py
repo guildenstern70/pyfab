@@ -164,7 +164,7 @@ class Print(webapp2.RequestHandler):
         fable_sex = fable.the_fable.sex
         fable_title = fable.the_fable.template
         fable_name = fable.the_fable.name
-        if fable_sex == 'M':
+        if fable_title == 'Peter and the pirates':
             filepath = os.path.join(os.path.split(__file__)[0], '../resources/Peter.txt')
         else:
             filepath = os.path.join(os.path.split(__file__)[0], '../resources/Anna.txt')

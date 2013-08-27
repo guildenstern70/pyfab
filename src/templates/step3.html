@@ -16,43 +16,29 @@
             <table>
                     <tr>
                         <td>Template: </td>
-                        <td><input type="text" value="{{template}}"></td>
+                        <td><input type="text" value="{{template}}" readonly></td>
                     </tr>
                     <tr>
                         <td>We're talking about: </td>
                         <td>
-                        
-                            <div class="switch">
-                            {% if heroheroine == "hero" %}
-                              <input id="x" name="switch-x" type="radio" checked>
-                              <label for="x" onclick="">a boy</label>
-                              <input id="x1" name="switch-x" type="radio">
-                              <label for="x1" onclick="">a girl</label>
-                            {% else %}
-                              <input id="x" name="switch-x" type="radio">
-                              <label for="x" onclick="">a boy</label>
-                              <input id="x1" name="switch-x" type="radio" checked>
-                              <label for="x1" onclick="">a girl</label>
-                            {% endif %}
-                            </div>
-                        
+                            <input type="text" value="{{heroheroine|capfirst}}" readonly>
                         </td>
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s name: </td>
-                        <td><input type="text" value="{{heroname}}"></td>
+                        <td><input type="text" value="{{heroname}}" readonly></td>
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s birth date: </td>
-                        <td><input type="date" name="value" value="{{birthdate}}"></td>
+                        <td><input type="text" name="value" value="{{birthdate}}" readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication from: </td>
-                        <td><input type="text" value="{{sender}}"></td>
+                        <td><input type="text" value="{{sender}}" readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication text: </td>
-                        <td><textarea style="width: 290px; height: 150px;" name="value">{{dedication}}</textarea></td>
+                        <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{dedication}}</textarea></td>
                     </tr>
             </table>
             <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=2';">&nbsp; 
