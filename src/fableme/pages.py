@@ -124,7 +124,7 @@ class Book(webapp2.RequestHandler):
             'version': version(),
             'title': 'My voyage to Aragon',
             'sku': 'SKU #83203',
-            'bookimg': 'cover_voyage.png',
+            'bookimg': 'cover_voyage.jpg',
             'sidebar_pic': 'Anna.jpg',
             'desc_title': 'A dream comes true',
             'desc_desc': """This is the story of little Anna, a beautiful princess who travels 
@@ -142,7 +142,7 @@ class Book(webapp2.RequestHandler):
             'version': version(),
             'title': 'When I met the Pirates',
             'sku': 'SKU #83321',
-            'bookimg': 'cover_pirates.png',
+            'bookimg': 'cover_pirates.jpg',
             'sidebar_pic': 'rustic_pirate.jpg',
             'desc_title': 'A great adventure...',
             'desc_desc': """This is a beautiful pirate story for boys and girls all over the world. 
