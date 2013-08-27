@@ -124,7 +124,7 @@ class Book(webapp2.RequestHandler):
             'version': version(),
             'title': 'My voyage to Aragon',
             'sku': 'SKU #83203',
-            'bookimg': 'annatoaragon.jpg',
+            'bookimg': 'cover_voyage.png',
             'sidebar_pic': 'Anna.jpg',
             'desc_title': 'A dream comes true',
             'desc_desc': """This is the story of little Anna, a beautiful princess who travels 
@@ -142,12 +142,13 @@ class Book(webapp2.RequestHandler):
             'version': version(),
             'title': 'When I met the Pirates',
             'sku': 'SKU #83321',
-            'bookimg': 'peterandpirates.jpg',
+            'bookimg': 'cover_pirates.png',
             'sidebar_pic': 'rustic_pirate.jpg',
             'desc_title': 'A great adventure...',
             'desc_desc': """This is a beautiful pirate story for boys and girls all over the world. 
-                            The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, a parrot pirate and a rat pirate. Toget
-                            her they sail the sees and have a lot of fun.""",
+                            The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
+                            a parrot pirate and a rat pirate. Together they sail the sees and have 
+                            a lot of fun.""",
             
             }
         target_page = 'templates/book.html'
