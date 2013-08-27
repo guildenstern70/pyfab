@@ -1,7 +1,3 @@
-function $(e) {
-	return document.getElementById(e);
-}
-
 function rnd(minv, maxv) {
 	if (maxv < minv)
 		return 0;
@@ -62,7 +58,7 @@ function getName(minlength, maxlength, prefix, suffix) {
 }
 
 function setName() {
-	$('txtname').defaultvalue = "";
-	$('txtname').value = getName(5, 9, "", "");
+	var newname = getName(5, 9, "", "");
+	$('#txtname').val(newname);
 	return true;
 }
