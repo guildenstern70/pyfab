@@ -1,0 +1,58 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Administer users{% endblock %}
+
+{% block maincontent %}
+    <!-- Main Content Section -->
+    
+    <div class="large-9 push-3 columns">
+        <div class="row">
+            <h3>
+                Welcome to administration page, {{nickname}}!
+            </h3>
+            <p>
+                You can view and edit USERS here.
+            </p>
+        </div>
+
+        <div class="row">
+            <h5>
+                USERS
+            </h5>
+        </div>
+        
+        <div class="row">
+                <table id="tblusers" border="1" width="100%" cellspacing="0" cellpadding="3">
+			      <thead>
+			        <tr>
+			          <th width='25%'>ID</th>
+			          <th width='25%'>Email</th>
+			          <th width='25%'>Nickname</th>
+			          <th width='24%'>Added</th>
+			          <th width='8%'>News?</th>
+			        </tr>
+			      </thead>
+			        {% for reg in registration.object_list %}
+			      <tbody>
+			        <tr>
+			          <td><a href="browse?email={{reg.email}}">{{reg.name}}</a></td>
+			        </tr>
+			      </tbody>
+			    </table>
+          
+          
+        </div>
+        
+    </div><!-- Nav Sidebar -->
+    
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+	<div class="large-3 pull-9 columns">
+	
+	    <div class="row">
+            <img src="img/pic05.jpg">
+        </div>
+
+	</div>
+
+    </div>
+{% endblock %}

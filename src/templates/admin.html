@@ -1,0 +1,43 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Administrator account{% endblock %}
+
+{% block maincontent %}
+    <!-- Main Content Section -->
+    
+    <div class="large-9 push-3 columns">
+        <div class="row">
+            <h3>
+                Welcome to administration page, {{nickname}}!
+            </h3>
+
+            <p>You can view and edit entire application here.</p>
+
+        </div>
+        
+        <div class="row">
+        	<p>Select a table:</p>
+            <ul>
+            	<li><a href="/admin/users"> -> Users</a></li>
+            	<li><a href="/admin/fables"> -> Fables</a></li>
+           	</ul>
+        </div>
+        
+        <div class="row">
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        </div>
+        
+    </div><!-- Nav Sidebar -->
+    
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+	<div class="large-3 pull-9 columns">
+	
+	    <div class="row">
+            <img src="/img/rustic_pirate.jpg" width="250">
+        </div>
+
+	</div>
+
+{% endblock %}

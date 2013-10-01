@@ -8,20 +8,17 @@
 
 # pylint: disable=C0301
 
-import os
 import urllib
-import webapp2
 import logging
 
-from google.appengine.ext.webapp import template
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext.webapp.util import login_required
-from google.appengine.api import users
+from google.appengine.ext.webapp import template
 from fableme.fabulator import Fabulator
-from fableme.writer import Writer
-from fableme.version import version
 from fableme.db.schema import DbFableUser
+from fableme.version import version
+from fableme.abstract import FablePage
 
 
 def register_user(user):
@@ -35,41 +32,7 @@ def register_user(user):
 
 
 # Pages
-class FablePage(webapp2.RequestHandler):
-    """ base class for all site pages """
-    
-    def get(self):
-        self.initialize_user()
-        template_values = {
-            'nickname': self.user_nick,
-            'login_url': self.login_url,
-            'logout_url':  self.logout_url,
-            'version': version()
-        }
-        self.response.out.write(
-                template.render(self.template, template_values)
-                )
-        
-    def initialize_user(self):
-        """ http get handler """
-        self.the_user = users.get_current_user()
-        self.login_url = users.create_login_url("/")
-        if (self.the_user):
-            self.user_nick = self.the_user.nickname()
-            self.logout_url = users.create_logout_url("/")
-            
-    def __init__(self, request, response, template_filename):
-        """ constructor """
-        # Set self.request, self.response and self.app.
-        self.initialize(request, response)
-        # Base class initialization
-        self.user_nick = None
-        self.login_url = None
-        self.logout_url = None
-        self.the_user = None
-        if (template_filename):
-            self.template = 'templates/'+template_filename
-        
+
 class Index(FablePage):
     """ /index page """
     
@@ -81,6 +44,12 @@ class Create(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "create.html")
+        
+class MyAccount(FablePage):
+    """ /myaccount fable page """
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "account.html")
         
 class HowItWorks(FablePage):
     """ /howitworks fable page """
@@ -111,7 +80,7 @@ class Step(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'create.html')
         
-class Book(webapp2.RequestHandler):
+class Book(FablePage):
     """ Handler for every /book page """ 
   
     @login_required
@@ -120,8 +89,7 @@ class Book(webapp2.RequestHandler):
         book = self.request.get('bookid')
         # Book 0 -> Peter and the Pirates
         # Book 1 -> Anna goes to Aragon 
-        template_values = {
-            'version': version(),
+        book_template = {
             'title': 'My voyage to Aragon',
             'sku': 'SKU #83203',
             'bookimg': 'cover_voyage.jpg',
@@ -137,71 +105,29 @@ class Book(webapp2.RequestHandler):
                             she reflects after each one on the moral or learning point.""",
             
         }
+        
         if (book == '0'):
-            template_values = {
-            'version': version(),
-            'title': 'When I met the Pirates',
-            'sku': 'SKU #83321',
-            'bookimg': 'cover_pirates.jpg',
-            'sidebar_pic': 'rustic_pirate.jpg',
-            'desc_title': 'A great adventure...',
-            'desc_desc': """This is a beautiful pirate story for boys and girls all over the world. 
-                            The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
-                            a parrot pirate and a rat pirate. Together they sail the sees and have 
-                            a lot of fun.""",
+            book_template = {
+                'version': version(),
+                'title': 'When I met the Pirates',
+                'sku': 'SKU #83321',
+                'bookimg': 'cover_pirates.jpg',
+                'sidebar_pic': 'rustic_pirate.jpg',
+                'desc_title': 'A great adventure...',
+                'desc_desc': """This is a beautiful pirate story for boys and girls all over the world. 
+                                The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
+                                a parrot pirate and a rat pirate. Together they sail the sees and have 
+                                a lot of fun.""",
+                
+                }
             
-            }
-        target_page = 'templates/book.html'
-        self.response.out.write(
-                template.render(target_page, template_values)
-                )
+        self.template_values = dict(book_template.items() + self.template_values.items())
+        self.render()
         
-class Print(webapp2.RequestHandler):
-    """ /print page """ 
-    
-    def _prepare(self, user):
-        """ read the template and prepare for pdf creation """
-        fable = Fabulator(user) 
-        fable_sex = fable.the_fable.sex
-        fable_title = fable.the_fable.template
-        fable_name = fable.the_fable.name
-        if fable_title == 'Peter and the pirates':
-            filepath = os.path.join(os.path.split(__file__)[0], '../resources/Peter.txt')
-        else:
-            filepath = os.path.join(os.path.split(__file__)[0], '../resources/Anna.txt')
-        fablefile = open(filepath, 'r')
-        filecontents = fablefile.read()
-        fablefile.close()
-        self.fablewriter = Writer(filecontents, fable_title, fable_sex, fable_name)
-    
-    @login_required    
-    def get(self):
-        """ http get handler """
-        user = users.get_current_user()
-        self._prepare(user)
-        template_values = {
-            'version': version(),
-            'fable_contents': self.fablewriter.get_fable(),
-            'title': self.fablewriter.get_title()
-            }
-        target_page = 'templates/print.html'
-        self.response.out.write(template.render(target_page, template_values))
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'book.html')
         
-class PrintPDF(Print):
-    """ /print page """ 
-    
-    @login_required
-    def get(self):
-        """ http get handler """
-        user = users.get_current_user()
-        self._prepare(user)
-        blobkey = self.fablewriter.get_pdf()
-        template_values = {
-            'version': version(),
-            'downloadURL': '/serve/%s' % blobkey
-            }
-        target_page = 'templates/download.html'
-        self.response.out.write(template.render(target_page, template_values))
+
         
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):

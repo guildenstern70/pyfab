@@ -33,6 +33,10 @@ handlers:
 - url: /fables
   static_dir: static/fables
   
+- url: /admin/.*
+  script: fableme.admin.ADMIN_APP
+  login: admin
+  
 - url: /.*
   script: main.APPLICATION
 
