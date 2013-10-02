@@ -10,50 +10,12 @@
 # pylint: disable=C0301
 
 import logging
-import time
-import datetime
+import fableme.utils as utils
 
 from fableme.version import version
 from fableme.db.schema import DbFable
 from fableme.db.schema import DbFableUser
 from google.appengine.api import users
-
-CHROME_DATE_FORMAT = '%Y-%m-%d'
-IE10_DATE_FORMAT = '%m/%d/%Y'
-
-def is_inputstring_valid(inputstring, inputformat):
-    was_converted = False
-    try:
-        struct_dt = time.strptime(inputstring, inputformat)
-        logging.debug('StructDT = ' + str(struct_dt)) 
-        datetime.date.fromtimestamp(time.mktime(struct_dt))
-        was_converted = True
-    except ValueError:
-        logging.debug('Unknown date format for '+inputstring+': defaulting...')
-    return was_converted
-
-def convert_date(inputstring, inputformat):
-    retdt = None
-    try:
-        struct_dt = time.strptime(inputstring, inputformat)
-        retdt = datetime.date.fromtimestamp(time.mktime(struct_dt))
-    except ValueError:
-        logging.debug('Cannot convert date. Defaulting to 01/01/2000')
-        retdt = datetime.date(2000,01,01)
-    return retdt
-
-def string_to_date(inputstring):
-    retdt = None   
-    if (is_inputstring_valid(inputstring, CHROME_DATE_FORMAT)):
-        logging.debug('Trying to convert #' + inputstring + '#: it seems a CHROME date...') 
-        retdt = convert_date(inputstring, CHROME_DATE_FORMAT)
-    elif (is_inputstring_valid(inputstring, IE10_DATE_FORMAT)): 
-        logging.debug('Trying to convert #' + inputstring + '# it seems a IE10 date...') 
-        retdt = convert_date(inputstring, IE10_DATE_FORMAT)
-    else:
-        logging.debug('Cannot convert date. Defaulting to 01/01/2000')
-        retdt = datetime.date(2000,01,01)
-    return retdt
 
 def create_fable(dbfableuser):
     """ Create a new DbFable for user """
@@ -157,7 +119,7 @@ class Fabulator():
                     self.the_fable.name = values[1]
                     logging.debug('DbFable.name = ' + values[1])
                 if (len(values) == 3):
-                    self.the_fable.birthdate = string_to_date(values[2])
+                    self.the_fable.birthdate = utils.string_to_date(values[2])
                     logging.debug('DbFable.birthdate = ' + values[2])
             elif (step == '3'):
                 self.the_fable.sender = values[0]

@@ -5,7 +5,7 @@
 {% block maincontent %}
     <!-- Main Content Section -->
     
-    <div class="large-9 push-3 columns">
+    <div class="large-12 columns">
         <div class="row">
             <h3>
                 Welcome to administration page, {{nickname}}!
@@ -22,37 +22,73 @@
         </div>
         
         <div class="row">
-                <table id="tblusers" border="1" width="100%" cellspacing="0" cellpadding="3">
-			      <thead>
-			        <tr>
-			          <th width='25%'>ID</th>
-			          <th width='25%'>Email</th>
-			          <th width='25%'>Nickname</th>
-			          <th width='24%'>Added</th>
-			          <th width='8%'>News?</th>
-			        </tr>
-			      </thead>
-			        {% for reg in registration.object_list %}
-			      <tbody>
-			        <tr>
-			          <td><a href="browse?email={{reg.email}}">{{reg.name}}</a></td>
-			        </tr>
-			      </tbody>
-			    </table>
+            <table id="tblusers" border="1" width="100%" cellspacing="0" cellpadding="3">
+		      <thead>
+		        <tr>
+		          <th>&nbsp;</th>
+		          <th>ID</th>
+		          <th>Email</th>
+		          <th>Name</th>
+		          <th>Nickname</th>
+		          <th>BirthDay</th>
+		          <th>Added</th>
+		          <th>News?</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		       {% for reguser in registered_users.object_list %}
+		        <tr>
+		          <td>
+		            <input type="checkbox" id="{{reguser.user.user_id}}">
+		          </td>
+		          <td>
+		          	<a href="/admin/user/{{reguser.user.user_id}}">{{reguser.user.user_id}}</a>
+		          </td>
+		      	  <td>
+		          	{{reguser.email}}
+		          </td>
+		          <td>
+		          	{{reguser.name}}
+		          </td>
+		          <td>
+		          	{{reguser.nickname}}
+		          </td>
+		          <td>
+		          	{{reguser.birthDate}}
+		          </td>
+		          <td>
+		          	{{reguser.added}}
+		          </td>
+		          <td>
+		          	{{reguser.receivenews}}
+		          </td>
+		        </tr>
+		        {% endfor %}
+		      </tbody>
+		    </table>
+			    
+		    <div align="center">
+		      {% for i in pages %}
+					{% ifequal i page %}
+						{{ i }}
+					{% else %}
+						<a href='/admin/users{{ i }}'>
+							{{ i }}
+						</a>
+					{% endifequal %}
+			  {% endfor %}
+  			</div>
           
           
         </div>
+
+        <div class="row">
+        	<button type="button">Delete</button>&nbsp;
+        	<button type="button">Edit</button>
+        </div>
+
         
-    </div><!-- Nav Sidebar -->
-    
-    <!-- This is source ordered to be pulled to the left on larger screens -->
-	<div class="large-3 pull-9 columns">
-	
-	    <div class="row">
-            <img src="img/pic05.jpg">
-        </div>
-
-	</div>
-
     </div>
+    
+
 {% endblock %}

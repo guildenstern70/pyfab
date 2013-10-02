@@ -19,6 +19,7 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/create', fableme.pages.Create),
                               ('/myaccount', fableme.pages.MyAccount),
                               ('/create', fableme.pages.Create),
+                              ('/register', fableme.pages.Register),
                               ('/step', fableme.pages.Step),
                               ('/book', fableme.pages.Book),
                               ('/howitworks', fableme.pages.HowItWorks),

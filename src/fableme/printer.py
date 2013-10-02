@@ -34,7 +34,6 @@ class Print(FablePage):
     @login_required    
     def get(self):
         """ http get handler """
-        self.initialize_user()
         self._prepare(self.the_user)
         self.template_values['fable_contents'] = self.fablewriter.get_fable(),
         self.template_values['title'] = self.fablewriter.get_title()
@@ -49,7 +48,6 @@ class PrintPDF(Print):
     @login_required
     def get(self):
         """ http get handler """
-        self.initialize_user()
         self._prepare(self.the_user)
         self.template_values['downloadURL'] = '/serve/%s' % self.fablewriter.get_pdf()
         self.render()

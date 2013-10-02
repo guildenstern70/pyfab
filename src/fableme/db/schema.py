@@ -18,7 +18,9 @@ class DbFableUser(db.Model):
     
     user = db.UserProperty(required=True)
     email = db.StringProperty(required=True)
+    name = db.StringProperty()
     nickname = db.StringProperty()
+    birthDate = db.DateProperty()
     added = db.DateTimeProperty(auto_now_add=True)
     receivenews = db.BooleanProperty(default=True)
     
@@ -39,12 +41,16 @@ class DbFableUser(db.Model):
         return db.get(user_key)
     
     @staticmethod
-    def createuser(user):
+    def createuser(user, uname, unick, ubdate, unews):
         """ Create a user record """
         usermail = user.email()
         userdb = DbFableUser(key_name = usermail, user = user, email = usermail, 
-                         nickname = user.nickname())
+                             name = uname, nickname = unick, birthDate = ubdate, receivenews = unews)
         logging.debug('Adding user ' + usermail + ' to DB')
+        logging.debug('  => Name: ' + uname)
+        logging.debug('  => Nick: ' + unick)
+        logging.debug('  => BDay: ' + str(ubdate))
+        logging.debug('  => News: ' + str(unews))
         userdb.put()
         
         

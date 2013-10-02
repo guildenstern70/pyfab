@@ -11,24 +11,18 @@
 import urllib
 import logging
 
+import fableme.fabulator as fabulator
+import fableme.utils as utils
+
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
-from fableme.fabulator import Fabulator
-from fableme.db.schema import DbFableUser
+from google.appengine.api import users
+
 from fableme.version import version
 from fableme.abstract import FablePage
-
-
-def register_user(user):
-    """ Register user on DB """
-    visitinguser = DbFableUser.get_from_user(user)
-    if (visitinguser == None):
-        logging.debug('User not found on DB. Adding. ')
-        DbFableUser.createuser(user)
-    else:
-        logging.debug('User is found on DB: ' + str(visitinguser))
+from fableme.db.schema import DbFableUser
 
 
 # Pages
@@ -38,6 +32,37 @@ class Index(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "index.html")
+        
+class Register(FablePage):
+    """ /register page """
+    
+    def savedata(self, user):
+        firstLastName = self.request.get('firstLastName')
+        nickName = self.request.get('nickName')
+        birthDate = self.request.get('birthDate')
+        receiveNews = self.request.get('receiveNews')
+        r_news = False
+        if (receiveNews=='on'):
+            r_news = True
+        bdate = utils.string_to_date(birthDate)
+        DbFableUser.createuser(user, firstLastName, nickName, bdate, r_news)
+          
+    def post(self):
+        user = users.get_current_user()
+        self.savedata(user)
+        self.redirect('/')
+        
+    @login_required  
+    def get(self):
+        user = users.get_current_user()
+        if (self.is_user_on_db()):
+            self.redirect('/')
+        else:
+            self.template_values['emailaddr'] = user.email()
+            self.render() 
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "register.html", request_authentication=True)
     
 class Create(FablePage):
     """ /create fable page """
@@ -63,12 +88,10 @@ class Step(FablePage):
     @login_required  
     def get(self):
         """ http get handler """
-        self.initialize_user()
-        register_user(self.the_user)
         step = self.request.get('s') # steps, zero base (first step = 0)
         refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
-        fable = Fabulator(self.the_user) 
+        fable = fabulator.Fabulator(self.the_user) 
         if (values != None):
             fable.process(step, values, refresh) # Save step data into FableDb
         target_page = 'templates/step' + step + '.html'
@@ -78,7 +101,7 @@ class Step(FablePage):
                 )
            
     def __init__(self, request, response):
-        FablePage.__init__(self, request, response, 'create.html')
+        FablePage.__init__(self, request, response, 'create.html', request_authentication=True)
         
 class Book(FablePage):
     """ Handler for every /book page """ 

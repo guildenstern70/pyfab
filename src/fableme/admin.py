@@ -27,10 +27,19 @@ class AdminUsers(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "admin_users.html")
         
-    def get(self):
-        self.initialize_user()
+    def get(self, page=1):
         data = Queries.get_all_users()
         paginator = Paginator(data, ITEMS_TO_FETCH)
+        if page > paginator.num_pages:
+            page = paginator.num_pages
+        elif page < 1:
+            page = 1
+        self.template_values['registered_users'] = paginator.page(page)
+        self.template_values['pages'] = range(1,paginator.num_pages)
+        self.template_values['page'] = page
+        self.template_values['total_users'] = data.count()
+        self.render()
+        
         
         
 class AdminFables(FablePage):
