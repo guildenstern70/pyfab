@@ -11,6 +11,7 @@
 import logging
 import datetime
 
+
 from google.appengine.ext import db
 
 class DbFableUser(db.Model):
@@ -24,20 +25,30 @@ class DbFableUser(db.Model):
     added = db.DateTimeProperty(auto_now_add=True)
     receivenews = db.BooleanProperty(default=True)
     
+    def __nr_of_fables(self):
+        _query = DbFable.all()
+        _query.ancestor(self)
+        _query.filter('user_email', self.email)
+        nr = _query.count()
+        logging.debug('User ' + self.nickname +' has ' + str(nr) + ' fables.')
+        return nr
+    
+    nr_of_fables = property(__nr_of_fables, doc="""Gets the number of fables of a user.""")
+    
     def __repr__(self):
         return "DbFableUser [user="+self.email+"]"
     
     @staticmethod
-    def get_from_user(user):
+    def get_from_user(google_user):
         """ Get the user record """
-        user_key = db.Key.from_path('DbFableUser', user.email())
+        user_key = db.Key.from_path('DbFableUser', google_user.email())
         return db.get(user_key)
     
     @staticmethod
-    def get_from_dbuser(user):
+    def get_from_dbuser(db_user):
         """ Get the user record """
-        user_key = db.Key.from_path('DbFableUser', user.email)
-        logging.debug('Getting Db User Key from ' + user.email + ' = ' + str(user_key))
+        user_key = db.Key.from_path('DbFableUser', db_user.email)
+        logging.debug('Getting Db User Key from ' + db_user.email + ' = ' + str(user_key))
         return db.get(user_key)
     
     @staticmethod
@@ -57,6 +68,7 @@ class DbFableUser(db.Model):
 class DbFable(db.Model):
     """ DB Schema: DbFable """
     
+    user_email = db.StringProperty(required=True)
     template = db.StringProperty()
     sex = db.StringProperty()
     name = db.StringProperty()
@@ -65,11 +77,26 @@ class DbFable(db.Model):
     dedication = db.StringProperty()
     
     @staticmethod
-    def get_from_user(dbfableuser):
+    def get_first_fable(google_user):
         """ Get the (first) fable of the given user """
-        user_key = DbFableUser.get_from_dbuser(dbfableuser)
-        query = DbFable(parent=user_key).all()
+        query = DbFable.get_all_fables(google_user)
         return query.get() # The first fable found for that user
+    
+    @staticmethod
+    def create(google_user):
+        """ Create a new DbFable for user """
+        user_db = DbFableUser.get_from_user(google_user)
+        logging.debug('Creating NEW DbFable for user ' + str(user_db.nickname))
+        the_fable = DbFable(parent=user_db, user_email=user_db.email)
+        the_fable.set_defaults()
+        the_fable.put()
+        return the_fable
+    
+    @staticmethod
+    def get_all_fables(google_user):
+        """ Get the (first) fable of the given user """
+        user_db = DbFableUser.get_from_user(google_user)
+        return DbFable(parent=user_db, user_email=user_db.email).all()
     
     def set_defaults(self):
         self.template = "Unknown"

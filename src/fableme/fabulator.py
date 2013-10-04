@@ -17,28 +17,20 @@ from fableme.db.schema import DbFable
 from fableme.db.schema import DbFableUser
 from google.appengine.api import users
 
-def create_fable(dbfableuser):
-    """ Create a new DbFable for user """
-    logging.debug('Creating NEW DbFable for user ' + str(dbfableuser.nickname))
-    the_fable = DbFable(parent=dbfableuser)
-    the_fable.set_defaults()
-    the_fable.put()
-    return the_fable
-
-def create_or_get_fable(user):
+def create_or_get_fable(google_user):
     """ Get the fable of the user if it exists, else create one.
         Returns a DBFable object. """
-    dbfableuser = DbFableUser.get_from_user(user)
+    dbfableuser = DbFableUser.get_from_user(google_user)
     afable = None
     if (dbfableuser):
-        logging.debug('Found DbFable user ' + user.nickname())
-        storedfable = DbFable.get_from_user(dbfableuser)
+        logging.debug('Found DbFable user ' + google_user.nickname())
+        storedfable = DbFable.get_first_fable(google_user)
         if (storedfable):
-            logging.debug('There is a fable for user ' + user.nickname())
+            logging.debug('There is a fable for user ' + google_user.nickname())
             afable = storedfable
         else:
-            logging.debug('No fable found for user ' + user.nickname() + '. Creating one.')
-            afable = create_fable(dbfableuser)
+            logging.debug('No fable found for user ' + google_user.nickname() + '. Creating one.')
+            afable = DbFable.create(google_user)
     else:
         logging.debug('DbFable user NOT FOUND!')
         raise StandardError()

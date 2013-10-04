@@ -2,38 +2,145 @@
 
 {% block title %}FableMe - My account{% endblock %}
 
+{% block extraheader %}
+    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+    <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/jquery-ui.custom.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/gennames.js"></script>
+    <script>
+    Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "/js/vendor/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      });
+    </script>
+{% endblock %}
+
 {% block maincontent %}
     <!-- Main Content Section -->
     
     <div class="large-9 push-3 columns">
+    
         <div class="row">
             <h3>
-                Welcome to your account page, {{nickname}}!
+                Account page: {{nickname}}
             </h3>
             <p>
-                Modify, edit and download your fables here.
+                View/edit profile and fables.
             </p>
         </div>
-        <div class="row">
-            <img src="img/pic05.jpg">
+                
+        <div class="section-container auto" data-section>
+        <section>
+	        <p class="title" data-section-title><a href="#panel1">My fables</a></p>
+	        
+	        <div class="content" data-section-content>
+	        
+	            <table>
+	            	<thead>
+	            		<tr>
+		            		<th>ID</th>
+		            		<th>Template</th>
+		            		<th>Name</th>
+		            		<th>Sex</th>
+		            		<th>Birh</th>
+		            		<th>Sender</th>
+		            		<th>Dedication</th>
+		            		<th>&nbsp;</th>
+	            		</tr>
+	            	</thead>
+	            	<tbody>
+	            	{% for fable in fables %}
+	            		<tr>
+	            			<td><a href="#">{{forloop.counter}}</a></td>
+	            			<td>{{fable.template}}</td>
+	            			<td>{{fable.name}}</td>
+	            			<td>{{fable.sex}}</td>
+	            			<td>{{fable.birthdate}}</td>
+	            			<td>{{fable.sender}}</td>
+	            			<td>{{fable.dedication}}</td>
+	            			<td><a href="#" data-reveal-id="areYouSure">
+	            			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
+	            			    	&#215;
+	            			    </span></a>
+	            			</td>
+	            		</tr>
+	            	{% empty %}
+	            		<tr>
+	            			<td colspan="6">You have no fables in our records.</td>
+	            		</tr>
+	            	{% endfor %}
+	            	</tbody>
+	            </table>
+				<p>&nbsp;</p>        
+	        </div>
+        </section>
+        <section>
+	        <p class="title" data-section-title><a href="#panel1">My profile</a></p>
+	        <div class="content" data-section-content>
+
+	            <table width="100%">
+	            	<tr>
+	            		<td>Name</td>
+	            		<td><input type="text" value="{{name}}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Nickname</td>
+	            		<td><input type="text" value="{{nickname}}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>e-Mail</td>
+	            		<td><input type="text" value="{{emailaddr}}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Birthdate</td>
+	            		<td><input type="date" value="{{birthdate}}"></td>
+	            	</tr>
+	            	<tr>
+	            		<td>Receive News?</td>
+	            		
+	            		<td><input type="checkbox"      		
+	            		{% if receivenews == "True" %}
+	            		cheched="checked"
+	            		{% endif %}
+	            		>
+	            		          		
+	            		</td>
+	            	</tr>
+	            </table>
+	           
+	            <br />
+	            <button type="button">Update</button>
+				<p>&nbsp;</p>
+	        </div>
+        </section>
         </div>
-        <div class="row">
-            <h5>
-                &nbsp;
-            </h5>
-            <p>
-                <a href="/step?s=0" class="radius large button">Click here to begin!</a>
-            </p>
-        </div>
-    </div><!-- Nav Sidebar -->
+    </div>
     
     <!-- This is source ordered to be pulled to the left on larger screens -->
-        <div class="large-3 pull-9 columns">
+    <div class="large-3 pull-9 columns">
 
-      <div class="panel">
-        <h4 class="hide-for-small">How to...</h4><hr/>
-      <h5 class="subheader"><br/>Watch an explanatory video: <br/><br/><a href="/howitworks">Click here</a><br/></h5>
-      </div>
+		<div class="panel">
+		<p>ACCOUNT</p>
+        <ul class="side-nav">
+		  <li><a href="#">My Profile</a></li>
+		  <li class="divider"></li>
+		  <li><a href="#">My Fables</a></li>
+		</ul>
+		</div>
+
 
     </div>
+    
+    <!-- Modal dialogs -->
+    <div id="areYouSure" class="reveal-modal">
+	  <h2>Delete a fable?</h2>
+	  <p class="lead">Do you really want to delete 'fablename'? </p>
+	  <p><a href="#" class="secondary button">Ok, go ahead</a>&nbsp;
+	     <a href="/myaccount" class="secondary button">No, cancel</a></p>
+	</div>
+    
 {% endblock %}

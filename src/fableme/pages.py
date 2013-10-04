@@ -8,6 +8,7 @@
 
 # pylint: disable=C0301
 
+
 import urllib
 import logging
 
@@ -23,6 +24,7 @@ from google.appengine.api import users
 from fableme.version import version
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
+from fableme.db.schema import DbFable
 
 
 # Pages
@@ -67,11 +69,26 @@ class Register(FablePage):
 class Create(FablePage):
     """ /create fable page """
     
+    @login_required  
+    def get(self):
+        self.template_values['nr_fables'] = self.user_db.nr_of_fables
+        self.render() 
+    
     def __init__(self, request, response):
-        FablePage.__init__(self, request, response, "create.html")
+        FablePage.__init__(self, request, response, "create.html", request_authentication=True)
         
 class MyAccount(FablePage):
     """ /myaccount fable page """
+    
+    @login_required  
+    def get(self):
+        self.template_values['name'] = self.user_db.name
+        self.template_values['nickname'] = self.user_db.nickname
+        self.template_values['emailaddr'] = self.user_db.email
+        self.template_values['birthdate'] = self.user_db.birthDate
+        self.template_values['receivenews'] = self.user_db.receivenews
+        self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
+        self.render()
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "account.html")

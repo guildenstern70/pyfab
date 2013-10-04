@@ -21,9 +21,18 @@
             <h5>
                 &nbsp;
             </h5>
-            <p>
-                <a href="/step?s=0" class="radius large button">Click here to begin!</a>
-            </p>
+            {% if nr_fables %}
+			<p>
+				<a href="/step?s=0" class="radius large button">Create a new fable</a>
+				&nbsp;
+				<a href="#" class="radius large button">Edit existing fable{{ nr_fables|pluralize }}</a>
+			</p>
+			{% else %}
+			    <p>
+                	<a href="/step?s=0" class="radius large button">Click here to begin!</a>
+            	</p>
+			{% endif %}
+
         </div>
     </div><!-- Nav Sidebar -->
     

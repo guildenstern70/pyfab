@@ -6,6 +6,7 @@
 
 """
 
+
 import webapp2
 import logging
 
@@ -85,6 +86,7 @@ class FablePage(webapp2.RequestHandler):
         self.login_url = None
         self.logout_url = None
         self.the_user = None # User as registered in Google
+        self.template_values = {}
         self.req_auth = request_authentication
         if (template_filename):
             self.template_path = 'templates/'+template_filename
