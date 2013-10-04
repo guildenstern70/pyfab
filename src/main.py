@@ -12,6 +12,7 @@ import logging
 import webapp2
 
 import fableme.pages
+import fableme.commands
 import fableme.printer
 
 logging.getLogger().setLevel(logging.DEBUG)                     
@@ -19,6 +20,7 @@ APPLICATION = webapp2.WSGIApplication(
                             [ ('/', fableme.pages.Index),
                               ('/create', fableme.pages.Create),
                               ('/myaccount', fableme.pages.MyAccount),
+                              ('/deletefable', fableme.commands.DeleteFable),
                               ('/create', fableme.pages.Create),
                               ('/register', fableme.pages.Register),
                               ('/step', fableme.pages.Step),

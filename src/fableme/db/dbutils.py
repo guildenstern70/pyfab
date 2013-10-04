@@ -9,13 +9,12 @@
 from google.appengine.ext import db
 
 from fableme.db.schema import DbFableUser
+from fableme.db.schema import DbFable
 
 class Queries():
       
     @staticmethod     
     def get_all_users(): 
-        #itemQuery = 'SELECT * FROM DbFableUser ORDER BY added DESC'          
-        #return db.GqlQuery(itemQuery)
         return DbFableUser.all()
     
     @staticmethod     
@@ -23,4 +22,10 @@ class Queries():
         itemQuery = 'SELECT COUNT(*) FROM DbFable WHERE ANCESTOR IS :1 ORDER BY added DESC'
         query = db.GqlQuery(itemQuery, google_user_key)
         return query.get()
+    
+    @staticmethod
+    def delete_fable(google_user, fable_id):
+        fable = DbFable.get_fable(google_user, fable_id)
+        fable.delete()
+        
     

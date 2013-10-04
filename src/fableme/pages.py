@@ -169,8 +169,6 @@ class Book(FablePage):
         FablePage.__init__(self, request, response, 'book.html')
         
 
-        
-
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     """ Download the PDF """
     

@@ -62,7 +62,7 @@
 	            			<td>{{fable.birthdate}}</td>
 	            			<td>{{fable.sender}}</td>
 	            			<td>{{fable.dedication}}</td>
-	            			<td><a href="#" data-reveal-id="areYouSure">
+	            			<td><a href="#" data-reveal-id="areYouSure{{fable.key.id}}">
 	            			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
 	            			    	&#215;
 	            			    </span></a>
@@ -136,11 +136,15 @@
     </div>
     
     <!-- Modal dialogs -->
-    <div id="areYouSure" class="reveal-modal">
+    {% for fable in fables %}
+    <div id="areYouSure{{fable.key.id}}" class="reveal-modal">
 	  <h2>Delete a fable?</h2>
-	  <p class="lead">Do you really want to delete 'fablename'? </p>
-	  <p><a href="#" class="secondary button">Ok, go ahead</a>&nbsp;
+	  <p class="lead">Do you really want to delete fable #{{forloop.counter}}? </p>
+	  <p><a href="/deletefable?id={{fable.key.id}}" class="secondary button">Ok, go ahead</a>&nbsp;
 	     <a href="/myaccount" class="secondary button">No, cancel</a></p>
 	</div>
+	{% empty %}
+	<!-- No fables -->
+	{% endfor %}
     
 {% endblock %}
