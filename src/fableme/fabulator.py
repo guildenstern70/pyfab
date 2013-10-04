@@ -17,20 +17,24 @@ from fableme.db.schema import DbFable
 from fableme.db.schema import DbFableUser
 from google.appengine.api import users
 
-def create_or_get_fable(google_user):
+def create_new_fable(google_user):
+    return DbFable.create(google_user)
+
+def get_fable(google_user, fable_id):
     """ Get the fable of the user if it exists, else create one.
         Returns a DBFable object. """
     dbfableuser = DbFableUser.get_from_user(google_user)
     afable = None
     if (dbfableuser):
         logging.debug('Found DbFable user ' + google_user.nickname())
-        storedfable = DbFable.get_first_fable(google_user)
+        logging.debug('Looking for fable #' + str(fable_id))
+        storedfable = DbFable.get_fable(google_user, fable_id)
         if (storedfable):
-            logging.debug('There is a fable for user ' + google_user.nickname())
+            logging.debug('Fable #' + str(fable_id) + ' found.')
             afable = storedfable
         else:
-            logging.debug('No fable found for user ' + google_user.nickname() + '. Creating one.')
-            afable = DbFable.create(google_user)
+            logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + google_user.nickname() +'. Creating one.')
+            afable = create_new_fable(google_user)
     else:
         logging.debug('DbFable user NOT FOUND!')
         raise StandardError()
@@ -68,16 +72,20 @@ class Steps():
 class Fabulator():
     """ DbFable builder """
     
-    def __init__(self, user):
-        self.the_user = user
+    def __init__(self, google_user, fable_id):
+        self.the_user = google_user
         if (self.the_user != None):
-            self.the_fable = create_or_get_fable(user)
+            if (fable_id == '-1'):
+                self.the_fable = create_new_fable(self.the_user)
+            else:
+                self.the_fable = get_fable(self.the_user, fable_id)   
             logging.debug('Built fabulator with '+str(self.the_fable))
         
     def templatevalues(self, step):
         """ Delivers template values for the next step """       
         logging.debug('Building template values for step = ' + str(step))   
         template_values = {
+            'fable_id': self.the_fable.key().id(),
             'nickname': self.the_user.nickname(),
             'logout_url':  users.create_logout_url("/"),
             'version': version()
@@ -100,7 +108,7 @@ class Fabulator():
             self._loginfo(step, values, refresh)           
             if (refresh != ''):
                 istep = int(step) + 1
-                step = str(istep)
+                step = str(istep)   
             if (step == '1'):
                 self.the_fable.template = values[0]
                 logging.debug('DbFable.template = ' + values[0])

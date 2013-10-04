@@ -39,9 +39,11 @@
                     <tr>
                         <td>Dedication text: </td>
                         <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{dedication}}</textarea></td>
+                        <input type='hidden' name='id' value='{{fable_id}}'>
                     </tr>
             </table>
-            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=2';">&nbsp; 
+            <input type="button" value="Previous" class="radius secondary large button" 
+                   onclick="location.href='/step?s=2&id={{fable_id}}';">&nbsp; 
             <input type="submit" value="OK, go to print!" class="radius large button">
         </form>
 

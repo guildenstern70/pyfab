@@ -83,6 +83,13 @@ class DbFable(db.Model):
         return query.get() # The first fable found for that user
     
     @staticmethod
+    def get_fable(google_user, fable_id):
+        """ Get the (first) fable of the given user """
+        user_db = DbFableUser.get_from_user(google_user)
+        fable = DbFable.get_by_id(fable_id, parent = user_db)
+        return fable
+    
+    @staticmethod
     def create(google_user):
         """ Create a new DbFable for user """
         user_db = DbFableUser.get_from_user(google_user)

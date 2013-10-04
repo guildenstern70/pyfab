@@ -20,6 +20,7 @@
                     <td width="200" id="questionnaire">Sender <br />(ie: Mom and Dad):</td>
                     <td width="300" id="questionnaire"><input type="text" id="txtname" name="value" value="{{sender}}"> 
                         <input type='hidden' name='s' value='3'>
+                        <input type='hidden' name='id' value='{{fable_id}}'>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +30,7 @@
                             placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea></td>
                 </tr>
             </table>
-            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=1';">&nbsp; 
+            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=1&id={{fable_id}}';">&nbsp; 
             <input type="submit" value="Next" class="radius large button">
         </form>
 

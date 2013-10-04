@@ -16,9 +16,9 @@ from google.appengine.ext.webapp.util import login_required
 class Print(FablePage):
     """ /print page """ 
     
-    def _prepare(self, user):
+    def _prepare(self, user, fable_id):
         """ read the template and prepare for pdf creation """
-        fable = Fabulator(user) 
+        fable = Fabulator(user, fable_id) 
         fable_sex = fable.the_fable.sex
         fable_title = fable.the_fable.template
         fable_name = fable.the_fable.name
@@ -34,7 +34,8 @@ class Print(FablePage):
     @login_required    
     def get(self):
         """ http get handler """
-        self._prepare(self.the_user)
+        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        self._prepare(self.the_user, long(fable_id))
         self.template_values['fable_contents'] = self.fablewriter.get_fable(),
         self.template_values['title'] = self.fablewriter.get_title()
         self.render()

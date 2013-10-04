@@ -23,13 +23,13 @@
             </h5>
             {% if nr_fables %}
 			<p>
-				<a href="/step?s=0" class="radius large button">Create a new fable</a>
+				<a href="/step?s=0&id=-1" class="radius large button">Create a new fable</a>
 				&nbsp;
-				<a href="#" class="radius large button">Edit existing fable{{ nr_fables|pluralize }}</a>
+				<a href="/step?s=0&id=99" class="radius large button">Edit existing fable{{ nr_fables|pluralize }}</a>
 			</p>
 			{% else %}
 			    <p>
-                	<a href="/step?s=0" class="radius large button">Click here to begin!</a>
+                	<a href="/step?s=0&id=-1" class="radius large button">Click here to begin!</a>
             	</p>
 			{% endif %}
 

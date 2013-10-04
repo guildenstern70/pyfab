@@ -102,13 +102,14 @@ class HowItWorks(FablePage):
 class Step(FablePage):
     """ Handler for every /step page """  
     
-    @login_required  
+    @login_required
     def get(self):
         """ http get handler """
+        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
         step = self.request.get('s') # steps, zero base (first step = 0)
         refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
-        fable = fabulator.Fabulator(self.the_user) 
+        fable = fabulator.Fabulator(self.the_user, long(fable_id)) 
         if (values != None):
             fable.process(step, values, refresh) # Save step data into FableDb
         target_page = 'templates/step' + step + '.html'
