@@ -7,10 +7,14 @@
  
 """
 
+
+
 from __future__ import with_statement
 from collections import OrderedDict
 from google.appengine.api import files
+
 from fableme.pdfhelper import PDF
+from fableme.tagreplacer import Replacer
 
 import logging
 
@@ -22,23 +26,19 @@ def savetoblob(xbuffer):
     files.finalize(file_name)
     return files.blobstore.get_blob_key(file_name)
 
-class Writer():
+class Writer(object):
     """ This class actually builds the fable """
     
     def __init__(self, template, title, sex, name):
-        self.fable_template = template
         self.fable_title = title
-        self.character_sex = sex
-        self.character_name = name
-        self.tags = self._process_template()
-        self.replacements_dict = self._build_dictionary()
+        self.replacer = Replacer(template, sex, name)
         
     def get_title(self):
         return self.fable_title
         
     def get_fable(self):
         """ Get the final fable """
-        for tag, val in self.replacements_dict.items():
+        for tag, val in self.replacer.get_replacements():
             self.fable_template = self.fable_template.replace(tag, val)
         return self.fable_template
     
@@ -74,41 +74,7 @@ class Writer():
         logging.debug('... OK done. Blobkey = ' + str(blobkey))
         return blobkey
 
-    def _build_dictionary(self):
-        tag_dict = {}
-        for tag in self.tags:
-            tag_dict[tag] = self._tag_replace(self.character_sex,tag)
-        return tag_dict
-    
-    def _process_template(self):
-        intag = False
-        tag = ""
-        tags_found = set()
-        for ch in self.fable_template:
-            if (ch == '<'):
-                intag = True
-            elif (ch == '>'):
-                intag = False
-                tags_found.add(tag+'>')
-                tag = ""
-            if (intag):
-                tag += ch
-        return tags_found
-    
-    def _tag_replace(self, sex, tag):
-        """ A tag with underscore <his_her> is turned into 'his' if male, else 'her'
-            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' """
-        replaced_word = ''
-        underindex = tag.find('_')
-        if underindex > 0:
-            if (sex == 'F'): 
-                replaced_word = tag[1:underindex] 
-            else:
-                replaced_word = tag[underindex+1:-1]
-        else:
-            if (tag == '<name>'):
-                replaced_word = self.character_name
-        return replaced_word
+
 
         
         
