@@ -72,6 +72,7 @@ class Create(FablePage):
     @login_required  
     def get(self):
         self.template_values['nr_fables'] = self.user_db.nr_of_fables
+        self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
         self.render() 
     
     def __init__(self, request, response):

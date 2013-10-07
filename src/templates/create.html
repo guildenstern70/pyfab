@@ -24,9 +24,45 @@
             {% if nr_fables %}
 			<p>
 				<a href="/step?s=0&id=-1" class="radius large button">Create a new fable</a>
-				&nbsp;
-				<a href="/step?s=0&id=99" class="radius large button">Edit existing fable{{ nr_fables|pluralize }}</a>
 			</p>
+			
+			<fieldset>
+			<legend>... or edit an existing one:</legend>
+			<table>
+	            	<thead>
+	            		<tr>
+		            		<th>ID</th>
+		            		<th>Template</th>
+		            		<th>Name</th>
+		            		<th>Sex</th>
+		            		<th>Birh</th>
+		            		<th>Sender</th>
+		            		<th>Dedication</th>
+		            		<th>&nbsp;</th>
+	            		</tr>
+	            	</thead>
+	            	<tbody>
+	            	{% for fable in fables %}
+	            		<tr>
+	            			<td><a href="#">{{forloop.counter}}</a></td>
+	            			<td><a href="#">{{fable.template}}</a></td>
+	            			<td>{{fable.name}}</td>
+	            			<td>{{fable.sex}}</td>
+	            			<td>{{fable.birthdate}}</td>
+	            			<td>{{fable.sender}}</td>
+	            			<td>{{fable.dedication}}</td>
+	            			<td><a href="#">EDIT</a></a>
+	            			</td>
+	            		</tr>
+	            	{% empty %}
+	            		<tr>
+	            			<td colspan="8">You have no fables in our records.</td>
+	            		</tr>
+	            	{% endfor %}
+	            	</tbody>
+	            </table>
+	            </fieldset>
+			
 			{% else %}
 			    <p>
                 	<a href="/step?s=0&id=-1" class="radius large button">Click here to begin!</a>

@@ -6,7 +6,6 @@
 
 """
 
-
 import webapp2
 import logging
 
