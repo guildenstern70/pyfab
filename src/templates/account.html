@@ -42,7 +42,7 @@
 	            <table>
 	            	<thead>
 	            		<tr>
-		            		<th>ID</th>
+		            		<th>&nbsp;</th>
 		            		<th>Template</th>
 		            		<th>Name</th>
 		            		<th>Sex</th>
@@ -55,7 +55,7 @@
 	            	<tbody>
 	            	{% for fable in fables %}
 	            		<tr>
-	            			<td><a href="#">{{forloop.counter}}</a></td>
+	            			<td><a href="/step?s=3&id={{fable.id}}">{{forloop.counter}}</a></td>
 	            			<td>{{fable.template}}</td>
 	            			<td>{{fable.name}}</td>
 	            			<td>{{fable.sex}}</td>
@@ -137,10 +137,10 @@
     
     <!-- Modal dialogs -->
     {% for fable in fables %}
-    <div id="areYouSure{{fable.key.id}}" class="reveal-modal">
+    <div id="areYouSure{{fable.id}}" class="reveal-modal">
 	  <h2>Delete a fable?</h2>
 	  <p class="lead">Do you really want to delete fable #{{forloop.counter}}? </p>
-	  <p><a href="/deletefable?id={{fable.key.id}}" class="secondary button">Ok, go ahead</a>&nbsp;
+	  <p><a href="/deletefable?id={{fable.id}}&retpage=myaccount" class="secondary button">Ok, go ahead</a>&nbsp;
 	     <a href="/myaccount" class="secondary button">No, cancel</a></p>
 	</div>
 	{% empty %}

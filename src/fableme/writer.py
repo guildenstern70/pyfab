@@ -7,70 +7,62 @@
  
 """
 
+from __future__ import with_statement  # WARNING: MUST BE FIRST LINE
 
+import os
+import logging
+import fableme.utils as utils
 
-from __future__ import with_statement
-from collections import OrderedDict
 from google.appengine.api import files
-
 from fableme.pdfhelper import PDF
 from fableme.tagreplacer import Replacer
 
-import logging
-
-def savetoblob(xbuffer):
+def savetoblob(pdf_object):
     """ Save file to blob """
     file_name = files.blobstore.create('application/octet-stream')        
     with files.open(file_name, 'a') as memorypdf:
-        memorypdf.write(xbuffer)
+        pdf_object.prepare_pdf(memorypdf)
     files.finalize(file_name)
     return files.blobstore.get_blob_key(file_name)
 
 class Writer(object):
-    """ This class actually builds the fable """
+    """ This class actually builds the fable, replacing tags from template,
+        then creates PDF and saves it to blob store """
     
-    def __init__(self, template, title, sex, name):
-        self.fable_title = title
-        self.replacer = Replacer(template, sex, name)
-        
+    def __init__(self, db_fable):
+        self.dbfable = db_fable
+          
     def get_title(self):
-        return self.fable_title
+        return self.dbfable.template
         
     def get_fable(self):
-        """ Get the final fable """
-        for tag, val in self.replacer.get_replacements():
-            self.fable_template = self.fable_template.replace(tag, val)
-        return self.fable_template
+        """ Get the final fable as a long string """
+        logging.debug('Reading file template...')
+        template = self._read_file_template()
+        logging.debug('Replacing tags...')
+        replacer = Replacer(template, self.dbfable.sex, self.dbfable.name)
+        replacements = replacer.get_replacements()
+        for tag, val in replacements.items():
+            if ((val != None) and (len(val)>0)):
+                template = template.replace(tag, val)
+        return template
     
-    def get_chapters(self):
-        """ Get a dictionary in the form { Chapter Title : Chapter body } """
-        fable = self.get_fable()
-        chapters = fable.split('Chapter')
-        clean_chapters = OrderedDict()
-        for chapter in chapters:
-            first_newline = chapter.find('\n')
-            first_fullstop = chapter.find('.')
-            if first_fullstop > 0:
-                chapter_title = chapter[first_fullstop+2:first_newline]
-                chapter_body = chapter[first_newline:]
-                clean_chapters[chapter_title] = chapter_body
-        return clean_chapters
+    def _read_file_template(self):
+        template_googlepath = utils.get_from_resources(self.dbfable.template_filename)
+        logging.debug('Reading from ' + template_googlepath + '...')
+        fablefile = open(template_googlepath, 'r')
+        filecontents = fablefile.read()
+        fablefile.close()
+        logging.debug('Reading file done.')
+        return filecontents
     
     def get_pdf(self):
         """ Returns a blobkey containing the fable in PDF format """
         logging.debug('Creating PDF')
-        fable_chapters = self.get_chapters()
-        pdf = PDF()
-        pdf.set_title(self.fable_title)
-        pdf.set_author('FableMe')
-        j = 1
-        for chapter_title, chapter_body in fable_chapters.items():
-            logging.debug('Writing chapter ' + str(j))
-            pdf.print_chapter(j, chapter_title, chapter_body)
-            j += 1     
-        xbuffer = pdf.output('fable.pdf', 'S')
+        pdf_contents = self.get_fable()
+        pdf = PDF(self.dbfable, pdf_contents)
         logging.debug('Saving to blob...')
-        blobkey = savetoblob(xbuffer)
+        blobkey = savetoblob(pdf)
         logging.debug('... OK done. Blobkey = ' + str(blobkey))
         return blobkey
 

@@ -18,8 +18,10 @@ class Replacer(object):
         self.character_name = name
         
     def get_replacements(self):
+        ''' Return a dictionary: <tag>: replacement word '''
         self.tags = self._extract_tags_from_template()
-        return self._build_dictionary()
+        replacements = self._build_dictionary()
+        return replacements
         
     def _extract_tags_from_template(self):
         ''' Return a set (unique list) of tags found in a template '''
@@ -38,7 +40,6 @@ class Replacer(object):
         return tags_found
     
     def _build_dictionary(self):
-        ''' Return a dictionary: <tag>: replacement word '''
         tag_dict = {}
         for tag in self.tags:
             tag_dict[tag] = self._tag_replace(self.character_sex,tag)

@@ -34,24 +34,26 @@
 		            		<th>ID</th>
 		            		<th>Template</th>
 		            		<th>Name</th>
-		            		<th>Sex</th>
-		            		<th>Birh</th>
 		            		<th>Sender</th>
 		            		<th>Dedication</th>
+		            		<th>&nbsp;</th>
 		            		<th>&nbsp;</th>
 	            		</tr>
 	            	</thead>
 	            	<tbody>
 	            	{% for fable in fables %}
 	            		<tr>
-	            			<td><a href="#">{{forloop.counter}}</a></td>
-	            			<td><a href="#">{{fable.template}}</a></td>
+	            			<td><a href="/step?s=3&id={{fable.id}}">{{forloop.counter}}</a></td>
+	            			<td><a href="/step?s=3&id={{fable.id}}">{{fable.template}}</a></td>
 	            			<td>{{fable.name}}</td>
-	            			<td>{{fable.sex}}</td>
-	            			<td>{{fable.birthdate}}</td>
 	            			<td>{{fable.sender}}</td>
 	            			<td>{{fable.dedication}}</td>
-	            			<td><a href="#">EDIT</a></a>
+	            			<td><a href="/step?s=3&id={{fable.id}}">EDIT</a></a>
+	            			</td>
+	            			<td><a href="#" data-reveal-id="areYouSure{{fable.id}}">
+	            			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
+	            			    	&#215;
+	            			    </span></a>
 	            			</td>
 	            		</tr>
 	            	{% empty %}
@@ -81,4 +83,16 @@
       </div>
 
     </div>
+    
+        <!-- Modal dialogs -->
+    {% for fable in fables %}
+    <div id="areYouSure{{fable.id}}" class="reveal-modal">
+	  <h2>Delete a fable?</h2>
+	  <p class="lead">Do you really want to delete fable #{{forloop.counter}}? </p>
+	  <p><a href="/deletefable?id={{fable.id}}&retpage=create" class="secondary button">Ok, go ahead</a>&nbsp;
+	     <a href="/create" class="secondary button">No, cancel</a></p>
+	</div>
+	{% empty %}
+	<!-- No fables -->
+	{% endfor %}
 {% endblock %}

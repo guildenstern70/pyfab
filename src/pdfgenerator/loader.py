@@ -5,60 +5,39 @@ loader.py
 @author: Alessio Saltarin
 '''
 
-import sys
-import os
 import fablepage
 import chapter
+import logging
+import fableme.utils as utils
 
-OUTPUT_DIR = "../../output/"
-RESOURCES_DIR = "../../resources/"
-        
-def output_path(name):
-    return os.path.join(OUTPUT_DIR, name)
-
-def resource_path(name):
-    return os.path.join(RESOURCES_DIR, name)
-
-class FableLoader():
+class FableLoader(object):
     
-    def __init__(self, filename, title):
-        self._filename = filename
-        self._title = title
-        self.pdffilepath = output_path(os.path.splitext(filename)[0] + '.pdf')
-        self.coverfilename = os.path.splitext(filename)[0] + '.png' 
-        self.fable = fablepage.FableDoc(self.pdffilepath, title)
+    def __init__(self, file_handler, db_fable):
+        self._file_h = file_handler
+        self._title = db_fable.template
+        self.coverfilename = db_fable.cover_filename
+        self.fable_doc = None
         self.chapters = []
+              
+    def setContents(self, text_contents):
+        self.paras = text_contents.split('\n')
         
     def build(self):
-        if (self._readFile()):
+        logging.debug('Building PDF...')
+        if len(self.paras) > 0:
+            self.fable_doc = fablepage.FableDoc(self._file_h, self._title)
             self._parseFile()
             self._addCover()
-            self.fable.addTitle(self._title)
+            self.fable_doc.addTitle(self._title)
             for chapter in self.chapters:
-                self._buildChapter(self.fable, chapter)
-        
-    def _readFile(self):
-        """ Transfer file contents into paragraphs list """
-        fileReadOk = True
-        print '  Reading file ' + self._filename
-        try:
-            fileobj = open(resource_path(self._filename), "r")
-            filecontents = fileobj.read()
-            fileobj.close()
-            self.paras = filecontents.split('\n')
-            print '  The file has ' + str(len(self.paras)) + ' paragraphs.'
-        except IOError:
-            print '*** Critical error opening ', self._filename
-            print '*** ', sys.exc_info()[0]
-            fileReadOk = False
-        return fileReadOk
+                self._buildChapter(self.fable_doc, chapter)
+            self.fable_doc.save()
+        else:
+            logging.debug('CRITICAL PDF Error: empty contents.')
+            raise 
         
     def _parseFile(self):
         """ Divide paragraphs in chapters """
-        if (len(self.paras) == 0):
-            print 'No paragraphs found.'
-            return
-        print '  Parsing file...'
         chapter_paragraphs = []
         chapter_nr = 1
         for paragraph in self.paras:
@@ -68,11 +47,10 @@ class FableLoader():
                     chapter_nr += 1
                     chapter_paragraphs = []
             chapter_paragraphs.append(paragraph)       
-        print '  Done.'
         
     def _addCover(self):
-        print '  Adding cover'
-        self.fable.addCover(resource_path(self.coverfilename))
+        cover_filepath = utils.get_from_resources(self.coverfilename)
+        self.fable_doc.addCover(utils.get_google_app_path(cover_filepath))
                 
     def _addChapter(self, paragraphs):
         """ Add a chapter to chapters list """
@@ -83,14 +61,13 @@ class FableLoader():
         self.chapters.append(new_chapter)
             
     def _buildChapter(self, fable, chapter):
-        print '  Adding chapter > ' + chapter.title
         fable.addChapterTitle(chapter.title)
         for paragraph in chapter.paragraphs:
             fable.addParagraphOrImage(paragraph)
         fable.addPageBreak()
                 
     def __get_fable(self):
-        return self.fable
+        return self.fable_doc
     
     def __get_pdffile(self):
         return self.pdffilepath

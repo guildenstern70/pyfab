@@ -76,6 +76,23 @@ class DbFable(db.Model):
     sender = db.StringProperty()
     dedication = db.StringProperty()
     
+    def __id(self):
+        return self.key().id()
+       
+    def __unix_name(self):
+        return self.template.replace(' ', '_')
+    
+    def __template_text_file(self):
+        return self.__unix_name() + '.txt'
+    
+    def __cover_file(self):
+        return self.__unix_name() + '.jpg'
+        
+    id = property(__id, doc="""Gets fable ID (long number).""")
+    unix_name = property(__unix_name, doc="""Gets fable title with underscores instead of spaces.""")
+    template_filename = property(__template_text_file, doc="""Gets the name of the file containing the template.""")
+    cover_filename = property(__cover_file, doc="""Gets the name of the file containing the cover image.""")
+    
     @staticmethod
     def get_first_fable(google_user):
         """ Get the (first) fable of the given user """

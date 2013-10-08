@@ -6,12 +6,24 @@
 
 """
 
+import os
 import logging
 import time
 import datetime
 
 CHROME_DATE_FORMAT = '%Y-%m-%d'
 IE10_DATE_FORMAT = '%m/%d/%Y'
+RESOURCES_PATH = '../resources/'
+
+def get_from_resources(filename):
+    """ Get a file stored in RESOURCE_PATH under Google App Engine """
+    filepath = os.path.join(RESOURCES_PATH, filename)
+    return get_google_app_path(filepath) 
+
+def get_google_app_path(filepath):
+    """ Return the path of a file
+        inside the google appengine framework """
+    return os.path.join(os.path.split(__file__)[0], filepath) 
 
 def is_date_valid(inputstring, inputformat):
     """ Check if the input string contains
