@@ -2,7 +2,59 @@
 
 {% block title %}FableMe - Create a fable - Print{% endblock %}
 
+{% block extraheader %}
+    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+    <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/jquery-ui.custom.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/vendor/spin.js"></script>
+    <script src="/js/vendor/jquery.spin.js"></script>	
+	<style type="text/css">
+    #loading
+    {
+        display:none;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background:rgba(255,255,255,0.8);
+        z-index:1000;
+    }
+  
+    #loadingcontent
+    {
+        display:table;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+    }
+  
+    #loadingspinner
+    {
+        display: table-cell;
+        vertical-align:middle;
+        width: 100%;
+        text-align: center;
+        font-size:larger;
+        padding-top:80px;
+    }
+</style>
+	
+{% endblock %}
+
 {% block maincontent %}
+
+	<div id="loading">
+	    <div id="loadingcontent">
+	        <p id="loadingspinner">
+	            Creating PDF... Please wait
+	        </p>
+	    </div>
+	</div>
+
 
     <!-- Main Content Section -->
     <!-- This has been source ordered to come first in the markup (and on small devices) 
@@ -22,13 +74,9 @@
               
         </div>
         <div class="row">
-            <h3>What now?</h3><br /><br />
-            <p>You may:</p>
-            <ul>
-                <li><a href="/print/pdf?id={{fable_id}}">Download PDF!</a></li>
-                <li><a href="#">Purchase a digital copy</a></li>
-                <li><a href="#">Have the book sent<br/> to your home</a></li>
-            </ul>
+        
+        	<a href="/print/pdf?id={{fable_id}}" id="downloadbtn" class="radius large button"> Download PDF!</a>
+        
         </div>
 
     </div><!-- Nav Sidebar -->
@@ -58,5 +106,26 @@
             <img src="img/Step6.jpg">
         </p>
     </div>
+    
+    <script type="text/javascript">
+	    $(function () {
+	        $("#downloadbtn").click(function () {
+	            $("#loading").fadeIn();
+	            var opts = {
+	                lines: 12, // The number of lines to draw
+	                length: 7, // The length of each line
+	                width: 4, // The line thickness
+	                radius: 10, // The radius of the inner circle
+	                color: '#000', // #rgb or #rrggbb
+	                speed: 1, // Rounds per second
+	                trail: 60, // Afterglow percentage
+	                shadow: false, // Whether to render a shadow
+	                hwaccel: false // Whether to use hardware acceleration
+	            };
+	            var target = document.getElementById('loading');
+	            var spinner = new Spinner(opts).spin(target);
+	        });
+	    });
+	</script>
   
 {% endblock %}

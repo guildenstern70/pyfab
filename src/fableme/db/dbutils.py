@@ -28,4 +28,10 @@ class Queries():
         fable = DbFable.get_fable(google_user, fable_id)
         fable.delete()
         
+    @staticmethod
+    def delete_all_fables(google_user):
+        fables = DbFable.all()
+        fables.filter('user_email', google_user.email())
+        db.delete(fables)
+        
     

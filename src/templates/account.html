@@ -74,8 +74,11 @@
 	            		</tr>
 	            	{% endfor %}
 	            	</tbody>
-	            </table>
-				<p>&nbsp;</p>        
+	            </table>    		
+				<a href="#" class="radius button alert" data-reveal-id="areYouSure_all">
+	            			    	Delete all fables
+				</a> 
+				<p>&nbsp;</p>   
 	        </div>
         </section>
         <section>
@@ -136,6 +139,12 @@
     </div>
     
     <!-- Modal dialogs -->
+    <div id="areYouSure_all" class="reveal-modal">
+	  <h2>Delete all fables?</h2>
+	  <p class="lead">Do you really want to delete all of your fables? </p>
+	  <p><a href="/deletefable?id=all&retpage=myaccount" class="secondary button">Ok, go ahead</a>&nbsp;
+	     <a href="/myaccount" class="secondary button">No, cancel</a></p>
+	</div>
     {% for fable in fables %}
     <div id="areYouSure{{fable.id}}" class="reveal-modal">
 	  <h2>Delete a fable?</h2>

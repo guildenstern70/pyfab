@@ -58,10 +58,6 @@ class DbFableUser(db.Model):
         userdb = DbFableUser(key_name = usermail, user = user, email = usermail, 
                              name = uname, nickname = unick, birthDate = ubdate, receivenews = unews)
         logging.debug('Adding user ' + usermail + ' to DB')
-        logging.debug('  => Name: ' + uname)
-        logging.debug('  => Nick: ' + unick)
-        logging.debug('  => BDay: ' + str(ubdate))
-        logging.debug('  => News: ' + str(unews))
         userdb.put()
         
         
@@ -128,7 +124,7 @@ class DbFable(db.Model):
         self.name = ""
         self.birthdate = datetime.date(2000,01,01)
         self.sender = ""
-        self.dedication = "From Mom and Dad"
+        self.dedication = "With love"
     
     def __repr__(self):
         return "DbFable [ID="+str(self.key())+"]"

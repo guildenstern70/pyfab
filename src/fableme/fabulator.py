@@ -98,7 +98,7 @@ class Fabulator(object):
                 self.the_fable.sex = values[0]
                 logging.debug('DbFable.sex = ' + values[0])            
                 if (len(values) >= 2):
-                    self.the_fable.name = values[1]
+                    self.the_fable.name = values[1].title()
                     logging.debug('DbFable.name = ' + values[1])
                 if (len(values) == 3):
                     self.the_fable.birthdate = utils.string_to_date(values[2])
