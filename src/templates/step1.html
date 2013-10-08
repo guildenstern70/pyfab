@@ -38,13 +38,13 @@
                         <td width="200" id="questionnaire">We are talking about:</td>
                         <td width="300" id="questionnaire">
                         {% if heroheroine == "hero" %}
-                            <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&refresh=1';">&nbsp;A hero (Male)
+                            <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male)
                             &nbsp;<br/>
-                            <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&refresh=1';">&nbsp;A heroine (Female)
+                            <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
                         {% else %}
-                            <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&refresh=1';">&nbsp;A hero (Male)
+                            <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male)
                             &nbsp;<br/>
-                            <input type="radio" name="value" value="F" checked="checked"  onclick="window.location='/step?s=1&value=F&refresh=1';">&nbsp;A heroine (Female)
+                            <input type="radio" name="value" value="F" checked="checked"  onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
                         {% endif %}
                         </td>
                     </tr>
