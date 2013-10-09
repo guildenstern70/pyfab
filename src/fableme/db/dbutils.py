@@ -8,20 +8,31 @@
 
 from google.appengine.ext import db
 
-from fableme.db.schema import DbFableUser
 from fableme.db.schema import DbFable
+from fableme.db.schema import DbFableUser
+
 
 class Queries():
       
     @staticmethod     
     def get_all_users(): 
-        return DbFableUser.all()
+        model = DbFableUser.all()
+        return model
     
-    @staticmethod     
-    def get_nr_fables_of_user(google_user_key): 
-        itemQuery = 'SELECT COUNT(*) FROM DbFable WHERE ANCESTOR IS :1 ORDER BY added DESC'
-        query = db.GqlQuery(itemQuery, google_user_key)
-        return query.get()
+    @staticmethod
+    def get_all_fables(google_user):
+        user_db = DbFableUser.get_from_user(google_user)
+        model = DbFable.all()
+        model.ancestor(user_db)
+        model.filter('user_email', google_user.email())
+        return model
+    
+    @staticmethod
+    def get_universe_fables(google_user):
+        user_db = DbFableUser.get_from_user(google_user)
+        model = DbFable.all()
+        model.ancestor(user_db)
+        return model
     
     @staticmethod
     def delete_fable(google_user, fable_id):

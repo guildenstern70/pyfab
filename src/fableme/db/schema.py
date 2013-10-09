@@ -11,7 +11,6 @@
 import logging
 import datetime
 
-
 from google.appengine.ext import db
 
 class DbFableUser(db.Model):
@@ -92,12 +91,6 @@ class DbFable(db.Model):
     cover_filename = property(__cover_file, doc="""Gets the name of the file containing the cover image.""")
     
     @staticmethod
-    def get_first_fable(google_user):
-        """ Get the (first) fable of the given user """
-        query = DbFable.get_all_fables(google_user)
-        return query.get() # The first fable found for that user
-    
-    @staticmethod
     def get_fable(google_user, fable_id):
         """ Get the (first) fable of the given user """
         user_db = DbFableUser.get_from_user(google_user)
@@ -113,12 +106,6 @@ class DbFable(db.Model):
         the_fable.set_defaults()
         the_fable.put()
         return the_fable
-    
-    @staticmethod
-    def get_all_fables(google_user):
-        """ Get the (first) fable of the given user """
-        user_db = DbFableUser.get_from_user(google_user)
-        return DbFable(parent=user_db, user_email=user_db.email).all()
     
     def set_defaults(self):
         self.template = "Unknown"

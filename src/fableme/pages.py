@@ -11,6 +11,7 @@
 
 import urllib
 import logging
+import fableme.db.dbutils as dbutils
 
 import fableme.fabulator as fabulator
 import fableme.utils as utils
@@ -73,7 +74,7 @@ class Create(FablePage):
     def get(self):
         self.template_values['nr_fables'] = self.user_db.nr_of_fables
         self.template_values['return_page'] = 'create'
-        self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
+        self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.render() 
     
     def __init__(self, request, response):
@@ -90,7 +91,7 @@ class MyAccount(FablePage):
         self.template_values['birthdate'] = self.user_db.birthDate
         self.template_values['receivenews'] = self.user_db.receivenews
         self.template_values['return_page'] = 'myaccount'
-        self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
+        self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.render()
     
     def __init__(self, request, response):

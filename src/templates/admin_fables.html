@@ -1,0 +1,79 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Administer fables{% endblock %}
+
+{% block maincontent %}
+    <!-- Main Content Section -->
+    
+    <div class="large-12 columns">
+    
+        <div class="row">
+            <h3>
+                Welcome to administration page, {{nickname}}!
+            </h3>
+            <p>
+                You can view and edit FABLES here.
+            </p>
+        </div>
+
+        <div class="row">
+            <h5>
+                FABLES
+            </h5>
+        </div>
+        
+        <div class="row">
+		    <table>
+				<thead>
+					<tr>
+			    		<th>&nbsp;</th>
+			    		<th>User</th>
+			    		<th>Name</th>
+			    		<th>Template</th>
+			    		<th>Created</th>
+			    		<th>Last Modified</th>
+			    		<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for fable in fables.object_list %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{fable.user_email}}</td>
+						<td>{{fable.name}}</td>
+						<td>{{fable.template}}</td>
+						<td>{{fable.created|date:"d/M/Y h:i" }}</td>
+						<td>{{fable.modified|date:"d/M/Y h:i" }}</td>
+						<td>&nbsp;</a>
+						</td>
+					</tr>
+				{% empty %}
+					<tr>
+						<td colspan="8">You have no fables in our records.</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			<div align="center">
+		      {% for i in pages %}
+					{% ifequal i page %}
+						{{ i }}
+					{% else %}
+						<a href='/admin/fables{{ i }}'>
+							{{ i }}
+						</a>
+					{% endifequal %}
+			  {% endfor %}
+        	</div> 
+		</div>
+
+ 
+        
+        <div class="row">
+        	<button type="button">Delete</button>&nbsp;
+        	<button type="button">Edit</button>
+        </div>     
+        
+   </div>
+   
+{% endblock %}
