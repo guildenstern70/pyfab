@@ -94,9 +94,12 @@ class FableDoc(object):
             self._story.append(Spacer(1, 0.2*cm))
         else:
             logging.critical('*Warning: image is None!')
+            
+    def build(self):
+        self._doc.build(onFirstPage=firstPages, onLaterPages=laterPages)
         
     def save(self, filename):
-        self._doc.build(self._story, file_h=filename, onFirstPage=firstPages, onLaterPages=laterPages)
+        self._doc.save(self._story, filename)
         
         
         

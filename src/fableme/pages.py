@@ -25,7 +25,6 @@ from google.appengine.api import users
 from fableme.version import version
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
-from fableme.db.schema import DbFable
 
 
 # Pages

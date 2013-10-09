@@ -18,8 +18,8 @@ from fableme.tagreplacer import Replacer
 
 def savetoblob(pdf_object):
     """ Save file to blob """
-    file_name = files.blobstore.create('application/octet-stream') 
-    pdf_object.prepare_pdf()       
+    pdf_object.prepare_pdf()      
+    file_name = files.blobstore.create('application/octet-stream')  
     with files.open(file_name, 'a') as blob_store_file:
         pdf_object.save_pdf(blob_store_file)
     files.finalize(file_name)

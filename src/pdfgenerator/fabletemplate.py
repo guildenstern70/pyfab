@@ -26,7 +26,7 @@ class FableMeDocTemplate(BaseDocTemplate):
         self._handle_pageBegin()
         self._handle_nextPageTemplate('Later')
 
-    def build(self, flowables, file_h, onFirstPage=_doNothing, onLaterPages=_doNothing, canvasmaker=canvas.Canvas):
+    def build(self, onFirstPage=_doNothing, onLaterPages=_doNothing):
         """build the document using the flowables.  Annotate the first page using the onFirstPage
                function and later pages using the onLaterPages function.  The onXXX pages should follow
                the signature
@@ -47,5 +47,7 @@ class FableMeDocTemplate(BaseDocTemplate):
             self.pageTemplates[0].beforeDrawPage = self.onFirstPage
         if onLaterPages is _doNothing and hasattr(self,'onLaterPages'):
             self.pageTemplates[1].beforeDrawPage = self.onLaterPages
+            
+    def save(self, flowables, file_h, canvasmaker=canvas.Canvas):
         BaseDocTemplate.build(self, flowables, filename=file_h, canvasmaker=canvasmaker)
         

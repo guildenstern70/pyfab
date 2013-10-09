@@ -32,7 +32,8 @@ class FableLoader(object):
                 self._buildChapter(self.fable_doc, chapter)
         else:
             logging.debug('CRITICAL PDF Error: empty contents.')
-            raise 
+            raise
+        self.fable_doc.build() 
         
     def save(self, file_h):
         self.fable_doc.save(file_h)
