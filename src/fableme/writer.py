@@ -9,7 +9,6 @@
 
 from __future__ import with_statement  # WARNING: MUST BE FIRST LINE
 
-import os
 import logging
 import fableme.utils as utils
 
@@ -19,9 +18,10 @@ from fableme.tagreplacer import Replacer
 
 def savetoblob(pdf_object):
     """ Save file to blob """
-    file_name = files.blobstore.create('application/octet-stream')        
-    with files.open(file_name, 'a') as memorypdf:
-        pdf_object.prepare_pdf(memorypdf)
+    file_name = files.blobstore.create('application/octet-stream') 
+    pdf_object.prepare_pdf()       
+    with files.open(file_name, 'a') as blob_store_file:
+        pdf_object.save_pdf(blob_store_file)
     files.finalize(file_name)
     return files.blobstore.get_blob_key(file_name)
 

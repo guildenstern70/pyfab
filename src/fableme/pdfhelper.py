@@ -14,12 +14,17 @@ class PDF(object):
     """ PDF Helper class """
     
     def __init__(self, db_fable, contents):
-        logging.debug('Initializing PDF object')
         self.dbfable = db_fable
+        self.fable_loader = loader.FableLoader(self.dbfable)
         self.text_contents = contents
     
-    def prepare_pdf(self, file_h):
+    def prepare_pdf(self):
         logging.debug('Preparing PDF...')
-        fable_loader = loader.FableLoader(file_h, self.dbfable)
-        fable_loader.setContents(self.text_contents)
-        fable_loader.build()
+        self.fable_loader.setContents(self.text_contents)
+        self.fable_loader.build()
+        
+    def save_pdf(self, file_h):
+        logging.debug('Saving PDF...')
+        self.fable_loader.save(file_h)
+        
+        

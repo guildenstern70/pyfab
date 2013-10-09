@@ -8,9 +8,10 @@ fablepage.py
 import stylesheet
 import logging
 import fableme.utils as utils
+import fabletemplate
 
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
+from reportlab.platypus import Paragraph, Spacer, PageBreak, Image
 from reportlab.lib.units import cm
 
 _W, _H = (21*cm, 29.7*cm) # This is the A4 size
@@ -31,8 +32,8 @@ def laterPages(canvas, doc):
 
 class FableDoc(object):
     
-    def __init__(self, file_handler, fabletitle):
-        self._doc = SimpleDocTemplate(file_handler, 
+    def __init__(self, fabletitle):
+        self._doc = fabletemplate.FableMeDocTemplate(None, 
                                       title=fabletitle,
                                       pagesize=A4, 
                                       topMargin=2*cm,
@@ -41,7 +42,6 @@ class FableDoc(object):
                                       rightMargin=2*cm)
         self._story = []
         self._styles = stylesheet.fableMeStyleSheet()
-        logging.debug('FableDoc for '+fabletitle+' initialized.')
         
     def addCover(self, coverImageFile):
         image = Image(coverImageFile, _WF, _HF)
@@ -95,8 +95,8 @@ class FableDoc(object):
         else:
             logging.critical('*Warning: image is None!')
         
-    def save(self):
-        self._doc.build(self._story, onFirstPage=firstPages, onLaterPages=laterPages)
+    def save(self, filename):
+        self._doc.build(self._story, file_h=filename, onFirstPage=firstPages, onLaterPages=laterPages)
         
         
         

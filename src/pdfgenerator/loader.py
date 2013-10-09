@@ -12,8 +12,7 @@ import fableme.utils as utils
 
 class FableLoader(object):
     
-    def __init__(self, file_handler, db_fable):
-        self._file_h = file_handler
+    def __init__(self, db_fable):
         self._title = db_fable.template
         self.coverfilename = db_fable.cover_filename
         self.fable_doc = None
@@ -25,16 +24,18 @@ class FableLoader(object):
     def build(self):
         logging.debug('Building PDF...')
         if len(self.paras) > 0:
-            self.fable_doc = fablepage.FableDoc(self._file_h, self._title)
+            self.fable_doc = fablepage.FableDoc(self._title)
             self._parseFile()
             self._addCover()
             self.fable_doc.addTitle(self._title)
             for chapter in self.chapters:
                 self._buildChapter(self.fable_doc, chapter)
-            self.fable_doc.save()
         else:
             logging.debug('CRITICAL PDF Error: empty contents.')
             raise 
+        
+    def save(self, file_h):
+        self.fable_doc.save(file_h)
         
     def _parseFile(self):
         """ Divide paragraphs in chapters """
