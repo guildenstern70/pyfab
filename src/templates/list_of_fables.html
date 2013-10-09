@@ -1,0 +1,38 @@
+<table>
+	<thead>
+		<tr>
+    		<th>&nbsp;</th>
+    		<th>Name</th>
+    		<th>Template</th>
+    		<th>Sender</th>
+    		<th>Dedication</th>
+    		<th>Created</th>
+    		<th>Last Modified</th>
+    		<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for fable in fables %}
+		<tr>
+			<td><a href="/step?s=3&id={{fable.id}}">{{forloop.counter}}</a></td>
+			<td><a href="/step?s=3&id={{fable.id}}">{{fable.name}}</a></td>
+			<td><a href="/step?s=3&id={{fable.id}}">{{fable.template}}</a></td>
+			<td>{{fable.sender}}</td>
+			<td>{{fable.dedication}}</td>
+			<td>{{fable.created|date:"d/M/Y h:i" }}</td>
+			<td>{{fable.modified|date:"d/M/Y h:i" }}</td>
+			<td><a href="#" data-reveal-id="areYouSure{{fable.key.id}}">
+			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
+			    	&#215;
+			    </span></a>
+			</td>
+		</tr>
+	{% empty %}
+		<tr>
+			<td colspan="8">You have no fables in our records.</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>    		
+
+

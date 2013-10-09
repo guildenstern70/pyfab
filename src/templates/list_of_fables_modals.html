@@ -1,0 +1,17 @@
+<!-- Modal dialogs required by 'list_of_fables.html' -->
+<div id="areYouSure_all" class="reveal-modal">
+  <h2>Delete all fables?</h2>
+  <p class="lead">Do you really want to delete all of your fables? </p>
+  <p><a href="/deletefable?id=all&retpage=myaccount" class="secondary button">Ok, go ahead</a>&nbsp;
+     <a href="/{{return_page}}" class="secondary button">No, cancel</a></p>
+</div>
+{% for fable in fables %}
+<div id="areYouSure{{fable.id}}" class="reveal-modal">
+  <h2>Delete a fable?</h2>
+  <p class="lead">Do you really want to delete fable #{{forloop.counter}}? </p>
+  <p><a href="/deletefable?id={{fable.id}}&retpage={{return_page}}" class="secondary button">Ok, go ahead</a>&nbsp;
+     <a href="/{{return_page}}" class="secondary button">No, cancel</a></p>
+</div>
+{% empty %}
+<!-- No fables -->
+{% endfor %}

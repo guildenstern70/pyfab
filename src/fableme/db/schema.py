@@ -71,6 +71,8 @@ class DbFable(db.Model):
     birthdate = db.DateProperty()
     sender = db.StringProperty()
     dedication = db.StringProperty()
+    created = db.DateTimeProperty(auto_now_add=True)
+    modified = db.DateTimeProperty(auto_now_add=True)
     
     def __id(self):
         return self.key().id()

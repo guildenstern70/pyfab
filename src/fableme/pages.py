@@ -72,6 +72,7 @@ class Create(FablePage):
     @login_required  
     def get(self):
         self.template_values['nr_fables'] = self.user_db.nr_of_fables
+        self.template_values['return_page'] = 'create'
         self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
         self.render() 
     
@@ -88,6 +89,7 @@ class MyAccount(FablePage):
         self.template_values['emailaddr'] = self.user_db.email
         self.template_values['birthdate'] = self.user_db.birthDate
         self.template_values['receivenews'] = self.user_db.receivenews
+        self.template_values['return_page'] = 'myaccount'
         self.template_values['fables'] = DbFable.get_all_fables(self.the_user)
         self.render()
     
@@ -176,9 +178,12 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     @login_required
     def get(self, resource):
         """ http get handler """
+        nickname = self.request.get('nick')
+        lastmod = self.request.get('lastmod')
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
-        self.send_blob(blob_info, save_as='YourFable.pdf')
+        pdf_file_name = 'Fable_' + nickname + '_' + lastmod + '.pdf'
+        self.send_blob(blob_info, save_as=pdf_file_name)
 
 
 

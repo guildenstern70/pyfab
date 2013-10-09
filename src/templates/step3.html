@@ -16,7 +16,7 @@
             <table>
                     <tr>
                         <td>Template: </td>
-                        <td><input type="text" value="{{template}}" readonly></td>
+                        <td><input type="text" value="{{fable.template}}" readonly></td>
                     </tr>
                     <tr>
                         <td>We're talking about: </td>
@@ -26,24 +26,32 @@
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s name: </td>
-                        <td><input type="text" value="{{heroname}}" readonly></td>
+                        <td><input type="text" value="{{fable.name}}" readonly></td>
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s birth date: </td>
-                        <td><input type="text" name="value" value="{{birthdate}}" readonly></td>
+                        <td><input type="text" name="value" value="{{fable.birthdate}}" readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication from: </td>
-                        <td><input type="text" value="{{sender}}" readonly></td>
+                        <td><input type="text" value="{{fable.sender}}" readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication text: </td>
-                        <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{dedication}}</textarea></td>
-                        <input type='hidden' name='id' value='{{fable_id}}'>
+                        <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{fable.dedication}}</textarea></td>
+                        <input type='hidden' name='id' value='{{fable.id}}'>
+                    </tr>
+                    <tr>
+                        <td>This fable was created on:</td>
+                        <td>{{fable.created|date:"d/M/Y h:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last time it was modified:</td>
+                        <td>{{fable.modified|date:"d/M/Y h:i" }}</td>
                     </tr>
             </table>
             <input type="button" value="Previous" class="radius secondary large button" 
-                   onclick="location.href='/step?s=2&id={{fable_id}}';">&nbsp; 
+                   onclick="location.href='/step?s=2&id={{fable.id}}';">&nbsp; 
             <input type="submit" value="OK, go to print!" class="radius large button">
         </form>
 

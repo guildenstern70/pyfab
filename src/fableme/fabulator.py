@@ -10,6 +10,7 @@
 # pylint: disable=C0301
 
 import logging
+import datetime
 import fableme.utils as utils
 
 from fableme.version import version
@@ -25,14 +26,11 @@ class Steps(object):
         self.template_keys = [ 
                               ['heroheroine', 'heroname', 'birthdate'],
                               ['sender', 'dedication'],
-                              ['template', 'heroheroine', 'heroname', 'sender', 'dedication', 'birthdate']
+                              ['fable', 'heroheroine']
                              ]
         
     def template_values(self, template_values, list_of_values):
         key = self.current_step - 1
-        logging.debug('> Setting step '+str(self.current_step))
-        logging.debug('> Template keys '+str(self.template_keys[key]))
-        logging.debug('> List of values '+str(list_of_values))
         if len(list_of_values) == len(self.template_keys[key]):
             j = 0
             for item in self.template_keys[key]:
@@ -75,11 +73,10 @@ class Fabulator(object):
         if (step > 0): 
             step_setter = Steps(step)
             map_of_values = {
-                             1: [self.hero_heroine(), self.the_fable.name, self.the_fable.birthdate],
-                             2: [self.the_fable.sender, self.the_fable.dedication],
-                             3: [self.the_fable.template, self.hero_heroine(), self.the_fable.name, self.the_fable.sender, 
-                                 self.the_fable.dedication, self.the_fable.birthdate]
-                             }
+                                 1: [self.hero_heroine(), self.the_fable.name, self.the_fable.birthdate],
+                                 2: [self.the_fable.sender, self.the_fable.dedication],
+                                 3: [self.the_fable, self.hero_heroine()]
+                            }
             template_values = step_setter.template_values(template_values, map_of_values[step])
         return template_values 
         
@@ -93,22 +90,21 @@ class Fabulator(object):
                 step = str(istep)   
             if (step == '1'):
                 self.the_fable.template = values[0]
-                logging.debug('DbFable.template = ' + values[0])
             elif (step == '2'):
-                self.the_fable.sex = values[0]
-                logging.debug('DbFable.sex = ' + values[0])            
+                self.the_fable.sex = values[0]           
                 if (len(values) >= 2):
                     self.the_fable.name = values[1].title()
-                    logging.debug('DbFable.name = ' + values[1])
                 if (len(values) == 3):
                     self.the_fable.birthdate = utils.string_to_date(values[2])
-                    logging.debug('DbFable.birthdate = ' + values[2])
             elif (step == '3'):
-                self.the_fable.sender = values[0]
-                logging.debug('DbFable.sender = ' + values[0])          
+                self.the_fable.sender = values[0]         
                 self.the_fable.dedication = values[1]
-                logging.debug('DbFable.dedication = ' + values[1])                 
-            self.the_fable.put()
+            self.update_fable_on_db()                
+            
+    
+    def update_fable_on_db(self):
+        self.the_fable.modified = datetime.datetime.now()
+        self.the_fable.put()   
         
     def hero_heroine(self):
         """ Returns the string 'hero' if the sex is M """

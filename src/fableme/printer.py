@@ -17,13 +17,13 @@ class Print(FablePage):
     
     def _prepare(self, user, fable_id):
         """ read the template and prepare for pdf creation """
-        fable = Fabulator(user, fable_id) 
-        self.fablewriter = Writer(fable.the_fable)
+        self.fable = Fabulator(user, fable_id) 
+        self.fablewriter = Writer(self.fable.the_fable)
     
     @login_required    
     def get(self):
         """ http get handler """
-        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        fable_id = self.request.get('id') 
         self._prepare(self.the_user, long(fable_id))
         self.template_values['fable_id'] = fable_id
         self.template_values['fable_contents'] = self.fablewriter.get_fable()
@@ -39,9 +39,12 @@ class PrintPDF(Print):
     @login_required
     def get(self):
         """ http get handler """
-        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        fable_id = self.request.get('id') 
         self._prepare(self.the_user, long(fable_id))
-        self.template_values['downloadURL'] = '/serve/%s' % self.fablewriter.get_pdf()
+        nick = self.fable.the_fable.name
+        lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
+        self._prepare(self.the_user, long(fable_id))
+        self.template_values['downloadURL'] = '/serve/%s?nick=%s&lastmod=%s' % ( self.fablewriter.get_pdf(), nick, lastmod )
         self.render()
         
     def __init__(self, request, response):
