@@ -97,7 +97,9 @@
 
 {% block extralatejavascripts %}
 	<script src="/js/foundation/foundation.abide.js"></script>
-  	<script src="js/foundation/foundation.section.js"></script>
+  	<script src="/js/foundation/foundation.section.js"></script>
+  	<script src="/js/foundation/foundation.tooltips.js"></script>
+  	<script src="/js/foundation/foundation.reveal.js"></script>
 	<script src="/js/vendor/modernizr.input_dates.js"></script>
 	<script>Modernizr.load({
 		  test: Modernizr.inputtypes.date,
@@ -106,7 +108,7 @@
 		    $('input[type=date]').datepicker({
 		      dateFormat: 'yy-mm-dd'
 		    }); 
-  }
-});
-</script>
+	  }
+	});
+	</script>
 {% endblock %}

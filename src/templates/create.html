@@ -2,6 +2,10 @@
 
 {% block title %}FableMe - Create a fable{% endblock %}
 
+{% block extraheader %}
+<link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+{% endblock %}
+
 {% block maincontent %}
     <!-- Main Content Section -->
     <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
@@ -53,4 +57,8 @@
     </div>
     
 {% include "list_of_fables_modals.html" %} 
+{% endblock %}
+
+{% block extralatejavascripts %}
+  	<script src="/js/foundation/foundation.tooltips.js"></script>
 {% endblock %}

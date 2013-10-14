@@ -56,8 +56,11 @@ class Register(FablePage):
         
     @login_required  
     def get(self):
-        self.template_values['emailaddr'] = self.the_user.email()
-        self.render() 
+        if (self.user_db):
+            self.redirect('/')
+        else:
+            self.template_values['emailaddr'] = self.the_user.email()
+            self.render() 
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "register.html")
