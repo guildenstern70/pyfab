@@ -56,24 +56,21 @@ class Register(FablePage):
         
     @login_required  
     def get(self):
-        user = users.get_current_user()
-        if (self.is_user_on_db()):
-            self.redirect('/')
-        else:
-            self.template_values['emailaddr'] = user.email()
-            self.render() 
+        self.template_values['emailaddr'] = self.the_user.email()
+        self.render() 
     
     def __init__(self, request, response):
-        FablePage.__init__(self, request, response, "register.html", request_authentication=True)
+        FablePage.__init__(self, request, response, "register.html")
     
 class Create(FablePage):
     """ /create fable page """
     
     @login_required  
     def get(self):
-        self.template_values['nr_fables'] = self.user_db.nr_of_fables
+        if (self.user_db):
+            self.template_values['nr_fables'] = self.user_db.nr_of_fables
+            self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.template_values['return_page'] = 'create'
-        self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.render() 
     
     def __init__(self, request, response):

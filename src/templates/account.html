@@ -3,20 +3,7 @@
 {% block title %}FableMe - My account{% endblock %}
 
 {% block extraheader %}
-    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-    <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/gennames.js"></script>
-    <script>
-    Modernizr.load({
-        test: Modernizr.inputtypes.date,
-        nope: "/js/vendor/jquery-ui.custom.js",
-        callback: function() {
-          $("input[type=date]").datepicker();
-        }
-      });
-    </script>
+<link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
 {% endblock %}
 
 {% block maincontent %}
@@ -106,4 +93,18 @@
 
 {% include "list_of_fables_modals.html" %}    
     
+{% endblock %}
+
+{% block extralatejavascripts %}
+    <script src="/js/vendor/jquery-ui.custom.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script>
+    Modernizr.load({
+        test: Modernizr.inputtypes.date,
+        nope: "/js/vendor/jquery-ui.custom.js",
+        callback: function() {
+          $("input[type=date]").datepicker();
+        }
+      });
+    </script>
 {% endblock %}

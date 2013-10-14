@@ -16,4 +16,14 @@
 
 textarea { height: auto; }
 
+body {
+  font-family: "Paprika", Helvetica, Arial, sans-serif;
+  font-size: 90%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Paprika", Helvetica, Arial, sans-serif;
+}
+
 .signin { color: #d87222; }  /* Orange color */
+/* Primary color = #255d47 */

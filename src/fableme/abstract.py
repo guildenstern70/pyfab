@@ -20,19 +20,20 @@ class FablePage(webapp2.RequestHandler):
     
     def render(self):
         """ default http response handler """
+        if (self.req_auth):
+            self._authenticate_user(self.the_user)
         self.response.out.write(
             template.render(self.template_path, self.template_values)
             )
-    
+        
     def get(self):
         """ default http get handler """
-        if (self.req_auth):
-            self._authenticate_user(self.the_user)
-        else:
-            self.render()
+        self.render()
             
     def is_user_on_db(self):
-        """ See if user is on db (asks DB every time) """
+        """ See if user is on db (asks DB every time).
+            If you do not want to check DB another time,
+            use if (self.user_db) """
         isondb = True
         self.user_db = self._get_user_from_db(self.the_user)
         if (self.user_db == None):

@@ -99,9 +99,14 @@
       ('__proto__' in {} ? 'zepto' : 'jquery') +
       '.js><\/script>')
 	</script>
-    <script src="/js/foundation.min.js"></script>
+    <script src="/js/foundation/foundation.js"></script>
+    
+{% block extralatejavascripts %}{% endblock %}
+
     <script>$(document).foundation();</script>
     <!-- http://foundation.zurb.com/ -->
+    
+
 
 {% endblock %}
 

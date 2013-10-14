@@ -7,12 +7,17 @@
 
        <!-- PC Header -->
       <div class="row">
-        <div class="large-12 hide-for-small">
-
-          <div id="featured" data-orbit>
-            <img src="/img/illustration1.jpg" alt="FableMe.com">
-            <img src="/img/illustration2.jpg" alt="FableMe.com">
-          </div>
+        <div class="large-12 hide-for-small onespacer">
+        <div class="slideshow-wrapper">
+          <ul id="featured1" data-orbit data-options="timer_speed:5000; pause_on_hover: false">
+            <li>
+            	<img src="/img/illustration1.jpg" height="420" alt="FableMe.com"> 
+            </li>
+            <li>
+            	<img src="/img/illustration2.jpg" height="420" alt="FableMe.com">
+            </li>
+          </ul>
+        </div>
         </div>
       </div>
 
@@ -34,7 +39,7 @@
             </div>
             <div class="large-6 small-6 columns">
               <div class="large-8 large-centered columns">
-                <a href="#" class="radius large button alert" data-reveal-id="howitworks"> How it works</a>
+                <a href="#" class="radius large button secondary" data-reveal-id="howitworks"> How it works</a>
               </div>
             </div>
           </div>
@@ -143,3 +148,8 @@
 
         <!-- End main block -->
 {% endblock %}  
+
+{% block extralatejavascripts %}
+	<script src="/js/vendor/custom.modernizr.js"></script>
+	<script src="/js/foundation/foundation.orbit.js"></script>
+{% endblock %}

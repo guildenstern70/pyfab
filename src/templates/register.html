@@ -4,19 +4,6 @@
 
 {% block extraheader %}
     <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-    <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/gennames.js"></script>
-    <script>
-    Modernizr.load({
-        test: Modernizr.inputtypes.date,
-        nope: "/js/vendor/jquery-ui.custom.js",
-        callback: function() {
-          $("input[type=date]").datepicker();
-        }
-      });
-    </script>
 {% endblock %}
 
 {% block maincontent %}
@@ -30,17 +17,16 @@
         <div class="row">
             <p>Please register to <i>FableMe</i> using the form below:</p>
             <section class="section">
-            <h5 class="title">
-            Registration Form
-            </h5>
-            <div class="panel">
-	            <form action="/register" method="post">
-	            		<div class="row collapse">
+	            <form action="/register" method="post" novalidate data-abide>
+	            	<fieldset>
+	            	<legend>Registration Form</legend>
+	            		<div class="row collapse name-field">
 			            	<div class="large-4 columns">
 				            	<label class="inline">Your First and Last Name:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="text" name="firstLastName" value="">	
+				            	<input type="text" name="firstLastName" value="Pippo" required pattern="[a-zA-Z]+">	
+				            	<small class="error">Name is required and must be a string.</small>
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -48,7 +34,8 @@
 				            	<label class="inline">Username:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="text" name="nickName" value="">	
+				            	<input type="text" name="nickName" required>
+				            	<small class="error">Username is required and must be a string.</small>	
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -56,7 +43,7 @@
 				            	<label class="inline">eMail:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="text" name="email" readonly="true" value="{{emailaddr}}">	
+				            	<input type="email" name="email" readonly="true" value="{{emailaddr}}">	
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -85,11 +72,13 @@
 		            			<button type="submit" class="radius button">Submit</button>
 		            		</div>
 		            	</div>
+		            </fieldset>
 		        </form>
-	        </div>
-        </div>
+	        </section>
+        </div><!-- div class="row"-->
 
-    </div><!-- Nav Sidebar -->
+    </div><!-- <div class="large-9 push-4 columns"> -->
+    
     <!-- This is source ordered to be pulled to the left on larger screens -->
     <div class="large-3 pull-9 columns">
         <div class="row">
@@ -103,5 +92,21 @@
         <div class="row">&nbsp;</div>
         <div class="row">&nbsp;</div>
     </div>
-  </div>
+    
+</div><!-- div class="row" -->
+{% endblock %}
+
+{% block extralatejavascripts %}
+	<script src="/js/foundation/foundation.abide.js"></script>
+	<script src="/js/vendor/jquery-ui.custom.js"></script>
+	<script src="/js/vendor/modernizr.js"></script>
+	<script>
+	Modernizr.load({
+	    test: Modernizr.inputtypes.date,
+	    nope: "/js/vendor/jquery-ui.custom.js",
+	    callback: function() {
+	      $("input[type=date]").datepicker();
+	    }
+	  });
+	</script>
 {% endblock %}
