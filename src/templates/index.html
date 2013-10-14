@@ -7,17 +7,17 @@
 
        <!-- PC Header -->
       <div class="row">
-        <div class="large-12 hide-for-small onespacer">
-        <div class="slideshow-wrapper">
-          <ul id="featured1" data-orbit data-options="timer_speed:5000; pause_on_hover: false">
-            <li>
-            	<img src="/img/illustration1.jpg" height="420" alt="FableMe.com"> 
-            </li>
-            <li>
-            	<img src="/img/illustration2.jpg" height="420" alt="FableMe.com">
-            </li>
-          </ul>
-        </div>
+        <div class="large-12 hide-for-small">
+	        <div class="slideshow-wrapper">
+	          <ul id="featured1" data-orbit data-options="timer_speed:5000; pause_on_hover: false">
+	            <li>
+	            	<img src="/img/illustration1.jpg" height="420" alt="FableMe.com"> 
+	            </li>
+	            <li>
+	            	<img src="/img/illustration2.jpg" height="420" alt="FableMe.com">
+	            </li>
+	          </ul>
+	        </div>
         </div>
       </div>
 
@@ -136,7 +136,7 @@
 	  <div id="howitworks" class="reveal-modal large">
 		 <div class="flex-video vimeo widescreen">
 		     
-		     <iframe src="//player.vimeo.com/video/70361191?color=d87222&amp;autoplay=1" 
+		     <iframe src="//player.vimeo.com/video/70361191?color=d87222&amp;autoplay=0" 
 		             frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
 		     </iframe>
 		     
@@ -151,5 +151,22 @@
 
 {% block extralatejavascripts %}
 	<script src="/js/vendor/custom.modernizr.js"></script>
+	<script src="/js/foundation/foundation.reveal.js"></script>
 	<script src="/js/foundation/foundation.orbit.js"></script>
+	<script>
+	<!-- Delay loading vimeo video until the user presses a button -->
+	var iframes = $('iframe');
+
+	$('button').click(function() {
+	    iframes.attr('src', function() {
+	        return $(this).data('src');
+	    });
+	});
+	
+	iframes.attr('data-src', function() {
+	    var src = $(this).attr('src');
+	    $(this).removeAttr('src');
+	    return src;
+	});
+	</script>
 {% endblock %}

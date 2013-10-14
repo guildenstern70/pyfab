@@ -4,10 +4,6 @@
 
 {% block extraheader %}
     <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-    <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/vendor/spin.js"></script>	
 	<style type="text/css">
     #loading
     {
@@ -86,16 +82,16 @@
         </h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Choose a template</a>
+                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1">2. Child information</a>
+                <a href="/step?s=1&id={{fable_id}}">2. Child information</a>
             </li>
             <li>
-                <a href="/step?s=2">3. Dedication</a>
+                <a href="/step?s=2&id={{fable_id}}">3. Dedication</a>
             </li>
             <li>
-                <a href="/step?s=3">4. Summary</a>
+                <a href="/step?s=3&id={{fable_id}}">4. Summary</a>
             </li>
             <li>
                 <a href="#"><b>5. Preview</b></a>
@@ -127,4 +123,11 @@
 	    });
 	</script>
   
+{% endblock %}
+
+{% block extralatejavascripts %}
+    <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/jquery-ui.custom.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/vendor/spin.js"></script>	
 {% endblock %}

@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s birth date: </td>
-                        <td><input type="text" name="value" value="{{fable.birthdate}}" readonly></td>
+                        <td><input type='text' name='value' value='{{fable.birthdate|date:"Y/m/d"}}' readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication from: </td>
@@ -67,16 +67,16 @@
     <h3>Steps</h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Choose a template</a>
+                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1">2. Child information</a>
+                <a href="/step?s=1&id={{fable_id}}">2. Child information</a>
             </li>
             <li>
-                <a href="/step?s=2">3. Dedication</a>
+                <a href="/step?s=2&id={{fable_id}}">3. Dedication</a>
             </li>
             <li>
-                <a href="/step?s=3"><b>4. Summary</b></a>
+                <a href="/step?s=3&id={{fable_id}}"><b>4. Summary</b></a>
             </li>
             <li>
                 <a href="#">5. Preview</a>

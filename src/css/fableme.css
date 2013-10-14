@@ -11,7 +11,9 @@
 .halfspacer {
   margin-top: .5em;
   margin-bottom: .5em; }
-
+  
+.bottomspacer {
+  margin-bottom: 1.5em; }
 }
 
 textarea { height: auto; }
@@ -24,6 +26,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Paprika", Helvetica, Arial, sans-serif;
 }
+
+.toptitle { color: #3b9158; }  /* Dark green color */
 
 .signin { color: #d87222; }  /* Orange color */
 /* Primary color = #255d47 */

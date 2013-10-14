@@ -81,8 +81,9 @@ class Fabulator(object):
         return template_values 
         
     def process(self, step, values, refresh):
-        """ Saves the attributes for each step of the process """
-        """ To do: step must be int """
+        """ Processes data in HTTP Request to be saved on DB
+            Saves the attributes for each step of the process 
+            To do: step should be int """
         if (len(values) > 0):          
             self._loginfo(step, values, refresh)           
             if (refresh != ''):

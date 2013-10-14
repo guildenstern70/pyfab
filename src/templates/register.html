@@ -25,8 +25,8 @@
 				            	<label class="inline">Your First and Last Name:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="text" name="firstLastName" value="Pippo" required pattern="[a-zA-Z]+">	
-				            	<small class="error">Name is required and must be a string.</small>
+				            	<input type="text" name="firstLastName" required pattern="alpha">	
+				            	<small class="error">First and last name is required.</small>
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -34,8 +34,8 @@
 				            	<label class="inline">Username:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="text" name="nickName" required>
-				            	<small class="error">Username is required and must be a string.</small>	
+				            	<input type="text" name="nickName" required pattern="alpha_numeric">
+				            	<small class="error">Username is required and must be an alpha-numeric string.</small>	
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -51,7 +51,8 @@
 				            	<label class="inline">Birth date:</label>
 				            </div>
 				            <div class="large-7 columns">
-				            	<input type="date" name="birthDate">
+				            	<input type="date" name="birthDate" required pattern="date">
+				            	<small class="error">Please enter a date in the format YYYY-MM-DD.</small>
 				            </div>
 			            </div>
 			            <div class="row collapse">
@@ -97,16 +98,16 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-	<script src="/js/foundation/foundation.abide.js"></script>
-	<script src="/js/vendor/jquery-ui.custom.js"></script>
-	<script src="/js/vendor/modernizr.js"></script>
-	<script>
-	Modernizr.load({
-	    test: Modernizr.inputtypes.date,
-	    nope: "/js/vendor/jquery-ui.custom.js",
-	    callback: function() {
-	      $("input[type=date]").datepicker();
-	    }
-	  });
-	</script>
+<script src="/js/foundation/foundation.abide.js"></script>
+<script src="/js/vendor/modernizr.input_dates.js"></script>
+<script>Modernizr.load({
+	  test: Modernizr.inputtypes.date,
+	  nope: ['http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js', 'jquery-ui.css'],
+	  complete: function () {
+	    $('input[type=date]').datepicker({
+	      dateFormat: 'yy-mm-dd'
+	    }); 
+	  }
+	});
+</script>
 {% endblock %}

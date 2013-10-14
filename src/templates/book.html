@@ -1,106 +1,126 @@
-{% extends "base_center.html" %}
+{% extends "base_leftsidebar.html" %}
 
 {% block title %}FableMe - Book details{% endblock %}
 
 {% block maincontent %}
-<div class="row">
-      <!-- Main Content Section -->
-    <!-- This has been source ordered to come first in the markup (and on small devices) 
-    but to be to the right of the nav on larger screens -->
-    <div class="large-9 push-4 columns">
-        <div class="row">
-            <h3>
-                Book details
-            </h3>
-        </div>
+
+    <!-- Main Content Section -->
+    <div class="large-9 push-3 columns">
+    
         <div class="row">
             <table>
                 <tr>
                     <td width="45%">
-                    <img src="/img/{{bookimg}}" width="300" alt="{{title}}" />
+                    	<img src="/img/{{bookimg}}" width="300" alt="{{title}}" />
                     </td>
-                    <td><article>
-                    <h2>{{title}}</h2>
-                    <p>{{sku}}</p>
-                    <ul>
-                    <li><a href="/step?s=0">Take tour</a></li>
-                    <li><a href="#">Order now</a></li>
-                    <li><a href="/step?s=0">Back to story creation</a></li>
-                    </ul>
-                    </article>
+                    <td>
+	                    <article>
+		                    <h2>{{title}}</h2>
+		                    <p>{{sku}}</p>
+		                    <ul>
+		                    <li><a href="#">Take tour</a></li>
+		                    <li><a href="#">Order now</a></li>
+		                    <li><a href="#">Back to story creation</a></li>
+		                    </ul>
+	                    </article>
                     </td>
+                </tr>
+                <tr>
+                	<td colspan="2">
+                	
+                		<div class="section-container tabs" data-section="tabs">
+	        
+				              <section class="active">
+				                <p class="title" data-section-title>
+				                	<a href="#">Description</a>
+				                </p>
+				                
+				                <div class="content" data-section-content>
+				                    <p>&nbsp;</p>
+				                    <h3>{{desc_title}}</h3>
+				                    <p>{{desc_desc}}</p>
+				                    <p>&nbsp;</p>
+				                    <p>&nbsp;</p>
+				                </div>
+				              </section>
+				              
+				              <section>
+				                <p class="title" data-section-title>
+				                	<a href="#">Reviews</a>
+				                </p>
+				                
+				                <div class="content" data-section-content>
+				                    
+				                    <article>
+				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Really touched</h3>
+				                    <p>Teresa Ansley from Chicago, IL</p>
+				                    <p>The baby can't appreciate them for the moment (these were presents for a newborn) but the new Mum was really touched. Highly recommend!</p>
+				                    </article>
+				                    
+				                    
+				                     <article>
+				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beyond impressed</h3>
+				                    <p>Alessio Saltarin from Milan, Italy</p>
+				                    <p>I purchased the a story based on Peter and the Pirates and when I received it, I was beyond impressed. The quality and color of the illustrations is impeccable! I cannot wait to give this wonderful gift that I know the whole family will love for years.</p>
+				                    </article>
+				        
+				                    
+				                     <article>
+				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beautiful Gift</h3>
+				                    <p>Jennifer Beckham from Dallas, TX</p>
+				                    <p>I have sent the My Very Own Name book to many friends and family as a gift for when their child is born. I was blessed to receive my own copy when my daughter was born in January. It simply is a special and educational way to celebrate a new baby!</p>
+				                    </article>
+				                    
+				                </div>
+				              </section>
+				              
+				              <section>
+				                <p class="title" data-section-title>
+				                	<a href="#">Author</a>
+				                </p>
+				                <div class="content" data-section-content>
+				                  <table>
+				                        <tr>
+				                            <td valign="top" width="33%"><img src="/img/dana.jpg" width="110" alt="Daniela Sandu" /></td>
+				                            <td>
+				                                <article>
+				                                <p><b>Author: Daniela Sandu</b></p>
+				                                <p>Daniela Sandu is Chief Officer at FableMe, and a recognized writer of fables and novels for teenagers. She has a beautiful daughter, Diana, who is the first passionate lover of Fable-O-Matic invented fables!</p>
+				                                </article>
+				                            </td>
+				                        </tr>
+				                  </table>
+				                </div>
+				              </section>
+	              
+	    		</div><!-- div class="section-container tabs" -->
+                	
+                	</td>
                 </tr>
             </table>
         </div>
-        <div class="section-container auto" data-section>
-              <section>
-                <p class="title" data-section-title><a href="#panel1">Description</a></p>
-                <div class="content" data-section-content>
-                    <p>&nbsp;</p>
-                    <h3>{{desc_title}}</h3>
-                    <p>{{desc_desc}}</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                </div>
-              </section>
-              <section>
-                <p class="title" data-section-title><a href="#panel2">Reviews</a></p>
-                <div class="content" data-section-content>
-                    
-                    <article>
-                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Really touched</h3>
-                    <p>Teresa Ansley from Chicago, IL</p>
-                    <p>The baby can't appreciate them for the moment (these were presents for a newborn) but the new Mum was really touched. Highly recommend!</p>
-                    </article>
-                    
-                    
-                     <article>
-                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beyond impressed</h3>
-                    <p>Alessio Saltarin from Milan, Italy</p>
-                    <p>I purchased the a story based on Peter and the Pirates and when I received it, I was beyond impressed. The quality and color of the illustrations is impeccable! I cannot wait to give this wonderful gift that I know the whole family will love for years.</p>
-                    </article>
         
-                    
-                     <article>
-                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beautiful Gift</h3>
-                    <p>Jennifer Beckham from Dallas, TX</p>
-                    <p>I have sent the My Very Own Name book to many friends and family as a gift for when their child is born. I was blessed to receive my own copy when my daughter was born in January. It simply is a special and educational way to celebrate a new baby!</p>
-                    </article>
-                    
-                </div>
-              </section>
-              <section>
-                <p class="title" data-section-title><a href="#panel2">Author</a></p>
-                <div class="content" data-section-content>
-                  <table>
-                        <tr>
-                            <td valign="top" width="33%"><img src="/img/dana.jpg" width="110px" alt="Daniela Sandu" /></td>
-                            <td>
-                                <article>
-                                <p><b>Author: Daniela Sandu</b></p>
-                                <p>Daniela Sandu is Chief Officer at FableMe, and a recognized writer of fables and novels for teenagers. She has a beautiful daughter, Diana, who is the first passionate lover of Fable-O-Matic invented fables!</p>
-                                </article>
-                            </td>
-                        </tr>
-                  </table>
-                </div>
-              </section>
-        </div>
 
-    </div><!-- Nav Sidebar -->
-    <!-- This is source ordered to be pulled to the left on larger screens -->
+
+    </div><!-- class="large-9 push-3 columns"> -->
+
+
     <div class="large-3 pull-9 columns">
-        <div class="row">
-            <a href="#"><img src="/img/{{sidebar_pic}}" width="260px" /></a> 
-            <br /><br /><br />
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">&nbsp;</div>
-        <div class="row">&nbsp;</div>
-        <div class="row">&nbsp;</div>
-        <div class="row">&nbsp;</div>
-        <div class="row">&nbsp;</div>
+
+      <div class="panel">
+        <h4 class="hide-for-small">Fables</h4><hr/>
+        <h5 class="subheader"><a href="/book?bookid=1">My voyage to Aragon</a></h5>
+        <h5 class="subheader"><a href="/book?bookid=0">When I met the pirates</a></h5>
+        <h5 class="subheader"><a href="#">The talisman of the Badia</a></h5>
+      </div>
+
     </div>
-  </div>
+
+{% endblock %}
+
+{% block extralatejavascripts %}
+	<script src="/js/foundation/foundation.abide.js"></script>
+  	<script src="/js/foundation/foundation.section.js"></script>
+	<script src="/js/vendor/modernizr.input_dates.js"></script>
 {% endblock %}
 

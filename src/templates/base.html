@@ -2,12 +2,12 @@
 
 {% block nav %}
 
-    <nav class="top-bar">
+    <nav class="top-bar bottomspacer">
         <ul class="title-area">
             <!-- Title Area -->
             <li class="name">
                 <h1>
-                    <a href="/">FableMe.com</a>
+                    <a href="/"><span class="toptitle">FableMe.com</span></a>
                 </h1>
             </li>
             <li class="toggle-topbar menu-icon">
@@ -16,9 +16,8 @@
         </ul>
         <section class="top-bar-section">
 
-
             <ul class="right">
-            
+                        
                 {% if nickname %}
                 <li class="has-dropdown">
                     <a href="#">My FableMe</a>
@@ -37,9 +36,9 @@
                             <a href="/admin/admin">Administration</a>
                         </li>
                         {% endif %}
-                        
                     </ul>
                 </li>
+                
                 {% else %}
                 <li>
                     <a href="/register"><span class="signin">Sign In</span></a>
@@ -49,17 +48,18 @@
                 <li>
                     <a href="/create">Create a fable</a>
                 </li>
+                
                 <li class="has-dropdown">
                     <a href="#">Fables</a>
                     <ul class="dropdown">
                         <li>
-                            <a href="/fables/My_voyage_to_Aragon_final_static.html">My voyage to Aragon</a>
+                            <a href="/book?bookid=0">My voyage to Aragon</a>
                         </li>
                         <li>
-                            <a href="/fables/When_I_met_the_Pirates_final_static.html">When I met the pirates</a>
+                            <a href="/book?bookid=1">When I met the pirates</a>
                         </li>
                         <li>
-                            <a href="#">Arborea</a>
+                            <a href="#">The talisman of the Badia</a>
                         </li>
                         <li>
                             <a href="#">See all +</a>
@@ -99,14 +99,14 @@
       ('__proto__' in {} ? 'zepto' : 'jquery') +
       '.js><\/script>')
 	</script>
-    <script src="/js/foundation/foundation.js"></script>
-    
+	<script src="js/foundation/foundation.js"></script>
+	<script src="js/foundation/foundation.topbar.js"></script>
+		    
 {% block extralatejavascripts %}{% endblock %}
 
     <script>$(document).foundation();</script>
     <!-- http://foundation.zurb.com/ -->
     
-
 
 {% endblock %}
 

@@ -4,26 +4,6 @@
 
 {% block extraheader %}
     <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-    <!--<script src="/js/vendor/jquery.js"></script>-->
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/gennames.js"></script>
-    <script>
-    $(document).ready(function () 
-	    $('#step1_form').validate({ 
-	    	lang: 'en'  
-	    });
-	});
-    </script>
-    <script>
-    Modernizr.load({
-        test: Modernizr.inputtypes.date,
-        nope: "/js/vendor/jquery-ui.custom.js",
-        callback: function() {
-          $("input[type=date]").datepicker();
-        }
-      });
-    </script>
 {% endblock %}
 
 {% block maincontent %}
@@ -38,7 +18,7 @@
             </h3>
         </div>
         <div class="row">
-                <form id="step1_form" method="get" action="/step">
+                <form id="step1_form" method="get" action="/step" novalidate data-abide>
                 <table>
                     <!-- SEX -->
                     <tr>
@@ -71,19 +51,22 @@
                         <td id="questionnaire" >Name:</td>
                         <td id="questionnaire" >
                             <input type="text" id="txtname" name="value" 
-                                   value="{{heroname}}" minlength="4" size="30" required>
+                                   value="{{heroname}}" minlength="4" size="30" required pattern="alpha_numeric">
+                            <small class="error">Name is required and must be an alpha-numeric string of 4 chars at least</small>	
                             <input type="button" name="generator" value="Generate!" onclick="setName();">
                         </td>
                     </tr>
                     <!-- DATE OF BIRTH -->
                     <tr>
                         <td id="questionnaire" >Date of birth:</td>
-                        <td id="questionnaire" ><input type="date" name="value" value="{{birthdate}}" required>
-	                        <input type='hidden' name='s' value='2'>
-		                    <input type='hidden' name='id' value='{{fable_id}}'>
+                        <td id="questionnaire" >
+                        	<input type="date" name="value" value="{{birthdate|date:"Y/m/d"}}" required pattern="date">
+                        	<small class="error">Date of birth is required and must be in the format YYYY-MM-DD</small>	
                         </td>
                     </tr>
                 </table>
+				<input type='hidden' name='s' value='2'>
+				<input type='hidden' name='id' value='{{fable_id}}'>
                 <input type="button" value="Previous" class="radius secondary large button" 
                 	   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp;
                 <input type="submit" value="Next" class="radius large button">
@@ -104,10 +87,10 @@
         </h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Choose a template</a>
+                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1"><b>2. Child information</b></a>
+                <a href="/step?s=1&id={{fable_id}}"><b>2. Child information</b></a>
             </li>
             <li>
                 <a href="#">3. Dedication</a>
@@ -127,4 +110,19 @@
 {% endblock %}
 
 
+{% block extralatejavascripts %}
+<script src="/js/foundation/foundation.abide.js"></script>
+<script src="/js/vendor/modernizr.input_dates.js"></script>
+<script src="/js/gennames.js"></script>
+<script>Modernizr.load({
+	  test: Modernizr.inputtypes.date,
+	  nope: ['http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js', 'jquery-ui.css'],
+	  complete: function () {
+	    $('input[type=date]').datepicker({
+	      dateFormat: 'yy-mm-dd'
+	    }); 
+	  }
+	});
+</script>
+{% endblock %}
 

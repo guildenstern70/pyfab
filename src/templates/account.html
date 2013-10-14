@@ -20,23 +20,23 @@
             </p>
         </div>
                 
-        <div class="section-container auto" data-section>
-        <section>
+        <div class="section-container auto" data-section data-options="deep_linking: true">
+        <section class="active">
 	        <p class="title" data-section-title><a href="#panel1">My fables</a></p>
 	        
-	        <div class="content" data-section-content>
-	        
-{% include "list_of_fables.html" %}
-
-			<a href="#" class="radius button alert" data-reveal-id="areYouSure_all">
-						    	Delete all fables
-			</a> 
-			<p>&nbsp;</p>   
+	        <div class="content" data-slug="panel1" data-section-content>      
+				{% include "list_of_fables.html" %}
+				<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">
+				Delete all fables
+				</a> 
+				<p>&nbsp;</p>   
 	        </div>
+	        
         </section>
         <section>
-	        <p class="title" data-section-title><a href="#panel1">My profile</a></p>
-	        <div class="content" data-section-content>
+        
+	        <p class="title" data-section-title><a href="#panel2">My profile</a></p>
+	        <div class="content" data-slug="panel2" data-section-content>
 
 	            <table width="100%">
 	            	<tr>
@@ -53,7 +53,7 @@
 	            	</tr>
 	            	<tr>
 	            		<td>Birthdate</td>
-	            		<td><input type="date" value="{{birthdate}}"></td>
+	            		<td><input type="date" value="{{birthdate|date:"Y/m/d"}}"></td>
 	            	</tr>
 	            	<tr>
 	            		<td>Receive News?</td>
@@ -82,9 +82,9 @@
 		<div class="panel">
 		<p>ACCOUNT</p>
         <ul class="side-nav">
-		  <li><a href="#">My Profile</a></li>
+		  <li><a href="#panel2">My Profile</a></li>
 		  <li class="divider"></li>
-		  <li><a href="#">My Fables</a></li>
+		  <li><a href="#panel1">My Fables</a></li>
 		</ul>
 		</div>
 
@@ -96,15 +96,17 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
-    <script>
-    Modernizr.load({
-        test: Modernizr.inputtypes.date,
-        nope: "/js/vendor/jquery-ui.custom.js",
-        callback: function() {
-          $("input[type=date]").datepicker();
-        }
-      });
-    </script>
+	<script src="/js/foundation/foundation.abide.js"></script>
+  	<script src="js/foundation/foundation.section.js"></script>
+	<script src="/js/vendor/modernizr.input_dates.js"></script>
+	<script>Modernizr.load({
+		  test: Modernizr.inputtypes.date,
+		  nope: ['http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js', 'jquery-ui.css'],
+		  complete: function () {
+		    $('input[type=date]').datepicker({
+		      dateFormat: 'yy-mm-dd'
+		    }); 
+  }
+});
+</script>
 {% endblock %}

@@ -3,7 +3,6 @@
 {% block title %}FableMe - Create a fable - Step 2{% endblock %} 
 
 {% block extraheader %}
-<script src="/js/gennames.js"></script>
 {% endblock %} 
 
 {% block maincontent %}
@@ -14,7 +13,7 @@
         <h3>A word of dedication...</h3>
     </div>
     <div class="row">
-        <form method="get" action="/step" >
+        <form method="get" action="/step" novalidate data-abide>
             <table>
                 <tr>
                     <td colspan="2">&nbsp;</td>
@@ -24,8 +23,6 @@
                     <td width="300" id="questionnaire">
                     	<input type="text" id="txtname" name="value" value="{{sender}}" required pattern="[a-zA-Z]+"> 
                     	<small class="error">Name is required and must be a string.</small>
-                        <input type="hidden" name="s" value="3">
-                        <input type="hidden" name="id" value="{{fable_id}}">
                     </td>
                 </tr>
                 <tr>
@@ -35,6 +32,8 @@
                             placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea></td>
                 </tr>
             </table>
+			<input type="hidden" name="s" value="3">
+			<input type="hidden" name="id" value="{{fable_id}}">
             <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=1&id={{fable_id}}';">&nbsp; 
             <input type="submit" value="Next" class="radius large button">
         </form>
@@ -51,13 +50,13 @@
     <h3>Steps</h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0">1. Choose a template</a>
+                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1">2. Child information</a>
+                <a href="/step?s=1&id={{fable_id}}">2. Child information</a>
             </li>
             <li>
-                <a href="/step?s=2"><b>3. Dedication</b></a>
+                <a href="/step?s=2&id={{fable_id}}"><b>3. Dedication</b></a>
             </li>
             <li>
                 <a href="#">4. Summary</a>
@@ -71,5 +70,9 @@
     </p>
 </div>
 
+{% endblock %}
+
+{% block extralatejavascripts %}
+<script src="/js/foundation/foundation.abide.js"></script>
 {% endblock %}
 
