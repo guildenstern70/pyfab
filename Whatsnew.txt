@@ -1,0 +1,13 @@
+
+Version 0.8
+===========
+
+* The "Fables" menu now links to fable page details, and no more the fable itself.
+* Form field validation
+* 'How it works' button shows the video without moving to another page
+* Fable.me topbar link now in dark green
+* Video load has been delayed to when the user presses the 'How it works' button
+* 'How it works' page has a new layout
+* Upgraded to Zurb v.4.2
+* Use of modernizr.js has been made uniform across the site
+* Date format is now uniform across the site and follows ISO recommendations (YYYY-MM-DD)

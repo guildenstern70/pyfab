@@ -101,12 +101,14 @@
 	</script>
 	<script src="js/foundation/foundation.js"></script>
 	<script src="js/foundation/foundation.topbar.js"></script>
+	<script src="/js/vendor/custom.modernizr.js"></script><!-- Needed by WebIcons e Input Dates -->
 		    
-{% block extralatejavascripts %}{% endblock %}
+{% block extralatejavascripts %}	
+{% endblock extralatejavascripts %}
 
     <script>$(document).foundation();</script>
     <!-- http://foundation.zurb.com/ -->
     
 
-{% endblock %}
+{% endblock latejavascripts %}
 

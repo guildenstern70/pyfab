@@ -1,4 +1,4 @@
-{% extends "base_center.html" %}
+{% extends "base_leftsidebar.html" %}
 
 {% block title %}FableMe - User registration{% endblock %}
 
@@ -8,7 +8,9 @@
 
 {% block maincontent %}
 <div class="row">
-    <div class="large-9 push-4 columns">
+
+    <div class="large-8 push-4 columns">
+    
         <div class="row">
             <h3>
                 Welcome to FableMe!
@@ -78,10 +80,10 @@
 	        </section>
         </div><!-- div class="row"-->
 
-    </div><!-- <div class="large-9 push-4 columns"> -->
+    </div><!-- <div class="large-9 push-3 columns"> -->
     
     <!-- This is source ordered to be pulled to the left on larger screens -->
-    <div class="large-3 pull-9 columns">
+    <div class="large-4 pull-8 columns">
         <div class="row">
             <a href="#"><img src="/img/Anna.jpg" width="260px" /></a> 
             <br /><br /><br />
@@ -99,7 +101,6 @@
 
 {% block extralatejavascripts %}
 <script src="/js/foundation/foundation.abide.js"></script>
-<script src="/js/vendor/modernizr.input_dates.js"></script>
 <script>Modernizr.load({
 	  test: Modernizr.inputtypes.date,
 	  nope: ['http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js', 'jquery-ui.css'],
