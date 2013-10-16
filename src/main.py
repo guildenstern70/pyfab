@@ -18,17 +18,17 @@ import fableme.printer
 logging.getLogger().setLevel(logging.DEBUG)                     
 APPLICATION = webapp2.WSGIApplication(
                             [ ('/', fableme.pages.Index),
-                              ('/create', fableme.pages.Create),
                               ('/myaccount', fableme.pages.MyAccount),
-                              ('/deletefable', fableme.commands.DeleteFable),
-                              ('/create', fableme.pages.Create),
-                              ('/register', fableme.pages.Register),
-                              ('/step', fableme.pages.Step),
                               ('/book', fableme.pages.Book),
+                              ('/contacts', fableme.pages.Contacts),
+                              ('/create', fableme.pages.Create),
+                              ('/deletefable', fableme.commands.DeleteFable),
                               ('/howitworks', fableme.pages.HowItWorks),
                               ('/print', fableme.printer.Print),
                               ('/print/pdf', fableme.printer.PrintPDF),
-                              ('/serve/([^/]+)?', fableme.pages.ServeHandler) ],
+                              ('/register', fableme.pages.Register),
+                              ('/serve/([^/]+)?', fableme.pages.ServeHandler), 
+                              ('/step', fableme.pages.Step) ],
                             debug=True)
 
 

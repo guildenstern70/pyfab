@@ -35,6 +35,12 @@ class Index(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "index.html")
         
+class Contacts(FablePage):
+    """ /contacts page """
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "contacts.html")
+        
 class Register(FablePage):
     """ /register page """
     
