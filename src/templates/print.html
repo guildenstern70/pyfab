@@ -101,7 +101,11 @@
             <img src="img/Step6.jpg">
         </p>
     </div>
-    
+  
+{% endblock %}
+
+{% block extralatejavascripts %}
+    <script src="/js/vendor/spin.js"></script>	
     <script type="text/javascript">
 	    $(function () {
 	        $("#downloadbtn").click(function () {
@@ -122,11 +126,4 @@
 	        });
 	    });
 	</script>
-  
-{% endblock %}
-
-{% block extralatejavascripts %}
-    <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/jquery-ui.custom.js"></script>
-    <script src="/js/vendor/spin.js"></script>	
 {% endblock %}
