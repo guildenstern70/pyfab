@@ -12,6 +12,7 @@
 import urllib
 import logging
 import fableme.db.dbutils as dbutils
+import fableme.booktemplates as booktemplates
 
 import fableme.fabulator as fabulator
 import fableme.utils as utils
@@ -22,7 +23,6 @@ from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
-from fableme.version import version
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
 
@@ -137,40 +137,7 @@ class Book(FablePage):
     def get(self):
         """ http get handler """
         book = self.request.get('bookid')
-        # Book 0 -> Peter and the Pirates
-        # Book 1 -> Anna goes to Aragon 
-        book_template = {
-            'title': 'My voyage to Aragon',
-            'sku': 'SKU #83203',
-            'bookimg': 'cover_voyage.jpg',
-            'sidebar_pic': 'Anna.jpg',
-            'desc_title': 'A dream comes true',
-            'desc_desc': """This is the story of little Anna, a beautiful princess who travels 
-                            to the land of Aragon and discovers that wisdom (knowledge) and wit
-                            (perception and learning) are both needed in life. It is written 
-                            with a medieval feel and as a rhyming ode. The story follows 
-                            Anna who is riding to school on her pony and becomes distracted 
-                            when they meet a fox. She, her pony and the fox begin a journey 
-                            through the forest. As the princess progresses through the adventures 
-                            she reflects after each one on the moral or learning point.""",
-            
-        }
-        
-        if (book == '0'):
-            book_template = {
-                'version': version(),
-                'title': 'When I met the Pirates',
-                'sku': 'SKU #83321',
-                'bookimg': 'cover_pirates.jpg',
-                'sidebar_pic': 'rustic_pirate.jpg',
-                'desc_title': 'A great adventure...',
-                'desc_desc': """This is a beautiful pirate story for boys and girls all over the world. 
-                                The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
-                                a parrot pirate and a rat pirate. Together they sail the sees and have 
-                                a lot of fun.""",
-                
-                }
-            
+        book_template = booktemplates.get_book_template(book) 
         self.template_values = dict(book_template.items() + self.template_values.items())
         self.render()
         

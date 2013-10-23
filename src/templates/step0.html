@@ -12,6 +12,7 @@
             <h3>
                 Choose your story
             </h3>
+            <p>Click on the covers for more details...</p>
         </div>
         <div class="row">
                 <form method="get" action="/step">
@@ -19,15 +20,15 @@
                     
                     <thead>
                         <tr>
-                          <th width="300">Recommeded for boys</th>
-                          <th width="300">Recommeded for girls</th>
+                          <th width="300"><div align="center">Recommeded for boys</div></th>
+                          <th width="300"><div align="center">Recommeded for girls</div></th>
                         </tr>
                     </thead>
                     <tbody>
                     
                     <tr>
-                        <td align="center"><a href="book?bookid=0"><img src="/img/cover_pirates.jpg" alt="When I met the Pirates" /></a></td>
-                        <td align="center"><a href="book?bookid=1"><img src="/img/cover_voyage.jpg" alt="My Voyage to Aragon" /></a></td>
+                        <td align="center"><a href="book?bookid=0"><img src="/img/cover_pirates.jpg" width="200" alt="When I met the Pirates" /></a></td>
+                        <td align="center"><a href="book?bookid=1"><img src="/img/cover_voyage.jpg" width="200" alt="My Voyage to Aragon" /></a></td>
                     </tr>
                     
                     <tr>
@@ -36,14 +37,17 @@
                     </tr>
                     
                     <tr>
-                        <td align="center"><a href="book?bookid=0">More details</a></td>
-                        <td align="center">
-	                        <a href="book?bookid=1">More details</a>
-	                        <input type='hidden' name='s' value='1'></td>
-	                        <input type='hidden' name='id' value='{{fable_id}}'>
-                        </td>
+                        <td align="center"><a href="book?bookid=2"><img src="/img/cover_badia.jpg" width="200" alt="The Talisman of the Badia" /></a></td>
+                        <td align="center"><a href="book?bookid=3"><img src="http://placehold.it/337x440&text=[To be defined]" width="200" alt="To be defined" /></a></td>
                     </tr>
+                    <tr>
+                        <td align="center"><div align="center"><input type="radio" name="value" value="The Talisman of the Badia" /></div></td>
+                        <td align="center"><div align="center"><input type="radio" name="value" value="" disabled="disabled" /></div></td>
+                    </tr>
+                    
                     </tbody>
+                   	<input type='hidden' name='s' value='1'></td>
+	                <input type='hidden' name='id' value='{{fable_id}}'>
                     
                      </table>
                      <input type="submit" value="Proceed" class="radius large button">
