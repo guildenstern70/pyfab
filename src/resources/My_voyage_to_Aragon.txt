@@ -6,7 +6,7 @@ Well, <she_he> was about to find out everything <she_he> needed to know about be
 
 Little <name> stared at him, and he began to speak.  "Dear <name>, I am Theodore" he said, "and I am your humble troubadour." 
 
-And so the story began...
+<para alignment="left" fontsize="16"><i>And so the story began...</i></para>
 
 I have a story for you <name>, for your very special day.  It's a tale to make you wise, but it's full of twists and turns.  It's the story of what happened when a little <princess_prince> went to Aragon.
 
@@ -34,7 +34,7 @@ Just then a fox stepped gingerly out of the forest undergrowth.  He was a very f
 
 "Allow me to introduce myself", he said, "My name is Esprit, and I am very pleased to meet you. I see you are unsure which way to go.  Allow me to help you - I know every road in the forest!"
 
-**IMG[mva_picture3.jpg,15.5,23]
+**IMG[mva_picture3_small.jpg,15.5,12]
 
 Sage snorted again, "Hmph!" he thought to himself. "I don't like this fox one little bit.  Everyone knows you can't trust a fox!" Sage was sure the fox was up to something.  "And anyway, how did he know we were lost?"
 
@@ -66,7 +66,7 @@ And sure enough, right in front of them, but high in a tree, was a little mouse,
 
 "So," <name> thought, "this little mouse did steal the fox's lunch.  We must do something, because stealing just isn't right!"
 
-**IMG[mva_picture4.jpg,15.5,23]
+**IMG[mva_picture4_small.jpg,15.5,15]
 
 <name> spoke first, and <she_he> spoke straight to the mouse. "Mouse, sir, please return the cheese."
 
@@ -139,7 +139,7 @@ Esprit, always a gentleman, invited her to sit at the table, pulling out her cha
 
 Esprit brought the porridge to the table.  He had made it thick and rich with lots of honey, so you could almost eat it with a fork.  The porridge filled up the plates almost to the rim.  <name> and Sage thought it a little unusual to serve porridge on a plate, but they were so hungry they didn't care.  <name> picked up <her_his> spoon and tucked into <her_his> breakfast, and Sage's little velvet muzzle nibbled hurriedly on his porridge.  The crane, however, couldn't eat.  Her beak was so long and narrow that she couldn't reach the porridge.  Her beak just bounced off the plates, splattering porridge everywhere.
 
-**IMG[mva_picture6.jpg,15.5,23]
+**IMG[mva_picture6_small.jpg,15.5,12]
 
 "I can't eat like this!" she cried, "Can't you see my bill won't reach?"
 
@@ -205,7 +205,7 @@ It would be fair to say that both <name> and Sage had had quite enough of Esprit
 
 "Last, I learned that there is a time to gaze in wonderment at the world around, and a time to keep your eyes on the road under your feet.  It is joyful to dream, but you must also keep your feet on the ground."
 
-**IMG[mva_picture8.jpg,15.5,23]
+**IMG[mva_picture8_small.jpg,15.5,13]
 
 "You learned your lessons well, little <name>," the fairy said.  "You are clever now, and wise, and you are ready to go home and be a <princess_prince> again." 
 
@@ -217,17 +217,19 @@ It would be fair to say that both <name> and Sage had had quite enough of Esprit
 
 "See that you do, little <name>," the fairy replied. "See that you do, and you will grow to be a wise and kind <queen_king> one day." And with that she spun around, and vanished in a cloud of fairy dust.
 
-<name> and Sage turned around, and set off on the road back to the castle.  <name> did remember her lessons, and so <she_he> grew to become a <beautiful queen _ mighty king>, loved by all <her_him> kingdom for evermore.
+<name> and Sage turned around, and set off on the road back to the castle. <name> did remember her lessons, and so <she_he> grew to become a <beautiful_mighty> <queen_king>, loved by all <her_him> kingdom for evermore.
 
-<i>Back to the party...</i>
+<para alignment="left" fontsize="16"><i>Back to the party...</i></para>
 
 And with that, the troubadour finished his tale, and bowed to little <princess_prince> <name>.  Everyone in the great hall watched to see if <she_he> liked it.  Slowly, a smile formed on <name>'s face, and soon <she_he> glowed with happiness. The hall erupted into cheers and applause.
 
 "Thank you! Thank you!" cried little <name>. "There is no better gift.  Your story told me all I need to know, to become a wise and caring <queen_king> one day!"  <She_He> looked up at <her_his> <mother_father>, and the <queen_king> smiled down at <her_him>.  Suddenly <name> knew, this was not just a story, this was a tale of how <her mother _ his father> became the <queen_king>, and how <she_he> became so loved by the entire kingdom.
 
-<name> knew then that this story was a special gift. <She_He> knew that if <she_he> learned these lessons <she_he> would grow to be just like <her mother _ his father>, and that <she_he>, too, would live happily, ever after.
+<name> knew then that this story was a special gift. <She_He> knew that if <she_he> learned these lessons <she_he> would grow to be just like <her_his> <mother_father>, and that <she_he>, too, would live happily, ever after.
 
-<para alignment=right>The End</para>
+<para alignment="right" fontsize="16"><i>The End</i></para>
+END-OF-FILE
+
 
 
 

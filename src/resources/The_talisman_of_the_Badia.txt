@@ -6,7 +6,7 @@ There lived a young princess, <name_Armerina>, with her family, consisting of th
 
 That day the inhabitants of the Valley, who lived by fishing and of the fruits of the Earth made fertile by the river, saw hanging in the middle of the town square a large papyrus on which was engraved the following message:
 
-<para alignment="center"><i>To the residents all of the Badia<br/>the King<br/>His Serene HighnessCharles said "the Magnanimous" <br/><br/>draws a greeting<br/>and directs an appeal:<br/><br/>that on the date of the next two sunsets<br/>make presentia at the Castle<br/><br/>the magicians, astrologers and essays <br/>which are all called to unveil,<br/><br/>interpret and declare <br/>the dream<br/><br/>fatal shaking from seven nights<br/>the sleep of Our only daughter<br/>Princess beloved <name_Armerina>.<br/><br/>This is given wide notitia et<br/>advertising yield. </i></para>
+<para alignment="center" fontsize="16"><i>To the residents all of the Badia<br/>the King<br/>His Serene Highness<br/>Charles said "the Magnanimous" <br/><br/>draws a greeting<br/>and directs an appeal:<br/><br/>that on the date of the next two sunsets<br/>make presentia at the Castle<br/><br/>the magicians, astrologers and essays <br/>which are all called to unveil,<br/><br/>interpret and declare <br/>the dream<br/><br/>fatal shaking from seven nights<br/>the sleep of Our only daughter<br/>Princess beloved <name_Armerina>.<br/><br/>This is given wide notitia et<br/>advertising yield. </i></para>
 
 You can imagine the great excitement that this message threw among the Gentiles, which in fact talked about that all day long.  It was almost a year that the Princess did not appear in public and most people feared she was ill.
 
@@ -113,14 +113,7 @@ Once upon a time, there was a small sole called Billa. She was very curious and 
 
 Billa was for a bit speechless, then gave a shot with the fin and dive herself again into the sand. And when she was finally in the sand she thought: "Life is very sad for poor Mr. Rufo!"
 
-<i> So the sea story ends
-with sole Billa playing in the sand
-and if an end we must invent:
-Rufus for Billa is not a worth boyfriend
-
-And if a moral you want me to append
-well, I'm not here for that, 
-and please do not offend! </i>
+<para alignment="center" fontsize="16"><i> So the sea story ends<br />with sole Billa playing in the sand<br />and if an end we must invent:<br />Rufus for Billa is not a worth boyfriend<br /><br />And if a moral you want me to append<br />well, I'm not here for that,<br />and please do not offend! </i></para>
 
 "Oh, that's so touching a story" the Queen said with tears in her eyes.
 "It is a really deep story" said <name_Armerina>.
@@ -164,4 +157,5 @@ No matter how much I have tried, I was never able to figure out what does that w
 
 Anyway, no matter how many times I rubbed it, no basket, so far, has lift up. 
 
-<para alignment="right">The End</para>
+<para alignment="right" fontsize="16">The End</para>
+END-OF-FILE

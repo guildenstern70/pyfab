@@ -76,6 +76,8 @@ It so happened that <name> wasn't Salty's only First Mate.  In fact, there were 
 
 <name> looked down at the cat, sideways at the rat, and up at the parrot.  They continued to argue, and <name> looked back and forth at them, wondering what to do, when Salty turned up.
 
+**IMG[wim_picture2_small.jpg,15.5,12]  
+
 "Enough" Salty shouted, standing with his hands on his hips, and looking really, really disappointed.  "Don't you all have work to do?" And off they scampered, even <name>.
 
 Away they sailed, over crashing waves, day and night.  The sun grew hotter, and even at night it felt so hot you would think the sun was still shining.  
@@ -88,8 +90,6 @@ One day <name> saw Salty looking intently through a long telescope out to sea.
 
 On the horizon, a row of green mountains appeared, growing bigger and bigger as they sailed closer.  Soon the whole crew was lined up against the rails of the prow, leaning into the wind, hair, fur, or feathers flapping, depending on who you were looking at.  <name> watched in amazement.  Now <her_his> adventure would really begin!
 
-**IMG[wim_picture2.jpg,15.5,23]  
-
 They sailed closer to the shore, and saw that the forest was a jungle, and the mountains were steep, and they would not be able to land on the shore.  They saw the mouth of a wide river, and decided to sail upstream to look for a place to stop.  For days they sailed up the wide, muddy river, deeper and deeper into the jungle.  Finally the river slowed, got even wider, and in the middle was an island, with a beach perfect for landing.  They ran the ship onto the beach, and everyone hurried about with ropes and boxes and tents to secure the ship and set up a camp.  But Salty seemed concerned.
 
 "We need to find some fresh water - this river is too dirty.  And we need some more food.  <name>, why don't you take someone with you and go and look for water and food?" <name> looked around, but Ladino the rat was shuffling up to him as fast as he could. Truth is, old, fat rats can't shuffle very fast. 
@@ -100,21 +100,19 @@ They walked all the way around the island - twice -and then they decided to wade
 
 Soon they reached the other side and climbed up on to the bank. They scrambled deeper into the jungle. Ladino finally stopped talking, and started sniffing. "<name>" he said, "I smell water!" And sure enough, right in front of them was a beautiful, clear waterfall.  
 
-**IMG[wim_picture3.jpg,15.5,23] 
-
 They ran up to it, and just as they reached the water's edge, and could almost taste the fresh cold water, suddenly a wall of little brown monkeys rose up in front of them. The littlest, brownest, monkey spoke first.
 
 "What do you think you're doing?" he said. <name> thought he was a lot like Salty - he had quite a big voice for quite a small animal.
 
 "We need some water," <name> said, trying to be as polite as possible, and wishing <she'd_he'd> been listening when <her_his> mother had lectured <her_him> about good manners. "Do you have enough to spare us some?"
 
+**IMG[wim_picture3_small.jpg,15.5,12] 
+
 "Oh we have plenty of water," the monkey said, and in <name>'s opinion he didn't say it very nicely.  "We have this beautiful waterfall with clear, sweet water. It's just that you can't have any."
 
 <name> was somewhat surprised by this. "Why not?" <she_he> asked.
 
 "Well, we have water, but we have no food. No bananas grow on this side of the river. So, we need bananas.  If you bring us some bananas, you can have some water. Simple as that."
-
-**IMG[wim_picture4.jpg,15.5,23] 
 
 <name> felt helpless again but <she_he> thought for a minute, and then <she_he> got an idea.
 
@@ -123,6 +121,8 @@ They ran up to it, and just as they reached the water's edge, and could almost t
 Soon they reached the other side and climbed up on to the bank. They scrambled deeper into the jungle.  Ladino finally stopped talking, and started sniffing. "<name>" he said, "I smell bananas!" And sure enough, right in front of them was a grove of banana trees, full of giant bunches of yellow fruit.  
 
 They ran up to it, and just as they reached the trees' edge, and could almost taste the fresh bananas, suddenly a wall of little white monkeys rose up in front of them. The littlest, whitest, monkey spoke first.
+
+**IMG[wim_picture4_small.jpg,15.5,12] 
 
 "What do you think you're doing?" he said. <name> thought he was a lot like Salty - he had quite a big voice for quite a small animal.
 
@@ -328,11 +328,11 @@ After what seemed like hours of walking, <name> pushed aside the grasses to find
 
 "Hellooooo?" <name> called.  Franqui cocked her head to one side to listen.  No reply.  <name> approached the well, and peered over, and Franqui leaned down to get a closer look.  <She_He> couldn't see if there was any water down there, and then Franqui lost her balance, and with a great fluttering of wings, panicked squawks, and <name> trying to unpick her sharp talons form his hair and shoulders, suddenly <she_he> felt a painful thump on his back!
 
+**IMG[wim_picture7_small.jpg,15.5,12]
+
 "What was that????" <name> cried, rubbing <her_his> back. "Did someone just throw something at me?"
 
-Franqui let go, and flew around the well and perched on its edge, trying to compose herself. 
-
-**IMG[wim_picture7.jpg,15.5,23] 
+Franqui let go, and flew around the well and perched on its edge, trying to compose herself.  
 
 "Oh, my!" he cried.  "Look, <name>, look!" <name> turned around.  There in front of <her_him> was the ugliest dog <she'd_he'd> ever seen. Wait until <she_he> told Salty! He'd never believe it.  This dog had front legs longer than his back legs, a big chest like a wild pig, a bear's ears, a scruffy tail, full of weeds and knots, and was spotted all over.  It snarled at <her_him>, then laughed.  A horrible, shrieking kind of laugh. Franqui looked a little nervous, and looked for a higher perch. This demon dog picked up another rock, and was about to throw it when it stopped, and spoke.
 
@@ -370,7 +370,7 @@ Hyena looked at Jackal and grew cross. He flattened his ears and furrowed his br
 
 "Now Jackal," he said slowly, leaning toward the smaller dog, "are you sure you're not just saying that so you can keep all the chicks for yourself?"
 
-**IMG[wim_picture8.jpg,15.5,23] 
+**IMG[wim_picture8_small.jpg,15.5,12] 
 
 Jackal looked nervous.  "Certainly not!" he explained.  "I'd never play such a trick on you.  It's true, male animals don't have children! Isn't it <name>?" Jackal turned sharply toward <name>.  "Well? Isn't it?"
 
@@ -446,7 +446,9 @@ And with that the ship sailed back down the canal, disappearing into the fog. <n
 
 <name> looked at the calendar on the classroom wall, where the teacher crossed out days as they'd passed.  How long had <she_he> been gone?  <She_He> looked more closely.  <She_He> couldn't believe it.  <She'd_He'd> only been gone one day! How could that be?  Had there been some kind of magic? Were Salty, his crew, and his ship all magical? <name> didn't care.  <She_He> took out <her_his> books, and waited for the teacher to start.  Today, <she_he> knew the answers.  <She_He> would even raise <her_his> hand. Whatever had happened, it was magic to <him_her>.
 
-<para alignment=right>The End</para>
+<para alignment="right" fontsize="16"><i>The End</i></para>
+END-OF-FILE
+
 
 
 

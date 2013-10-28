@@ -43,7 +43,7 @@ class FableLoader(object):
         chapter_paragraphs = []
         chapter_nr = 1
         for paragraph in self.paras:
-            if ((paragraph.startswith('Chapter') or (paragraph.startswith('<para')))):
+            if ((paragraph.startswith('Chapter') or (paragraph.startswith('END-OF-FILE')))):
                 if (len(chapter_paragraphs) > 0):
                     self._addChapter(chapter_paragraphs)
                     chapter_nr += 1
