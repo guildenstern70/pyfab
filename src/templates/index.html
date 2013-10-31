@@ -114,20 +114,4 @@
 
 {% block extralatejavascripts %}
 	<script src="/js/foundation/foundation.orbit.js"></script>
-	<script>
-	<!-- Delay loading vimeo video until the user presses a button -->
-	var iframes = $('iframe');
-
-	$('button').click(function() {
-	    iframes.attr('src', function() {
-	        return $(this).data('src');
-	    });
-	});
-	
-	iframes.attr('data-src', function() {
-	    var src = $(this).attr('src');
-	    $(this).removeAttr('src');
-	    return src;
-	});
-	</script>
 {% endblock %}

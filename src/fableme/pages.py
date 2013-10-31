@@ -41,6 +41,17 @@ class Contacts(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "contacts.html")
         
+class Preview(FablePage):
+    """ /preview page """
+    
+    def get(self):
+        issuu_id = self.request.get('issuu') 
+        self.template_values['issuu_id'] = issuu_id
+        self.render()
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "issuu.html")
+        
 class Register(FablePage):
     """ /register page """
     
@@ -73,6 +84,10 @@ class Register(FablePage):
  
 class AllFables(FablePage):
     """ /allfables fable page """
+    
+    def get(self):
+        self.template_values['fables'] = booktemplates.books
+        self.render()
         
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "allfables.html", request_authentication=False)

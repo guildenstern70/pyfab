@@ -25,6 +25,7 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/create', fableme.pages.Create),
                               ('/deletefable', fableme.commands.DeleteFable),
                               ('/howitworks', fableme.pages.HowItWorks),
+                              ('/preview', fableme.pages.Preview),
                               ('/print', fableme.printer.Print),
                               ('/print/pdf', fableme.printer.PrintPDF),
                               ('/register', fableme.pages.Register),
