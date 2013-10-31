@@ -1,6 +1,6 @@
 {% extends "base_leftsidebar.html" %}
 
-{% block title %}FableMe - Create a fable - Step 0{% endblock %}
+{% block title %}FableMe - All available fables{% endblock %}
 
 {% block maincontent %}
 
@@ -10,12 +10,12 @@
     <div class="large-9 push-3 columns">
         <div class="row">
             <h3>
-                Choose your story
+                FableMe: Fables Catalogue
             </h3>
-            <p>Click on the covers for more details...</p>
+            <p>These are the fables available...</p>
         </div>
         <div class="row">
-                <form method="get" action="/step">
+
                     <table>
                     
                     <thead>
@@ -50,8 +50,7 @@
 	                <input type='hidden' name='id' value='{{fable_id}}'>
                     
                      </table>
-                     <input type="submit" value="Proceed" class="radius large button">
-              </form>
+
               
         </div>
         <div class="row">
@@ -64,23 +63,17 @@
     <!-- This is source ordered to be pulled to the left on larger screens -->
     <div class="large-3 pull-9 columns">
         <h3>
-            Steps
+            Fables
         </h3>
         <ul class="side-nav">
             <li>
-                <a href="#"><b>1. Choose a template</b></a>
+                <a href="#">When I met the pirates</a>
             </li>
             <li>
-                <a href="#">2. Child information</a>
+                <a href="#">My voyage to Aragon</a>
             </li>
             <li>
-                <a href="#">3. Dedication</a>
-            </li>
-            <li>
-                <a href="#">4. Summary</a>
-            </li>
-            <li>
-                <a href="#">5. Preview</a>
+                <a href="#">The talisman of the Badia</a>
             </li>
         </ul>
         <p>

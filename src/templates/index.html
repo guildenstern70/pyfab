@@ -40,7 +40,7 @@
             </div>
             <div class="large-6 columns">
               <div class="large-8 large-centered columns">
-                <a href="#" class="radius large button secondary" data-reveal-id="howitworks"> How it works</a>
+                <a href="/howitworks" class="radius large button secondary"> How it works</a>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
         	<table style="border: none" width="100%">
         		<tr>
         			<td style="text-align:center"><a href="/create" class="radius large button">Create</a></td>
-        			<td style="text-align:center"><a href="#" class="radius large button secondary" data-reveal-id="howitworks">How&nbsp;to</a></td>
+        			<td style="text-align:center"><a href="/howitworks" class="radius large button secondary">How&nbsp;to</a></td>
         		</tr>
         	</table>
   
@@ -107,25 +107,12 @@
         </div><!-- class="large-12 columns" -->
       </div><!-- class="row" -->
       
-       
-	  <div id="howitworks" class="reveal-modal large">
-		 <div class="flex-video vimeo widescreen">
-		     
-		     <iframe src="//player.vimeo.com/video/70361191?color=d87222&amp;autoplay=0" 
-		             frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-		     </iframe>
-		     
-		     </div>
-		
-		 <a class="close-reveal-modal">&#215;</a>
-	  </div>
-      
+            
 
         <!-- End main block -->
 {% endblock %}  
 
 {% block extralatejavascripts %}
-	<script src="/js/foundation/foundation.reveal.js"></script>
 	<script src="/js/foundation/foundation.orbit.js"></script>
 	<script>
 	<!-- Delay loading vimeo video until the user presses a button -->

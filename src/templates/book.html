@@ -11,7 +11,14 @@
             <table>
                 <tr>
                     <td width="45%">
-                    	<img src="/img/{{bookimg}}" width="300" alt="{{title}}" />
+                    	<fieldset>
+                    		<legend>Cover</legend>
+                    		<img src="/img/{{bookimg}}" width="300" alt="{{title}}" />
+                    		<div align="center">
+                    		<input type="radio" name="cover" value="boy" checked="checked">&nbsp;For boys</input>&nbsp;
+                    		<input type="radio" name="cover" value="girl">&nbsp;For girls</input>
+                    		</div>
+                    	</fieldset>
                     </td>
                     <td>
 	                    <article>

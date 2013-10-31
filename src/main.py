@@ -19,6 +19,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 APPLICATION = webapp2.WSGIApplication(
                             [ ('/', fableme.pages.Index),
                               ('/myaccount', fableme.pages.MyAccount),
+                              ('/allfables', fableme.pages.AllFables),
                               ('/book', fableme.pages.Book),
                               ('/contacts', fableme.pages.Contacts),
                               ('/create', fableme.pages.Create),

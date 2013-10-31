@@ -1,0 +1,68 @@
+<nav class="top-bar bottomspacer">
+        <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+                <h1>
+                    <a href="/"><span class="toptitle">FableMe.com</span></a>
+                </h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+                <a href="#"><span>menu</span></a>
+            </li>
+        </ul>
+        <section class="top-bar-section">
+
+            <ul class="right">
+                        
+                {% if nickname %}
+                <li class="has-dropdown">
+                    <a href="#">My FableMe</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/myaccount">My account</a>
+                        </li>
+                        <li>
+                            <a href="/myaccount">My fables</a>
+                        </li>
+                        <li>
+                            <a href="{{logout_url}}">Sign out</a>
+                        </li>
+                        {% if isadmin %}
+                        <li>
+                            <a href="/admin/admin">Administration</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                
+                {% else %}
+                <li>
+                    <a href="/register"><span class="signin">Sign In</span></a>
+                </li>
+                {% endif %}
+                
+                <li>
+                    <a href="/create">Create a fable</a>
+                </li>
+                
+                <li>
+                    <a href="/allfables">Fables</a>
+                </li>
+                                    
+                <li>
+                    <a href="/howitworks">How it works</a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Contacts</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="#">Customer Support</a>
+                        </li>
+                        <li>
+                            <a href="/contacts">Contacts</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </nav>

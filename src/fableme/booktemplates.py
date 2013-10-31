@@ -19,17 +19,19 @@ def get_book_template(book_id):
         book_template = {
             'title': 'When I met the Pirates',
             'sku': 'SKU #83321',
-            'bookimg': 'cover_pirates.jpg',
+            'bookimg_girl': 'cover_pirates_girl.jpg',
+            'bookimg_boy': 'cover_pirates.jpg',
             'sidebar_pic': 'rustic_pirate.jpg',
+            'age_recomm': 'For boys and girls aged 4-10 years',
             'author_img':'dana.jpg',
             'author_name': 'Dana Sandu',
             'author_desc': '''Dana Sandu is Chief Officer at FableMe, and a recognized writer 
                               of fables and novels for teenagers. She has a beautiful daughter, 
                               Diana, who is the first passionate lover of FableMe.com fables!''',
             'desc_title': 'A great adventure...',
-            'desc_desc': '''This is a beautiful pirate story for boys and girls all over the world. 
+            'desc_desc': '''"When I met the Pirates" is a beautiful pirate story for boys and girls all over the world. 
                             The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
-                            a parrot pirate and a rat pirate. Together they sail the sees and have 
+                            a parrot pirate and a rat pirate. Together they sail the seas and have 
                             a lot of fun.''',
             
             }
@@ -37,7 +39,9 @@ def get_book_template(book_id):
         book_template = {
             'title': 'My voyage to Aragon',
             'sku': 'SKU #83203',
-            'bookimg': 'cover_voyage.jpg',
+            'bookimg_girl': 'cover_voyage.jpg',
+            'bookimg_boy': 'cover_voyage_boy.jpg',
+            'age_recomm': 'For boys and girls aged 4-7 years',
             'sidebar_pic': 'Anna.jpg',
             'author_img':'dana.jpg',
             'author_name': 'Dana Sandu',
@@ -58,9 +62,11 @@ def get_book_template(book_id):
     elif (book_id == '2'):
         
         book_template = {
-            'title': 'The amazing story of the Badia talisman',
+            'title': 'The Amazing story of the Badia Talisman',
             'sku': 'SKU #83232',
-            'bookimg': 'cover_badia.jpg',
+            'bookimg_girl': 'cover_badia.jpg',
+            'bookimg_boy': 'cover_badia.jpg',
+            'age_recomm': 'For boys and girls aged 9-17 years',
             'sidebar_pic': 'Capture.jpg',
             'author_img':'alessio.jpg',
             'author_name': 'Alessio Saltarin',

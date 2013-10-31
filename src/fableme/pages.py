@@ -70,7 +70,13 @@ class Register(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "register.html")
-    
+ 
+class AllFables(FablePage):
+    """ /allfables fable page """
+        
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "allfables.html", request_authentication=False)
+           
 class Create(FablePage):
     """ /create fable page """
     
