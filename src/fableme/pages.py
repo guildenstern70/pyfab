@@ -41,6 +41,20 @@ class Contacts(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "contacts.html")
         
+class EditExisting(FablePage):
+    """ /editexisting page """
+    
+    @login_required  
+    def get(self):
+        if (self.user_db):
+            self.template_values['nr_fables'] = self.user_db.nr_of_fables
+            self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
+        self.template_values['return_page'] = 'create'
+        self.render()
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "editfable.html")
+        
 class Preview(FablePage):
     """ /preview page """
     
