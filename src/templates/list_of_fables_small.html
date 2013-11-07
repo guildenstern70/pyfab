@@ -6,9 +6,7 @@
     		<th>Fable Template</th>
     		<th>Sender</th>
     		<th>Dedication</th>
-    		<th>Created</th>
     		<th>Last Modified</th>
-    		<th>&nbsp;</th>
     		<th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -20,18 +18,11 @@
 			<td><a href="/step?s=3&id={{fable.id}}">{{fable.template}}</a></td>
 			<td>{{fable.sender}}</td>
 			<td>{{fable.dedication}}</td>
-			<td>{{fable.created|date:"d/M/Y h:i" }}</td>
 			<td>{{fable.modified|date:"d/M/Y h:i" }}</td>
 			<td><a href="#" data-reveal-id="areYouSure{{fable.id}}">
 			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
 			    	&#215;
 			    </span></a>
-			</td>
-			<td><a href="/print?id={{fable.id}}">
-				<span data-tooltip class="has-tip" title="Generate PDF for fable #{{forloop.counter}}">
-					<img src="img/generatepdf.png" width="30"/>
-				</span>
-				</a>
 			</td>
 		</tr>
 	{% empty %}
@@ -41,5 +32,3 @@
 	{% endfor %}
 	</tbody>
 </table>    		
-
-

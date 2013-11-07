@@ -113,7 +113,7 @@ Once upon a time, there was a small sole called Billa. She was very curious and 
 
 Billa was for a bit speechless, then gave a shot with the fin and dive herself again into the sand. And when she was finally in the sand she thought: "Life is very sad for poor Mr. Rufo!"
 
-<para alignment="center" fontsize="16"><i> So the sea story ends<br />with sole Billa playing in the sand<br />and if an end we must invent:<br />Rufus for Billa is not a worth boyfriend<br /><br />And if a moral you want me to append<br />well, I'm not here for that,<br />and please do not offend! </i></para>
+<para alignment="center" fontsize="16"><i> So the sea story ends<br/>with sole Billa playing in the sand<br/>and if an end we must invent:<br/>Rufus for Billa is not a worth boyfriend<br/><br/>And if a moral you want me to append<br/>well, I'm not here for that,<br/>and please do not offend! </i></para>
 
 "Oh, that's so touching a story" the Queen said with tears in her eyes.
 "It is a really deep story" said <name_Armerina>.

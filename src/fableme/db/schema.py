@@ -20,7 +20,6 @@ class DbFableUser(db.Model):
     email = db.StringProperty(required=True)
     name = db.StringProperty()
     nickname = db.StringProperty()
-    birthDate = db.DateProperty()
     added = db.DateTimeProperty(auto_now_add=True)
     receivenews = db.BooleanProperty(default=True)
     

@@ -114,7 +114,7 @@ class MyAccount(FablePage):
         self.template_values['name'] = self.user_db.name
         self.template_values['nickname'] = self.user_db.nickname
         self.template_values['emailaddr'] = self.user_db.email
-        self.template_values['birthdate'] = self.user_db.birthDate
+        self.template_values['added'] = self.user_db.added
         self.template_values['receivenews'] = self.user_db.receivenews
         self.template_values['return_page'] = 'myaccount'
         self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)

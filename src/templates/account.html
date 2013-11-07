@@ -9,87 +9,67 @@
 {% block maincontent %}
     <!-- Main Content Section -->
     
-    <div class="large-9 push-3 columns">
+    <div class="large-12 columns">
     
         <div class="row">
             <h3>
-                Account page: {{nickname}}
+                Account page for {{nickname}}
             </h3>
-            <p>
-                View/edit profile and fables.
-            </p>
         </div>
-                
-        <div class="section-container auto" data-section data-options="deep_linking: true">
-        <section class="active">
-	        <p class="title" data-section-title><a href="#panel1">My fables</a></p>
-	        
-	        <div class="content" data-slug="panel1" data-section-content>      
-				{% include "list_of_fables.html" %}
-				<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">
-				Delete all fables
-				</a> 
-				<p>&nbsp;</p>   
-	        </div>
-	        
-        </section>
-        <section>
         
-	        <p class="title" data-section-title><a href="#panel2">My profile</a></p>
-	        <div class="content" data-slug="panel2" data-section-content>
-
-	            <table width="100%">
-	            	<tr>
-	            		<td>Name</td>
-	            		<td><input type="text" value="{{name}}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Nickname</td>
-	            		<td><input type="text" value="{{nickname}}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>e-Mail</td>
-	            		<td><input type="text" value="{{emailaddr}}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Birthdate</td>
-	            		<td><input type="date" value="{{birthdate|date:"Y/m/d"}}"></td>
-	            	</tr>
-	            	<tr>
-	            		<td>Receive News?</td>
-	            		
-	            		<td><input type="checkbox"      		
-	            		{% if receivenews == "True" %}
-	            		cheched="checked"
-	            		{% endif %}
-	            		>
-	            		          		
-	            		</td>
-	            	</tr>
-	            </table>
-	           
-	            <br />
-	            <button type="button">Update</button>
-				<p>&nbsp;</p>
-	        </div>
-        </section>
+        <div class="section-container auto" data-section data-options="deep_linking: true">
+        
+	        <section>      
+		        <p class="title" data-section-title><a href="#panel2">My profile</a></p>
+		        <div class="content" data-slug="panel2" data-section-content>
+		            <table width="100%">
+		            	<tr>
+		            		<td>Name</td>
+		            		<td><input type="text" value="{{name}}"></td>
+		            	</tr>
+		            	<tr>
+		            		<td>Nickname</td>
+		            		<td><input type="text" value="{{nickname}}"></td>
+		            	</tr>
+		            	<tr>
+		            		<td>e-Mail</td>
+		            		<td><input type="text" value="{{emailaddr}}"></td>
+		            	</tr>
+		            	<tr>
+		            		<td>Member since</td>
+		            		<td><input type="date" value="{{added|date:"Y/m/d"}}" readonly="readonly"></td>
+		            	</tr>
+		            	<tr>
+		            		<td>Receive News?</td>
+		            		
+		            		<td><input type="checkbox"      		
+		            		{% if receivenews == "True" %}
+		            		cheched="checked"
+		            		{% endif %}
+		            		>
+		            		          		
+		            		</td>
+		            	</tr>
+		            </table>
+		            <br />
+		            <button type="button">Update</button>
+					<p>&nbsp;</p>
+		        </div>
+	        </section>
+                   
+        	<section class="active">
+		        <p class="title" data-section-title><a href="#panel1">My fables</a></p>
+		        <div class="content" data-slug="panel1" data-section-content>      
+					{% include "list_of_fables.html" %}
+					<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">
+					Delete all fables
+					</a> 
+					<p>&nbsp;</p>   
+		        </div>
+        	</section>
         </div>
     </div>
-    
-    <!-- This is source ordered to be pulled to the left on larger screens -->
-    <div class="large-3 pull-9 columns">
-
-		<div class="panel">
-		<p>ACCOUNT</p>
-        <ul class="side-nav">
-		  <li><a href="#panel2">My Profile</a></li>
-		  <li class="divider"></li>
-		  <li><a href="#panel1">My Fables</a></li>
-		</ul>
-		</div>
-
-
-    </div>
+   
 
 {% include "list_of_fables_modals.html" %}    
     
