@@ -22,8 +22,13 @@
 		                    <table>
 		                   	                    
 			                    <tr>
-			                        <td align="center"><a href="book?bookid=0"><img src="/img/cover_pirates.jpg" width="200" alt="When I met the Pirates" /></a></td>
-			                        <td align="center"><a href="book?bookid=1"><img src="/img/cover_voyage.jpg" width="200" alt="My Voyage to Aragon" /></a></td>
+			                        <td align="center">
+                                        <a href="book?bookid=0"><img src="/img/cover_pirates.jpg" width="200" alt="When I met the Pirates" /></a><br />
+                                        <a href="book?bookid=0">More details...</a>
+                                    </td>
+			                        <td align="center">
+                                        <a href="book?bookid=1"><img src="/img/cover_voyage.jpg" width="200" alt="My Voyage to Aragon" /></a><br />
+                                        <a href="book?bookid=1">More details...</a></td>
 			                    </tr>
 			                    
 			                    <tr>
@@ -32,7 +37,8 @@
 			                    </tr>
 			                    
 			                    <tr>
-			                        <td align="center"><a href="book?bookid=2"><img src="/img/cover_badia.jpg" width="200" alt="The talisman of the Badia" /></a></td>
+			                        <td align="center"><a href="book?bookid=2"><img src="/img/cover_badia.jpg" width="200" alt="The talisman of the Badia" /></a><br />
+                                        <a href="book?bookid=2">More details...</a></td>
 			                        <td align="center"><a href="book?bookid=3"><img src="http://placehold.it/337x440&text=[To be defined]" width="200" alt="To be defined" /></a></td>
 			                    </tr>
 			                    <tr>
@@ -40,12 +46,11 @@
 			                        <td align="center"><div align="center"><input type="radio" name="value" value="" disabled="disabled" /></div></td>
 			                    </tr>
 			                    
-			                   	<input type='hidden' name='s' value='1'></td>
-				                <input type='hidden' name='id' value='{{fable_id}}'>
-		                    
 		                     </table>
 	                     </td>
 	                     <td>
+                             <input type='hidden' name='s' value='1'>
+                             <input type='hidden' name='id' value='{{fable_id}}'>
 	                     	 <input type="submit" value="Create this story..." class="radius large button">
 	                     </td>
                      </tr>

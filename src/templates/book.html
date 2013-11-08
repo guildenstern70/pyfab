@@ -13,24 +13,26 @@
                     <td width="45%">
                     	<fieldset>
                     		<legend>Cover</legend>
-                    		<img src="/img/{{bookimg_boy}}" width="250" alt="{{title}}" />
+                        {% if templatesex == "M" %}
+                            <img name="cover_image" src="/img/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
+                        {% else %}
+                            <img name="cover_image" src="/img/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
+                        {% endif %}
+                         
                     		<div align="center">
                     		<p>&nbsp;</p>
-                    		<input type="radio" name="cover" value="boy" checked="checked">&nbsp;For boys</input>&nbsp;
-                    		<input type="radio" name="cover" value="girl">&nbsp;For girls</input>
+                        {% if templatesex == "M" %}
+                    		<input type="radio" name="cover" value="boy" checked="checked" onclick="window.location='/book?bookid={{book}}&recomm=M';">&nbsp;For boys&nbsp;
+                    		<input type="radio" name="cover" value="girl" onclick="window.location='/book?bookid={{book}}&recomm=F';">&nbsp;For girls
+                        {% else %}
+                            <input type="radio" name="cover" value="boy" onclick="window.location='/book?bookid={{book}}&recomm=M';">&nbsp;For boys&nbsp;
+                            <input type="radio" name="cover" value="girl" checked="checked" onclick="window.location='/book?bookid={{book}}&recomm=F';">&nbsp;For girls
+                        {% endif %}
                     		</div>
                     	</fieldset>
                     </td>
                     <td>
-	                    <article>
-		                    <h2>{{title}}</h2>
-		                    <p>{{sku}}</p>
-		                    <ul>
-		                    <li><a href="#">Take tour</a></li>
-		                    <li><a href="#">Order now</a></li>
-		                    <li><a href="/step?s=0&id=-1">Back to story creation</a></li>
-		                    </ul>
-	                    </article>
+	                    {% include "fable_details.html" %} 
                     </td>
                 </tr>
                 <tr>
@@ -45,8 +47,8 @@
 				                
 				                <div class="content" data-section-content>
 				                    <p>&nbsp;</p>
-				                    <h3>{{desc_title}}</h3>
-				                    <p>{{desc_desc}}</p>
+				                    <h3>{{fable.desc_title}}</h3>
+				                    <p>{{fable.desc_desc}}</p>
 				                    <p>&nbsp;</p>
 				                    <p>&nbsp;</p>
 				                </div>
@@ -92,8 +94,8 @@
 				                            <td valign="top" width="33%"><img src="/img/{{author_img}}" width="110" alt="{{author_name}}" /></td>
 				                            <td>
 				                                <article>
-				                                <p><b>Author: {{author_name}}</b></p>
-				                                <p>{{author_desc}}</p>
+				                                <p><b>Author: {{fable.author_name}}</b></p>
+				                                <p>{{fable.author_desc}}</p>
 				                                </article>
 				                            </td>
 				                        </tr>

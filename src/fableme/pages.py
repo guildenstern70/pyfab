@@ -172,8 +172,10 @@ class Book(FablePage):
     def get(self):
         """ http get handler """
         book = self.request.get('bookid')
-        book_template = booktemplates.get_book_template(book) 
-        self.template_values = dict(book_template.items() + self.template_values.items())
+        booksex = self.request.get('recomm')        
+        self.template_values['fable'] = booktemplates.get_book_template(book) 
+        self.template_values['templatesex'] = booksex
+        self.template_values['book'] = book
         self.render()
         
     def __init__(self, request, response):

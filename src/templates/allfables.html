@@ -36,19 +36,7 @@
 						</td>
 						
 						<td>
-							<article>
-		                    <h3>{{fable.title}}</h3>
-		                    <p>{{fable.age_recomm}}</p>
-		                    <ul>
-			                    <li>Written by: {{fable.author_name}}</li>
-			                    <li>Illustrated by: {{fable.author_ill}}</li>
-			                    <li>Available in {{fable.languages}}<br/><br/></li>
-			                    <li>{{fable.desc_short}}<br/><br/></li>
-			                    <li><a href="/preview?issuu={{fable.issuu_id}}">Book preview</a></li>
-			                    <li><a href="/book?bookid={{fable.id}}">More details...</a></li>
-		                    </ul>
-		                    <a href="/step?s=0&id=-1" class="radius button">Create this fable now!</a>
-	                    	</article>
+						 {% include "fable_details.html" %} 	
 						</td>
 						
 					
