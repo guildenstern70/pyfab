@@ -26,7 +26,7 @@ class Steps(object):
         self.template_keys = [ 
                               ['heroheroine', 'heroname', 'heropicture', 'birthdate'],
                               ['sender', 'dedication'],
-                              ['template_title', 'fable', 'heroheroine']
+                              ['template_title', 'fable', 'heroheroine', 'sexagemismatch']
                              ]
         
     def template_values(self, template_values, list_of_values):
@@ -75,7 +75,7 @@ class Fabulator(object):
             map_of_values = {
                                  1: [self.hero_heroine(), self.the_fable.name, self.get_character_pic(), self.the_fable.birthdate],
                                  2: [self.the_fable.sender, self.the_fable.dedication],
-                                 3: [self.the_fable.template['title'], self.the_fable, self.hero_heroine()]
+                                 3: [self.the_fable.template['title'], self.the_fable, self.hero_heroine(), self.get_sex_or_age_mismatch()]
                             }
             template_values = step_setter.template_values(template_values, map_of_values[step])
         return template_values
@@ -86,7 +86,10 @@ class Fabulator(object):
         if (self.the_fable.sex =='M'):
             character_img = book['prot_boy']
         return character_img
-            
+    
+    def get_sex_or_age_mismatch(self):
+        return (self.the_fable.is_age_mismatch() or self.the_fable.is_sex_mismatch())
+        
     def process(self, step, values, refresh):
         """ Processes data in HTTP Request to be saved on DB
             Saves the attributes for each step of the process 

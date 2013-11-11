@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <td>{{heroheroine|capfirst}}'s birth date: </td>
-                        <td><input type='text' name='value' value='{{fable.birthdate|date:"Y/m/d"}}' readonly></td>
+                        <td><input type='text' name='value' value='{{fable.birthdate|date:"Y/m/d"}} ({{fable.age}} yo)' readonly></td>
                     </tr>
                     <tr>
                         <td>Dedication from: </td>
@@ -48,6 +48,17 @@
                         <td>Last time it was modified:</td>
                         <td>{{fable.modified|date:"d M Y h:i" }}</td>
                     </tr>
+                    {% if sexagemismatch %}
+                    <tr>
+                        <!-- {{sexagemismatch}} -->
+                        <td colspan="2">
+                        <div data-alert class="alert-box alert radius">
+                          Warning: this fable is {{fable.recommendation|lower}}.
+                          <a href="#" class="close">&times;</a>
+                        </div>
+                        </td>
+                    </tr>
+                    {% endif %}
             </table>
             <input type='hidden' name='id' value='{{fable.id}}'>
             <input type="button" value="Previous" class="radius secondary large button" 
@@ -88,4 +99,9 @@
 </div>
 
 {% endblock %}
+
+{% block extralatejavascripts %}
+<script src="js/foundation/foundation.alerts.js"></script>
+{% endblock %}
+
 
