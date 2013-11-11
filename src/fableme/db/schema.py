@@ -10,6 +10,7 @@
 
 import logging
 import datetime
+import fableme.db.booktemplates as booktemplates
 
 from google.appengine.ext import db
 
@@ -63,7 +64,7 @@ class DbFable(db.Model):
     """ DB Schema: DbFable """
     
     user_email = db.StringProperty(required=True)
-    template = db.StringProperty()
+    template_id = db.IntegerProperty() # Foreign key to booktemplates template_id
     sex = db.StringProperty()
     name = db.StringProperty()
     birthdate = db.DateProperty()
@@ -74,21 +75,13 @@ class DbFable(db.Model):
     
     def __id(self):
         return self.key().id()
-       
-    def __unix_name(self):
-        return self.template.replace(' ', '_')
     
-    def __template_text_file(self):
-        return self.__unix_name() + '.txt'
-    
-    def __cover_file(self):
-        return self.__unix_name() + '.jpg'
+    def __template(self):
+        return booktemplates.get_book_template(self.template_id)
         
-    id = property(__id, doc="""Gets fable ID (long number).""")
-    unix_name = property(__unix_name, doc="""Gets fable title with underscores instead of spaces.""")
-    template_filename = property(__template_text_file, doc="""Gets the name of the file containing the template.""")
-    cover_filename = property(__cover_file, doc="""Gets the name of the file containing the cover image.""")
-    
+    id = property(__id, doc="""Gets current fable ID (long number).""")
+    template = property(__template, doc="""Get the book template dictionary of attributes""")
+
     @staticmethod
     def get_fable(google_user, fable_id):
         """ Get the (first) fable of the given user """
@@ -107,7 +100,6 @@ class DbFable(db.Model):
         return the_fable
     
     def set_defaults(self):
-        self.template = "Unknown"
         self.sex = "M"
         self.name = ""
         self.birthdate = datetime.date(2000,01,01)

@@ -24,9 +24,9 @@ class Steps(object):
     def __init__(self, step):
         self.current_step = step
         self.template_keys = [ 
-                              ['heroheroine', 'heroname', 'birthdate'],
+                              ['heroheroine', 'heroname', 'heropicture', 'birthdate'],
                               ['sender', 'dedication'],
-                              ['fable', 'heroheroine']
+                              ['template_title', 'fable', 'heroheroine']
                              ]
         
     def template_values(self, template_values, list_of_values):
@@ -73,13 +73,20 @@ class Fabulator(object):
         if (step > 0): 
             step_setter = Steps(step)
             map_of_values = {
-                                 1: [self.hero_heroine(), self.the_fable.name, self.the_fable.birthdate],
+                                 1: [self.hero_heroine(), self.the_fable.name, self.get_character_pic(), self.the_fable.birthdate],
                                  2: [self.the_fable.sender, self.the_fable.dedication],
-                                 3: [self.the_fable, self.hero_heroine()]
+                                 3: [self.the_fable.template['title'], self.the_fable, self.hero_heroine()]
                             }
             template_values = step_setter.template_values(template_values, map_of_values[step])
-        return template_values 
-        
+        return template_values
+    
+    def get_character_pic(self):
+        book = self.the_fable.template
+        character_img = book['prot_girl']
+        if (self.the_fable.sex =='M'):
+            character_img = book['prot_boy']
+        return character_img
+            
     def process(self, step, values, refresh):
         """ Processes data in HTTP Request to be saved on DB
             Saves the attributes for each step of the process 
@@ -90,7 +97,7 @@ class Fabulator(object):
                 istep = int(step) + 1
                 step = str(istep)   
             if (step == '1'):
-                self.the_fable.template = values[0]
+                self.the_fable.template_id = int(values[0])
             elif (step == '2'):
                 self.the_fable.sex = values[0]           
                 if (len(values) >= 2):

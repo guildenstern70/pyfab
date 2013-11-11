@@ -11,6 +11,7 @@ from __future__ import with_statement  # WARNING: MUST BE FIRST LINE
 
 import logging
 import fableme.utils as utils
+import fableme.db.booktemplates as booktemplates
 
 from google.appengine.api import files
 from fableme.pdfhelper import PDF
@@ -33,7 +34,12 @@ class Writer(object):
         self.dbfable = db_fable
           
     def get_title(self):
-        return self.dbfable.template
+        book = self.get_template()
+        return book['title']
+    
+    def get_template(self):
+        return booktemplates.get_book_template(self.dbfable.template_id)
+        
         
     def get_fable(self):
         """ Get the final fable as a long string """
@@ -48,7 +54,8 @@ class Writer(object):
         return template
     
     def _read_file_template(self):
-        template_googlepath = utils.get_from_resources(self.dbfable.template_filename)
+        book = self.get_template()
+        template_googlepath = utils.get_from_resources(book['template_text_file'])
         logging.debug('Reading from ' + template_googlepath + '...')
         fablefile = open(template_googlepath, 'r')
         filecontents = fablefile.read()

@@ -16,7 +16,7 @@
             <table>
                     <tr>
                         <td>Template: </td>
-                        <td><input type="text" value="{{fable.template}}" readonly></td>
+                        <td><input type="text" value="{{template_title}}" readonly></td>
                     </tr>
                     <tr>
                         <td>We're talking about: </td>
@@ -39,7 +39,6 @@
                     <tr>
                         <td>Dedication text: </td>
                         <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{fable.dedication}}</textarea></td>
-                        <input type='hidden' name='id' value='{{fable.id}}'>
                     </tr>
                     <tr>
                         <td>This fable was created on:</td>
@@ -50,6 +49,7 @@
                         <td>{{fable.modified|date:"d M Y h:i" }}</td>
                     </tr>
             </table>
+            <input type='hidden' name='id' value='{{fable.id}}'>
             <input type="button" value="Previous" class="radius secondary large button" 
                    onclick="location.href='/step?s=2&id={{fable.id}}';">&nbsp; 
             <input type="submit" value="OK, go to print!" class="radius large button">

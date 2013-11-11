@@ -12,7 +12,7 @@
 import urllib
 import logging
 import fableme.db.dbutils as dbutils
-import fableme.booktemplates as booktemplates
+import fableme.db.booktemplates as booktemplates
 
 import fableme.fabulator as fabulator
 import fableme.utils as utils

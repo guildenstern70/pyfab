@@ -9,12 +9,14 @@ import fablepage
 import chapter
 import logging
 import fableme.utils as utils
+import fableme.db.booktemplates as booktemplates
 
 class FableLoader(object):
     
     def __init__(self, db_fable):
-        self._title = db_fable.template
-        self.coverfilename = db_fable.cover_filename
+        book = booktemplates.get_book_template(db_fable.template_id)
+        self._title = book['title']
+        self.coverfilename = book['cover_image']
         self.fable_doc = None
         self.chapters = []
               
