@@ -177,7 +177,7 @@ class Book(FablePage):
         self.template_values['fable'] = template
         self.template_values['templatesex'] = booksex
         self.template_values['book'] = book
-        self.template_values['recomm'] = self.get_recommendation(template)
+        self.template_values['recomm'] = booktemplates.recommendation(book)
         self.render()
                 
     def __init__(self, request, response):

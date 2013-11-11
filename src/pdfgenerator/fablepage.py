@@ -13,6 +13,7 @@ import fabletemplate
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Paragraph, Spacer, PageBreak, Image
 from reportlab.lib.units import cm
+from reportlab.lib import pdfencrypt
 
 _W, _H = (21*cm, 29.7*cm) # This is the A4 size
 _WF, _HF = (17*cm, 25*cm) # This is the size of a full size flowable
@@ -33,13 +34,15 @@ def laterPages(canvas, doc):
 class FableDoc(object):
     
     def __init__(self, fabletitle):
+        enc = pdfencrypt.StandardEncryption('', ownerPassword="alessio", canCopy=0, canModify=0)
         self._doc = fabletemplate.FableMeDocTemplate(None, 
                                       title=fabletitle,
                                       pagesize=A4, 
                                       topMargin=2*cm,
                                       bottomMargin=2*cm,
                                       leftMargin=2*cm,
-                                      rightMargin=2*cm)
+                                      rightMargin=2*cm,
+                                      encrypt=enc)
         self._story = []
         self._styles = stylesheet.fableMeStyleSheet()
         

@@ -88,23 +88,7 @@ class DbFable(db.Model):
         return age
         
     def __recommendation(self):
-        book_template = self.__template()
-        recomm = "Recommended for "
-        age_min = book_template['age_recomm_min']
-        age_max = book_template['age_recomm_max']
-        sex_recomm = book_template['sex_recomm']
-        if (sex_recomm == 'M'):
-            recomm += " boys"
-        elif (sex_recomm == 'F'):
-            recomm += " girls"
-        else:
-            recomm += " boys and girs"
-        recomm += " aged "
-        recomm += str(age_min)
-        recomm += "-"
-        recomm += str(age_max)
-        recomm += " years."
-        return recomm
+        return booktemplates.recommendation(self.template_id)
         
     id = property(__id, doc="""Gets current fable ID (long number).""")
     template = property(__template, doc="""Get the book template dictionary of attributes""")

@@ -63,16 +63,15 @@
         <div class="row">
 
             <h2><br/><a href="#">{{title}}</a></h2>
-            <textarea name='fableText' rows='20' cols='60' readonly>
+            <textarea name='fableText' rows='20' cols='60' oncopy="return false" readonly>
             {{fable_contents}}
             </textarea>
               
         </div>
         <div class="row">
-        
         	<a href="/print/pdf?id={{fable_id}}" id="downloadbtn" class="radius large button"> Generate PDF!</a>
-        
         </div>
+
 
     </div><!-- Nav Sidebar -->
     <!-- This is source ordered to be pulled to the left on larger screens -->

@@ -109,6 +109,25 @@ books = (
         }
     )
 
+def recommendation(book_id):
+    book_template = books[int(book_id)]
+    recomm = "Recommended for "
+    age_min = book_template['age_recomm_min']
+    age_max = book_template['age_recomm_max']
+    sex_recomm = book_template['sex_recomm']
+    if (sex_recomm == 'M'):
+        recomm += " boys"
+    elif (sex_recomm == 'F'):
+        recomm += " girls"
+    else:
+        recomm += " boys and girs"
+    recomm += " aged "
+    recomm += str(age_min)
+    recomm += "-"
+    recomm += str(age_max)
+    recomm += " years."
+    return recomm
+
 def get_book_template(book_id):
     """
         # Book 0 -> Peter and the Pirates
