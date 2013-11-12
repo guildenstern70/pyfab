@@ -86,13 +86,9 @@ class DbFable(db.Model):
         else:
             age = -1
         return age
-        
-    def __recommendation(self):
-        return booktemplates.recommendation(self.template_id)
-        
+                
     id = property(__id, doc="""Gets current fable ID (long number).""")
     template = property(__template, doc="""Get the book template dictionary of attributes""")
-    recommendation = property(__recommendation, doc="""Get fable recommendation/disclaimer""")
     age = property(__age, doc="""Get the child age (diff between birthdate and now)""")
 
     @staticmethod

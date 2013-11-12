@@ -7,6 +7,7 @@
  
 """
 
+
 books = (
          {
             'template_id': 0,
@@ -109,24 +110,38 @@ books = (
         }
     )
 
-def recommendation(book_id):
-    book_template = books[int(book_id)]
-    recomm = "Recommended for "
-    age_min = book_template['age_recomm_min']
-    age_max = book_template['age_recomm_max']
-    sex_recomm = book_template['sex_recomm']
-    if (sex_recomm == 'M'):
-        recomm += " boys"
-    elif (sex_recomm == 'F'):
-        recomm += " girls"
-    else:
-        recomm += " boys and girs"
-    recomm += " aged "
-    recomm += str(age_min)
-    recomm += "-"
-    recomm += str(age_max)
-    recomm += " years."
-    return recomm
+
+class Book(object):
+    """ Incapsulates the books dictionary into a class """
+    
+    def __init__(self, book_id):
+        self.dictionary = books[book_id]
+        for k, v in self.dictionary.items():
+            setattr(self, k, v)
+ 
+    def recommendation(self):
+        recomm = "Recommended for "
+        age_min = self.dictionary['age_recomm_min']
+        age_max = self.dictionary['age_recomm_max']
+        sex_recomm = self.dictionary['sex_recomm']
+        if (sex_recomm == 'M'):
+            recomm += " boys"
+        elif (sex_recomm == 'F'):
+            recomm += " girls"
+        else:
+            recomm += " boys and girs"
+        recomm += " aged "
+        recomm += str(age_min)
+        recomm += "-"
+        recomm += str(age_max)
+        recomm += " years."
+        return recomm
+    
+def get_all_books():
+    books_collection = []
+    for i in range(0, len(books)-1):
+        books_collection.append(Book(i))
+    return books_collection
 
 def get_book_template(book_id):
     """

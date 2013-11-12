@@ -100,7 +100,8 @@ class AllFables(FablePage):
     """ /allfables fable page """
     
     def get(self):
-        self.template_values['fables'] = booktemplates.books
+        books = booktemplates.get_all_books()
+        self.template_values['fables'] = books
         self.render()
         
     def __init__(self, request, response):
@@ -173,11 +174,11 @@ class Book(FablePage):
         """ http get handler """
         book = self.request.get('bookid')
         booksex = self.request.get('recomm')
-        template =  booktemplates.get_book_template(book)       
-        self.template_values['fable'] = template
+        template =  booktemplates.get_book_template(book)  
+        book_obj = booktemplates.Book(int(book))     
+        self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = booksex
         self.template_values['book'] = book
-        self.template_values['recomm'] = booktemplates.recommendation(book)
         self.render()
                 
     def __init__(self, request, response):
