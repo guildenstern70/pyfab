@@ -87,7 +87,7 @@ class FableDoc(object):
     def addPageBreak(self):
         self._story.append(PageBreak())
         
-    def addParagraphOrImage(self, text):
+    def addParagraphOrImage(self, text, loader):
         if (text.startswith('**IMG')):
             flowable = self.getImageFromText(text)
         else:

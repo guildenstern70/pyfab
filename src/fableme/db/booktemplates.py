@@ -139,7 +139,7 @@ class Book(object):
     
 def get_all_books():
     books_collection = []
-    for i in range(0, len(books)-1):
+    for i in range(0, len(books)):
         books_collection.append(Book(i))
     return books_collection
 
