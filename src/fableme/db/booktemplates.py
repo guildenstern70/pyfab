@@ -22,9 +22,9 @@ books = (
             'sidebar_pic': 'rustic_pirate.jpg',
             'prot_boy': 'prot_pirate_boy.jpg',
             'prot_girl': 'prot_pirate_girl.jpg',
-            'sex_recomm': 'M',
-            'age_recomm_min': 4,
-            'age_recomm_max': 10,
+            'sex_recomm': 'MF',
+            'age_recomm_min': 8,
+            'age_recomm_max': 12,
             'author_img':'dana.jpg',
             'author_name': 'Dana Sandu',
             'author_ill':'Noha',
@@ -51,9 +51,9 @@ books = (
                 'cover_image': 'My_voyage_to_Aragon.jpg',
                 'bookimg_girl': 'cover_voyage.jpg',
                 'bookimg_boy': 'cover_voyage_boy.jpg',
-                'sex_recomm': 'F',
-                'age_recomm_min': 4,
-                'age_recomm_max': 16,
+                'sex_recomm': 'MF',
+                'age_recomm_min': 8,
+                'age_recomm_max': 12,
                 'sidebar_pic': 'Anna.jpg',
                 'prot_boy': 'prot_voyage_boy.jpg',
                 'prot_girl': 'prot_voyage_girl.jpg',
@@ -129,7 +129,7 @@ class Book(object):
         elif (sex_recomm == 'F'):
             recomm += " girls"
         else:
-            recomm += " boys and girs"
+            recomm += " boys and girls"
         recomm += " aged "
         recomm += str(age_min)
         recomm += "-"
