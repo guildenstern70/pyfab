@@ -2,7 +2,6 @@
  
  FABLE-O-MATIC 
  A LittleLite Web Application
- (c) 2013
  
  main.py
  
