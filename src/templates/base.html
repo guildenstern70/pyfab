@@ -7,16 +7,14 @@
 {% block main %}{% endblock %}  
 
 {% block latejavascripts %}
-
-    <script>
-      document.write('<script src=/js/vendor/' +
-      ('__proto__' in {} ? 'zepto' : 'jquery') +
-      '.js><\/script>')
-	</script>
-	<script src="/js/foundation/foundation.js"></script>
-	<script src="/js/foundation/foundation.topbar.js"></script>
-	<script src="/js/vendor/custom.modernizr.js"></script><!-- Needed by WebIcons e Input Dates -->
-		    
+<script>
+  document.write('<script src=/js/vendor/' +
+  ('__proto__' in {} ? 'zepto' : 'jquery') +
+  '.js><\/script>')
+</script>
+<script src="/js/foundation/foundation.js"></script>
+<script src="/js/foundation/foundation.topbar.js"></script>
+<script src="/js/vendor/custom.modernizr.js"></script><!-- Needed by WebIcons e Input Dates -->	    
 {% block extralatejavascripts %}	
 {% endblock extralatejavascripts %}
 

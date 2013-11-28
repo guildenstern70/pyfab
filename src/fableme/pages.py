@@ -77,7 +77,7 @@ class Register(FablePage):
         r_news = False
         if (receiveNews=='on'):
             r_news = True
-        bdate = utils.string_to_date(birthDate)
+        bdate = utils.GoogleUtils.string_to_date(birthDate)
         DbFableUser.createuser(user, firstLastName, nickName, bdate, r_news)
           
     def post(self):

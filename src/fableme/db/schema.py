@@ -14,6 +14,35 @@ import fableme.db.booktemplates as booktemplates
 
 from google.appengine.ext import db
 
+class Character(object):
+    """ Attributes of the fable main character """
+    
+    @classmethod
+    def from_fable_db(cls, dbfable):
+        return cls(dbfable.name, dbfable.sex, dbfable.birthdate)
+    
+    @classmethod
+    def calculate_age(cls, born):
+        today = datetime.date.today()
+        try: 
+            birthday = born.replace(year=today.year)
+        except ValueError: # raised when birth date is February 29 and the current year is not a leap year
+            birthday = born.replace(year=today.year, day=born.day-1)
+        if birthday > today:
+            return today.year - born.year - 1
+        else:
+            return today.year - born.year
+    
+    def __repr__(self, *args, **kwargs):
+        return "[" + self.name + ", " + self.sex + ", Age = " + str(self.age) + "]"
+
+    def __init__(self, cname, csex, cbirthdate):
+        self.sex = csex
+        self.name = cname
+        self.birthdate = cbirthdate
+        self.age = self.calculate_age(cbirthdate)
+
+    
 class DbFableUser(db.Model):
     """ DB Schema: DbFableUser """
     
@@ -70,6 +99,7 @@ class DbFable(db.Model):
     birthdate = db.DateProperty()
     sender = db.StringProperty()
     dedication = db.StringProperty()
+    language = db.StringProperty(default="EN")
     created = db.DateTimeProperty(auto_now_add=True)
     modified = db.DateTimeProperty(auto_now_add=True)
     
@@ -79,17 +109,20 @@ class DbFable(db.Model):
     def __template(self):
         return booktemplates.get_book_template(self.template_id)
     
+    def __title(self):
+        return self.template['title']
+    
     def __age(self):
-        if (self.birthdate):
-            timedelta = datetime.date.today() - self.birthdate
-            age = int(timedelta.days / 365)
-        else:
-            age = -1
-        return age
-                
+        return Character.calculate_age(self.birthdate)
+    
+    def __character(self):
+        return Character.from_fable_db(self)
+                    
     id = property(__id, doc="""Gets current fable ID (long number).""")
     template = property(__template, doc="""Get the book template dictionary of attributes""")
     age = property(__age, doc="""Get the child age (diff between birthdate and now)""")
+    title = property(__title, doc="""Get the fable title""")
+    character = property(__character, doc="""Get the fable main character attributes""")
 
     @staticmethod
     def get_fable(google_user, fable_id):
@@ -112,10 +145,9 @@ class DbFable(db.Model):
         self.sex = "M"
         self.name = ""
         self.birthdate = datetime.date(2005,01,01)
-        self.sender = ""
+        self.sender = "From mom and dad"
         self.dedication = "With love"
         
-    
     def is_age_mismatch(self):
         mismatch = False
         book_template = self.__template()

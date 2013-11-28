@@ -7,7 +7,6 @@ fablepage.py
 
 import stylesheet
 import logging
-import fableme.utils as utils
 import fabletemplate
 
 from reportlab.lib.pagesizes import A4
@@ -52,7 +51,7 @@ class FableDoc(object):
         self._story.append(image)
         self._story.append(PageBreak())
         
-    def getImageFromText(self, imageTextDescription):
+    def getImageFromText(self, imageTextDescription, loader):
         """ The image text descriptor is a sort of tag
             with the following syntax:
             **IMG[filename,image_width,image_height]
@@ -65,7 +64,7 @@ class FableDoc(object):
         try:
             if (imageTextDescription[5] == '['):
                 imageFileDesc = imageTextDescription[6:imageTextDescription.find(']')].split(',')
-                imageFileName = utils.get_from_resources(imageFileDesc[0])
+                imageFileName = loader.get_images_path_to(imageFileDesc[0])
                 imageFileWidth = float(imageFileDesc[1])
                 imageFileHeight = float(imageFileDesc[2])
                 image = Image(imageFileName, imageFileWidth*cm, imageFileHeight*cm)
@@ -89,7 +88,7 @@ class FableDoc(object):
         
     def addParagraphOrImage(self, text, loader):
         if (text.startswith('**IMG')):
-            flowable = self.getImageFromText(text)
+            flowable = self.getImageFromText(text, loader)
         else:
             flowable = Paragraph(text, self._styles["Normal"])
         if (flowable != None):

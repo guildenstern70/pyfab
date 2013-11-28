@@ -106,13 +106,12 @@ class Fabulator(object):
                 if (len(values) >= 2):
                     self.the_fable.name = values[1].title()
                 if (len(values) == 3):
-                    self.the_fable.birthdate = utils.string_to_date(values[2])
+                    self.the_fable.birthdate = utils.GoogleUtils.string_to_date(values[2])
             elif (step == '3'):
                 self.the_fable.sender = values[0]         
                 self.the_fable.dedication = values[1]
             self.update_fable_on_db()                
             
-    
     def update_fable_on_db(self):
         self.the_fable.modified = datetime.datetime.now()
         self.the_fable.put()   

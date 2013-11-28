@@ -2,8 +2,8 @@
  FABLE-O-MATIC
  A LittleLite Web Application
  
- pages.py
-
+ utils.py
+ 
 """
 
 import os
@@ -13,53 +13,82 @@ import datetime
 
 CHROME_DATE_FORMAT = '%Y-%m-%d'
 IE10_DATE_FORMAT = '%m/%d/%Y'
-RESOURCES_PATH = '../resources/'
+OUTPUT_PATH = "output/"
+RESOURCES_PATH = "resources/"
+GOOGLE_RESOURCES_PATH = '../resources/'
 
-def get_from_resources(filename):
-    """ Get a file stored in RESOURCE_PATH under Google App Engine """
-    filepath = os.path.join(RESOURCES_PATH, filename)
-    return get_google_app_path(filepath) 
+class BasicUtils(object):
+    
+    @staticmethod
+    def is_date_valid(inputstring, inputformat):
+        """ Check if the input string contains
+            a date in the format specified """
+        was_converted = False
+        try:
+            struct_dt = time.strptime(inputstring, inputformat)
+            logging.debug('StructDT = ' + str(struct_dt)) 
+            datetime.date.fromtimestamp(time.mktime(struct_dt))
+            was_converted = True
+        except ValueError:
+            logging.debug('Unknown date format for '+inputstring+': defaulting...')
+        return was_converted
 
-def get_google_app_path(filepath):
-    """ Return the path of a file
-        inside the google appengine framework """
-    return os.path.join(os.path.split(__file__)[0], filepath) 
+    @staticmethod    
+    def convert_date(inputstring, inputformat):
+        """ Convert string to a date """
+        retdt = None
+        try:
+            struct_dt = time.strptime(inputstring, inputformat)
+            retdt = datetime.date.fromtimestamp(time.mktime(struct_dt))
+        except ValueError:
+            logging.debug('Cannot convert date. Defaulting to 01/01/2000')
+            retdt = datetime.date(2000,01,01)
+        return retdt
+    
+    @staticmethod
+    def string_to_date(inputstring):
+        """ Convert a string read from an <input type='date'> to a date """
+        retdt = None   
+        if (BasicUtils.is_date_valid(inputstring, CHROME_DATE_FORMAT)):
+            logging.debug('Trying to convert #' + inputstring + '#: it seems a CHROME date...') 
+            retdt = BasicUtils.convert_date(inputstring, CHROME_DATE_FORMAT)
+        elif (BasicUtils.is_date_valid(inputstring, IE10_DATE_FORMAT)): 
+            logging.debug('Trying to convert #' + inputstring + '# it seems a IE10 date...') 
+            retdt = BasicUtils.convert_date(inputstring, IE10_DATE_FORMAT)
+        else:
+            logging.debug('Cannot convert date. Defaulting to 01/01/2000')
+            retdt = datetime.date(2000,01,01)
+        return retdt
 
-def is_date_valid(inputstring, inputformat):
-    """ Check if the input string contains
-        a date in the format specified """
-    was_converted = False
-    try:
-        struct_dt = time.strptime(inputstring, inputformat)
-        logging.debug('StructDT = ' + str(struct_dt)) 
-        datetime.date.fromtimestamp(time.mktime(struct_dt))
-        was_converted = True
-    except ValueError:
-        logging.debug('Unknown date format for '+inputstring+': defaulting...')
-    return was_converted
+    @staticmethod
+    def get_output_path(filename):
+        return os.path.join(OUTPUT_PATH, filename)
+ 
+    @staticmethod   
+    def get_from_relative_resources(filename):
+        return os.path.join(RESOURCES_PATH, filename)
 
-def convert_date(inputstring, inputformat):
-    """ Convert string to a date """
-    retdt = None
-    try:
-        struct_dt = time.strptime(inputstring, inputformat)
-        retdt = datetime.date.fromtimestamp(time.mktime(struct_dt))
-    except ValueError:
-        logging.debug('Cannot convert date. Defaulting to 01/01/2000')
-        retdt = datetime.date(2000,01,01)
-    return retdt
+    @staticmethod    
+    def get_from_resources(filename):
+        """ Get a file stored in RESOURCE_PATH under Google App Engine """
+        return os.path.normpath(filename) 
+    
+    
+class GoogleUtils(BasicUtils):
 
-def string_to_date(inputstring):
-    """ Convert a string read from an <input type='date'> to a date """
-    retdt = None   
-    if (is_date_valid(inputstring, CHROME_DATE_FORMAT)):
-        logging.debug('Trying to convert #' + inputstring + '#: it seems a CHROME date...') 
-        retdt = convert_date(inputstring, CHROME_DATE_FORMAT)
-    elif (is_date_valid(inputstring, IE10_DATE_FORMAT)): 
-        logging.debug('Trying to convert #' + inputstring + '# it seems a IE10 date...') 
-        retdt = convert_date(inputstring, IE10_DATE_FORMAT)
-    else:
-        logging.debug('Cannot convert date. Defaulting to 01/01/2000')
-        retdt = datetime.date(2000,01,01)
-    return retdt
+    @staticmethod
+    def get_from_relative_resources(filename):
+        return os.path.join(GOOGLE_RESOURCES_PATH, filename)
 
+    @staticmethod
+    def get_from_resources(filename):
+        """ Get a file stored in RESOURCE_PATH under Google App Engine """
+        filepath = GoogleUtils.get_from_relative_resources(filename)
+        return GoogleUtils.__get_google_app_path(filepath) 
+
+    @staticmethod
+    def __get_google_app_path(filepath):
+        """ Return the path of a file
+            inside the google appengine framework """
+        abnormpath = os.path.join(os.path.split(__file__)[0], filepath) 
+        return os.path.normpath(abnormpath)
