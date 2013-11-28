@@ -12,7 +12,6 @@ from google.appengine.api import files
 import logging
 import pdfgenerator.loader as loader
 
-
 class PdfProxy(object):
     """ PdfProxy Helper class """
     

@@ -19,9 +19,13 @@
                         <td><input type="text" value="{{template_title}}" readonly></td>
                     </tr>
                     <tr>
-                        <td>We're talking about: </td>
+                        <td>We're talking about... </td>
                         <td>
-                            <input type="text" value="{{heroheroine|capfirst}}" readonly>
+                            {% if heroheroine == "hero" %}
+                            <input type="text" value="a boy" readonly>
+                            {% else %}
+                            <input type="text" value="a girl" readonly>
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>

@@ -25,7 +25,7 @@ books = (
             'sidebar_pic': 'rustic_pirate.jpg',
             'prot_boy': 'prot_pirate_boy.jpg',
             'prot_girl': 'prot_pirate_girl.jpg',
-            'sex_recomm': 'MF',
+            'sex_recomm': 'M',
             'age_recomm_min': 4,
             'age_recomm_max': 10,
             'author_img':'dana.jpg',
@@ -57,7 +57,7 @@ books = (
                 'cover_image': 'My_voyage_to_Aragon.jpg',
                 'bookimg_girl': 'cover_voyage.jpg',
                 'bookimg_boy': 'cover_voyage_boy.jpg',
-                'sex_recomm': 'MF',
+                'sex_recomm': 'F',
                 'age_recomm_min': 4,
                 'age_recomm_max': 16,
                 'sidebar_pic': 'Anna.jpg',
@@ -129,7 +129,7 @@ class Book(object):
         for k, v in self.dictionary.items():
             setattr(self, k, v)
  
-    def recommendation(self):
+    def recommendation(self, sexonly=False):
         recomm = "Recommended for "
         age_min = self.dictionary['age_recomm_min']
         age_max = self.dictionary['age_recomm_max']
@@ -140,12 +140,15 @@ class Book(object):
             recomm += " girls"
         else:
             recomm += " boys and girls"
-        recomm += " aged "
-        recomm += str(age_min)
-        recomm += "-"
-        recomm += str(age_max)
-        recomm += " years."
+        if (not sexonly):
+            recomm += " aged "
+            recomm += str(age_min)
+            recomm += "-"
+            recomm += str(age_max)
+            recomm += " years"
+        recomm +="."
         return recomm
+    
     
 def get_all_books():
     books_collection = []

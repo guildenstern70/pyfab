@@ -117,13 +117,21 @@ class DbFable(db.Model):
     
     def __character(self):
         return Character.from_fable_db(self)
+    
+    def __recommandation(self):
+        book = booktemplates.Book(self.template_id)
+        sexonly = True
+        if (self.is_age_mismatch()):
+            sexonly = False
+        return book.recommendation(sexonly)
                     
     id = property(__id, doc="""Gets current fable ID (long number).""")
     template = property(__template, doc="""Get the book template dictionary of attributes""")
     age = property(__age, doc="""Get the child age (diff between birthdate and now)""")
     title = property(__title, doc="""Get the fable title""")
     character = property(__character, doc="""Get the fable main character attributes""")
-
+    recommendation = property(__recommandation, doc="""Get the fable recommendation""")
+        
     @staticmethod
     def get_fable(google_user, fable_id):
         """ Get the (first) fable of the given user """
@@ -159,7 +167,9 @@ class DbFable(db.Model):
     def is_sex_mismatch(self):
         mismatch = False
         sex_recomm = self.__template()['sex_recomm']
-        if (self.sex.lower() != sex_recomm.lower()):
+        if (sex_recomm != 'M' and sex_recomm != 'F'):
+            mismatch = False
+        elif (self.sex.lower() != sex_recomm.lower()):
             mismatch = True
         return mismatch
     
