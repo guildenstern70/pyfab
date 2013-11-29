@@ -126,14 +126,27 @@ class MyAccount(FablePage):
     
     @login_required  
     def get(self):
+        if (self.request.get('updated') == '1'):
+            self.template_values['updated'] = 'True'
         self.template_values['name'] = self.user_db.name
         self.template_values['nickname'] = self.user_db.nickname
         self.template_values['emailaddr'] = self.user_db.email
         self.template_values['added'] = self.user_db.added
-        self.template_values['receivenews'] = self.user_db.receivenews
+        self.template_values['receivenews'] = str(self.user_db.receivenews)
         self.template_values['return_page'] = 'myaccount'
         self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.render()
+        
+    def post(self):
+        self.user_db.name = self.request.get('name')
+        self.user_db.nickname = self.request.get('nickname')
+        if (self.request.get('receivenews') == 'on'):
+            self.user_db.receivenews = True
+        else:
+            self.user_db.receivenews = False
+        logging.debug('Updating user ' + self.user_db.nickname + ' to DB')
+        self.user_db.put()
+        self.redirect('/myaccount?updated=1')
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "account.html")

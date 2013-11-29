@@ -19,21 +19,22 @@
         
         <div class="section-container auto" data-section data-options="deep_linking: true">
         
-	        <section>      
-		        <p class="title" data-section-title><a href="#panel2">My profile</a></p>
-		        <div class="content" data-slug="panel2" data-section-content>
+	        <section class="active">      
+		        <p class="title" data-section-title><a href="#panel1">My profile</a></p>
+		        <div class="content" data-slug="panel1" data-section-content>
+                    <form action="/myaccount" method="post">
 		            <table width="100%">
 		            	<tr>
 		            		<td>Name</td>
-		            		<td><input type="text" value="{{name}}"></td>
+		            		<td><input type="text" name="name" value="{{name}}"></td>
 		            	</tr>
 		            	<tr>
 		            		<td>Nickname</td>
-		            		<td><input type="text" value="{{nickname}}"></td>
+		            		<td><input type="text" name="nickname" value="{{nickname}}"></td>
 		            	</tr>
 		            	<tr>
 		            		<td>e-Mail</td>
-		            		<td><input type="text" value="{{emailaddr}}"></td>
+		            		<td><input type="text" value="{{emailaddr}}" readonly="readonly"></td>
 		            	</tr>
 		            	<tr>
 		            		<td>Member since</td>
@@ -41,25 +42,33 @@
 		            	</tr>
 		            	<tr>
 		            		<td>Receive News?</td>
-		            		
-		            		<td><input type="checkbox"      		
-		            		{% if receivenews == "True" %}
-		            		cheched="checked"
+		            		<!-- Receive news? {{receivenews}} -->
+                            {% if receivenews == "True" %}
+		            		<td><input type="checkbox" name="receivenews" checked="checked"></td>
+                            {% else %}
+                            <td><input type="checkbox" name="receivenews"></td>
 		            		{% endif %}
-		            		>
-		            		          		
-		            		</td>
 		            	</tr>
 		            </table>
 		            <br />
-		            <button type="button">Update</button>
+		            <button type="submit">Update</button>
 					<p>&nbsp;</p>
+                     <!-- Jusp updated? {{updated}} -->
+                    {% if updated == "True" %}
+                    <div>
+                        <div data-alert class="alert-box warning radius">
+                          Your account has been updated.
+                          <a href="#" class="close">&times;</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    </form>
 		        </div>
 	        </section>
                    
-        	<section class="active">
-		        <p class="title" data-section-title><a href="#panel1">My fables</a></p>
-		        <div class="content" data-slug="panel1" data-section-content>      
+        	<section>
+		        <p class="title" data-section-title><a href="#panel2">My fables</a></p>
+		        <div class="content" data-slug="panel2" data-section-content>      
 					{% include "list_of_fables.html" %}
 					<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">
 					Delete all fables
