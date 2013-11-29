@@ -19,7 +19,11 @@
         
         <div class="section-container auto" data-section data-options="deep_linking: true">
         
+            {% if panel == "1" %}
 	        <section class="active">      
+            {% else %}
+            <section>
+            {% endif %}
 		        <p class="title" data-section-title><a href="#panel1">My profile</a></p>
 		        <div class="content" data-slug="panel1" data-section-content>
                     <form action="/myaccount" method="post">
@@ -65,8 +69,12 @@
                     </form>
 		        </div>
 	        </section>
-                   
-        	<section>
+              
+            {% if panel == "1" %}
+            <section>      
+            {% else %}
+            <section class="active">
+            {% endif %}     
 		        <p class="title" data-section-title><a href="#panel2">My fables</a></p>
 		        <div class="content" data-slug="panel2" data-section-content>      
 					{% include "list_of_fables.html" %}

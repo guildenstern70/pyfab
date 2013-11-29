@@ -133,7 +133,8 @@ class MyAccount(FablePage):
         self.template_values['emailaddr'] = self.user_db.email
         self.template_values['added'] = self.user_db.added
         self.template_values['receivenews'] = str(self.user_db.receivenews)
-        self.template_values['return_page'] = 'myaccount'
+        self.template_values['return_page'] = 'myaccount?panel=2'
+        self.template_values['panel'] = self.request.get('panel')
         self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
         self.render()
         
@@ -146,7 +147,7 @@ class MyAccount(FablePage):
             self.user_db.receivenews = False
         logging.debug('Updating user ' + self.user_db.nickname + ' to DB')
         self.user_db.put()
-        self.redirect('/myaccount?updated=1')
+        self.redirect('/myaccount?updated=1&panel=1')
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "account.html")
