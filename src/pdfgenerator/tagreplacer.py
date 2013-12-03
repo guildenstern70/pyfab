@@ -53,7 +53,8 @@ class Replacer(object):
     
     def _tag_replace(self, sex, tag):
         ''' A tag with underscore <his_her> is turned into 'his' if male, else 'her'
-            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' '''
+            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' 
+            If a tag is in the list known_tags it is NOT replaced/processed '''
         to_be_replaced = ''
         replace_tag = True
         
@@ -83,12 +84,11 @@ class Replacer(object):
             If tag containg <ageord> returns the character's age in ordinal (in letters, ie: sixth)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
             keys, such as: name '''
-        ret_val = elem
-        if (elem == 'name'):
-            ret_val = self.character_name
-        elif (elem == 'age'):
-            ret_val = to_card(self.character_age)
-        elif (elem == 'ageord'):
-            ret_val = to_ord(self.character_age)
-        return ret_val
-   
+        return {
+            'name': self.character_name,
+            'age': to_card(self.character_age),
+            'ageord': to_ord(self.character_age),
+            'ageplus': to_card(self.character_age+1),
+            'ageplusord': to_ord(self.character_age+1)
+            }.get(elem, elem)    # 9 is default if x not found
+    

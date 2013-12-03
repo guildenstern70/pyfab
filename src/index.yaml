@@ -13,6 +13,14 @@ indexes:
 - kind: DbFable
   ancestor: yes
   properties:
+  - name: ready
+  - name: user_email
+  - name: created
+    direction: desc
+
+- kind: DbFable
+  ancestor: yes
+  properties:
   - name: user_email
   - name: created
     direction: desc

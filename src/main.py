@@ -31,7 +31,7 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/print', fableme.printer.Print),
                               ('/print/pdf', fableme.printer.PrintPDF),
                               ('/register', fableme.pages.Register),
-                              ('/serve/([^/]+)?', fableme.pages.ServeHandler), 
+                              ('/serve/([^/]+)?', fableme.printer.ServeHandler), 
                               ('/step', fableme.pages.Step) ],
                             debug=True)
 

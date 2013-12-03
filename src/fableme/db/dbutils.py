@@ -26,6 +26,12 @@ class Queries():
         return query
     
     @staticmethod
+    def get_all_ready_fables(google_user):
+        query = Queries.get_all_fables(google_user)
+        query.filter('ready', True)
+        return query
+    
+    @staticmethod
     def get_universe_fables(google_user):
         user_db = DbFableUser.get_from_user(google_user)
         query = DbFable.all()

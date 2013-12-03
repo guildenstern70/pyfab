@@ -110,6 +110,7 @@ class Fabulator(object):
             elif (step == '3'):
                 self.the_fable.sender = values[0]         
                 self.the_fable.dedication = values[1]
+                self.the_fable.ready = True
             self.update_fable_on_db()                
             
     def update_fable_on_db(self):

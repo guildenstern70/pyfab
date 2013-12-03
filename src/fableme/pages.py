@@ -9,7 +9,6 @@
 # pylint: disable=C0301
 
 
-import urllib
 import logging
 import fableme.db.dbutils as dbutils
 import fableme.db.booktemplates as booktemplates
@@ -17,8 +16,6 @@ import fableme.db.booktemplates as booktemplates
 import fableme.fabulator as fabulator
 import fableme.utils as utils
 
-from google.appengine.ext import blobstore
-from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
@@ -48,7 +45,7 @@ class EditExisting(FablePage):
     def get(self):
         if (self.user_db):
             self.template_values['nr_fables'] = self.user_db.nr_of_fables
-            self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
+            self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
         self.template_values['return_page'] = 'create'
         self.render()
     
@@ -114,7 +111,7 @@ class Create(FablePage):
     def get(self):
         if (self.user_db):
             self.template_values['nr_fables'] = self.user_db.nr_of_fables
-            self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
+            self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
         self.template_values['return_page'] = 'create'
         self.render() 
     
@@ -135,7 +132,7 @@ class MyAccount(FablePage):
         self.template_values['receivenews'] = str(self.user_db.receivenews)
         self.template_values['return_page'] = 'myaccount?panel=2'
         self.template_values['panel'] = self.request.get('panel')
-        self.template_values['fables'] = dbutils.Queries.get_all_fables(self.the_user)
+        self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
         self.render()
         
     def post(self):
@@ -188,7 +185,6 @@ class Book(FablePage):
         """ http get handler """
         book = self.request.get('bookid')
         booksex = self.request.get('recomm')
-        template =  booktemplates.get_book_template(book)  
         book_obj = booktemplates.Book(int(book))     
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = booksex
@@ -199,18 +195,6 @@ class Book(FablePage):
         FablePage.__init__(self, request, response, 'book.html')
         
 
-class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
-    """ Download the PDF """
-    
-    @login_required
-    def get(self, resource):
-        """ http get handler """
-        nickname = self.request.get('nick')
-        lastmod = self.request.get('lastmod')
-        resource = str(urllib.unquote(resource))
-        blob_info = blobstore.BlobInfo.get(resource)
-        pdf_file_name = 'Fable_' + nickname + '_' + lastmod + '.pdf'
-        self.send_blob(blob_info, save_as=pdf_file_name)
 
 
 

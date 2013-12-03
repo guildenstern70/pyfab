@@ -102,6 +102,7 @@ class DbFable(db.Model):
     language = db.StringProperty(default="EN")
     created = db.DateTimeProperty(auto_now_add=True)
     modified = db.DateTimeProperty(auto_now_add=True)
+    ready = db.BooleanProperty(default=False)
     
     def __id(self):
         return self.key().id()
