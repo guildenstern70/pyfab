@@ -1,13 +1,13 @@
-""" 
- FABLE-O-MATIC
- A LittleLite Web Application
- 
- loader.py
+'''
+PDFGenerator
+loader.py
 
-"""
+@author: Alessio Saltarin
+'''
 
 import sys
-import os
+import codecs
+import os.path
 import fablepage
 import fableme.db.booktemplates as fables
 import chapter
@@ -18,17 +18,15 @@ import logging
         
 class SimpleLoader(object):
     
-    def __init__(self, fable_template_id, lang, character):
-        self._template_id = fable_template_id
-        self._fabletemplate = ""
+    def __init__(self, fable_id, lang, character):
+        self._fable_id = fable_id
         self._set_variables(lang, character)
         
     def load_template(self):
         return self._readFile()
         
     def build(self):
-        if self.load_template():
-            self._replace_tags()
+        if self._readFile():
             if len(self.paras) > 0:
                 self.fable_doc = fablepage.FableDoc(self._title)
                 self._parseFile()
@@ -60,25 +58,41 @@ class SimpleLoader(object):
         pics_folder = "F_PICS"
         if (self._character.sex == 'M'):
             pics_folder = "M_PICS"
-        res_path = self._get_resources_path()
-        images_path = os.path.join(res_path, pics_folder)
+        filepath_en = self._get_resources_path_lang()
+        images_path = os.path.join(filepath_en, pics_folder)
+        lang_code = self._language.language_code()
+        if (lang_code != "EN"):
+            finalpath_otherlang = os.path.normpath(os.path.join(filepath_en, lang_code))
+            fullfilepath = os.path.join(finalpath_otherlang, pics_folder)
+            path_to_file = os.path.join(fullfilepath, filename)
+            if (os.path.isfile(path_to_file)):
+                images_path = fullfilepath
         return os.path.join(images_path, filename)
     
     def _get_resources_path(self):
-        fable_dir = self._template_file['template_dir']
+        fable_dir = self._template['template_dir']
         lang_code = self._language.language_code()
-        filepath = utils.GoogleUtils.get_from_relative_resources(fable_dir)
+        filepath = utils.BasicUtils.get_from_relative_resources(fable_dir)
         if (lang_code != "EN"):
             filepath = os.path.join(filepath, lang_code)
-        res_path = utils.GoogleUtils.get_from_resources(filepath)
-        return res_path
+        return utils.BasicUtils.normalize_path(filepath)
+
+    def _get_resources_path_lang(self):
+        fable_dir = self._template['template_dir']
+        filepath_en = utils.BasicUtils.get_from_relative_resources(fable_dir)
+        finalpath = os.path.normpath(filepath_en)
+        return finalpath
         
     def _set_variables(self, lang, character):
-        self._language = self._set_language(self._template_id, lang)
-        self._template_file = fables.get_book_template(self._template_id)
-        self._filename = self._template_file['template_text_file']
-        self._pdffile = utils.GoogleUtils.get_output_path(self._filename[:-4] + '.pdf')
-        self._title = self._template_file[self._language.get_title_key()]
+        self._language = self._set_language(self._fable_id, lang)
+        self._template = fables.get_book_template(self._fable_id)
+        self._filename = self._template['template_text_file']
+        self._pdffile = utils.BasicUtils.get_output_path(self._filename[:-4] + '_' + self._language.language_code() + '.pdf')
+        self._title = self._template[self._language.get_title_key()]
+        try:
+            print '-- Creating fable = ' + self._title
+        except:
+            print '-- Creating fable document'
         self._character = character
         self.fable_doc = None
         self.chapters = []
@@ -87,8 +101,8 @@ class SimpleLoader(object):
         return languages.Language(lang)
 
     def _replace_tags(self):
-        template_text = self.fable_template
-        replacer = tagreplacer.Replacer(self.fable_template, self._character)
+        template_text = self._fabletemplate
+        replacer = tagreplacer.Replacer(self._fabletemplate, self._character)
         replacements = replacer.get_replacements()
         for tag, val in replacements.items():
             if ((val != None) and (len(val)>0)):
@@ -99,15 +113,19 @@ class SimpleLoader(object):
     def _readFile(self):
         fileReadOk = True
         fileFullPath = self.get_resources_path_to(self._filename)
+        print '-- Reading file ' + fileFullPath
         try:
-            fileobj = open(fileFullPath, "r")
-            self._fabletemplate = fileobj.read()
+            fileobj = codecs.open(fileFullPath, "r", "utf-8")
+            ufilecontents = unicode(fileobj.read())
+            filecontents = self._replace_tags(ufilecontents)
             fileobj.close()
+            self.paras = filecontents.split('\n')
+            print '-- The file has ' + str(len(self.paras)) + ' paragraphs.'
         except IOError:
             print '*** Critical error opening %s' % fileFullPath
             print '*** ', sys.exc_info()
             fileReadOk = False
-        return fileReadOk        
+        return fileReadOk
                 
     def _parseFile(self):
         chapter_paragraphs = []
@@ -141,15 +159,11 @@ class SimpleLoader(object):
     def __get_fable(self):
         return self.fable_doc
     
-    def __get_fable_template(self):
-        return self._fabletemplate
-    
     def __get_pdf_file(self):
         return self._pdffile
         
-    fable = property(__get_fable, doc="""Get the fable object document.""")
+    fable = property(__get_fable, doc="""Get the fable document.""")
     fable_file = property(__get_pdf_file, doc="""Get fable PDF file path.""")
-    fable_template = property(__get_fable_template, doc="""Get fable template for the PDF.""")
     
     
 class GoogleLoader(SimpleLoader):
@@ -176,8 +190,8 @@ class GoogleLoader(SimpleLoader):
         else:
             logging.error('CRITICAL PDF Error: empty contents.')
             raise
-        self.fable_doc.build() 
-            
+        self.fable_doc.build()
+    
     def save(self, file_h):
         saved = True
         try:
@@ -192,7 +206,7 @@ class GoogleLoader(SimpleLoader):
     
     def get_resources_path_to(self, filename):
         filename = os.path.join(self._get_resources_path(), filename) 
-        return utils.GoogleUtils.get_from_resources(filename)
+        return utils.GoogleUtils.get_from_google(filename)
         
     def get_template(self):
         return self._template_file
@@ -200,10 +214,10 @@ class GoogleLoader(SimpleLoader):
     def _read_file_template(self):
         readOk = True
         try:
-            template_googlepath = self.get_resources_path_to(self._template_file['template_text_file'])
+            template_googlepath = self.get_resources_path_to(self._template['template_text_file'])
             logging.debug('Reading from ' + template_googlepath + '...')
-            fablefile = open(template_googlepath, 'r')
-            self._fabletemplate = fablefile.read()
+            fablefile = codecs.open(template_googlepath, "r", "utf-8")
+            self._fabletemplate = unicode(fablefile.read())
             fablefile.close()
             logging.debug('Reading file done.')
         except:
@@ -211,7 +225,3 @@ class GoogleLoader(SimpleLoader):
             logging.error('*** Error reading fable template...')
             logging.error('*** %s', sys.exc_info())
         return readOk
-        
-        
-        
-    

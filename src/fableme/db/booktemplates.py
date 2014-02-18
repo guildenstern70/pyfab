@@ -1,12 +1,4 @@
-""" 
- 
- FABLE-O-MATIC 
- A LittleLite Web Application
- 
- booktemplates.py
- 
-"""
-
+# coding=utf-8
 
 books = (
          {
@@ -14,9 +6,9 @@ books = (
             'template_text_file': 'When_I_met_the_Pirates.txt',
             'template_dir': 'When_I_met_the_Pirates',
             'title': 'When I met the Pirates',
-            'title_brief' : 'Pirates',
-            'title_RO': 'xxxxx',
-            'title_IT': 'Quando incontrai i pirati',
+            'title_brief': 'Pirates',
+            'title_RO': u'Aventuri cu pirații',
+            'title_IT': 'Avventure coi pirati',
             'sku': 'SKU #83321',
             'languages': 'English, Italian',
             'issuu_id': '8025851/5449283',
@@ -26,9 +18,9 @@ books = (
             'sidebar_pic': 'rustic_pirate.jpg',
             'prot_boy': 'prot_pirate_boy.jpg',
             'prot_girl': 'prot_pirate_girl.jpg',
-            'sex_recomm': 'MF',
-            'age_recomm_min': 7,
-            'age_recomm_max': 14,
+            'sex_recomm': 'M',
+            'age_recomm_min': 4,
+            'age_recomm_max': 10,
             'author_img':'dana.jpg',
             'author_name': 'Dana Sandu',
             'author_ill':'Noha',
@@ -50,8 +42,8 @@ books = (
                 'template_text_file': 'My_voyage_to_Aragon.txt',
                 'template_dir' : 'My_voyage_to_Aragon',
                 'title': 'My voyage to Aragon',
-                'title_brief' : 'Aragon',
-                'title_RO': 'xxxxx',
+                'title_brief': 'Aragon',
+                'title_RO': u'Voiajul meu în Aragon',
                 'title_IT': 'Il mio viaggio ad Aragon',
                 'sku': 'SKU #83203',
                 'languages': 'English',
@@ -59,9 +51,9 @@ books = (
                 'cover_image': 'My_voyage_to_Aragon.jpg',
                 'bookimg_girl': 'cover_voyage.jpg',
                 'bookimg_boy': 'cover_voyage_boy.jpg',
-                'sex_recomm': 'MF',
-                'age_recomm_min': 5,
-                'age_recomm_max': 12,
+                'sex_recomm': 'F',
+                'age_recomm_min': 4,
+                'age_recomm_max': 16,
                 'sidebar_pic': 'Anna.jpg',
                 'prot_boy': 'prot_voyage_boy.jpg',
                 'prot_girl': 'prot_voyage_girl.jpg',
@@ -90,18 +82,18 @@ books = (
             'template_text_file': 'The_talisman_of_the_Badia.txt',
             'template_dir' : 'The_talisman_of_the_Badia',
             'title': 'The Amazing story of the Badia Talisman',
-            'title_brief' : 'Badia',
+            'title_brief': 'Badia',
             'title_RO': 'xxxxx',
             'title_IT': 'La fantastica storia del talismano della Badia',
             'sku': 'SKU #83232',
             'languages': 'English, Italian',
-            'issuu_id': '',
+            'issuu_id': '8868387/6765671',
             'cover_image': 'The_talisman_of_the_Badia.jpg',
             'bookimg_girl': 'cover_badia.jpg',
             'bookimg_boy': 'cover_badia.jpg',
             'sex_recomm': 'MF',
-            'age_recomm_min': 7,
-            'age_recomm_max': 14,
+            'age_recomm_min': 9,
+            'age_recomm_max': 99,
             'sidebar_pic': 'Capture.jpg',
             'prot_boy': 'prot_badia_boy.jpg',
             'prot_girl': 'prot_badia_girl.jpg',
@@ -121,7 +113,6 @@ books = (
                             comes out of the blue to rescue her.'''
         }
     )
-
 
 
 class Book(object):
@@ -167,4 +158,5 @@ def get_book_template(book_id):
         
     """ 
     return books[int(book_id)]
-        
+
+ 

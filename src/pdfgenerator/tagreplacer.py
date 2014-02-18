@@ -6,10 +6,12 @@
  
 """
 
-from numtoword.num2word_EN import to_card, to_ord
+from numtoword.num2word_EN import to_card, to_ord, to_ordnum
 
-known_tags = ['<i>', '</i>', '<b>', 
-              '</b>', '<bi>', '</bi>', '<para>', '</para>', '<br/>']
+INITIAL_TAG_SYMBOL = '{'
+FINAL_TAG_SYMBOL = '}'
+
+#Known_tags = ['<i>', '</i>', '<b>', '</b>', '<bi>', '</bi>', '<para>', '</para>', '<br/>']
 
 class Replacer(object):
     '''
@@ -35,11 +37,11 @@ class Replacer(object):
         tag = ""
         tags_found = set()
         for ch in self.fable_template:
-            if (ch == '<'):
+            if (ch == INITIAL_TAG_SYMBOL):
                 intag = True
-            elif (ch == '>'):
+            elif (ch == FINAL_TAG_SYMBOL):
                 intag = False
-                tags_found.add(tag+'>')
+                tags_found.add(tag+FINAL_TAG_SYMBOL)
                 tag = ""
             if (intag):
                 tag += ch
@@ -53,27 +55,18 @@ class Replacer(object):
     
     def _tag_replace(self, sex, tag):
         ''' A tag with underscore <his_her> is turned into 'his' if male, else 'her'
-            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' 
-            If a tag is in the list known_tags it is NOT replaced/processed '''
+            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' '''
         to_be_replaced = ''
-        replace_tag = True
-        
-        for knowntag in known_tags:
-            if tag.startswith(knowntag[:-1]):
-                to_be_replaced = tag
-                replace_tag = False
-                break
-                
-        if replace_tag:
-            underindex = tag.find('_') 
-            if underindex > 0:
-                if (sex == 'F'): 
-                    to_be_replaced = tag[1:underindex] 
-                else:
-                    to_be_replaced = tag[underindex+1:-1]
+
+        underindex = tag.find('_') 
+        if underindex > 0:
+            if (sex == 'F'): 
+                to_be_replaced = tag[1:underindex] 
             else:
-                to_be_replaced = tag[1:-1]
-            to_be_replaced = self._element_translate(to_be_replaced)
+                to_be_replaced = tag[underindex+1:-1]
+        else:
+            to_be_replaced = tag[1:-1]
+        to_be_replaced = self._element_translate(to_be_replaced)
             
         return to_be_replaced
     
@@ -81,7 +74,9 @@ class Replacer(object):
         ''' Elem is a tag containing a word (M,F substitution has been already done).
             If tag contains <name> return the character's name.
             If tag contains <age> returns the character's age (in letters, ie: six)
+            If tag contains <ageplus> returns the character's age + 1 (in letters, ie: seven)
             If tag containg <ageord> returns the character's age in ordinal (in letters, ie: sixth)
+            If tag contains <ageplusord> returns the character's age in ordinal + 1 (in letters, ie: seventh)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
             keys, such as: name '''
         return {

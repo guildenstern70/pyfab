@@ -13,7 +13,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>{% block title %}{% endblock %}</title>
-    <link href='http://fonts.googleapis.com/css?family=Paprika' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: ['Paprika']
+        }
+      });
+    </script>
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/foundation.css">
 	<link rel="stylesheet" href="/css/webicons.css">

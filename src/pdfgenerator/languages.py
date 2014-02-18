@@ -7,7 +7,7 @@ languages.py
 
 chapter_string_EN = "Chapter"
 chapter_string_IT = "Capitolo"
-chapter_string_RO = "Non_lo_so!"
+chapter_string_RO = "Capitolul"
     
 class Language(object):
     '''

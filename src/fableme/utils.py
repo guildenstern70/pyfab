@@ -15,7 +15,6 @@ CHROME_DATE_FORMAT = '%Y-%m-%d'
 IE10_DATE_FORMAT = '%m/%d/%Y'
 OUTPUT_PATH = "output/"
 RESOURCES_PATH = "resources/"
-GOOGLE_RESOURCES_PATH = '../resources/'
 
 class BasicUtils(object):
     
@@ -69,8 +68,8 @@ class BasicUtils(object):
         return os.path.join(RESOURCES_PATH, filename)
 
     @staticmethod    
-    def get_from_resources(filename):
-        """ Get a file stored in RESOURCE_PATH under Google App Engine """
+    def normalize_path(filename):
+        """ Normalize a path under Google App Engine """
         return os.path.normpath(filename) 
     
     
@@ -78,8 +77,13 @@ class GoogleUtils(BasicUtils):
 
     @staticmethod
     def get_from_relative_resources(filename):
-        return os.path.join(GOOGLE_RESOURCES_PATH, filename)
+        return os.path.join(RESOURCES_PATH, filename)
 
+    @staticmethod
+    def get_from_google(filename):
+        """ Get the absolute path of a file stored under Google App Engine """
+        return GoogleUtils.__get_google_app_path(filename) 
+    
     @staticmethod
     def get_from_resources(filename):
         """ Get a file stored in RESOURCE_PATH under Google App Engine """
@@ -88,7 +92,6 @@ class GoogleUtils(BasicUtils):
 
     @staticmethod
     def __get_google_app_path(filepath):
-        """ Return the path of a file
-            inside the google appengine framework """
-        abnormpath = os.path.join(os.path.split(__file__)[0], filepath) 
+        dirpath = os.path.dirname(os.path.split(__file__)[0])
+        abnormpath = os.path.join(dirpath, filepath) 
         return os.path.normpath(abnormpath)

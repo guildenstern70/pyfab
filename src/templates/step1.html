@@ -1,127 +1,153 @@
-{% extends "base_leftsidebar.html" %}
-
-{% block title %}FableMe - Create a fable - Step 1{% endblock %}
+{% extends "base_leftsidebar.html" %} {% block title %}FableMe - Create a fable - Step 1{% endblock %} 
 
 {% block extraheader %}
-    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
-{% endblock %}
+<link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+{% endblock %} 
+
 
 {% block maincontent %}
 
-    <!-- Main Content Section -->
-    <!-- This has been source ordered to come first in the markup (and on small devices) 
+<!-- Main Content Section -->
+<!-- This has been source ordered to come first in the markup (and on small devices) 
     but to be to the right of the nav on larger screens -->
-    <div class="large-9 push-3 columns">
-        <div class="row">
-            <h3>
-                The protagonist
-            </h3>
-        </div>
-        <div class="row">
-                <form id="step1_form" method="get" action="/step" novalidate data-abide>
-                <table>
+<div class="large-9 push-3 columns">
+
+    <div class="row">
+        <form id="step1_form" method="get" action="/step" novalidate data-abide>
+
+            <fieldset>
+                <legend>The Protagonist</legend>
+                
+                <div class="row">
                     <!-- SEX -->
-                    <tr>
-                        <td width="200" id="questionnaire">We are talking about:</td>
-                        <td width="300" id="questionnaire">
-                        {% if heroheroine == "hero" %}
-                            <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male)
-                            &nbsp;<br/>
-                            <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
-                        {% else %}
-                            <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male)
-                            &nbsp;<br/>
-                            <input type="radio" name="value" value="F" checked="checked"  onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
+                    <div class="large-4 columns">
+                        <label>We are talking about:</label>
+                    </div>
+                    <div class="large-8 columns">
+                        {% if heroheroine == "hero" %} 
+                            <label for="value">
+                                <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">
+                                &nbsp;A hero (Male) &nbsp;
+                            </label>
+                            <label for="value">
+                                <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">
+                                &nbsp;A heroine (Female) 
+                            </label>
+                        {% else %} 
+                            <label for="value">
+                                <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male) &nbsp;
+                            </label>
+                            <label for="value">
+                                <input type="radio" name="value" value="F" checked="checked" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
+                            </label>  
                         {% endif %}
-                        </td>
-                    </tr>
+                    </div>
+
+                </div>
+                <!-- row -->
+
+                <div class="row">
                     <!-- DYNAMIC PICTURE -->
-                    <tr>
-                        <td id="questionnaire">&nbsp;</td>
-                        <td id="questionnaire">
+                    <div class="large-4 columns">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="large-8 columns">
                         {% if heroheroine == "heroine" %}
                             <img id="mainImage" src="/img/{{heropicture}}" width="220px" alt="A female Protagonist">
                         {% else %}
                             <img id="mainImage" src="/img/{{heropicture}}" width="220px" alt="A male Protagonist">    
-                        {% endif %}   
-                        </td>
-                    </tr>
-                    <!-- NAME -->
-                    <tr>
-                        <td id="questionnaire" >Name:</td>
-                        <td id="questionnaire" >
-                            <input type="text" id="txtname" name="value" 
-                                   value="{{heroname}}" minlength="4" size="30" required pattern="alpha_numeric">
-                            <small class="error">Name is required and must be an alpha-numeric string of 4 chars at least</small>	
-                            <input type="button" name="generator" value="Generate!" onclick="setName();">
-                        </td>
-                    </tr>
-                    <!-- DATE OF BIRTH -->
-                    <tr>
-                        <td id="questionnaire" >Date of birth:</td>
-                        <td id="questionnaire" >
-                        	<input type="date" name="value" value='{{birthdate|date:"Y-m-d"}}' required pattern="date">
-                        	<small class="error">Date of birth is required and must be in the format YYYY-MM-DD</small>	
-                        </td>
-                    </tr>
-                </table>
-				<input type='hidden' name='s' value='2'>
-				<input type='hidden' name='id' value='{{fable_id}}'>
-                <input type="button" value="Previous" class="radius secondary large button" 
-                	   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp;
-                <input type="submit" value="Next" class="radius large button">
-                </form>
+                        {% endif %} 
+                    </div>
+                </div>
                 
-        </div>
-        <div class="row">
-            <h3>
-                &nbsp;
-            </h3>
-        </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                    &nbsp;
+                    </div>
+                </div>
 
-    </div><!-- Nav Sidebar -->
-    <!-- This is source ordered to be pulled to the left on larger screens -->
-    <div class="large-3 pull-9 columns">
-        <h3>
-            Steps
-        </h3>
-        <ul class="side-nav">
-            <li>
-                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
-            </li>
-            <li>
-                <a href="/step?s=1&id={{fable_id}}"><b>2. Child information</b></a>
-            </li>
-            <li>
-                <a href="#">3. Dedication</a>
-            </li>
-            <li>
-                <a href="#">4. Summary</a>
-            </li>
-            <li>
-                <a href="#">5. Preview</a>
-            </li>
-        </ul>
-        <p>
-            <img src="img/Step2.jpg">
-        </p>
+                <div class="row">
+                    <!-- NAME -->
+                    <div class="large-4 columns">
+                        <label>Name:</label>
+                    </div>
+                    <div class="large-6 columns">
+                        <div class="row collapse">
+                            <div class="small-9 columns">
+                                <input type="text" id="txtname" name="value" value="{{heroname}}" minlength="4" size="20" required pattern="alpha_numeric"> <small
+                                    class="error">Name is required and must be an alpha-numeric string of 4 chars at least</small>
+                            </div>
+
+                            <div class="small-3 columns">
+                                <input class="postfix" type="button" name="generator" value="..." onclick="setName();">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-2 columns">
+                        &nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- DATE OF BIRTH -->
+                    <div class="large-4 columns">
+                        <label>Date of birth:</label>
+                    </div>
+                    <div class="large-6 columns">
+                        <input type="date" name="value" value='{{birthdate|date:"Y-m-d"}}' required pattern="date"> 
+                        <small class="error">Date of birth is required and must be in the format YYYY-MM-DD</small>
+                    </div>
+                    <div class="large-2 columns">
+                        &nbsp;
+                    </div>
+                </div>
+
+            </fieldset>
+            <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'> <input type="button" value="Previous"
+                class="radius secondary large button" onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; <input type="submit" value="Next"
+                class="radius large button">
+            
+        </form>
+
     </div>
-    
-{% endblock %}
+    <div class="row">
+        <h3>&nbsp;</h3>
+    </div>
 
+</div>
+<!-- Nav Sidebar -->
+<!-- This is source ordered to be pulled to the left on larger screens -->
+<div class="large-3 pull-9 columns">
+    <h3>Steps</h3>
+    <ul class="side-nav">
+        <li><a href="/step?s=0&id={{fable_id}}">1. Choose a template</a></li>
+        <li><a href="/step?s=1&id={{fable_id}}"><b>2. Child information</b></a></li>
+        <li><a href="#">3. Dedication</a></li>
+        <li><a href="#">4. Summary</a></li>
+        <li><a href="#">5. Preview</a></li>
+    </ul>
+    <p>
+        <img src="img/Step2.jpg">
+    </p>
+</div>
 
-{% block extralatejavascripts %}
+{% endblock %} {% block extralatejavascripts %}
 <script src="/js/foundation/foundation.abide.js"></script>
 <script src="/js/gennames.js"></script>
-<script>Modernizr.load({
-  test: Modernizr.inputtypes.date,
-  nope: ['http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js', 'jquery-ui.css'],
-  complete: function () {
-    $('input[type=date]').datepicker({
-      dateFormat: 'yy-mm-dd'
-    }); 
-  }
-});
+<script>
+	Modernizr
+			.load({
+				test : Modernizr.inputtypes.date,
+				nope : [
+						'http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js',
+						'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+						'jquery-ui.css' ],
+				complete : function() {
+					$('input[type=date]').datepicker({
+						dateFormat : 'yy-mm-dd'
+					});
+				}
+			});
 </script>
 {% endblock %}
 
