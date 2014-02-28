@@ -158,5 +158,3 @@ def get_book_template(book_id):
         
     """ 
     return books[int(book_id)]
-
- 

@@ -28,7 +28,7 @@ class SimpleLoader(object):
     def build(self):
         if self._readFile():
             if len(self.paras) > 0:
-                self.fable_doc = fablepage.FableDoc(self._title)
+                self.fable_doc = fablepage.FableDoc(self._title, standalone=True)
                 self._parseFile()
                 self._addCover()
                 self.fable_doc.addTitle(self._title)
@@ -181,7 +181,7 @@ class GoogleLoader(SimpleLoader):
     
     def build(self):
         if len(self.paras) > 0:
-            self.fable_doc = fablepage.FableDoc(self._title)
+            self.fable_doc = fablepage.FableDoc(self._title, standalone=False)
             self._parseFile()
             self._addCover()
             self.fable_doc.addTitle(self._title)

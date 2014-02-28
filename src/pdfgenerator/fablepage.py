@@ -34,7 +34,7 @@ def laterPages(canvas, doc):
 
 class FableDoc(object):
     
-    def __init__(self, fabletitle):
+    def __init__(self, fabletitle, standalone):
         enc = pdfencrypt.StandardEncryption('', ownerPassword="alessio", canCopy=0, canModify=0)
         
         self._doc = fabletemplate.FableMeDocTemplate(None, 
@@ -46,7 +46,8 @@ class FableDoc(object):
                                       rightMargin=2*cm,
                                       encrypt=enc)
         self._story = []
-        self._styles = stylesheet.fableMeStyleSheet()
+        styler = stylesheet.PdfStyler(standalone)
+        self._styles = styler.fableMeStyleSheet()
         
     def addCover(self, coverImageFile):
         image = Image(coverImageFile, _WF, _HF)

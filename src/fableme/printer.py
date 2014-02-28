@@ -52,7 +52,7 @@ class PrintPDF(Print):
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
         userid = self.user_db.nickname
         lang = 'EN'
-        return '/serve/%s?nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s' % ( blobkey, nick, lastmod, userid, titlebrief, lang )
+        return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang )
     
     @login_required
     def get(self):
@@ -71,6 +71,7 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     @login_required
     def get(self, resource):
         """ http get handler """
+        briefname = self.request.get('brief')
         nickname = self.request.get('nick')
         lastmod = self.request.get('lastmod')
         userid = self.request.get('userid')
@@ -78,7 +79,7 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
         # deve contenere id utente, nome (corto) fiaba, nome bimbo, lingua fiaba, data generazione fiaba.
-        pdf_file_name = 'Fable_' + userid + '_' + nickname + '_' + lastmod + '_' + lang + '.pdf'
+        pdf_file_name = briefname + '_' + userid + '_' + nickname + '_' + lastmod + '_' + lang + '.pdf'
         self.send_blob(blob_info, save_as=pdf_file_name)
 
         
