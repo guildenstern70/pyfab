@@ -1,63 +1,46 @@
-'''
-Module: num2word.py
-Requires: num2word_*.py
-Version: 0.2
+from __future__ import division 
 
-Author:
-   Taro Ogawa (tso@users.sourceforge.org)
-   
-Copyright:
-    Copyright (c) 2003, Taro Ogawa.  All Rights Reserved.
-
-Licence:
-    This module is distributed under the Lesser General Public Licence.
-    http://www.opensource.org/licenses/lgpl-license.php
-
-Usage:
-    from num2word import to_card, to_ord, to_ordnum
-    to_card(1234567890)
-    to_ord(1234567890)
-    to_ordnum(12)
-
-Notes:
-    The module is a wrapper for language-specific modules.  It imports the
-    appropriate modules as defined by locale settings.  If unable to
-    load an appropriate module, an ImportError is raised.
-
-History:
-    0.2: n2w, to_card, to_ord, to_ordnum now imported correctly
-'''
-import locale as _locale
-
-# Correct omissions in locale:
-# Bugrep these...
-"""
-_locdict = { "English_Australia" : "en_AU", }
+import num2word_EN
+import num2word_FR
+import num2word_IT
+import num2word_RO
 
 
-_modules = []
-for _loc in [_locale.getlocale(), _locale.getdefaultlocale()]:
-    _lang = _loc[0]
-    if _lang:
-        _lang = _locdict.get(_lang, _lang)
-        _lang = _lang.upper()
+class Num2Word(object):
     
-        _modules.append("num2word_" + _lang)
-        _modules.append("num2word_" + _lang.split("_")[0])
+    def __init__(self, language='EN'):
+        " Constructor "
+        self._lang = language
+    
+    def create(self):
+        n2w = None
+        if (self._lang == 'EN'):
+            n2w = num2word_EN.Num2Word_EN()
+        elif (self._lang == 'IT'):
+            n2w = num2word_IT.Num2Word_IT()
+        elif (self._lang == 'RO'):
+            n2w = num2word_RO.Num2Word_RO()
+        elif (self._lang == 'FR'):
+            n2w = num2word_FR.Num2Word_FR()
+        else:
+            raise Exception("Unsupported language in Num2Word. Currently supported: EN, RO, IT, FR")
+        return n2w
 
-for _module in _modules:
-    try:
-        n2wmod = __import__(_module)
-        break
-    except ImportError:
-        print 'Import error ' + _lang
-        pass
-"""
 
-n2wmod = __import__('num2word_EN')
-try:
-    n2w, to_card, to_ord, to_ordnum, to_year = (n2wmod.n2w, n2wmod.to_card,
-                                                n2wmod.to_ord, n2wmod.to_ordnum,
-                                                n2wmod.to_year)
-except NameError:
-    raise ImportError("Could not import any of these modules")
+if __name__ == '__main__':
+    
+    n2w = Num2Word('IT').create()
+    
+    to_card = n2w.to_cardinal
+    to_ord = n2w.to_ordinal
+    to_ordnum = n2w.to_ordinal_num
+    to_year = n2w.to_year
+    
+    print('Num2Word v2.0 ')
+    print('26 => ' + to_card(26))
+    print('45th => ' + to_ord(45))
+    print('72 => ' + to_ordnum(72))
+    print('1972 => ' + to_year(1972))
+    
+
+    

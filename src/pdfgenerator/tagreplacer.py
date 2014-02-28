@@ -6,7 +6,7 @@
  
 """
 
-from numtoword.num2word_EN import to_card, to_ord, to_ordnum
+import numtoword.num2word as numtoword
 
 INITIAL_TAG_SYMBOL = '{'
 FINAL_TAG_SYMBOL = '}'
@@ -18,11 +18,12 @@ class Replacer(object):
     Logic to replace tags to actual word in template
     '''
 
-    def __init__(self, template, character):
+    def __init__(self, template, character, lang_code):
         self.fable_template = template
         self.character_sex = character.sex
         self.character_name = character.name
         self.character_age = character.age
+        self.lang = lang_code
         
     def get_replacements(self):
         ''' Return a dictionary: <tag>: replacement word '''
@@ -79,6 +80,12 @@ class Replacer(object):
             If tag contains <ageplusord> returns the character's age in ordinal + 1 (in letters, ie: seventh)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
             keys, such as: name '''
+        
+        n2w = numtoword.Num2Word(self.lang).create()
+            
+        to_card = n2w.to_cardinal
+        to_ord = n2w.to_ordinal
+        
         return {
             'name': self.character_name,
             'age': to_card(self.character_age),

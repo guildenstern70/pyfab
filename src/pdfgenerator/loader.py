@@ -24,7 +24,6 @@ class SimpleLoader(object):
         
     def load_template(self):
         return self._readFile()
-        
     def build(self):
         if self._readFile():
             if len(self.paras) > 0:
@@ -102,7 +101,8 @@ class SimpleLoader(object):
 
     def _replace_tags(self):
         template_text = self._fabletemplate
-        replacer = tagreplacer.Replacer(self._fabletemplate, self._character)
+        print '-- Raplacing tags in ' + self._language.language_code()
+        replacer = tagreplacer.Replacer(self._fabletemplate, self._character, self._language.language_code())
         replacements = replacer.get_replacements()
         for tag, val in replacements.items():
             if ((val != None) and (len(val)>0)):
@@ -116,8 +116,8 @@ class SimpleLoader(object):
         print '-- Reading file ' + fileFullPath
         try:
             fileobj = codecs.open(fileFullPath, "r", "utf-8")
-            ufilecontents = unicode(fileobj.read())
-            filecontents = self._replace_tags(ufilecontents)
+            self._fabletemplate = unicode(fileobj.read())
+            filecontents = self._replace_tags()
             fileobj.close()
             self.paras = filecontents.split('\n')
             print '-- The file has ' + str(len(self.paras)) + ' paragraphs.'
@@ -225,3 +225,5 @@ class GoogleLoader(SimpleLoader):
             logging.error('*** Error reading fable template...')
             logging.error('*** %s', sys.exc_info())
         return readOk
+    
+

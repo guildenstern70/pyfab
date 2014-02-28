@@ -1,3 +1,5 @@
+# coding=utf-8
+
 '''
 Module: num2word_ES.py
 Requires: num2word_EU.py

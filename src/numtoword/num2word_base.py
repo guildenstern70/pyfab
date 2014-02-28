@@ -1,3 +1,5 @@
+# coding=utf-8
+
 '''
 Module: num2word_base.py
 Version: 1.0
@@ -188,7 +190,7 @@ class Num2Word_Base(object):
         pass
 
             
-    def to_ordinal(value):
+    def to_ordinal(self, value):
         return self.to_cardinal(value)
 
 

@@ -1,74 +1,42 @@
 # coding=utf-8
 
-'''
-Module: num2word_EN.py
-Requires: num2word_EU.py
-Version: 1.2
 
-Author:
-   Taro Ogawa (tso@users.sourceforge.org)
-   
-Copyright:
-    Copyright (c) 2003, Taro Ogawa.  All Rights Reserved.
-
-Licence:
-    This module is distributed under the Lesser General Public Licence.
-    http://www.opensource.org/licenses/lgpl-license.php
-
-Data from:
-    http://www.uni-bonn.de/~manfear/large.php
-    
-Usage:
-    from num2word_EN import n2w, to_card, to_ord, to_ordnum
-    to_card(1234567890)
-    n2w.is_title = True
-    to_card(1234567890)
-    to_ord(1234567890)
-    to_ordnum(1234567890)
-    to_year(1976)
-    to_currency(dollars*100 + cents, longval=False)
-    to_currency((dollars, cents))
-    
-
-History:
-    1.2: to_ordinal_num() made shorter and simpler (but slower)
-         strings in merge() now interpolated
-         to_year() and to_currency() added
-         
-    1.1: to_ordinal_num() fixed for 11,12,13   
-'''
 from __future__ import division 
 import num2word_EU
 
     
-class Num2Word_EN(num2word_EU.Num2Word_EU):
+class Num2Word_RO(num2word_EU.Num2Word_EU):
     def set_high_numwords(self, high):
         mx = 3 + 3*len(high)
         for word, n in zip(high, range(mx, 3, -3)):
-            self.cards[10**n] = word + "illion"
+            self.cards[10**n] = word + "ilioane"
 
     def setup(self):
         self.negword = "minus "
-        self.pointword = "point"
-        self.errmsg_nonnum = "Only numbers may be converted to words."
-        self.exclude_title = ["and", "point", "minus"]
+        self.pointword = "punct"
+        self.errmsg_nonnum = "Numai numerele se pot transforma în cuvinte."
+        self.exclude_title = ["și", "punct", "minus"]
 
-        self.mid_numwords = [(1000, "thousand"), (100, "hundred"),
-                             (90, "ninety"), (80, "eighty"), (70, "seventy"),
-                             (60, "sixty"), (50, "fifty"), (40, "forty"),
-                             (30, "thirty")]
-        self.low_numwords = ["twenty", "nineteen", "eighteen", "seventeen",
-                             "sixteen", "fifteen", "fourteen", "thirteen",
-                             "twelve", "eleven", "ten", "nine", "eight",
-                             "seven", "six", "five", "four", "three", "two",
-                             "one", "zero"]
-        self.ords = { "one"    : "first",
-                      "two"    : "second",
-                      "three"  : "third",
-                      "five"   : "fifth",
-                      "eight"  : "eighth",
-                      "nine"   : "ninth",
-                      "twelve" : "twelfth" }
+
+        self.mid_numwords = [(1000, "o mie"), (100, "o sută"),
+                             (90, "nouăzeci"), (80, "optzeci"), (70, "șaptezeci"),
+                             (60, "șaizeci"), (50, "cincizeci"), (40, "patruzeci"),
+                             (30, "treizeci")]
+        self.low_numwords = ["douăzeci", "nouăsprezece", "optsprezece", "șaptisprezece",
+                             "șaisprezece", "cincisprezece", "paisprezece", "treisprezece",
+                             "doisprezece", "unsprezece", "zece", "nouă", "opt",
+                             "șapte", "șase", "cinci", "patru", "trei", "doi",
+                             "unu", "zero"]
+        self.ords = { "unu"         : "primul",
+                      "doi"         : "al doilea",
+                      "trei"        : "al treilea",
+                      "patru"       : "al patrulea",
+                      "cinci"       : "al cincilea",
+                      "șase"        : "al șaselea",
+                      "șapte"       : "al șaptelea",
+                      "opt"         : "al optulea",
+                      "nouă"        : "al nouălea",
+                      "doisprezece" : "al doisprezecelea" }
 
 
     def merge(self, curr, xnext):
@@ -95,7 +63,7 @@ class Num2Word_EN(num2word_EU.Num2Word_EU):
         except KeyError:
             if lastword[-1] == "y":
                 lastword = lastword[:-1] + "ie" 
-            lastword += "th"
+            lastword += "ea"
         lastwords[-1] = self.title(lastword) 
         outwords[-1] = "-".join(lastwords)
         return " ".join(outwords)
@@ -117,21 +85,23 @@ class Num2Word_EN(num2word_EU.Num2Word_EU):
                                 jointxt="and", longval=longval)
 
 
-n2w = Num2Word_EN()
+n2w = Num2Word_RO()
 to_card = n2w.to_cardinal
 to_ord = n2w.to_ordinal
 to_ordnum = n2w.to_ordinal_num
 to_year = n2w.to_year
 
 def main():
+    print
+    print '-- TEST NUMBERS --'
     for val in [ 1, 11, 12, 21, 31, 33, 71, 80, 81, 91, 99, 100, 101, 102, 155,
              180, 300, 308, 832, 1000, 1001, 1061, 1100, 1500, 1701, 3000,
              8280, 8291, 150000, 500000, 1000000, 2000000, 2000001,
              -21212121211221211111, -2.121212, -1.0000100]:
         n2w.test(val)
-    n2w.test(1325325436067876801768700107601001012212132143210473207540327057320957032975032975093275093275093270957329057320975093272950730)
+    print
+    print '-- TEST YEARS --'
     for val in [1,120,1000,1120,1800, 1976,2000,2010,2099,2171]:
-        print val, "is", n2w.to_currency(val)
         print val, "is", n2w.to_year(val)
     
 

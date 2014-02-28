@@ -19,7 +19,7 @@ class FableMeDocTemplate(BaseDocTemplate):
        page may can be built using this special approach.
     """
     _invalidInitArgs = ('pageTemplates',)
-    
+
     def handle_pageBegin(self):
         '''override base method to add a change of page template after the firstpage.
         '''
