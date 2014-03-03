@@ -1,6 +1,6 @@
 """ 
  
- FABLE-O-MATIC 
+ FableMe.com 
  A LittleLite Web Application
  (c) 2013
  

@@ -1,5 +1,5 @@
 """ 
- FABLE-O-MATIC
+ FableMe.com
  A LittleLite Web Application
  
  admin.py

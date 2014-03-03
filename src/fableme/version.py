@@ -1,5 +1,5 @@
 """ 
- FABLE-O-MATIC
+ FableMe.com
  A LittleLite Web Application
  
  version.py
@@ -9,7 +9,7 @@
 # Global variables
 VERSION_MAJOR = 0
 VERSION_MINOR = 9
-VERSION_BUILD = 4017
+VERSION_BUILD = 4212
 
 # Global methods
 def version():
