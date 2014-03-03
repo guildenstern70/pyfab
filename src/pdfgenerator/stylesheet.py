@@ -8,9 +8,9 @@ stylesheet.py
 from reportlab.lib.styles import StyleSheet1, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.colors import darkblue
-
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
 import fableme.utils as utils
 
@@ -20,20 +20,20 @@ _baseFontNameI = 'CalibriItalics'
 _baseFontNameB = 'CalibriBold'
 _baseFontNameBI = 'CalibriBoldItalics'
 
-
 class PdfStyler(object):
     
     def __init__(self, standalone):
         if (standalone):
-            pdfmetrics.registerFont(TTFont('Calibri', 'calibri.ttf'))
-            pdfmetrics.registerFont(TTFont('CalibriBold', 'calibrib.ttf'))
-            pdfmetrics.registerFont(TTFont('CalibriItalics', 'calibrii.ttf'))
-            pdfmetrics.registerFont(TTFont('CalibriBoldItalics', 'calibriz.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontName, 'calibri.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameB, 'calibrib.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameI, 'calibrii.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameBI, 'calibriz.ttf'))
         else:
             pdfmetrics.registerFont(TTFont(_baseFontName, utils.GoogleUtils.get_from_resources('calibri.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameB, utils.GoogleUtils.get_from_resources('calibrib.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameI, utils.GoogleUtils.get_from_resources('calibrii.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameBI, utils.GoogleUtils.get_from_resources('calibriz.ttf')))
+        registerFontFamily(_baseFontName, normal=_baseFontName,bold=_baseFontNameB,italic=_baseFontNameI,boldItalic=_baseFontNameBI)
     
     def fableMeStyleSheet(self):
         """Returns the FableMe stylesheet """

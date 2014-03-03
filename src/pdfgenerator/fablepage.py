@@ -19,15 +19,16 @@ from reportlab.lib import pdfencrypt
 _W, _H = (21*cm, 29.7*cm) # This is the A4 size
 _WF, _HF = (17*cm, 25*cm) # This is the size of a full size flowable
 LEFT_MARGIN = 1.5*cm
+BASE_FONT = stylesheet._baseFontName
 
 def firstPages(canvas, doc):
     canvas.saveState()
-    canvas.setFont('Calibri', 9)
+    canvas.setFont(BASE_FONT, 9)
     canvas.restoreState()
     
 def laterPages(canvas, doc):
     canvas.saveState()
-    canvas.setFont('Calibri', 9)
+    canvas.setFont(BASE_FONT, 9)
     canvas.drawCentredString(_W/2, 820, 'FableMe - %s' % doc.title)
     canvas.drawCentredString(_W/2, 40, '- %d -' % doc.page)
     canvas.restoreState()

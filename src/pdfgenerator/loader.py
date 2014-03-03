@@ -21,9 +21,7 @@ class SimpleLoader(object):
     def __init__(self, fable_id, lang, character):
         self._fable_id = fable_id
         self._set_variables(lang, character)
-        
-    def load_template(self):
-        return self._readFile()
+            
     def build(self):
         if self._readFile():
             if len(self.paras) > 0:
