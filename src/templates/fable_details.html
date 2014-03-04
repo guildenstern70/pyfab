@@ -1,17 +1,19 @@
-	
-    
-    <article>
-	    <h3><a href="/book?bookid={{fable.template_id}}">{{fable.title}}</a></h3>
-	    <p>&nbsp;</p>
-	    <ul style="margin-left:20px">
-	        <li>Written by: {{fable.author_name}}</li>
-	        <li>Illustrated by: {{fable.author_ill}}</li>
-	        <li>Available in {{fable.languages}}<br/><br/></li>
-            <li>{{fable.recommendation}}</li>
-	    </ul>
-	    <p>{{fable.desc_short}}<br/></p>
-	    <ul style="margin-left:20px">
-	        <li><a href="/preview?issuu={{fable.issuu_id}}">Book preview</a></li>
-	    </ul>
-	    <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this fable now!</a>
-	</article>
+
+<h3>
+    <a href="/book?bookid={{fable.template_id}}"><span id="fabletitle">{{fable.title}}</span></a>
+</h3>
+<p>&nbsp;</p>
+<ul style="margin-left: 20px">
+    <li>Written by: {{fable.author_name}}</li>
+    <li>Illustrated by: {{fable.author_ill}}</li>
+    <li>Available in {{fable.languages}}<br /><br /></li>
+    <li>{{fable.recommendation}}</li>
+</ul>
+<p>
+    {{fable.desc_short}}<br />
+</p>
+<ul style="margin-left: 20px">
+    <li><a href="/preview?issuu={{fable.issuu_id}}" target="_blank">Book preview</a></li>
+</ul>
+
+

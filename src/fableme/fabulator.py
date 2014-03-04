@@ -12,6 +12,7 @@
 import logging
 import datetime
 import fableme.utils as utils
+import db.booktemplates
 
 from fableme.version import version
 from fableme.db.schema import DbFable
@@ -24,6 +25,7 @@ class Steps(object):
     def __init__(self, step):
         self.current_step = step
         self.template_keys = [ 
+                              ['language', 'fable'],
                               ['heroheroine', 'heroname', 'heropicture', 'birthdate'],
                               ['sender', 'dedication'],
                               ['template_title', 'fable', 'heroheroine', 'sexagemismatch']
@@ -73,12 +75,18 @@ class Fabulator(object):
         if (step > 0): 
             step_setter = Steps(step)
             map_of_values = {
-                                 1: [self.hero_heroine(), self.the_fable.name, self.get_character_pic(), self.the_fable.birthdate],
-                                 2: [self.the_fable.sender, self.the_fable.dedication],
-                                 3: [self.the_fable.template['title'], self.the_fable, self.hero_heroine(), self.get_sex_or_age_mismatch()]
+                                 1: [self.the_fable.language, self.get_template()],
+                                 2: [self.hero_heroine(), self.the_fable.name, self.get_character_pic(), self.the_fable.birthdate],
+                                 3: [self.the_fable.sender, self.the_fable.dedication],
+                                 4: [self.the_fable.template['title'], self.the_fable, self.hero_heroine(), self.get_sex_or_age_mismatch()]
                             }
             template_values = step_setter.template_values(template_values, map_of_values[step])
         return template_values
+    
+    def get_template(self):
+        template_id = self.the_fable.template_id
+        book = db.booktemplates.Book(template_id)
+        return book
     
     def get_character_pic(self):
         book = self.the_fable.template
@@ -102,12 +110,14 @@ class Fabulator(object):
             if (step == '1'):
                 self.the_fable.template_id = int(values[0])
             elif (step == '2'):
+                self.the_fable.language = values[0]
+            elif (step == '3'):
                 self.the_fable.sex = values[0]           
                 if (len(values) >= 2):
                     self.the_fable.name = values[1].title()
                 if (len(values) == 3):
                     self.the_fable.birthdate = utils.GoogleUtils.string_to_date(values[2])
-            elif (step == '3'):
+            elif (step == '4'):
                 self.the_fable.sender = values[0]         
                 self.the_fable.dedication = values[1]
                 self.the_fable.ready = True

@@ -32,7 +32,7 @@ class Print(FablePage):
         self._prepare(self.the_user, long(fable_id))
         self.template_values['fable_id'] = fable_id
         self.template_values['fable_contents'] = self.fable_contents
-        self.template_values['title'] = self.fable.the_fable.title
+        self.template_values['title'] = self.fable.the_fable.localized_title
         self.render()
         
     def __init__(self, request, response):
@@ -51,7 +51,7 @@ class PrintPDF(Print):
         titlebrief = self.fable.the_fable.template['title_brief']
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
         userid = self.user_db.nickname
-        lang = 'EN'
+        lang = self.fable.the_fable.language
         return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang )
     
     @login_required

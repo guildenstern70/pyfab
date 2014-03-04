@@ -92,6 +92,28 @@ class DbFable(db.Model):
     def __character(self):
         return character.Character.from_fable_db(self)
     
+    def __localized_title(self):
+        lang_code = self.language.lower()
+        locTitle = ""
+        if (lang_code == 'it'):
+            locTitle = self.template['title_IT']
+        elif (lang_code == 'ro'):
+            locTitle = self.template['title_RO']
+        else:
+            locTitle = self.template['title']
+        return locTitle
+    
+    def __language_desc(self):
+        lang_code = self.language.lower()
+        lang_desc = 'Unknown'
+        if (lang_code == 'it'):
+            lang_desc = 'Italian'
+        elif (lang_code == 'ro'):
+            lang_desc = 'Romanian'
+        else:
+            lang_desc = 'English'
+        return lang_desc
+    
     def __recommandation(self):
         book = booktemplates.Book(self.template_id)
         sexonly = True
@@ -105,6 +127,8 @@ class DbFable(db.Model):
     title = property(__title, doc="""Get the fable title""")
     character = property(__character, doc="""Get the fable main character attributes""")
     recommendation = property(__recommandation, doc="""Get the fable recommendation""")
+    language_desc = property(__language_desc, doc="""Get the fable language as a word""")
+    localized_title = property(__localized_title, doc="""Get the localized fable title""")
         
     @staticmethod
     def get_fable(google_user, fable_id):

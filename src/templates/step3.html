@@ -1,73 +1,41 @@
 {% extends "base_leftsidebar.html" %} 
+
 {% block title %}FableMe - Create a fable - Step 3{% endblock %} 
+
+{% block extraheader %}
+{% endblock %} 
+
 {% block maincontent %}
 
 <!-- Main Content Section -->
-<!-- This has been source ordered to come first in the markup (and on small devices) 
-    but to be to the right of the nav on larger screens -->
 <div class="large-9 push-3 columns">
     <div class="row">
-        <h3>Summary</h3>
+        <h3>A word of dedication...</h3>
     </div>
     <div class="row">
-        <form method="get" action="/print">
-            <p>We're almost done...</p>
-            <p>Please check carefully that all of the fields contain correct data:
+        <form method="get" action="/step" novalidate data-abide>
             <table>
-                    <tr>
-                        <td>Template: </td>
-                        <td><input type="text" value="{{template_title}}" readonly></td>
-                    </tr>
-                    <tr>
-                        <td>We're talking about... </td>
-                        <td>
-                            {% if heroheroine == "hero" %}
-                            <input type="text" value="a boy" readonly>
-                            {% else %}
-                            <input type="text" value="a girl" readonly>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{{heroheroine|capfirst}}'s name: </td>
-                        <td><input type="text" value="{{fable.name}}" readonly></td>
-                    </tr>
-                    <tr>
-                        <td>{{heroheroine|capfirst}}'s birth date: </td>
-                        <td><input type='text' name='value' value='{{fable.birthdate|date:"Y/m/d"}} ({{fable.age}} yo)' readonly></td>
-                    </tr>
-                    <tr>
-                        <td>Dedication from: </td>
-                        <td><input type="text" value="{{fable.sender}}" readonly></td>
-                    </tr>
-                    <tr>
-                        <td>Dedication text: </td>
-                        <td><textarea style="width: 290px; height: 150px;" name="value" readonly>{{fable.dedication}}</textarea></td>
-                    </tr>
-                    <tr>
-                        <td>This fable was created on:</td>
-                        <td>{{fable.created|date:"d M Y h:i" }}</td>
-                    </tr>
-                    <tr>
-                        <td>Last time it was modified:</td>
-                        <td>{{fable.modified|date:"d M Y h:i" }}</td>
-                    </tr>
-                    {% if sexagemismatch %}
-                    <tr>
-                        <!-- {{sexagemismatch}} -->
-                        <td colspan="2">
-                        <div data-alert class="alert-box alert radius">
-                          Warning: this fable is {{fable.recommendation|lower}}
-                          <a href="#" class="close">&times;</a>
-                        </div>
-                        </td>
-                    </tr>
-                    {% endif %}
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                <tr>
+                    <!-- NAMES OF PARENTS -->
+                    <td width="200" id="questionnaire">Sender <br />(ie: Mom and Dad):</td>
+                    <td width="300" id="questionnaire">
+                        <input type="text" id="txtname" name="value" value="{{sender}}" required pattern="[a-zA-Z]+"> 
+                        <small class="error">Name is required and must be a string.</small>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- DEDICATION -->
+                    <td id="questionnaire">Dedication</td>
+                    <td id="questionnaire"><textarea style="width: 290px; height: 150px;" name="value"
+                            placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea></td>
+                </tr>
             </table>
-            <input type='hidden' name='id' value='{{fable.id}}'>
-            <input type="button" value="Previous" class="radius secondary large button" 
-                   onclick="location.href='/step?s=2&id={{fable.id}}';">&nbsp; 
-            <input type="submit" value="OK, go to print!" class="radius large button">
+            <input type="hidden" name="s" value="4">
+            <input type="hidden" name="id" value="{{fable_id}}">
+            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=2&id={{fable_id}}';">&nbsp; 
+            <input type="submit" value="Next" class="radius large button">
         </form>
 
     </div>
@@ -85,16 +53,19 @@
                 <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1&id={{fable_id}}">2. Child information</a>
+                <a href="/step?s=1&id={{fable_id}}">2. Choose a language</a>
             </li>
             <li>
-                <a href="/step?s=2&id={{fable_id}}">3. Dedication</a>
+                <a href="/step?s=2&id={{fable_id}}">3. Child information</a>
             </li>
             <li>
-                <a href="/step?s=3&id={{fable_id}}"><b>4. Summary</b></a>
+                <a href="/step?s=3&id={{fable_id}}"><b>4. Dedication</b></a>
             </li>
             <li>
-                <a href="#">5. Preview</a>
+                <a href="#">5. Summary</a>
+            </li>
+            <li>
+                <a href="#">6. Preview</a>
             </li>
         </ul>
     <p>
@@ -105,7 +76,5 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-<script src="js/foundation/foundation.alerts.js"></script>
+<script src="/js/foundation/foundation.abide.js"></script>
 {% endblock %}
-
-

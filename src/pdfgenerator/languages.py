@@ -20,6 +20,9 @@ class Language(object):
     '''
     
     def __init__(self, language):
+        """
+            language = 'en', 'it', or 'ro'
+        """
         self.__set_language(language)
         
     def is_beginning_of_chapter(self, paragraph):
