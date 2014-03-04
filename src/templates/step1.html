@@ -1,107 +1,76 @@
-{% extends "base_leftsidebar.html" %}
-
-{% block title %}FableMe - Create a fable - Step 1{% endblock %}
-
-{% block maincontent %}
+{% extends "base_leftsidebar.html" %} {% block title %}FableMe - Create a fable - Step 1{% endblock %} {% block maincontent %}
 
 <div class="large-9 push-3 columns">
-    
-        <div class="row">
+
+    <div class="row">
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
-            <input type='hidden' name='s' value='2'>
-            <input type='hidden' name='id' value='{{fable_id}}'>
+            <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
             <table>
                 <tr>
-                    <td>
-                    <a href="book?bookid=0">
-                        <img src="/img/covers/cover_pirates.jpg" id="coverImg" width="200" alt="When I met the Pirates" />
-                    </a>
-                    <br/>
-                    <br/>
-                    <fieldset>
-                    <label for='language'>Fable Language:</label>
-                                     <select name='value' id='slcLang' required>
-                                        <option value="EN">English</option>
-                                        <option value="IT">Italian</option>
-                                        <option value="RO">Romanian</option>
-                                     </select>
-                    </fieldset>                 
-                    </td>
+                    <td><a href="book?bookid=0"> <img src="/img/covers/{{fable.bookimg_boy}}" id="coverImg" width="200" alt="When I met the Pirates" />
+                    </a> <br /> <br />
+                        <fieldset>
+                            <label for='language'>Fable Language:</label> <select name='value' id='slcLang' required>
+                                <option value="EN">English</option>
+                                <option value="IT">Italian</option>
+                                <option value="RO">Romanian</option>
+                            </select>
+                        </fieldset></td>
                     <td>{% include "fable_details.html" %}</td>
                 </tr>
             </table>
-       <input type="button" value="Previous"
-                class="radius secondary large button" onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
-                <input type="submit" value="Next" class="radius large button">
-       </form>
-       </div>
+            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; <input type="submit"
+                value="Next" class="radius large button">
+        </form>
+    </div>
 
 </div>
 
 <div class="large-3 pull-9 columns">
-        <h3>
-            Steps
-        </h3>
-        <ul class="side-nav">
-            <li>
-                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
-            </li>
-            <li>
-                <a href="/step?s=1&id={{fable_id}}"><b>2. Choose a language</b></a>
-            </li>
-            <li>
-                <a href="#">3. Child information</a>
-            </li>
-            <li>
-                <a href="#">4. Dedication</a>
-            </li>
-            <li>
-                <a href="#">5. Summary</a>
-            </li>
-            <li>
-                <a href="#">6. Preview</a>
-            </li>
-        </ul>
-        <p>
-            <img src="img/Step2.jpg">
-        </p>
+    <h3>Steps</h3>
+    <ul class="side-nav">
+        <li><a href="/step?s=0&id={{fable_id}}">1. Choose a template</a></li>
+        <li><a href="/step?s=1&id={{fable_id}}"><b>2. Choose a language</b></a></li>
+        <li><a href="#">3. Child information</a></li>
+        <li><a href="#">4. Dedication</a></li>
+        <li><a href="#">5. Summary</a></li>
+        <li><a href="#">6. Preview</a></li>
+    </ul>
+    <p>
+        <img src="img/Step2.jpg">
+    </p>
 </div>
 
 {% endblock %} {% block extralatejavascripts %}
 <script type="text/javascript">
+	$(document).ready(function() {
+		var img;
+		var currentImageSrc = $('#coverImg').attr("src");
+		var idx = currentImageSrc.lastIndexOf('.');
+		var baseImage = currentImageSrc.slice(0, idx);
+		var fableTitle_EN = '{{fable.title}}';
+		var fableTitle_IT = '{{fable.title_IT}}';
+		var fableTitle_RO = '{{fable.title_RO}}';
 
-    $(document).ready(function() { 
-        var img;
-    	var currentImageSrc = $('#coverImg').attr("src");
-    	var idx = currentImageSrc.lastIndexOf('.');
-    	var baseImage = currentImageSrc.slice(0, idx);
-    	var fableTitle_EN = '{{fable.title}}';
-    	var fableTitle_IT = '{{fable.title_IT}}';
-    	var fableTitle_RO = '{{fable.title_RO}}';
-    	
-        $('#slcLang').change(function() {
-        	var selected = $("#slcLang").val();
-        	
-        	if (selected === 'IT') {
-        		img = baseImage + '_IT.jpg';   
-        		fableTitle = fableTitle_IT;
-        	}
-        	else if (selected === 'RO') {
-        		img = baseImage + '_RO.jpg';
-        		fableTitle = fableTitle_RO;
-        	}
-        	else {
-        		img = baseImage + '.jpg';
-        		fableTitle = fableTitle_EN;
-        	}
-        	
-            $('#coverImg').attr("src", img);
-            $('#fabletitle').text(fableTitle);
-            return false;
-        });
-    });
+		$('#slcLang').change(function() {
+			var selected = $("#slcLang").val();
 
+			if (selected === 'IT') {
+				img = baseImage + '_IT.jpg';
+				fableTitle = fableTitle_IT;
+			} else if (selected === 'RO') {
+				img = baseImage + '_RO.jpg';
+				fableTitle = fableTitle_RO;
+			} else {
+				img = baseImage + '.jpg';
+				fableTitle = fableTitle_EN;
+			}
 
+			$('#coverImg').attr("src", img);
+			$('#fabletitle').text(fableTitle);
+			return false;
+		});
+	});
 </script>
 <script src="/js/foundation/foundation.abide.js"></script>
 {% endblock %}
