@@ -28,19 +28,19 @@
                     <div class="large-8 columns">
                         {% if heroheroine == "hero" %} 
                             <label for="value">
-                                <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">
+                                <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=2&value=M&id={{fable_id}}&refresh=1';">
                                 &nbsp;A hero (Male) &nbsp;
                             </label>
                             <label for="value">
-                                <input type="radio" name="value" value="F" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">
+                                <input type="radio" name="value" value="F" onclick="window.location='/step?s=2&value=F&id={{fable_id}}&refresh=1';">
                                 &nbsp;A heroine (Female) 
                             </label>
                         {% else %} 
                             <label for="value">
-                                <input type="radio" name="value" value="M" onclick="window.location='/step?s=1&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male) &nbsp;
+                                <input type="radio" name="value" value="M" onclick="window.location='/step?s=2&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male) &nbsp;
                             </label>
                             <label for="value">
-                                <input type="radio" name="value" value="F" checked="checked" onclick="window.location='/step?s=1&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
+                                <input type="radio" name="value" value="F" checked="checked" onclick="window.location='/step?s=2&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
                             </label>  
                         {% endif %}
                     </div>

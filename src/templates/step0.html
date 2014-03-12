@@ -1,101 +1,98 @@
-{% extends "base_leftsidebar.html" %}
+{% extends "base_leftsidebar.html" %} {% block title %}FableMe - Create a fable - Step 0{% endblock %} {% block maincontent %}
 
-{% block title %}FableMe - Create a fable - Step 0{% endblock %}
-
-{% block maincontent %}
-
-    <!-- Main Content Section -->
-    <!-- This has been source ordered to come first in the markup (and on small devices) 
+<!-- Main Content Section -->
+<!-- This has been source ordered to come first in the markup (and on small devices) 
     but to be to the right of the nav on larger screens -->
-    <div class="large-9 push-3 columns">
-        <div class="row">
-            <h3>
-                Choose your story
-            </h3>
+<div class="large-9 push-3 columns">
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h3>Choose your story</h3>
             <p>Click on the covers for more details...</p>
         </div>
-        <div class="row">
-                <form method="get" action="/step">
-                <table>
-                	<tr>
-	                	<td>
-		                    <table>
-		                   	                    
-			                    <tr>
-			                        <td align="center">
-                                        <a href="book?bookid=0"><img src="/img/covers/cover_pirates.jpg" width="200" alt="When I met the Pirates" /></a><br />
-                                        <a href="book?bookid=0">More details...</a>
-                                    </td>
-			                        <td align="center">
-                                        <a href="book?bookid=1"><img src="/img/covers/cover_voyage.jpg" width="200" alt="My Voyage to Aragon" /></a><br />
-                                        <a href="book?bookid=1">More details...</a></td>
-			                    </tr>
-			                    
-			                    <tr>
-			                        <td align="center"><div align="center"><input type="radio" checked="checked" name="value" value="0" /></div></td>
-			                        <td align="center"><div align="center"><input type="radio" name="value" value="1" /></div></td>
-			                    </tr>
-			                    
-			                    <tr>
-			                        <td align="center"><a href="book?bookid=2"><img src="/img/covers/cover_badia.jpg" width="200" alt="The talisman of the Badia" /></a><br />
-                                        <a href="book?bookid=2">More details...</a></td>
-			                        <td align="center"><a href="book?bookid=3"><img src="http://placehold.it/250x333&text=[To be defined]" width="200" alt="To be defined" /></a><br />
-                                        <a href="#">Coming soon...</a></td>
-			                    </tr>
-			                    <tr>
-			                        <td align="center"><div align="center"><input type="radio" name="value" value="2" /></div></td>
-			                        <td align="center"><div align="center"><input type="radio" name="value" value="3" disabled="disabled" /></div></td>
-			                    </tr>
-			                    
-		                     </table>
-	                     </td>
-	                     <td>
-                             <input type='hidden' name='s' value='1'>
-                             <input type='hidden' name='id' value='{{fable_id}}'>
-	                     	 <input type="submit" value="Create this story..." class="radius large button">
-	                     </td>
-                     </tr>
-                </table>
-                     
-              </form>
-              
-        </div>
-        <div class="row">
-            <h3>
-                &nbsp;
-            </h3>
-        </div>
-
-    </div><!-- Nav Sidebar -->
-    <!-- This is source ordered to be pulled to the left on larger screens -->
-    <div class="large-3 pull-9 columns">
-        <h3>
-            Steps
-        </h3>
-        <ul class="side-nav">
-            <li>
-                <a href="/step?s=0&id={{fable_id}}"><b>1. Choose a template</b></a>
-            </li>
-            <li>
-                <a href="#">2. Choose a language</a>
-            </li>
-            <li>
-                <a href="#">3. Child information</a>
-            </li>
-            <li>
-                <a href="#">4. Dedication</a>
-            </li>
-            <li>
-                <a href="#">5. Summary</a>
-            </li>
-            <li>
-                <a href="#">6. Preview</a>
-            </li>
-        </ul>
-        <p>
-            <img src="img/Step1.jpg">
-        </p>
     </div>
+
+    <div class="panel">
+        <form method="get" action="/step">
     
+            <div class="row">
+                <div class="large-4 columns">
+                    <a href="book?bookid=0"><img src="/img/covers/cover_pirates.jpg" width="200" alt="When I met the Pirates" /></a> <br />
+                </div>
+                <div class="large-4 columns">
+                    <a href="book?bookid=1"><img src="/img/covers/cover_voyage.jpg" width="200" alt="My Voyage to Aragon" /></a> <br />
+                </div>
+                <div class="large-4 columns">&nbsp;</div>
+            </div>
+    
+            <div class="row">
+                <div class="large-4 columns">
+                    <div align="center">
+                        <input type="radio" checked="checked" name="value" value="0" />
+                    </div>
+                </div>
+                <div class="large-4 columns">
+                    <div align="center">
+                        <input type="radio" name="value" value="1" />
+                    </div>
+                </div>
+                <div class="large-4 columns">&nbsp;</div>
+            </div>
+    
+            <div class="row">
+                <div class="large-4 columns">
+                    <a href="book?bookid=2"><img src="/img/covers/cover_badia.jpg" width="200" alt="The talisman of the Badia" /></a>
+                </div>
+                <div class="large-4 columns">
+                    <a href="book?bookid=3"><img src="http://placehold.it/250x333&text=[To be defined]" width="200" alt="To be defined" /></a>
+                </div>
+                <div class="large-4 columns">
+                    <input type='hidden' name='s' value='1'> <input type='hidden' name='id' value='{{fable_id}}'> 
+                    
+                    <button type="submit"
+                        class="radius large button">Create this story...</button>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="large-4 columns">
+                    <div align="center">
+                        <input type="radio" name="value" value="2" />
+                    </div>
+                </div>
+                <div class="large-4 columns">
+                    <div align="center">
+                        <input type="radio" name="value" value="3" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="large-4 columns">&nbsp;</div>
+            </div>
+    
+        </form>
+    
+        <div class="row">
+            <h3>&nbsp;</h3>
+        </div>
+    </div>
+
+</div>
+
+<!-- Nav Sidebar -->
+<!-- This is source ordered to be pulled to the left on larger screens -->
+<div class="large-3 pull-9 columns">
+    <h3>Steps</h3>
+    <ul class="side-nav">
+        <li><a href="/step?s=0&id={{fable_id}}"><b>1. Choose a template</b></a></li>
+        <li><a href="#">2. Choose a language</a></li>
+        <li><a href="#">3. Child information</a></li>
+        <li><a href="#">4. Dedication</a></li>
+        <li><a href="#">5. Summary</a></li>
+        <li><a href="#">6. Preview</a></li>
+    </ul>
+    <p>
+        <img src="img/Step1.jpg">
+    </p>
+</div>
+
 {% endblock %}
 

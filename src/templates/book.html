@@ -14,9 +14,9 @@
                     	<fieldset>
                     		<legend>Cover</legend>
                         {% if templatesex == "M" %}
-                            <img name="cover_image" src="/img/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
+                            <img name="cover_image" src="/img/covers/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
                         {% else %}
-                            <img name="cover_image" src="/img/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
+                            <img name="cover_image" src="/img/covers/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
                         {% endif %}
                          
                     		<div align="center">
@@ -33,6 +33,7 @@
                     </td>
                     <td>
 	                    {% include "fable_details.html" %} 
+                        <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this fable now!</a>
                     </td>
                 </tr>
                 <tr>
@@ -69,7 +70,7 @@
 				                    
 				                     <article>
 				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beyond impressed</h3>
-				                    <p>Alessio Saltarin from Milan, Italy</p>
+				                    <p>Giovanni Malago from Milan, Italy</p>
 				                    <p>I purchased the a story based on Peter and the Pirates and when I received it, I was beyond impressed. The quality and color of the illustrations is impeccable! I cannot wait to give this wonderful gift that I know the whole family will love for years.</p>
 				                    </article>
 				        
