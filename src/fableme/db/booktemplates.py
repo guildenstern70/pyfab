@@ -83,7 +83,7 @@ books = (
             'template_dir' : 'The_talisman_of_the_Badia',
             'title': 'The Amazing story of the Badia Talisman',
             'title_brief': 'Badia',
-            'title_RO': 'xxxxx',
+            'title_RO': 'Povestea talismanului din Badia',
             'title_IT': 'La fantastica storia del talismano della Badia',
             'sku': 'SKU #83232',
             'languages': 'English, Italian',
