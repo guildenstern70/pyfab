@@ -29,7 +29,7 @@ def firstPages(canvas, doc):
 def laterPages(canvas, doc):
     canvas.saveState()
     canvas.setFont(BASE_FONT, 9)
-    canvas.drawCentredString(_W/2, 820, 'FableMe - %s' % doc.title)
+    canvas.drawCentredString(_W/2, 820, 'FableMe.com - %s' % doc.title)
     canvas.drawCentredString(_W/2, 40, '- %d -' % doc.page)
     canvas.restoreState()
 
