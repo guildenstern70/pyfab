@@ -1,5 +1,5 @@
 '''
-PDFGenerator
+FableGenerator
 doctemplate.py
 
 @author: Alessio Saltarin

@@ -1,5 +1,5 @@
 '''
-PDFGenerator
+FableGenerator
 languages.py
 
 @author: Alessio Saltarin
@@ -20,9 +20,6 @@ class Language(object):
     '''
     
     def __init__(self, language):
-        """
-            language = 'en', 'it', or 'ro'
-        """
         self.__set_language(language)
         
     def is_beginning_of_chapter(self, paragraph):
@@ -40,7 +37,15 @@ class Language(object):
         if self.lang_code != 'EN':
             title_key += '_' + self.lang_code
         return title_key
-             
+    
+    def get_ISO(self):
+        iso_lang = 'en-US'
+        if (self.lang_code == 'IT'):
+            iso_lang = "it-IT"
+        elif (self.lang_code == 'RO'):
+            iso_lang = "ro-RO"
+        return iso_lang
+               
     def language(self):
         return self.lang
     

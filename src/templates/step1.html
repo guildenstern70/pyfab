@@ -7,20 +7,25 @@
             <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
             <table>
                 <tr>
-                    <td><a href="book?bookid=0"> <img src="/img/covers/{{fable.bookimg_boy}}" id="coverImg" width="200" alt="When I met the Pirates" />
+                    <td><a href="book?bookid={{fable.template_id}}"> 
+                        <img src="/img/covers/{{fable.bookimg_boy}}" id="coverImg" width="350" alt="Fable Cover" />
                     </a> <br /> <br />
                         <fieldset>
-                            <label for='language'>Fable Language:</label> <select name='value' id='slcLang' required>
+                            <label for='language'><b>Choose Language:</b></label> 
+                             <select name='value' id='slcLang' required>
+                                <option value="">Please select:</option>
                                 <option value="EN">English</option>
                                 <option value="IT">Italian</option>
                                 <option value="RO">Romanian</option>
-                            </select>
+                             </select>
                         </fieldset></td>
                     <td>{% include "fable_details.html" %}</td>
                 </tr>
             </table>
-            <input type="button" value="Previous" class="radius secondary large button" onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; <input type="submit"
-                value="Next" class="radius large button">
+            <input type="button" value="Previous" 
+                   class="radius secondary large button" 
+                   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
+                   <input type="submit" value="Next" class="radius large button">
         </form>
     </div>
 
@@ -43,7 +48,7 @@
 
 {% endblock %} {% block extralatejavascripts %}
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(function() {
 		var img;
 		var currentImageSrc = $('#coverImg').attr("src");
 		var idx = currentImageSrc.lastIndexOf('.');

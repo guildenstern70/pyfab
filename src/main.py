@@ -29,7 +29,7 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/howitworks', fableme.pages.HowItWorks),
                               ('/preview', fableme.pages.Preview),
                               ('/print', fableme.printer.Print),
-                              ('/print/pdf', fableme.printer.PrintPDF),
+                              ('/print/book', fableme.printer.PrinteBook),
                               ('/register', fableme.pages.Register),
                               ('/serve/([^/]+)?', fableme.printer.ServeHandler), 
                               ('/step', fableme.pages.Step) ],

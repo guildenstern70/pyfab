@@ -1,5 +1,5 @@
 '''
-PDFGenerator
+FableGenerator
 chapter.py
 
 @author: Alessio Saltarin

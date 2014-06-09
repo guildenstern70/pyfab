@@ -1,6 +1,6 @@
 """ 
  
- PdfGenerator
+ FableGenerator
  
  tagreplacer.py
  
@@ -58,6 +58,7 @@ class Replacer(object):
         ''' A tag with underscore <his_her> is turned into 'his' if male, else 'her'
             A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' '''
         to_be_replaced = ''
+
         underindex = tag.find('_') 
         if underindex > 0:
             if (sex == 'F'): 
@@ -66,7 +67,8 @@ class Replacer(object):
                 to_be_replaced = tag[underindex+1:-1]
         else:
             to_be_replaced = tag[1:-1]
-        to_be_replaced = self._element_translate(to_be_replaced)         
+        to_be_replaced = self._element_translate(to_be_replaced)
+            
         return to_be_replaced
     
     def _element_translate(self, elem):
@@ -77,10 +79,13 @@ class Replacer(object):
             If tag containg <ageord> returns the character's age in ordinal (in letters, ie: sixth)
             If tag contains <ageplusord> returns the character's age in ordinal + 1 (in letters, ie: seventh)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
-            keys, such as: name '''      
+            keys, such as: name '''
+        
         n2w = numtoword.Num2Word(self.lang).create()
+            
         to_card = n2w.to_cardinal
         to_ord = n2w.to_ordinal
+        
         return {
             'name': self.character_name,
             'age': to_card(self.character_age),

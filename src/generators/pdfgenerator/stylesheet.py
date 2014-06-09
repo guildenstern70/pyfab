@@ -1,12 +1,12 @@
 '''
-PDFGenerator
+FableGenerator
 stylesheet.py
 
 @author: Alessio Saltarin
 '''
 
 from reportlab.lib.styles import StyleSheet1, ParagraphStyle
-from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.enums import TA_CENTER #, TA_RIGHT
 from reportlab.lib.colors import darkblue
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -19,6 +19,7 @@ _baseFontName = 'Calibri'
 _baseFontNameI = 'CalibriItalics'
 _baseFontNameB = 'CalibriBold'
 _baseFontNameBI = 'CalibriBoldItalics'
+
 
 class PdfStyler(object):
     
@@ -66,6 +67,17 @@ class PdfStyler(object):
                                       alignment=TA_CENTER,
                                       spaceAfter=6),
                        alias='title')
+        
+        stylesheet.add(ParagraphStyle(name='Dedication',
+                                      parent=stylesheet['Normal'],
+                                      fontName = _baseFontNameI,
+                                      fontSize=16,
+                                      leading=24,
+                                      spaceBefore=8,
+                                      alignment=TA_CENTER,
+                                      spaceAfter=3,
+                                      textColor=darkblue),
+                       alias='dedication')
     
         stylesheet.add(ParagraphStyle(name='Chapter',
                                       parent=stylesheet['Normal'],

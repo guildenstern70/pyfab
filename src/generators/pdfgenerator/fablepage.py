@@ -1,15 +1,16 @@
 # coding=utf-8
 
 '''
-PDFGenerator
+FableGenerator
 fablepage.py
 
 @author: Alessio Saltarin
 '''
 
-import stylesheet
 import logging
 import fabletemplate
+import stylesheet
+import generators.textformatter as textformatter
 
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Paragraph, Spacer, PageBreak, Image
@@ -29,11 +30,11 @@ def firstPages(canvas, doc):
 def laterPages(canvas, doc):
     canvas.saveState()
     canvas.setFont(BASE_FONT, 9)
-    canvas.drawCentredString(_W/2, 820, 'FableMe.com - %s' % doc.title)
+    canvas.drawCentredString(_W/2, 820, 'FableMe - %s' % doc.title)
     canvas.drawCentredString(_W/2, 40, '- %d -' % doc.page)
     canvas.restoreState()
 
-class FableDoc(object):
+class PdfFableDoc(textformatter.TextFormatter):
     
     def __init__(self, fabletitle, standalone):
         enc = pdfencrypt.StandardEncryption('', ownerPassword="alessio", canCopy=0, canModify=0)
@@ -77,11 +78,18 @@ class FableDoc(object):
             logging.critical('Cannot parse image descriptor: ' + imageTextDescription)
         return image
         
-    def addTitle(self, text):
+    def addTitle(self, text, dedication):
+        self._story.append(Spacer(1, 1.2*cm))
+        self._story.append(Spacer(1, 1.2*cm))
         p = Paragraph(text, self._styles["Title"])
         self._story.append(Spacer(1, 1.2*cm))
         self._story.append(p)
         self._story.append(Spacer(1, 2.2*cm))
+        for dedicLine in dedication.split('***'):
+            dedicPar = Paragraph(dedicLine, self._styles['Dedication'])
+            self._story.append(dedicPar)
+        self._story.append(Spacer(1, 1.2*cm))
+        self._story.append(PageBreak())
         
     def addChapterTitle(self, chapter_title):
         p = Paragraph(chapter_title, self._styles['Chapter'])

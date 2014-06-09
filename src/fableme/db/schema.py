@@ -154,6 +154,9 @@ class DbFable(db.Model):
         self.sender = "From mom and dad"
         self.dedication = "With love"
         
+    def get_full_dedication(self):
+        return self.dedication+"***"+self.sender
+        
     def is_age_mismatch(self):
         mismatch = False
         book_template = self.__template()
