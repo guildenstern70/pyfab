@@ -28,8 +28,10 @@
                 <tr>
                     <!-- DEDICATION -->
                     <td id="questionnaire">Dedication</td>
-                    <td id="questionnaire"><textarea style="width: 290px; height: 150px;" name="value"
-                            placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea></td>
+                    <td id="questionnaire"><textarea style="width: 290px; height: 150px;" pattern="(?=^.{0,500}$)" name="value"
+                            placeholder="Example: this book has been created especially for Johnny. We love you very much. Mom & Dad">{{dedication}}</textarea>
+                            <small class="error">Dedication must be 500 characters or less.</small>
+                            </td>
                 </tr>
             </table>
             <input type="hidden" name="s" value="4">
@@ -65,7 +67,7 @@
                 <a href="#">5. Summary</a>
             </li>
             <li>
-                <a href="#">6. Preview</a>
+                <a href="#">6. Select target format</a>
             </li>
         </ul>
     <p>

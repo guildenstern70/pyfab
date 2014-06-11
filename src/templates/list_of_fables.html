@@ -17,9 +17,9 @@
 		<tr>
 			<td><a href="/step?s=4&id={{fable.id}}">{{forloop.counter}}</a></td>
 			<td><a href="/step?s=4&id={{fable.id}}">{{fable.name}}</a></td>
-			<td><a href="/step?s=4&id={{fable.id}}">{{fable.template.title}}</a></td>
-			<td>{{fable.sender}}</td>
-			<td>{{fable.dedication}}</td>
+			<td><a href="/step?s=4&id={{fable.id}}">{{fable.template.title|truncatewords:5}}</a></td>
+			<td>{{fable.sender|truncatewords:3}}</td>
+			<td>{{fable.dedication|truncatewords:3}}</td>
 			<td>{{fable.created|date:"d/M/Y h:i" }}</td>
 			<td>{{fable.modified|date:"d/M/Y h:i" }}</td>
 			<td><a href="#" data-reveal-id="areYouSure{{fable.id}}">
@@ -28,7 +28,7 @@
 			    </span></a>
 			</td>
 			<td><a href="/print?id={{fable.id}}">
-				<span data-tooltip class="has-tip" title="Generate PDF for fable #{{forloop.counter}}">
+				<span data-tooltip class="has-tip" title="Generate eBook for fable #{{forloop.counter}}">
 					<img src="img/generatepdf.png" width="30"/>
 				</span>
 				</a>
