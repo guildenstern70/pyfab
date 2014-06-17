@@ -76,6 +76,8 @@ class DbFable(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
     modified = db.DateTimeProperty(auto_now_add=True)
     ready = db.BooleanProperty(default=False)
+    bought = db.BooleanProperty(default=False)
+    downlink = db.StringProperty()
     
     def __id(self):
         return self.key().id()

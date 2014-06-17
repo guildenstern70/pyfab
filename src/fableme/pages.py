@@ -10,12 +10,16 @@
 
 
 import logging
-import fableme.db.dbutils as dbutils
-import fableme.db.booktemplates as booktemplates
+import time
 
+import fableme.db.dbutils as dbutils
+import fableme.db.schema as schema
+import fableme.db.booktemplates as booktemplates
 import fableme.fabulator as fabulator
 import fableme.utils as utils
+import fableme.printer as printer
 
+from google.appengine.ext import deferred
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
@@ -125,14 +129,18 @@ class MyAccount(FablePage):
     def get(self):
         if (self.request.get('updated') == '1'):
             self.template_values['updated'] = 'True'
+        panel = self.request.get('panel')
+        if len(panel) != 1:
+            panel = "2"
         self.template_values['name'] = self.user_db.name
         self.template_values['nickname'] = self.user_db.nickname
         self.template_values['emailaddr'] = self.user_db.email
         self.template_values['added'] = self.user_db.added
         self.template_values['receivenews'] = str(self.user_db.receivenews)
         self.template_values['return_page'] = 'myaccount?panel=2'
-        self.template_values['panel'] = self.request.get('panel')
+        self.template_values['panel'] = panel
         self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
+        self.template_values['bought_fables'] = dbutils.Queries.get_my_bought_fables(self.the_user)
         self.render()
         
     def post(self):
@@ -193,7 +201,41 @@ class Book(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
         
-
+class Buy(FablePage):
+    """ Handler for /buy page """ 
+    
+    @login_required
+    def get(self):
+        """ http get handler """
+        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
+        self.template_values['fable'] = fable
+        self.template_values['template'] = fable.template
+        self.template_values['templatesex'] = fable.sex
+        self.render()
+                
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'buy.html')
+        
+        
+class Order(FablePage):
+    """ Handler for /buy page """ 
+    
+    @login_required
+    def get(self):
+        """ http get handler """
+        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        fable_format = self.request.get('fmt')
+        fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
+        self.template_values['template'] = fable.template
+        self.template_values['templatesex'] = fable.sex
+        printObj = printer.PrinteBook(self.the_user)
+        deferred.defer(printObj.printBook, fable_id, fable_format)
+        time.sleep(2)
+        self.render()
+                
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'orderplaced.html')
 
 
 

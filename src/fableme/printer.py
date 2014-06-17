@@ -6,7 +6,10 @@
 
 """
 
+import logging
 import urllib
+
+import fableme.db.schema as schema
 
 from fableme.fabulator import Fabulator
 from fableme.abstract import FablePage
@@ -38,7 +41,7 @@ class Print(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'print.html')
         
-class PrinteBook(Print):
+class PrinteBook():
     """ /print/book page """ 
     
     def _prepare(self, user, fable_id, fable_format):
@@ -47,32 +50,34 @@ class PrinteBook(Print):
         self.ebookproxy = GeneratorProxy(fable_format, self.fable.the_fable)
         self.fable_contents = self.ebookproxy.load_template()
     
-    def _build(self, fable_id, fable_format):
-        self._prepare(self.the_user, long(fable_id), fable_format)
+    def _build(self, fable_id, fable_format, user):
+        self._prepare(user, long(fable_id), fable_format)
         self.ebookproxy.prepare_ebook()
         
-    def _download_url(self):
+    def _download_url(self, fable_format):
         blobkey = self.ebookproxy.save_ebook()
         nick = self.fable.the_fable.name
         titlebrief = self.fable.the_fable.template['title_brief']
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
         userid = self.user_db.nickname
         lang = self.fable.the_fable.language
-        fmt = self.fable_format
-        return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang, fmt )
-    
-    @login_required
-    def get(self):
-        """ http get handler """
-        fable_id = self.request.get('id') 
-        self.fable_format = self.request.get('fmt') 
-        self._build(fable_id, self.fable_format)
-        self.template_values['downloadURL'] = self._download_url()
-        self.template_values['bookFormat'] = self.fable_format
-        self.render()
+        return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang, fable_format )
+      
+    def printBook(self, fable_id, fable_format):
+        logging.info('Initiating print ebook id='+fable_id)
+        self._build(fable_id, fable_format, self.user)
+        dbfable = schema.DbFable.get_fable(self.user, long(fable_id))
+        dbfable.bought = True
+        dl_url = self._download_url(fable_format)
+        dbfable.downlink = dl_url
+        dbfable.put()
+        logging.info('EBook available at: '+dl_url)
+        logging.info('Done.')
         
-    def __init__(self, request, response):
-        FablePage.__init__(self, request, response, 'download.html')
+    def __init__(self, user):
+        self.user = user
+        self.user_db = schema.DbFableUser.get_from_user(user)
+    
         
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     """ Download the ebook """

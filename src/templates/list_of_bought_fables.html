@@ -1,0 +1,33 @@
+<table>
+	<thead>
+		<tr>
+    		<th>&nbsp;</th>
+    		<th>Child Name</th>
+    		<th>Fable Template</th>
+    		<th>Download Link</th>
+            <th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for fable in bought_fables %}
+		<tr>
+			<td><a href="#">{{forloop.counter}}</a></td>
+			<td><a href="#">{{fable.name}}</a></td>
+			<td><a href="#">{{fable.template.title|truncatewords:5}}</a></td>
+			<td><a href="{{fable.downlink}}">{{fable.downlink}}</a></td>		
+			<td><a href="#" data-reveal-id="areYouSure{{fable.id}}">
+			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
+			    	&#215;
+			    </span></a>
+			</td>
+
+		</tr>
+	{% empty %}
+		<tr>
+			<td colspan="8">You did not purchase any fable yet.</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>    		
+
+

@@ -69,10 +69,10 @@
 		        </div>
 	        </section>
               
-            {% if panel == "1" %}
-            <section>      
-            {% else %}
+            {% if panel == "2" %}
             <section class="active">
+            {% else %}
+            <section>
             {% endif %}     
 		        <p class="title" data-section-title><a href="#panel2">My fables</a></p>
 		        <div class="content" data-slug="panel2" data-section-content>      
@@ -83,6 +83,17 @@
 					<p>&nbsp;</p>   
 		        </div>
         	</section>
+            
+            {% if panel == "3" %}
+            <section class="active">      
+            {% else %}
+            <section>
+            {% endif %}     
+                <p class="title" data-section-title><a href="#panel3">My ebooks</a></p>
+                <div class="content" data-slug="panel2" data-section-content>     
+                    {% include "list_of_bought_fables.html" %}
+                </div>
+            </section>
         </div>
     </div>
    

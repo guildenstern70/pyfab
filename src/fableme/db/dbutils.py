@@ -26,6 +26,16 @@ class Queries():
         return query
     
     @staticmethod
+    def get_my_bought_fables(google_user):
+        user_db = DbFableUser.get_from_user(google_user)
+        query = DbFable.all()
+        query.ancestor(user_db)
+        query.filter('user_email', google_user.email())
+        query.filter('bought', True)
+        query.order('-created')
+        return query
+    
+    @staticmethod
     def get_all_ready_fables(google_user):
         query = Queries.get_all_fables(google_user)
         query.filter('ready', True)

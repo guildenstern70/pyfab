@@ -40,3 +40,8 @@ handlers:
 - url: /.*
   script: main.APPLICATION
 
+builtins:
+- deferred: on
+
+
+

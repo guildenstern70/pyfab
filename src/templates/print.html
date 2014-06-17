@@ -8,14 +8,6 @@
 
 {% block maincontent %}
 
-	<div id="loading">
-	    <div id="loadingcontent">
-	        <p id="loadingspinner">
-	            Creating eBook... Please wait
-	        </p>
-	    </div>
-	</div>
-
     <!-- Main Content Section -->
     <!-- This has been source ordered to come first in the markup (and on small devices) 
     but to be to the right of the nav on larger screens -->
@@ -34,9 +26,18 @@
               
         </div>
         <div class="row">
-        	<a href="/print/book?id={{fable_id}}&fmt=PDF" id="downloadbtn" class="radius large button"> Generate PDF</a>
+     
+        	<a href="/buy?id={{fable_id}}" class="radius large button"> Buy Now</a>
             &nbsp;
-            <a href="/print/book?id={{fable_id}}&fmt=EPUB" id="downloadbtn" class="radius secondary large button"> Generate ePUB</a>
+            <!-- PRINT URL: /print/book?id={{fable_id}}&fmt=EPUB  -->
+            <a href="#" data-reveal-id="fableSaved"  class="radius secondary large button"> Save it for later</a>
+            <!-- Reveal Modals begin -->
+            <div id="fableSaved" class="reveal-modal" data-reveal>
+              <h2>Fable saved.</h2>
+              <p>Your fable has been saved. You may recover it at any time by going into your <a href="/myaccount">Account</a> page.</p>
+              <p><a href="/myaccount" class="radius secondary button">Go to my account</a></p>
+              <a class="close-reveal-modal">&#215;</a>
+            </div>
         </div>
         <div class="row">
             &nbsp;
@@ -77,25 +78,5 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-    <script src="/js/vendor/spin.js"></script>	
-    <script type="text/javascript">
-	    $(function () {
-	        $("#downloadbtn").click(function () {
-	            $("#loading").fadeIn();
-	            var opts = {
-	                lines: 12, // The number of lines to draw
-	                length: 7, // The length of each line
-	                width: 4, // The line thickness
-	                radius: 10, // The radius of the inner circle
-	                color: '#000', // #rgb or #rrggbb
-	                speed: 1, // Rounds per second
-	                trail: 60, // Afterglow percentage
-	                shadow: false, // Whether to render a shadow
-	                hwaccel: false // Whether to use hardware acceleration
-	            };
-	            var target = document.getElementById('loading');
-	            var spinner = new Spinner(opts).spin(target);
-	        });
-	    });
-	</script>
+    <script src="/js/foundation/foundation.reveal.js"></script>  
 {% endblock %}
