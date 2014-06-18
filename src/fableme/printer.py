@@ -8,12 +8,14 @@
 
 import logging
 import urllib
+import datetime
 
 import fableme.db.schema as schema
 
 from fableme.fabulator import Fabulator
 from fableme.abstract import FablePage
 from fableme.generatorhelper import GeneratorProxy
+from google.appengine.api import mail
 
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext import blobstore
@@ -64,15 +66,41 @@ class PrinteBook():
         return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang, fable_format )
       
     def printBook(self, fable_id, fable_format):
-        logging.info('Initiating print ebook id='+fable_id)
+        logging.info('Initiating process print ebook id='+fable_id)
         self._build(fable_id, fable_format, self.user)
+        # Update DB fable
         dbfable = schema.DbFable.get_fable(self.user, long(fable_id))
         dbfable.bought = True
-        dl_url = self._download_url(fable_format)
-        dbfable.downlink = dl_url
+        link_url = self._download_url(fable_format)
+        dbfable.downlink = link_url
+        dbfable.purchased = datetime.datetime.now()
         dbfable.put()
-        logging.info('EBook available at: '+dl_url)
-        logging.info('Done.')
+        logging.info('Ended process pring ebook id='+fable_id)
+        dbuser = schema.DbFableUser.get_from_user(self.user)
+        logging.info('Sending email advice to '+dbuser.email)
+        self.sendmail(dbuser, link_url)
+        
+    def sendmail(self, dbuser, ebook_link):  
+        to_field = dbuser.name + ' <' + dbuser.email + '>'
+        body_field = """
+Dear [name],
+
+The eBook you recently purchased from FableMe.com is ready.  You can now visit
+<a href="http://www.fableme.com/">http://www.fableme.com/</a> and sign in using your Google Account to
+download it.
+
+You can also directly download it, by clicking the link below:
+<a href="[link]">[link]</a>
+
+Your FableMe Team
+        """
+        
+        body_field = body_field.replace('[name]', dbuser.name)
+        body_field = body_field.replace('[link]', ebook_link)
+        mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
+                      to=to_field,
+                      subject="Your FableMe eBook is ready!",
+                      body=body_field)
         
     def __init__(self, user):
         self.user = user

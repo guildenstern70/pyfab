@@ -2,9 +2,10 @@
 	<thead>
 		<tr>
     		<th>&nbsp;</th>
+            <th>Fable Template</th>
     		<th>Child Name</th>
-    		<th>Fable Template</th>
-    		<th>Download Link</th>
+    		<th>Download</th>
+            <th>Purchase Date</th>
             <th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -12,14 +13,11 @@
 	{% for fable in bought_fables %}
 		<tr>
 			<td><a href="#">{{forloop.counter}}</a></td>
-			<td><a href="#">{{fable.name}}</a></td>
-			<td><a href="#">{{fable.template.title|truncatewords:5}}</a></td>
-			<td><a href="{{fable.downlink}}">{{fable.downlink}}</a></td>		
-			<td><a href="#" data-reveal-id="areYouSure{{fable.id}}">
-			    <span data-tooltip class="has-tip" title="Delete fable #{{forloop.counter}}">
-			    	&#215;
-			    </span></a>
-			</td>
+            <td>{{fable.template.title}}</td>
+			<td>{{fable.name}}</td>
+			<td><a href="{{fable.downlink}}"><b>Click to download&hellip;</b></a></td>	
+            <td>{{fable.purchased}}</td>	
+			<td><a href="{{fable.downlink}}"><img src="/img/download.png" width="30px" alt="Download"></a></td>
 
 		</tr>
 	{% empty %}

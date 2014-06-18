@@ -209,7 +209,14 @@ class Buy(FablePage):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
         fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
+        fable_cover_gen = ""
+        if fable.sex == 'M':
+            fable_cover_gen = fable.template['bookimg_boy']
+        else:
+            fable_cover_gen = fable.template['bookimg_girl']
+        fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg' 
         self.template_values['fable'] = fable
+        self.template_values['cover'] = fable_cover_gen
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
         self.render()
@@ -221,6 +228,12 @@ class Buy(FablePage):
 class Order(FablePage):
     """ Handler for /buy page """ 
     
+    def order_complete(self, fable_id, fable_format):
+        printObj = printer.PrinteBook(self.the_user)
+        deferred.defer(printObj.printBook, fable_id, fable_format)
+        time.sleep(2)
+        # Send mail
+        
     @login_required
     def get(self):
         """ http get handler """
@@ -229,9 +242,7 @@ class Order(FablePage):
         fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
-        printObj = printer.PrinteBook(self.the_user)
-        deferred.defer(printObj.printBook, fable_id, fable_format)
-        time.sleep(2)
+        self.order_complete(fable_id, fable_format)     
         self.render()
                 
     def __init__(self, request, response):

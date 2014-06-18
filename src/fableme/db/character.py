@@ -28,6 +28,12 @@ class Character(object):
             return today.year - born.year - 1
         else:
             return today.year - born.year
+        
+    def to_nice_string(self):
+        boygirl = 'boy'
+        if self.sex == 'F':
+            boygirl = 'girl'
+        return 'the ' + boygirl + ' ' + self.name + ', ' + str(self.age) + ' years old.' 
     
     def __repr__(self, *args, **kwargs):
         return "[" + self.name + ", " + self.sex + ", Age = " + str(self.age) + "]"
