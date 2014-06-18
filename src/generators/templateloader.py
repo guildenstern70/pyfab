@@ -6,6 +6,7 @@
  
 """
 
+import logging
 
 from abc import abstractmethod
 from generators import tagreplacer
@@ -53,11 +54,11 @@ class TemplateLoader(object):
             if (self.fable_doc):
                 self.fable_doc.save(self._ebook_file)
             else:
-                print '*** ABORTING'
+                logging.error('*** ABORTING')
                 saved = False
         except:
             saved = False
-            print('Error %s' % (str(sys.exc_info())))
+            logging.error('Error %s' % (str(sys.exc_info())))
         return saved 
     
     def _addCover(self):
@@ -91,7 +92,7 @@ class TemplateLoader(object):
             
     def _replace_tags(self):
         template_text = self._fabletemplate
-        print '-- Raplacing tags in ' + self._language.language_code()
+        # print '-- Raplacing tags in ' + self._language.language_code()
         replacer = tagreplacer.Replacer(self._fabletemplate, self._character, self._language.language_code())
         replacements = replacer.get_replacements()
         for tag, val in replacements.items():
@@ -117,7 +118,7 @@ class TemplateLoader(object):
         if len(self._fabletemplate) > 0:
             filecontents = self._replace_tags()
             self.paras = filecontents.split('\n')
-            print '-- The file has ' + str(len(self.paras)) + ' paragraphs.'
+            # print '-- The file has ' + str(len(self.paras)) + ' paragraphs.'
         else:
             fileReadOk = False
         return fileReadOk        
@@ -130,8 +131,8 @@ class TemplateLoader(object):
             filecontents = unicode(fileobj.read())
             fileobj.close()
         except IOError:
-            print '*** Critical error opening %s' % filePath
-            print '*** ', sys.exc_info()
+            logging.error('*** Critical error opening %s' % filePath)
+            logging.error('*** ', sys.exc_info())
         return filecontents
             
     def _get_resources_path(self):
@@ -161,10 +162,6 @@ class TemplateLoader(object):
         self._dedication = dedication
         self._ebook_file = utils.BasicUtils.get_output_path(self._filename[:-4] + '_' + self._language.language_code() + self._get_format())
         self._title = self._template[self._language.get_title_key()]
-        try:
-            print '-- Creating fable = ' + self._title
-        except:
-            print '-- Creating fable document'
         self._character = character
         self.fable_doc = None
         self.chapters = []
