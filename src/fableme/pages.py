@@ -214,7 +214,10 @@ class Buy(FablePage):
             fable_cover_gen = fable.template['bookimg_boy']
         else:
             fable_cover_gen = fable.template['bookimg_girl']
-        fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg' 
+            
+        if (fable.language != 'EN'):
+            fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg'
+            
         self.template_values['fable'] = fable
         self.template_values['cover'] = fable_cover_gen
         self.template_values['template'] = fable.template
