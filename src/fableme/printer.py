@@ -91,11 +91,11 @@ class PrinteBook():
 Dear [name],
 
 The eBook you recently purchased from FableMe.com is ready.  You can now visit
-<a href="http://www.fableme.com/">http://www.fableme.com/</a> and sign in using your Google Account to
-download it.
+http://www.fableme.com/ and sign in using your Google Account to
+download it. To do so, navigate to your Account page, under the tab 'Purchased eBooks'.
 
 You can also directly download it, by clicking the link below:
-<a href="[link]">[link]</a>
+[link]
 
 Your FableMe Team
         """
