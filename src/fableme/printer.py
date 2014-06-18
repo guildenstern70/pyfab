@@ -96,7 +96,7 @@ download it. To do so, navigate to your Account page, under the tab 'Purchased e
 
 You can also directly download it, by clicking the link below:
 
-http://www.fableme.com/[link]
+http://fableomatic.appspot.com[link]
 
 Sincerely,
 Your FableMe Team
