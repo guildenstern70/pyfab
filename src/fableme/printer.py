@@ -80,8 +80,13 @@ class PrinteBook():
         logging.info('Sending email advice to '+dbuser.email)
         self.sendmail(dbuser, link_url)
         
-    def sendmail(self, dbuser, ebook_link):  
-        to_field = dbuser.name + ' <' + dbuser.email + '>'
+    def sendmail(self, dbuser, ebook_link):     
+        receiver = 'user'
+        if (dbuser.name):
+            receiver = dbuser.name.title()
+        elif (dbuser.nickname):
+            receiver = dbuser.nickname.title()
+        to_field = receiver + ' <' + dbuser.email + '>'
         body_field = """
 Dear [name],
 
@@ -95,7 +100,7 @@ You can also directly download it, by clicking the link below:
 Your FableMe Team
         """
         
-        body_field = body_field.replace('[name]', dbuser.name)
+        body_field = body_field.replace('[name]', receiver)
         body_field = body_field.replace('[link]', ebook_link)
         mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
                       to=to_field,

@@ -55,7 +55,7 @@
                                <li>
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
-                               <li><a href="/order?id={{fable.id}}&fmt=PDF" id="downloadbtn" class="radius button">Buy</a></li>
+                               <li><a href="/order?id={{fable.id}}&fmt=PDF" id="downloadbtn2" class="radius button">Buy</a></li>
                            </ul>
                            
                         </fieldset>
@@ -77,7 +77,7 @@
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
                                <li>
-                                    <a href="/order?id={{fable.id}}&fmt=EPUB" id="downloadbtn" class="radius button">Buy</a>
+                                    <a href="/order?id={{fable.id}}&fmt=EPUB" id="downloadbtn1" class="radius button">Buy</a>
                                </li>
                            </ul>
                                               
@@ -97,9 +97,10 @@
 
 {% block extralatejavascripts %}
     <script src="/js/vendor/spin.js"></script>  
-    <script type="text/javascript">
+    <script>
         $(function () {
-            $("#downloadbtn").click(function () {
+        	
+        	var spinAnimation = function () {
                 $("#loading").fadeIn();
                 var opts = {
                     lines: 12, // The number of lines to draw
@@ -114,7 +115,10 @@
                 };
                 var target = document.getElementById('loading');
                 var spinner = new Spinner(opts).spin(target);
-            });
+        	};
+
+            $("#downloadbtn1").click(spinAnimation);
+            $("#downloadbtn2").click(spinAnimation);
         });
     </script>
 
