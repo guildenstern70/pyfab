@@ -95,8 +95,10 @@ http://www.fableme.com/ and sign in using your Google Account to
 download it. To do so, navigate to your Account page, under the tab 'Purchased eBooks'.
 
 You can also directly download it, by clicking the link below:
-[link]
 
+http://www.fableme.com/[link]
+
+Sincerely,
 Your FableMe Team
         """
         
