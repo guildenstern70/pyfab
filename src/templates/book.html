@@ -1,4 +1,4 @@
-{% extends "base_leftsidebar.html" %}
+{% extends "base_center.html" %}
 
 {% block title %}FableMe - Book details{% endblock %}
 
@@ -15,19 +15,30 @@
                     		<legend>Cover</legend>
                             <!-- {{templatesex}} -->
                         {% if templatesex == "M" %}
-                            <img name="cover_image" src="/img/covers/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
+                            <img id="cover_image" name="cover_image" src="/img/covers/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
                         {% else %}
-                            <img name="cover_image" src="/img/covers/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
+                            <img id="cover_image" name="cover_image" src="/img/covers/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
                         {% endif %}
                          
                     		<div align="center">
-                    		<p>&nbsp;</p>
                         {% if templatesex == "M" %}
-                    		<input type="radio" name="cover" value="boy" checked="checked" onclick="window.location='/book?bookid={{book}}&recomm=M';">&nbsp;For boys&nbsp;
-                    		<input type="radio" name="cover" value="girl" onclick="window.location='/book?bookid={{book}}&recomm=F';">&nbsp;For girls
+                        
+                            <div class="switch">
+                              <input class="xr" type="radio" id="forboy" value="boy" name="cover" checked>
+                              <label for="forboy" onclick="">Boys</label>
+                              <input class="xr" type="radio" id="forgirl" name="cover" >
+                              <label for="forgirl" onclick="">Girls</label>
+                              <span></span>
+                            </div>
+                            
                         {% else %}
-                            <input type="radio" name="cover" value="boy" onclick="window.location='/book?bookid={{book}}&recomm=M';">&nbsp;For boys&nbsp;
-                            <input type="radio" name="cover" value="girl" checked="checked" onclick="window.location='/book?bookid={{book}}&recomm=F';">&nbsp;For girls
+                            <div class="switch">
+                              <input class="xr" type="radio" id="forboy" value="boy" name="cover">
+                              <label for="forboy" onclick="">Boys</label>
+                              <input class="xr" type="radio" id="forgirl" name="cover" checked>
+                              <label for="forgirl" onclick="">Girls</label>
+                              <span></span>
+                            </div>
                         {% endif %}
                     		</div>
                     	</fieldset>
@@ -116,7 +127,7 @@
     </div><!-- class="large-9 push-3 columns"> -->
 
 
-    <div class="large-3 pull-9 columns">
+    <div class="large-3 pull-9 columns hide-for-small">
 
       <div class="panel">
         <h4 class="hide-for-small">Fables</h4><hr/>
@@ -132,5 +143,14 @@
 {% block extralatejavascripts %}
 	<script src="/js/foundation/foundation.abide.js"></script>
   	<script src="/js/foundation/foundation.section.js"></script>
+    <script>
+      $(".xr").change(function() {
+    	  	imagePath = "/img/covers/{{fable.bookimg_boy}}";
+    	  	if ($('#forgirl').is(':checked')) {
+            	imagePath = "/img/covers/{{fable.bookimg_girl}}";
+            }
+      		$("#cover_image").attr("src", imagePath);
+      });
+    </script>
 {% endblock %}
 
