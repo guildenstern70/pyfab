@@ -1,37 +1,47 @@
-{% extends "base_leftsidebar.html" %} {% block title %}FableMe - Create a fable - Step 1{% endblock %} {% block maincontent %}
+{% extends "base_center.html" %} 
+{% block title %}FableMe - Create a fable - Step 1{% endblock %} 
+{% block maincontent %}
 
 <div class="large-9 push-3 columns">
 
     <div class="row">
+        <h3>Language...</h3>
+    </div>
+
+    <div class="row">
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
             <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
-            <table>
-                <tr>
-                    <td><a href="book?bookid={{fable.template_id}}"> 
-                        <img src="/img/covers/{{fable.bookimg_boy}}" id="coverImg" alt="Fable Cover" />
-                    </a> <br /> <br />
-                        <fieldset>
-                            <label for='language'><b>Choose Language:</b></label> 
-                             <select name='value' id='slcLang' required>
-                                <option value="">Please select:</option>
-                                <option value="EN">English</option>
-                                <option value="IT">Italian</option>
-                                <option value="RO">Romanian</option>
-                             </select>
-                        </fieldset></td>
-                    <td>{% include "fable_details.html" %}</td>
-                </tr>
-            </table>
+            
+            <div class="large-4 small-4 columns">
+                <div class="row">
+                    <img src="img/Tower-of-babel.jpg">
+                </div>    
+            </div>
+            <div class="large-8 small-8 columns">
+                <div class="row">
+                    <fieldset>
+                    <label for='language'><b>Choose Language:</b></label> 
+                     <select name='value' id='slcLang' required>
+                        <option value="">---</option>
+                        <option value="EN">English</option>
+                        <option value="IT">Italian</option>
+                        <option value="RO">Romanian</option>
+                     </select>
+                    </fieldset>
+                </div>
+            
+            </div>
+            
             <input type="button" value="Previous" 
-                   class="radius secondary large button" 
+                   class="radius secondary button" 
                    onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
-                   <input type="submit" value="Next" class="radius large button">
+            <input type="submit" value="Next" class="radius button">
         </form>
     </div>
 
 </div>
 
-<div class="large-3 pull-9 columns">
+<div class="large-3 pull-9 columns hide-for-small">
     <h3>Steps</h3>
     <ul class="side-nav">
         <li><a href="/step?s=0&id={{fable_id}}">1. Choose a template</a></li>
@@ -39,7 +49,7 @@
         <li><a href="#">3. Child information</a></li>
         <li><a href="#">4. Dedication</a></li>
         <li><a href="#">5. Summary</a></li>
-        <li><a href="#">6. Select format</a></li>
+        <li><a href="#">6. Book preview</a></li>
     </ul>
     <p>
         <img src="img/Step2.jpg">

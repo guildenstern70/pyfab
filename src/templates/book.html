@@ -22,15 +22,13 @@
                          
                     		<div align="center">
                         {% if templatesex == "M" %}
-                        
                             <div class="switch">
                               <input class="xr" type="radio" id="forboy" value="boy" name="cover" checked>
                               <label for="forboy" onclick="">Boys</label>
                               <input class="xr" type="radio" id="forgirl" name="cover" >
                               <label for="forgirl" onclick="">Girls</label>
                               <span></span>
-                            </div>
-                            
+                            </div>                       
                         {% else %}
                             <div class="switch">
                               <input class="xr" type="radio" id="forboy" value="boy" name="cover">
@@ -45,7 +43,10 @@
                     </td>
                     <td>
 	                    {% include "fable_details.html" %} 
-                        <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this fable now!</a>
+                        <a href="/step?s=0&id=-1" class="secondary radius button">Back to selection</a>
+                        &nbsp;
+                        <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this!</a>
+                        
                     </td>
                 </tr>
                 <tr>
