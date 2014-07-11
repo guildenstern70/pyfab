@@ -1,4 +1,4 @@
-{% extends "base_leftsidebar.html" %}
+{% extends "base_center.html" %}
 
 {% block title %}FableMe - Buy eBook{% endblock %}
 
@@ -18,15 +18,15 @@
     
         <div class="row">
         
-            <div class="large-5 columns">
+            <div class="large-5 columns" align="center">
              
                     <fieldset>
-                        <legend>eBook</legend>
+                        <legend>Your eBook is ready!</legend>
                         <!-- {{templatesex}} -->
                     {% if templatesex == "M" %}
-                        <img name="cover_image" src="/img/covers/{{template.bookimg_boy}}" width="100%" alt="{{fable.title}}" />
+                        <img name="cover_image" src="/img/covers/{{template.bookimg_boy}}" alt="{{fable.title}}" />
                     {% else %}
-                        <img name="cover_image" src="/img/covers/{{template.bookimg_girl}}" width="100%" alt="{{fable.title}}" />
+                        <img name="cover_image" src="/img/covers/{{template.bookimg_girl}}" alt="{{fable.title}}" />
                     {% endif %}
                     </fieldset>
                             
@@ -36,18 +36,19 @@
            
                                
                     <div class="row">
-                    
-                    <p>&nbsp;</p><p>&nbsp;</p>
-                    <h2>Thank you for your purchase!</h2>
-                    <p>Your order has been placed.</p>
-                    <p>You will receive an e-mail with instructions on how to download your e-book!</p>
-                    <p><i>The FableMe team</i></p>
+                   
+                        <h2>Thank you for your purchase!</h2>
+                        <p>Your order has been placed.</p>
+                        <p>You will receive an e-mail with instructions on how to download your e-book!</p>
+                        <p><i>The FableMe team</i></p>
                     
                     </div>
                     
                     <div class="row">
                         <a href="/" class="radius button">Home</a>
                     </div>
+                    
+           </div>
                     
                         
                        

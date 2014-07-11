@@ -1,4 +1,4 @@
-{% extends "base_leftsidebar.html" %}
+{% extends "base_center.html" %}
 
 {% block title %}FableMe - Create a fable - Print{% endblock %}
 
@@ -23,14 +23,29 @@
             <textarea name='fableText' rows='20' cols='60' oncopy="return false" readonly>
             {{fable_contents}}
             </textarea>
-              
+            
+            <div class="large-8 small-8 columns">
+                <div class="row">
+                    <label>I have reviewed my book and the personalizations are exactly as I want them to appear</label>
+                </div>
+            </div>
+            <div class="large-4 small-4 columns">
+                <div class="switch">
+                  <input class="xr" id="xNo" name="switch-x" type="radio" checked>
+                  <label for="x" onclick="">No</label>      
+                  <input class="xr" id="xYes" name="switch-x" type="radio">
+                  <label for="x1" onclick="">Yes</label>
+                  <span></span>
+                </div>
+            </div>
+                 
         </div>
         <div class="row">
      
-        	<a href="/buy?id={{fable_id}}" class="radius button"> Add to cart</a>
+        	<a id="btnProceed" href="/buy?id={{fable_id}}" class="radius button disabled"> Proceed</a>
             &nbsp;
             <!-- PRINT URL: /print/book?id={{fable_id}}&fmt=EPUB  -->
-            <a href="#" data-reveal-id="fableSaved"  class="radius secondary button"> Save it for later</a>
+            <a id="btnSave" href="#" data-reveal-id="fableSaved"  class="radius secondary button disabled"> Save it for later</a>
             <!-- Reveal Modals begin -->
             <div id="fableSaved" class="reveal-modal" data-reveal>
               <h2>Fable saved.</h2>
@@ -79,4 +94,32 @@
 
 {% block extralatejavascripts %}
     <script src="/js/foundation/foundation.reveal.js"></script>  
+    <script>
+    
+        var disableButtons = function() {
+             // Replace link's "href" attribute
+             $('.disabled').on("click", function(e){
+                  e.preventDefault();
+                  return false;
+             });
+        }
+        
+        disableButtons();
+         
+        $(".xr").change(function() {
+     	  	
+     	  	if ($('#xNo').is(':checked')) {
+     	  		$("#btnProceed").addClass( "disabled" );
+            	$("#btnSave").addClass( "disabled" );
+             	disableButtons();
+            } else {
+            	$('.disabled').off('click');
+            	$("#btnProceed").removeClass( "disabled" );
+            	$("#btnSave").removeClass( "disabled" );
+
+            }
+       		
+        });
+         
+    </script>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "base_leftsidebar.html" %}
+{% extends "base_center.html" %}
 
 {% block title %}FableMe - Buy eBook{% endblock %}
 
@@ -18,13 +18,11 @@
     
         <div class="row">
         
-            <div class="large-5 columns">
+            <div class="large-5 columns" align="center">
              
                 	<fieldset>
-                		<legend>eBook</legend>
-
-                        <img name="cover_image" src="/img/covers/{{cover}}" width="100%" alt="{{fable.title}}" />
-
+                		<legend>Your eBook</legend>
+                        <img name="cover_image" src="/img/covers/{{cover}}" alt="{{fable.title}}" />
                 	</fieldset>
                             
            </div>
@@ -55,7 +53,7 @@
                                <li>
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
-                               <li><a href="/order?id={{fable.id}}&fmt=PDF" id="downloadbtn2" class="radius button">Buy</a></li>
+                               <li><a href="/order?id={{fable.id}}&fmt=PDF" id="downloadbtn2" class="radius button">Add to Cart</a></li>
                            </ul>
                            
                         </fieldset>
@@ -77,7 +75,7 @@
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
                                <li>
-                                    <a href="/order?id={{fable.id}}&fmt=EPUB" id="downloadbtn1" class="radius button">Buy</a>
+                                    <a href="/order?id={{fable.id}}&fmt=EPUB" id="downloadbtn1" class="radius button">Add to Cart</a>
                                </li>
                            </ul>
                                               
@@ -88,8 +86,6 @@
                        
         </div>
         
-
-    
     </div>
         
 
