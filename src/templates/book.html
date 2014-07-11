@@ -43,10 +43,16 @@
                     </td>
                     <td>
 	                    {% include "fable_details.html" %} 
-                        <a href="/step?s=0&id=-1" class="secondary radius button">Back to selection</a>
-                        &nbsp;
-                        <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this!</a>
-                        
+                        <div class="hide-for-small">
+                            <a href="/step?s=0&id=-1" class="secondary radius button">Back to selection</a>
+                            &nbsp;
+                            <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create this!</a>
+                        </div>
+                        <div class="show-for-small">
+                            <a href="/step?s=0&id=-1" class="secondary radius button">&lt;</a>
+                                &nbsp;
+                                <a href="/step?value={{fable.template_id}}&s=1&id=-1" class="radius button">Create</a>
+                        </div>
                     </td>
                 </tr>
                 <tr>

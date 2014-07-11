@@ -12,7 +12,7 @@
         
             <div class="row">
                     <h3>
-                        Start here, {{nickname}}!
+                        Start here, {{nickname|capfirst}}!
                     </h3>
                     <p>
                         With just a few clicks you can generate a complete fable!
@@ -39,18 +39,12 @@
                 </h5>
                 {% if nr_fables %}
     			<div>
-    				<a href="/step?s=0&id=-1" class="radius large button">Create a new fable</a>
-                    <!--
-    				&nbsp;- or -&nbsp;
-    				<a href="/editexisting" class="radius large button secondary">Edit an existing one</a>
-                    -->
+    				<a href="/step?s=0&id=-1" class="radius button">Create a new fable</a>
     			</div>
-    			
-    			
     			{% else %}
-    			    <p>
-                    	<a href="/step?s=0&id=-1" class="radius large button">Click here to begin!</a>
-                	</p>
+			    <div>
+                	<a href="/step?s=0&id=-1" class="radius button">Click here to begin!</a>
+            	</div>
     			{% endif %}
     
             </div>

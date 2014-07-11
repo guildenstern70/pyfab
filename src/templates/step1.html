@@ -12,12 +12,13 @@
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
             <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
             
-            <div class="large-4 small-4 columns">
+            <div class="large-4 small-6 columns">
                 <div class="row">
                     <img src="img/Tower-of-babel.jpg">
                 </div>    
             </div>
-            <div class="large-8 small-8 columns">
+            <div class="large-8 small-6 columns">
+
                 <div class="row">
                     <fieldset>
                     <label for='language'><b>Choose Language:</b></label> 
@@ -32,7 +33,7 @@
             
             </div>
             
-            <input type="button" value="Previous" 
+            <input type="button" value="Back" 
                    class="radius secondary button" 
                    onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
             <input type="submit" value="Next" class="radius button">
