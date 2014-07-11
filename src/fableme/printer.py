@@ -27,13 +27,18 @@ class Print(FablePage):
     def _prepare(self, user, fable_id):
         """ read the template """
         self.fable = Fabulator(user, fable_id) 
+        db_fable = Fabulator.get_fable(user, fable_id)
         self.ebookproxy = GeneratorProxy('unknown', self.fable.the_fable)
-        self.fable_contents = self.ebookproxy.load_template()
+        self.fable_contents = '\n' + db_fable.localized_title.upper() + '\n\n'
+        self.fable_contents += db_fable.dedication + '\n'
+        self.fable_contents += db_fable.sender + '\n\n'
+        self.fable_contents += self.ebookproxy.load_template()
     
     @login_required    
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') 
+        
         self._prepare(self.the_user, long(fable_id))
         self.template_values['fable_id'] = fable_id
         self.template_values['fable_contents'] = self.fable_contents

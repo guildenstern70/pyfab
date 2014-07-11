@@ -22,49 +22,41 @@
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
 
             <fieldset>
-                            
+                             
                 <div class="row">
                     <!-- SEX -->
                     <div class="large-4 columns">
                         <p>We are talking about:</p>
                     </div>
                     <div class="large-8 columns">
+                        <div class="switch">
                         {% if heroheroine == "hero" %} 
-                            <label for="value">
-                                <input type="radio" name="value" value="M" checked="checked" onclick="window.location='/step?s=2&value=M&id={{fable_id}}&refresh=1';">
-                                &nbsp;A hero (Male) &nbsp;
-                            </label>
-                            <label for="value">
-                                <input type="radio" name="value" value="F" onclick="window.location='/step?s=2&value=F&id={{fable_id}}&refresh=1';">
-                                &nbsp;A heroine (Female) 
-                            </label>
+                                                
+                              <input class="xr" type="radio" id="radHero" name="value" value="M" checked>
+                              <label for="radHero" onclick="">a Hero (M)</label>
+                              <input class="xr" type="radio" id="radHeroine" name="value" value="F" >
+                              <label for="radHeroine" onclick="">a Heroine (F)</label>
+                                                     
                         {% else %} 
-                            <label for="value">
-                                <input type="radio" name="value" value="M" onclick="window.location='/step?s=2&value=M&id={{fable_id}}&refresh=1';">&nbsp;A hero (Male) &nbsp;
-                            </label>
-                            <label for="value">
-                                <input type="radio" name="value" value="F" checked="checked" onclick="window.location='/step?s=2&value=F&id={{fable_id}}&refresh=1';">&nbsp;A heroine (Female)
-                            </label>  
+                        
+                              <input class="xr" type="radio" id="radHero" name="sex" value="M">
+                              <label for="radHero" onclick="">a Hero (M)</label>
+                              <input class="xr" type="radio" id="radHeroine" name="sex" value="F" checked >
+                              <label for="radHeroine" onclick="">a Heroine (F)</label>
+                             
                         {% endif %}
+                              <span></span>
+                        </div>
+                        {% if heroheroine == "heroine" %}
+                            <img id="mainImage" src="/img/{{heropicture_girl}}" width="100%" alt="A Female Protagonist">  
+                        {% else %}
+                            <img id="mainImage" src="/img/{{heropicture_boy}}" width="100%" alt="A Male Protagonist">
+                        {% endif %} 
                     </div>
 
                 </div>
                 <!-- row -->
-
-                <div class="row">
-                    <!-- DYNAMIC PICTURE -->
-                    <div class="large-4 columns">
-                        <label>&nbsp;</label>
-                    </div>
-                    <div class="large-8 columns">
-                        {% if heroheroine == "heroine" %}
-                            <img id="mainImage" src="/img/{{heropicture}}" width="220px" alt="A female Protagonist">
-                        {% else %}
-                            <img id="mainImage" src="/img/{{heropicture}}" width="220px" alt="A male Protagonist">    
-                        {% endif %} 
-                    </div>
-                </div>
-                
+                               
                 <div class="row">
                     <div class="large-12 columns">
                     &nbsp;
@@ -152,6 +144,16 @@
 {% endblock %} {% block extralatejavascripts %}
 <script src="/js/foundation/foundation.abide.js"></script>
 <script src="/js/gennames.js"></script>
+<script>
+      $(".xr").change(function() {
+    	     	  
+            imagePath = "/img/{{heropicture_boy}}";
+            if ($('#radHeroine').is(':checked')) {
+                imagePath = "/img/{{heropicture_girl}}";
+            }
+            $("#mainImage").attr("src", imagePath);
+      });
+</script>
 <script>
     Modernizr
             .load({

@@ -26,7 +26,7 @@ class Steps(object):
         self.current_step = step
         self.template_keys = [ 
                               ['language', 'fable'],
-                              ['heroheroine', 'heroname', 'heropicture', 'birthdate'],
+                              ['heroheroine', 'heroname', 'heropicture_boy', 'heropicture_girl', 'birthdate'],
                               ['sender', 'dedication'],
                               ['template_title', 'fable', 'heroheroine', 'sexagemismatch']
                              ]
@@ -76,7 +76,9 @@ class Fabulator(object):
             step_setter = Steps(step)
             map_of_values = {
                                  1: [self.the_fable.language, self.get_template()],
-                                 2: [self.hero_heroine(), self.the_fable.name, self.get_character_pic(), self.the_fable.birthdate],
+                                 2: [self.hero_heroine(), self.the_fable.name, 
+                                     self.get_character_pic('M'), self.get_character_pic('F'), 
+                                     self.the_fable.birthdate],
                                  3: [self.the_fable.sender, self.the_fable.dedication],
                                  4: [self.the_fable.template['title'], self.the_fable, self.hero_heroine(), self.get_sex_or_age_mismatch()]
                             }
@@ -88,11 +90,11 @@ class Fabulator(object):
         book = db.booktemplates.Book(template_id)
         return book
     
-    def get_character_pic(self):
+    def get_character_pic(self, sex):
         book = self.the_fable.template
-        character_img = book['prot_girl']
-        if (self.the_fable.sex =='M'):
-            character_img = book['prot_boy']
+        character_img = book['prot_boy']
+        if (sex=='F'):
+            character_img = book['prot_girl']            
         return character_img
     
     def get_sex_or_age_mismatch(self):
