@@ -4,15 +4,6 @@
 
 {% block maincontent %}
 
-    <div id="loading">
-        <div id="loadingcontent">
-            <p id="loadingspinner">
-                We are processing your order... Please wait
-            </p>
-        </div>
-    </div>
-
-
     <!-- Main Content Section -->
     <div class="large-12 small-12 columns">
     
@@ -32,8 +23,8 @@
                     <div class="row">
                     
                         <h2>{{fable.localized_title}}</h2>
-                        <p><i> &nbsp;
-                        Specifically printed for {{fable.character.to_nice_string}}</i></p>
+                        <p> &nbsp;
+                        Specifically printed for <i>{{fable.character.to_nice_string}}</i></p>
                     
                     </div>
                     
@@ -53,7 +44,9 @@
                                <li>
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
-                               <li><a href="/order?id={{fable.id}}&fmt=PDF" id="downloadbtn2" class="radius button">Add to Cart</a></li>
+                               <li>
+                                    <button id="customButton_pdf" class="radius button">Purchase</button>
+                               </li>
                            </ul>
                            
                         </fieldset>
@@ -75,12 +68,18 @@
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
                                <li>
-                                    <a href="/order?id={{fable.id}}&fmt=EPUB" id="downloadbtn1" class="radius button">Add to Cart</a>
+                                    <button id="customButton_epub" class="radius button">Purchase</button>
                                </li>
                            </ul>
                                               
                            </fieldset>
                     </div>
+                    
+                    <form id="orderform" action="/order" method="POST">
+                        <input id="id" name="id" type="hidden" value="{{fable.id}}">
+                        <input id="fmt" name="fmt" type="hidden" value="unknown">
+                        <input id="stripeToken" name="stripeToken" type="hidden" value="unknown">
+                    </form>
                     
            </div>
                        
@@ -92,31 +91,52 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-    <script src="/js/vendor/spin.js"></script>  
-    <script>
-        $(function () {
-        	
-        	var spinAnimation = function () {
-                $("#loading").fadeIn();
-                var opts = {
-                    lines: 12, // The number of lines to draw
-                    length: 7, // The length of each line
-                    width: 4, // The line thickness
-                    radius: 10, // The radius of the inner circle
-                    color: '#000', // #rgb or #rrggbb
-                    speed: 1, // Rounds per second
-                    trail: 60, // Afterglow percentage
-                    shadow: false, // Whether to render a shadow
-                    hwaccel: false // Whether to use hardware acceleration
-                };
-                var target = document.getElementById('loading');
-                var spinner = new Spinner(opts).spin(target);
-        	};
+<script src="https://checkout.stripe.com/checkout.js"></script>  
+<script>
 
-            $("#downloadbtn1").click(spinAnimation);
-            $("#downloadbtn2").click(spinAnimation);
-        });
-    </script>
+  var handler_pdf = StripeCheckout.configure({
+    key: 'pk_test_9xUAh8Iti2qgRuYkaOH27hmN',
+    image: 'img/pdf_img.png',
+    token: function(token) {
+    	  console.log(JSON.stringify(token));
+          $('#fmt').val('PDF');
+          $('#stripeToken').val(token.id);
+          $('#orderform').submit();
+    }
+  });
+  
+  var handler_epub = StripeCheckout.configure({
+	    key: 'pk_test_9xUAh8Iti2qgRuYkaOH27hmN',
+	    image: 'img/epub.jpg',
+	    token: function(token) {
+	      $('#fmt').val('EPUB');
+	      $('#stripeToken').val(token.id);
+	      $('#orderform').submit();
+	    }
+  });
+  
+  $( "#customButton_pdf" ).click(function(e) {
+	  // Open Checkout with further options
+	    handler_pdf.open({
+	      name: 'FableMe Shop',
+	      description: 'PDF eBook (EUR 4.99)',
+	      amount: 499
+	    });
+	    e.preventDefault();
+  });
+  
+  $( "#customButton_epub" ).click(function(e) {
+	// Open Checkout with further options
+	    handler_epub.open({
+	      name: 'FableMe Shop',
+	      description: 'ePUB eBook (EUR 4.99)',
+	      amount: 499
+	    });
+	    e.preventDefault();
+  });
+
+
+</script>
 
 {% endblock %}
 
