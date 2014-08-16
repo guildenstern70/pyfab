@@ -290,6 +290,7 @@ class Order(FablePage):
         except Exception, e:
             # Something else happened, completely unrelated to Stripe
             logging.error('STRIPE ERROR: Generic error, non stripe')
+            logging.exception(e) 
             self._errormsg1 = "Credit Card Transaction Error"
             self._errormsg2 = "Generic error"
             
