@@ -94,8 +94,10 @@
 <script src="https://checkout.stripe.com/checkout.js"></script>  
 <script>
 
+  var STRIPE_PK = 'pk_test_Ofj68pEBZiRjxa0y8b4JPD4w';
+
   var handler_pdf = StripeCheckout.configure({
-    key: 'pk_test_9xUAh8Iti2qgRuYkaOH27hmN',
+    key: STRIPE_PK,
     image: 'img/pdf_img.png',
     token: function(token) {
     	  console.log(JSON.stringify(token));
@@ -106,7 +108,7 @@
   });
   
   var handler_epub = StripeCheckout.configure({
-	    key: 'pk_test_9xUAh8Iti2qgRuYkaOH27hmN',
+	    key: STRIPE_PK,
 	    image: 'img/epub.jpg',
 	    token: function(token) {
 	      $('#fmt').val('EPUB');
