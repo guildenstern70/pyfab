@@ -12,7 +12,6 @@
 import logging
 import time
 import stripe
-import json
 
 import fableme.db.dbutils as dbutils
 import fableme.db.schema as schema
@@ -237,14 +236,11 @@ class Order(FablePage):
         logging.debug('Beginning Stripe Order Management')
         order_complete = False
         
-        # Set your secret key: remember to change this to your live secret key in production
-        # See your keys here https://dashboard.stripe.com/account
-        stripe.api_key = "sk_test_BDbwF7BGNKPw8DQZiXQNoldX"
+        # Stripe API Key
+        stripe.api_key = "sk_test_vojAPjPK6uORgf8fGejCkuGQ"
         
-        # Get the credit card details submitted by the form
         logging.debug('Token is ' + token)
         
-        # Create the charge on Stripe's servers - this will charge the user's card
         try:
             logging.debug('Charging credit card for user ' + customer_email)
             charge = stripe.Charge.create(
@@ -257,7 +253,6 @@ class Order(FablePage):
             logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
             logging.debug('Transaction done.')
         except stripe.CardError, e:
-            # Since it's a decline, stripe.error.CardError will be caught
             body = e.json_body
             err  = body['error']
             self._errormsg1 = "Credit Card Transaction Error"
