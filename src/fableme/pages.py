@@ -12,6 +12,7 @@
 import logging
 import time
 import stripe
+import random
 
 import fableme.db.dbutils as dbutils
 import fableme.db.schema as schema
@@ -42,6 +43,25 @@ class Contacts(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "contacts.html")
+        
+    def get(self):
+        self._x = random.randint(1, 10)
+        self._y = random.randint(1, 10)
+        self.template_values['x_num'] = self._x
+        self.template_values['y_num'] = self._y
+        self.template_values['xyxy'] = self._x + self._y
+        self.render()
+        
+    def post(self):
+        email_contact = self.request.get('contactEmail')
+        email_name = self.request.get('contactName')
+        email_problem = self.request.get('contactProblem')
+        email_message = self.request.get('mailMessage')
+        logging.debug('Sending contact mail')
+        logging.debug('eMail > ' + email_contact)
+        logging.debug('Name > ' + email_name)
+        logging.debug('Problem > ' + email_problem)
+        logging.debug('Message > ' + email_message)
         
 class EditExisting(FablePage):
     """ /editexisting page """
@@ -247,7 +267,7 @@ class Order(FablePage):
                   amount=499, # amount in cents, again
                   currency="eur",
                   card=token,
-                  description="payinguser@example.com")
+                  description="Your purchase at FableMe.com")
             order_complete = True
             logging.debug('Issued an order for ' + charge.amount + ' ' + charge.currency)
             logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)

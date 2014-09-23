@@ -4,7 +4,7 @@
 
 {% block maincontent %}
   <!-- Main Page Content and Sidebar -->
-
+  
   <div class="row">
 
     <!-- Contact Details -->
@@ -25,19 +25,19 @@
 		      <table>
 		      	<tr>
 		      		<td>Your e-Mail address:</td>
-		      		<td colspan="2"><input type="email">
+		      		<td colspan="2"><input name="contactEmail" type="email" required pattern="email">
 		      		<small class="error">An email address is required.</small>
 		      		</td>
 		      	</tr>
 		        <tr>
 		      		<td>Your name:</td>
-		      		<td colspan="2"><input type="text" required pattern="alpha_numeric">
+		      		<td colspan="2"><input type="text" name="contactName" required pattern="alpha_numeric">
 		      		<small class="error">A name is required.</small>
 		      		</td>
 		      	</tr>
 		        <tr>
 		      		<td>Type of message:</td>
-		      		<td colspan="2"><select>
+		      		<td colspan="2"><select name="contactProblem">
 					   <option value="commercial">Commercial/Business</option>
 					   <option value="fable">I have a problem with a fable</option>
 					   <option value="suggestions">Suggestions/Comments/Criticism</option>
@@ -46,15 +46,40 @@
 		      	</tr>
 		      	<tr>
 		      		<td>Please prove you are human:</td>
-		      		<td><i>Type the sum of 8+7</i></td>
-		      		<td><input type="text" required pattern="numeric">
-		      		<small class="error">Human verification is required and must be a number.</small>
+		      		<td><i>Type the sum of {{x_num}}+{{y_num}} : </i>
+                        <input type="hidden" name="xpassword" id="xpassword" value="{{xyxy}}">
+                    </td>
+		      		<td>     
+                        <script>
+                        
+                        var checkMatch = function()
+                        {
+                        	var thoughtVal = $('#xpassword').val();
+                        	var inputVal = $('#typeText').val();
+                        	
+                        	if (thoughtVal != inputVal)
+                        	{
+                        		$('#typeText').val('');
+                        		$('#typeText').focus();
+                        	}
+                        	else
+                        	{
+                        		$('#matchcase').removeClass('error');	
+                        		$('#typeText').removeAttr('data-invalid');
+                        	}
+                        }
+                        
+                        </script>
+                        <div id="matchcase" class="">          
+                            <input id="typeText" type="text" required onblur="checkMatch();">
+        		      		<small class="error">Human verification failed! Please retry</small>
+                        </div>    
 		      		</td>
 		      	</tr>
 		      	<tr>
 		      		<td>Message:</td>
 		      		<td colspan="2">
-		      			<textarea rows="10" cols="40" required>
+		      			<textarea name="mailMessage" rows="10" cols="40" required>
  						</textarea>
  						<small class="error">The message body is required.</small>
  					</td>
