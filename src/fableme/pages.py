@@ -25,10 +25,10 @@ from google.appengine.ext import deferred
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
+from google.appengine.api import mail
 
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
-
 
 # Pages
 
@@ -52,16 +52,25 @@ class Contacts(FablePage):
         self.template_values['xyxy'] = self._x + self._y
         self.render()
         
+    def sendcontactmail(self, email, name, problem, message):
+        to_field = name + ' <' + email + '>'
+        body_field = message
+        mail.send_mail(sender = "FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to=to_field,
+                       subject="Support request: " + problem,
+                       body=body_field)
+        
     def post(self):
-        email_contact = self.request.get('contactEmail')
-        email_name = self.request.get('contactName')
-        email_problem = self.request.get('contactProblem')
-        email_message = self.request.get('mailMessage')
+        email_contact = self.request.get('contactEmail').strip()
+        email_name = self.request.get('contactName').strip()
+        email_problem = self.request.get('contactProblem').strip()
+        email_message = self.request.get('mailMessage').strip()
         logging.debug('Sending contact mail')
-        logging.debug('eMail > ' + email_contact)
-        logging.debug('Name > ' + email_name)
-        logging.debug('Problem > ' + email_problem)
-        logging.debug('Message > ' + email_message)
+        self.sendcontactmail(email_contact, email_name, email_problem, email_message)
+        logging.debug('Done.')
+        self.redirect('/contacts?sentmail=y')
+        
+
         
 class EditExisting(FablePage):
     """ /editexisting page """

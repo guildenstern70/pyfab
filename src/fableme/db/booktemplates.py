@@ -23,9 +23,9 @@ books = (
             'age_recomm_min': 5,
             'age_recomm_max': 12,
             'author_img':'dana.jpg',
-            'author_name': 'Dana Sandu',
+            'author_name': 'Dana Dansu',
             'author_ill':'Noha Elhady',
-            'author_desc': '''Dana Sandu is Chief Officer at FableMe, and a recognized writer 
+            'author_desc': '''Dana Dansu is Chief Officer at FableMe, and a recognized writer 
                               of fables and novels for teenagers. She has a beautiful daughter, 
                               Diana, who is the first passionate lover of FableMe.com fables!''',
             'desc_title': 'A great adventure...',
@@ -60,9 +60,9 @@ books = (
                 'prot_boy': 'prot_voyage_boy.jpg',
                 'prot_girl': 'prot_voyage_girl.jpg',
                 'author_img':'dana.jpg',
-                'author_name': 'Dana Sandu',
+                'author_name': 'Dana Dansu',
                 'author_ill':'Noha Elhady',
-                'author_desc': '''Dana Sandu is Chief Officer at FableMe, and a recognized writer 
+                'author_desc': '''Dana Dansu is Chief Officer at FableMe, and a recognized writer 
                                   of fables and novels for teenagers. She has a beautiful daughter, 
                                   Diana, who is the first passionate lover of FableMe.com fables!''',
                 'desc_title': 'A dream comes true',
