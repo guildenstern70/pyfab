@@ -37,10 +37,13 @@ class Index(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "index.html")
+    
+TO_ADDRESS = 'info@fableme.com'
+CCN_ADDRESSES = ['alessiosaltarin@gmail.com', 'sdi78@yahoo.com']
         
 class Contacts(FablePage):
     """ /contacts page """
-    
+        
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "contacts.html")
         
@@ -53,12 +56,18 @@ class Contacts(FablePage):
         self.render()
         
     def sendcontactmail(self, email, name, problem, message):
-        to_field = name + ' <' + email + '>'
+        
+        from_field = name + ' <' + email + '>'
         body_field = message
+        body_field += "\n================================="
+        body_field += "\n Send answer to: "
+        body_field += "\n " + from_field
+        body_field += "\n================================="
         mail.send_mail(sender = "FableMe.com Support <support@fableomatic.appspotmail.com>",
-                       to=to_field,
-                       subject="Support request: " + problem,
-                       body=body_field)
+                       to = TO_ADDRESS,
+                       bcc = CCN_ADDRESSES,
+                       subject = "[FABLEME - "+ problem +"] Support request from " + name,
+                       body = body_field)
         
     def post(self):
         email_contact = self.request.get('contactEmail').strip()
@@ -71,7 +80,6 @@ class Contacts(FablePage):
         self.redirect('/contacts?sentmail=y')
         
 
-        
 class EditExisting(FablePage):
     """ /editexisting page """
     
