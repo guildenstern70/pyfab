@@ -239,6 +239,16 @@ class Book(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
         
+class HowEPub(FablePage):
+    """ Handler for /howepub page """ 
+  
+    def get(self):
+        """ http get handler """
+        self.render()
+                
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'howepub.html')
+
 class Buy(FablePage):
     """ Handler for /buy page """ 
     
