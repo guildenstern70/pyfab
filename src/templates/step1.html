@@ -6,38 +6,46 @@
 
     <div class="row">
         <h3>Language...</h3>
+        <p>Template: {{fable.title}}</p>
     </div>
 
     <div class="row">
+            
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
             <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
             
-            <div class="large-4 small-6 columns">
-                <div class="row">
-                    <img src="img/language-learning.jpg">
-                </div>    
-            </div>
-            <div class="large-8 small-6 columns">
-
-                <div class="row">
-                    <fieldset>
-                    <label for='language'><b>Choose Language:</b></label> 
-                     <select name='value' id='slcLang' required>
-                        <option value="">---</option>
-                        <option value="EN">English</option>
-                        <option value="IT">Italian</option>
-                        <option value="RO">Romanian</option>
-                     </select>
-                    </fieldset>
-                </div>
-            
-            </div>
-            
-            <input type="button" value="Back" 
-                   class="radius secondary button" 
-                   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
-            <input type="submit" value="Next" class="radius button">
+        <table>
+        
+        	<tr>
+		        <td width="30%" class="hide-for-small">
+		             <img src="img/language-learning.jpg"> 
+		        </td> 
+           
+		        <td>
+		          <table>
+		          	<tr>
+		                    <fieldset>
+		                    <label for='language'><b>Choose Language:</b></label> 
+		                     <select name='value' id='slcLang' required>
+		                        <option value="">---</option>
+		                        <option value="EN">English ({{fable.title}})</option>
+		                        <option value="IT">Italian ({{fable.title_IT}})</option>
+		                        <option value="RO">Romanian ({{fable.title_RO}})</option>
+		                     </select>
+		                    </fieldset>
+		            	</tr>
+		            	<tr>
+				            <input type="button" value="Back" 
+				                   class="radius secondary button" 
+				                   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
+				            <input type="submit" value="Next" class="radius button">
+		            	</tr>
+		            </table>
+		        </td>
+           </tr>
+        </table>
         </form>
+
     </div>
 
 </div>

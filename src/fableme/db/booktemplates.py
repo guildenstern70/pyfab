@@ -10,7 +10,7 @@ books = (
             'title_RO': u'Aventuri cu pirații',
             'title_IT': 'Avventure coi pirati',
             'sku': 'SKU #83321',
-            'languages': 'English, Italian',
+            'languages': 'English, Italian, Romanian',
             'issuu_id': '8025851/5449283',
             'cover_image': 'When_I_met_the_Pirates.jpg',
             'bookimg_girl': 'cover_pirates_girl.jpg',
@@ -19,21 +19,21 @@ books = (
             'prot_boy': 'prot_pirate_boy.jpg',
             'prot_girl': 'prot_pirate_girl.jpg',
             'sex_recomm': 'MF',
-            'default_sex': 'M',
+            'default_sex': 'MF',
             'age_recomm_min': 5,
             'age_recomm_max': 12,
             'author_img':'dana.jpg',
-            'author_name': 'Dana Dansu',
+            'author_name': 'Anna Petrescu',
             'author_ill':'Noha Elhady',
-            'author_desc': '''Dana Dansu is Chief Officer at FableMe, and a recognized writer 
+            'author_desc': '''Anna Petrescu is Chief Officer at FableMe, and a recognized writer 
                               of fables and novels for teenagers. She has a beautiful daughter, 
                               Diana, who is the first passionate lover of FableMe.com fables!''',
             'desc_title': 'A great adventure...',
-            'desc_desc': '''"When I met the Pirates" is a beautiful pirate story for boys and girls all over the world. 
-                            The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
+            'desc_desc': '''This is a beautiful pirate story for boys and girls all over the world. 
+                            The hero/heroine joins an interesting crew made of a dog pirate, a cat pirate, 
                             a parrot pirate and a rat pirate. Together they sail the seas and have 
-                            a lot of fun...''',
-            'desc_short': '''The hero, Peter, joins an interesting crew made of a dog pirate, a cat pirate, 
+                            a lot of fun.''',
+            'desc_short': '''The hero/heroine joins an interesting crew made of a dog pirate, a cat pirate, 
                             a parrot pirate and a rat pirate. Together they sail the seas and have 
                             a lot of fun....'''
             
@@ -47,34 +47,33 @@ books = (
                 'title_RO': u'Voiajul meu în Aragon',
                 'title_IT': 'Il mio viaggio ad Aragon',
                 'sku': 'SKU #83203',
-                'languages': 'English',
+                'languages': 'English, Italian, Romanian',
                 'issuu_id': '8868387/4252762',
                 'cover_image': 'My_voyage_to_Aragon.jpg',
                 'bookimg_girl': 'cover_voyage.jpg',
                 'bookimg_boy': 'cover_voyage_boy.jpg',
                 'sex_recomm': 'MF',
-                'default_sex': 'F',
+                'default_sex': 'MF',
                 'age_recomm_min': 5,
                 'age_recomm_max': 12,
                 'sidebar_pic': 'Anna.jpg',
                 'prot_boy': 'prot_voyage_boy.jpg',
                 'prot_girl': 'prot_voyage_girl.jpg',
                 'author_img':'dana.jpg',
-                'author_name': 'Dana Dansu',
+                'author_name': 'Anna Petrescu',
                 'author_ill':'Noha Elhady',
-                'author_desc': '''Dana Dansu is Chief Officer at FableMe, and a recognized writer 
+                'author_desc': '''Anna Petrescu is Chief Officer at FableMe, and a recognized writer 
                                   of fables and novels for teenagers. She has a beautiful daughter, 
                                   Diana, who is the first passionate lover of FableMe.com fables!''',
                 'desc_title': 'A dream comes true',
-                'desc_desc': """This is the story of little Anna, a beautiful princess who travels 
+                'desc_desc': """This is the story of a little prince/princess who travels 
                                 to the land of Aragon and discovers that wisdom (knowledge) and wit
                                 (perception and learning) are both needed in life. It is written 
                                 with a medieval feel and as a rhyming ode. The story follows 
-                                Anna who is riding to school on her pony and becomes distracted 
-                                when they meet a fox. She, her pony and the fox begin a journey 
-                                through the forest. As the princess progresses through the adventures 
-                                she reflects after each one on the moral or learning point.""",
-                'desc_short': '''A beautiful princess travels 
+                                the hero/heroine who is riding to school on his/her pony and becomes distracted 
+                                when they meet a fox. Accompanied by the pony and the fox, a fantastic journey 
+                                through the forest begins.""",
+                'desc_short': '''A beautiful prince/princess travels 
                                 to the land of Aragon and discovers that wisdom and wit
                                 are both needed in life...'''
                 
@@ -88,13 +87,13 @@ books = (
             'title_RO': 'Povestea talismanului din Badia',
             'title_IT': 'La fantastica storia del talismano della Badia',
             'sku': 'SKU #83232',
-            'languages': 'English, Italian',
+            'languages': 'English, Italian, Romanian',
             'issuu_id': '8868387/6765671',
             'cover_image': 'The_talisman_of_the_Badia.jpg',
             'bookimg_girl': 'cover_badia.jpg',
             'bookimg_boy': 'cover_badia.jpg',
             'sex_recomm': 'MF',
-            'default_sex': 'M',
+            'default_sex': 'MF',
             'age_recomm_min': 8,
             'age_recomm_max': 16,
             'sidebar_pic': 'Capture.jpg',
@@ -108,12 +107,12 @@ books = (
             'desc_title': 'An old tale retold again',
             'desc_desc': """In a green and flat land crossed by a river whose waters flowed 
                             impetuous and full of fish, a young princess is imprisoned in the
-                            high tower of a castle. Young Andrew, the so-called God-Of-The-Turks,
+                            high tower of a castle. A young prince, the so-called God-Of-The-Turks,
                             comes out of the blue to rescue her. A classic fable for every
                             dreamer boy or girl.""",
             'desc_short': '''A young princess is imprisoned in the
-                            high tower of a castle. Young Andrew, the so-called God-Of-The-Turks,
-                            comes out of the blue to rescue her.'''
+                            high tower of a castle. A young prince, the so-called God-Of-The-Turks,
+                            comes out of the blue to rescue her...'''
         }
     )
 

@@ -59,7 +59,20 @@
                 	<td colspan="2">
                 	
                 		<div class="section-container tabs" data-section="tabs">
-	        	              
+	        
+				              <section class="active">
+				                <p class="title" data-section-title>
+				                	<a href="#">Description</a>
+				                </p>
+				                
+				                <div class="content" data-section-content>
+				                    <p>&nbsp;</p>
+				                    <h3>{{fable.desc_title}}</h3>
+				                    <p>{{fable.desc_desc}}</p>
+				                    <p>&nbsp;</p>
+				                </div>
+				              </section>
+				              
 				              <section>
 				                <p class="title" data-section-title>
 				                	<a href="#">Reviews</a>
@@ -90,6 +103,24 @@
 				                </div>
 				              </section>
 				              
+				              <section>
+				                <p class="title" data-section-title>
+				                	<a href="#">Author</a>
+				                </p>
+				                <div class="content" data-section-content>
+				                  <table>
+				                        <tr>
+				                            <td valign="top" width="33%"><img src="/img/{{fable.author_img}}" width="110" alt="{{author_name}}" /></td>
+				                            <td>
+				                                <article>
+				                                <p><b>Author: {{fable.author_name}}</b></p>
+				                                <p>{{fable.author_desc}}</p>
+				                                </article>
+				                            </td>
+				                        </tr>
+				                  </table>
+				                </div>
+				              </section>
 	              
 	    		</div><!-- div class="section-container tabs" -->
                 	
