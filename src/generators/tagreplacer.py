@@ -28,7 +28,6 @@ class Replacer(object):
     def get_replacements(self):
         ''' Return a dictionary: <tag>: replacement word '''
         self.tags = self._extract_tags_from_template()
-        print '-- Found %i tags...' % len(self.tags)
         replacements = self._build_dictionary()
         return replacements
         
