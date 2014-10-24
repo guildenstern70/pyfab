@@ -25,10 +25,10 @@ class Steps(object):
     def __init__(self, step):
         self.current_step = step
         self.template_keys = [ 
-                              ['language', 'fable'],
-                              ['heroheroine', 'heroname', 'heropicture_boy', 'heropicture_girl', 'birthdate'],
+                              ['fable_template', 'language'],
+                              ['heroheroine', 'heropicture_boy', 'heropicture_girl', 'birthdate'],
                               ['sender', 'dedication'],
-                              ['template_title', 'fable', 'heroheroine', 'sexagemismatch']
+                              ['template_title', 'heroheroine', 'sexagemismatch']
                              ]
         
     def template_values(self, template_values, list_of_values):
@@ -68,6 +68,7 @@ class Fabulator(object):
         logging.debug('Building template values for step = ' + str(step))   
         template_values = {
             'fable_id': self.the_fable.id,
+            'fable': self.the_fable,
             'nickname': self.the_user.nickname(),
             'logout_url':  users.create_logout_url("/"),
             'version': version()
@@ -75,12 +76,11 @@ class Fabulator(object):
         if (step > 0): 
             step_setter = Steps(step)
             map_of_values = {
-                                 1: [self.the_fable.language, self.get_template()],
-                                 2: [self.hero_heroine(), self.the_fable.name, 
-                                     self.get_character_pic('M'), self.get_character_pic('F'), 
+                                 1: [self.get_template(), self.the_fable.language ],
+                                 2: [self.hero_heroine(), self.get_character_pic('M'), self.get_character_pic('F'), 
                                      self.the_fable.birthdate],
                                  3: [self.the_fable.sender, self.the_fable.dedication],
-                                 4: [self.the_fable.template['title'], self.the_fable, self.hero_heroine(), self.get_sex_or_age_mismatch()]
+                                 4: [self.the_fable.template['title'], self.hero_heroine(), self.get_sex_or_age_mismatch()]
                             }
             template_values = step_setter.template_values(template_values, map_of_values[step])
         return template_values
