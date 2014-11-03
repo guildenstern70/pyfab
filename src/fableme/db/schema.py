@@ -78,7 +78,8 @@ class DbFable(db.Model):
     ready = db.BooleanProperty(default=False)
     bought = db.BooleanProperty(default=False)
     purchased = db.DateTimeProperty()
-    downlink = db.StringProperty()
+    downlink_pdf = db.StringProperty()
+    downlink_epub = db.StringProperty()
     
     def __id(self):
         return self.key().id()

@@ -49,20 +49,38 @@ class Print(FablePage):
         FablePage.__init__(self, request, response, 'print.html')
         
 class PrinteBook():
-    """ /print/book page """ 
+    """ /print/book page
+        Valid values for fable_format: EPUB, PDF, EBOOK
+        When fable_format == EBOOK, every format is generated 
+    """ 
     
     def _prepare(self, user, fable_id, fable_format):
         """ read the template and prepare for pdf creation """
         self.fable = Fabulator(user, fable_id) 
         self.ebookproxy = GeneratorProxy(fable_format, self.fable.the_fable)
         self.fable_contents = self.ebookproxy.load_template()
-    
-    def _build(self, fable_id, fable_format, user):
+        
+    def _build_specific_format(self,  fable_id, fable_format, user):
+        """ Build file, save it and return download link """
         self._prepare(user, long(fable_id), fable_format)
         self.ebookproxy.prepare_ebook()
+        return self._download_url(fable_format)
+    
+    def _build(self, fable_id, fable_format, user):
+        """ Returns a dictionary containing download links 
+            for every format, ie: {'PDF': 'http://www.ddshkdsj.com/833890', 'EPUB': 'http://www.ddshkdsj.com/833891'} """
+        download_links = {}
+        if (fable_format == "EBOOK"):
+            # PDF
+            download_links['PDF'] = self._build_specific_format(fable_id, 'PDF', user)
+            # EPUB
+            download_links['EPUB'] = self._build_specific_format(fable_id, 'EPUB', user)
+        else:   
+            download_links[fable_format] = self._build_specific_format(fable_id, fable_format, user)
+        return download_links
         
     def _download_url(self, fable_format):
-        blobkey = self.ebookproxy.save_ebook()
+        blobkey = self.ebookproxy.save_ebook() # this method returns physical file location
         nick = self.fable.the_fable.name
         titlebrief = self.fable.the_fable.template['title_brief']
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
@@ -72,20 +90,24 @@ class PrinteBook():
       
     def printBook(self, fable_id, fable_format):
         logging.info('Initiating process print ebook id='+fable_id)
-        self._build(fable_id, fable_format, self.user)
+        downlinks = self._build(fable_id, fable_format, self.user)
         # Update DB fable
         dbfable = schema.DbFable.get_fable(self.user, long(fable_id))
         dbfable.bought = True
-        link_url = self._download_url(fable_format)
-        dbfable.downlink = link_url
+        link_pdf = downlinks['PDF']
+        link_epub = downlinks['EPUB']      
+        if (link_pdf is not None):
+            dbfable.downlink_pdf = link_pdf
+        if (link_epub is not None):
+            dbfable.downlink_epub = link_pdf
         dbfable.purchased = datetime.datetime.now()
         dbfable.put()
         logging.info('Ended process pring ebook id='+fable_id)
         dbuser = schema.DbFableUser.get_from_user(self.user)
         logging.info('Sending email advice to '+dbuser.email)
-        self.sendmail(dbuser, link_url)
+        self.sendmail(dbuser, downlinks)
         
-    def sendmail(self, dbuser, ebook_link):     
+    def sendmail(self, dbuser, ebook_links):     
         receiver = 'user'
         if (dbuser.name):
             receiver = dbuser.name.title()
@@ -99,16 +121,12 @@ The eBook you recently purchased from FableMe.com is ready.  You can now visit
 http://www.fableme.com/ and sign in using your Google Account to
 download it. To do so, navigate to your Account page, under the tab 'Purchased eBooks'.
 
-You can also directly download it, by clicking the link below:
-
-http://fableomatic.appspot.com[link]
 
 Sincerely,
 Your FableMe Team
         """
         
         body_field = body_field.replace('[name]', receiver)
-        body_field = body_field.replace('[link]', ebook_link)
         mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
                       to=to_field,
                       subject="Your FableMe eBook is ready!",

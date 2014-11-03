@@ -178,7 +178,9 @@ class MyAccount(FablePage):
         self.template_values['return_page'] = 'myaccount?panel=2'
         self.template_values['panel'] = panel
         self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
-        self.template_values['bought_fables'] = dbutils.Queries.get_my_bought_fables(self.the_user)
+        purchased_books = dbutils.Queries.get_my_bought_fables(self.the_user)
+        logging.debug('User purchased ' + str(purchased_books.count()) + ' books.')
+        self.template_values['bought_fables'] = purchased_books
         self.render()
         
     def post(self):
@@ -296,7 +298,7 @@ class Order(FablePage):
                   card=token,
                   description="Your purchase at FableMe.com")
             order_complete = True
-            logging.debug('Issued an order for ' + charge.amount + ' ' + charge.currency)
+            logging.debug('Issued an order for ' + str(charge.amount) + charge.currency)
             logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
             logging.debug('Transaction done.')
         except stripe.CardError, e:

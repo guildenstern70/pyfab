@@ -1,11 +1,13 @@
-<table>
+    <table>
 	<thead>
 		<tr>
     		<th>&nbsp;</th>
             <th>Fable Template</th>
     		<th>Child Name</th>
-    		<th>Download</th>
-            <th>Purchase Date</th>
+            <th>Purchased</th>
+    		<th>Download PDF</th>
+            <th>Download ePUB</th>
+            <th>&nbsp;</th>
             <th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -15,10 +17,27 @@
 			<td><a href="#">{{forloop.counter}}</a></td>
             <td>{{fable.template.title}}</td>
 			<td>{{fable.name}}</td>
-			<td><a href="{{fable.downlink}}"><b>Click to download&hellip;</b></a></td>	
-            <td>{{fable.purchased}}</td>	
-			<td><a href="{{fable.downlink}}"><img src="/img/download.png" width="30px" alt="Download"></a></td>
-
+            <td>{{fable.purchased}}</td>    
+            {% if fable.downlink_pdf %}
+                <td><a href="{{fable.downlink_pdf}}"><b>Download PDF&hellip;</b></a></td>  
+            {% else %}
+			    <td>-</td>	
+            {% endif %}
+            {% if fable.downlink_epub %}
+                <td><a href="{{fable.downlink_epub}}"><b>Download ePub&hellip;</b></a></td>  
+            {% else %}
+                <td>-</td>  
+            {% endif %} 
+            {% if fable.downlink_pdf %}
+                <td><a href="{{fable.downlink_pdf}}"><img src="/img/generatepdf.png" width="30px" alt="Download PDF"></a></td>
+            {% else %}
+                <td>&nbsp;</td>  
+            {% endif %}
+            {% if fable.downlink_epub %}
+                <td><a href="{{fable.downlink_epub}}"><img src="/img/epub.jpg" width="30px" alt="Download ePUB"></a></td>
+            {% else %}
+                <td>&nbsp;</td>  
+            {% endif %}      
 		</tr>
 	{% empty %}
 		<tr>
