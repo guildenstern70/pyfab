@@ -30,30 +30,48 @@
                     
                     <div class="row">
                     
-                        <fieldset>
-                            <legend>Order</legend>
-							
-							<p> &nbsp;
-                            After payment the book can be downloaded in all formats 
-							made availabe by FableMe.com. 
-							</p>
-                        
-                            <ul class="small-block-grid-4">           
-
+                    	<fieldset>
+                            <legend>PDF Version</legend>
+                            
+                            <ul class="small-block-grid-4">
                                <li>
-                                    <img src="img/pdf_img.png" width="60%" alt="PDF">
-                               </li>                                       
+                                    <img src="img/pdf_img.png" width="60%" alt="Buy the PDF version">
+                               </li>                             
                                <li>
-                                     <img src="img/epub.jpg" width="50%" alt="ePub">
-                               </li>       
+                                    {{ebook_price_string}}
+                               </li>
                                <li>
-                                    <button id="customButton" class="radius button">
-										Purchase
-									</button>
-                               </li>                      
+                                    <a href="#" class="secondary radius button">Preview</a>&nbsp;
+                               </li>
+                               <li>
+                                    <button id="customButton_pdf" class="radius button">Purchase</button>
+                               </li>
                            </ul>
                            
                         </fieldset>
+                    </div>
+                    
+                    <div class="row">
+                    
+                   	        <fieldset>
+                            <legend>ePub Version</legend>
+                            
+                            <ul class="small-block-grid-4">
+                               <li>
+                                    <img src="img/epub.jpg" width="50%" alt="Buy the ePub version">
+                               </li>
+                               <li>
+                                    {{ebook_price_string}}
+                               </li>
+                               <li>
+                                    <a href="#" class="secondary radius button">Preview</a>&nbsp;
+                               </li>
+                               <li>
+                                    <button id="customButton_epub" class="radius button">Purchase</button>
+                               </li>
+                           </ul>
+                                              
+                           </fieldset>
                     </div>
                     
                     <form id="orderform" action="/order" method="POST">
@@ -77,23 +95,47 @@
 
   var STRIPE_PK = 'pk_test_Ofj68pEBZiRjxa0y8b4JPD4w';
 
-  var handler_ebook = StripeCheckout.configure({
+  var handler_pdf = StripeCheckout.configure({
+    key: STRIPE_PK,
+    image: 'img/pdf_img.png',
+    token: function(token) {
+    	  console.log(JSON.stringify(token));
+          $('#fmt').val('PDF');
+          $('#stripeToken').val(token.id);
+          $('#orderform').submit();
+    }
+  });
+  
+  var handler_epub = StripeCheckout.configure({
 	    key: STRIPE_PK,
-	    image: 'img/fableme_logo_xs.jpg',
+	    image: 'img/epub.jpg',
 	    token: function(token) {
-	      $('#fmt').val('EBOOK');
+	      $('#fmt').val('EPUB');
 	      $('#stripeToken').val(token.id);
 	      $('#orderform').submit();
 	    }
   });
   
-  $( "#customButton" ).click(function(e) {
-	// Open Checkout with further options
-	    handler_ebook.open({
+  $( "#customButton_pdf" ).click(function(e) {
+	  // Open Checkout with further options
+	    handler_pdf.open({
 	      name: 'FableMe Shop',
-	      description: 'eBook (EUR 4.99)',
+	      description: 'PDF eBook ({{ebook_price_string}})',
 	      currency: 'EUR',
-	      amount: 499
+	      amount: {{ebook_price_cents}},
+	      email: '{{user_email}}'
+	    });
+	    e.preventDefault();
+  });
+  
+  $( "#customButton_epub" ).click(function(e) {
+	// Open Checkout with further options
+	    handler_epub.open({
+	      name: 'FableMe Shop',
+	      description: 'ePUB eBook ({{ebook_price_string}})',
+	      currency: 'EUR',
+	      amount: {{ebook_price_cents}},
+	      email: '{{user_email}}'
 	    });
 	    e.preventDefault();
   });

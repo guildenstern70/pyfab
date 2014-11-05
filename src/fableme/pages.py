@@ -266,16 +266,23 @@ class Buy(FablePage):
             fable_cover_gen = fable.template['bookimg_girl']
             
         if (fable.language != 'EN'):
-            fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg'
-            
+            fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg'            
         self.template_values['fable'] = fable
         self.template_values['cover'] = fable_cover_gen
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
+        self.template_values['user_email'] = self.the_user.email()
+        self.template_values['ebook_price_cents'] = fable.template['price_eurocents']
+        self.template_values['ebook_price_string'] = self._get_price_string(fable.template['price_eurocents'])
         self.render()
                 
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'buy.html')
+        
+    def _get_price_string(self, price_in_cents):  
+        price = price_in_cents / 100.0  
+        return "{:10.2f} EUR".format(price)
+
         
         
 class Order(FablePage):
@@ -298,7 +305,7 @@ class Order(FablePage):
                   card=token,
                   description="Your purchase at FableMe.com")
             order_complete = True
-            logging.debug('Issued an order for ' + str(charge.amount) + charge.currency)
+            logging.debug('Issued an order for ' + str(charge.amount/100.0) + charge.currency)
             logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
             logging.debug('Transaction done.')
         except stripe.CardError, e:

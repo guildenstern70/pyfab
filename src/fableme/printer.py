@@ -94,8 +94,8 @@ class PrinteBook():
         # Update DB fable
         dbfable = schema.DbFable.get_fable(self.user, long(fable_id))
         dbfable.bought = True
-        link_pdf = downlinks['PDF']
-        link_epub = downlinks['EPUB']      
+        link_pdf = downlinks.get('PDF')
+        link_epub = downlinks.get('EPUB')   
         if (link_pdf is not None):
             dbfable.downlink_pdf = link_pdf
         if (link_epub is not None):
