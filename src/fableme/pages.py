@@ -351,7 +351,6 @@ class Order(FablePage):
     def order_complete(self, fable_id, fable_format):
         printObj = printer.PrinteBook(self.the_user)
         deferred.defer(printObj.printBook, fable_id, fable_format)
-        time.sleep(2)
         
     def post(self):
         """ http post handler """

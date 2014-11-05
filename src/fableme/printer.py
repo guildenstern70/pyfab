@@ -99,7 +99,7 @@ class PrinteBook():
         if (link_pdf is not None):
             dbfable.downlink_pdf = link_pdf
         if (link_epub is not None):
-            dbfable.downlink_epub = link_pdf
+            dbfable.downlink_epub = link_epub
         dbfable.purchased = datetime.datetime.now()
         dbfable.put()
         logging.info('Ended process pring ebook id='+fable_id)
