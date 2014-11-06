@@ -39,6 +39,8 @@ class Queries():
     def get_all_ready_fables(google_user):
         query = Queries.get_all_fables(google_user)
         query.filter('ready', True)
+        query.filter('bought', False)
+        query.order('-created')
         return query
     
     @staticmethod

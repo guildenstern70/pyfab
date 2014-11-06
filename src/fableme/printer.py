@@ -119,14 +119,24 @@ Dear [name],
 
 The eBook you recently purchased from FableMe.com is ready.  You can now visit
 http://www.fableme.com/ and sign in using your Google Account to
-download it. To do so, navigate to your Account page, under the tab 'Purchased eBooks'.
+download it. To do so, navigate to your Account page, under the tab 'My Purchased eBooks'.
 
+You can also directly download it, by clicking the link below:
+
+http://fableomatic.appspot.com[link]
 
 Sincerely,
 Your FableMe Team
         """
         
+        link_pdf = ebook_links.get('PDF')
+        link_epub = ebook_links.get('EPUB')   
+        if (link_pdf is not None):
+            ebook_link = link_pdf
+        if (link_epub is not None):
+            ebook_link = link_epub     
         body_field = body_field.replace('[name]', receiver)
+        body_field = body_field.replace('[link]', ebook_link)
         mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
                       to=to_field,
                       subject="Your FableMe eBook is ready!",

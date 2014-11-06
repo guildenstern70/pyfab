@@ -10,7 +10,6 @@
 
 
 import logging
-import time
 import stripe
 import random
 
