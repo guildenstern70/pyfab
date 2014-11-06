@@ -4,6 +4,7 @@
     		<th>&nbsp;</th>
     		<th>Child Name</th>
     		<th>Fable Template</th>
+    		<th>Language</th>
     		<th>Sender</th>
     		<th>Dedication</th>
     		<th>Created</th>
@@ -18,6 +19,7 @@
 			<td><a href="/step?s=4&id={{fable.id}}">{{forloop.counter}}</a></td>
 			<td><a href="/step?s=4&id={{fable.id}}">{{fable.name}}</a></td>
 			<td><a href="/step?s=4&id={{fable.id}}">{{fable.template.title|truncatewords:5}}</a></td>
+			<td>{{fable.language|truncatewords:3}}</td>
 			<td>{{fable.sender|truncatewords:3}}</td>
 			<td>{{fable.dedication|truncatewords:3}}</td>
 			<td>{{fable.created|date:"d/M/Y h:i" }}</td>
@@ -27,12 +29,14 @@
 			    	&#215;
 			    </span></a>
 			</td>
+			<!-- 
 			<td><a href="/print?id={{fable.id}}">
 				<span data-tooltip class="has-tip" title="Generate eBook for fable #{{forloop.counter}}">
 					<img src="img/generatepdf.png" width="30"/>
 				</span>
 				</a>
 			</td>
+			 -->
 		</tr>
 	{% empty %}
 		<tr>

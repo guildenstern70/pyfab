@@ -33,18 +33,24 @@
                     	<fieldset>
                             <legend>PDF Version</legend>
                             
-                            <ul class="small-block-grid-4">
+                            <ul class="small-block-grid-3">
                                <li>
                                     <img src="img/pdf_img.png" width="60%" alt="Buy the PDF version">
                                </li>                             
                                <li>
                                     {{ebook_price_string}}
                                </li>
+                               <!-- 
                                <li>
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
+                                -->
                                <li>
-                                    <button id="customButton_pdf" class="radius button">Purchase</button>
+                                {% if fable.downlink_pdf %}
+               						You have already bought the PDF format for this fable! 
+               					{% else %}
+               						<button id="customButton_pdf" class="radius button">Purchase</button>
+               					{% endif %}
                                </li>
                            </ul>
                            
@@ -56,19 +62,26 @@
                    	        <fieldset>
                             <legend>ePub Version</legend>
                             
-                            <ul class="small-block-grid-4">
+                            <ul class="small-block-grid-3">
                                <li>
                                     <img src="img/epub.jpg" width="50%" alt="Buy the ePub version">
                                </li>
                                <li>
                                     {{ebook_price_string}}
                                </li>
+                               <!-- 
                                <li>
                                     <a href="#" class="secondary radius button">Preview</a>&nbsp;
                                </li>
+                                -->
                                <li>
-                                    <button id="customButton_epub" class="radius button">Purchase</button>
-                               </li>
+                               	{% if fable.downlink_epub %}
+               						You have already bought the ePub format for this fable!  
+               					{% else %}
+               						<button id="customButton_epub" class="radius button">Purchase</button>
+               					{% endif %}
+                               </li> 
+
                            </ul>
                                               
                            </fieldset>

@@ -2,42 +2,56 @@
 	<thead>
 		<tr>
     		<th>&nbsp;</th>
-            <th>Fable Template</th>
     		<th>Child Name</th>
+            <th>Fable Template</th>
+    		<th>Language</th>
             <th>Purchased</th>
     		<th>Download PDF</th>
             <th>Download ePUB</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
+            <th>Click to purchase another format</th>          
 		</tr>
 	</thead>
 	<tbody>
 	{% for fable in bought_fables %}
 		<tr>
 			<td><a href="#">{{forloop.counter}}</a></td>
-            <td>{{fable.template.title}}</td>
 			<td>{{fable.name}}</td>
-            <td>{{fable.purchased}}</td>    
+            <td>{{fable.template.title}}</td>
+			<td>{{fable.language}}</td>
+            <td>{{fable.purchased}}</td>   
+             
             {% if fable.downlink_pdf %}
                 <td><a href="{{fable.downlink_pdf}}"><b>Download PDF&hellip;</b></a></td>  
             {% else %}
 			    <td>-</td>	
             {% endif %}
+            
             {% if fable.downlink_epub %}
                 <td><a href="{{fable.downlink_epub}}"><b>Download ePub&hellip;</b></a></td>  
             {% else %}
                 <td>-</td>  
             {% endif %} 
+            
             {% if fable.downlink_pdf %}
                 <td><a href="{{fable.downlink_pdf}}"><img src="/img/generatepdf.png" width="30px" alt="Download PDF"></a></td>
             {% else %}
                 <td>&nbsp;</td>  
             {% endif %}
+            
             {% if fable.downlink_epub %}
                 <td><a href="{{fable.downlink_epub}}"><img src="/img/epub.jpg" width="30px" alt="Download ePUB"></a></td>
             {% else %}
                 <td>&nbsp;</td>  
+            {% endif %}    
+            
+            {% if fable.downlink_pdf and fable.downlink_epub %}
+               	<td>&nbsp;</td>  
+            {% else %}
+                <td><a href="/step?s=4&id={{fable.id}}">{{fable.template.title|truncatewords:5}}</a></td>
             {% endif %}      
+              
 		</tr>
 	{% empty %}
 		<tr>
