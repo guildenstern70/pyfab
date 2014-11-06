@@ -129,6 +129,29 @@ Sincerely,
 Your FableMe Team
         """
         
+        html_field = """
+        
+<div>
+<p>Dear [name],</p>
+
+<p>The eBook you recently purchased from FableMe.com is ready.  You can now visit
+<a href="http://www.fableme.com/">FableMe.com</a> and sign in using your Google Account to
+download it. To do so, navigate to your Account page, under the tab 'My Purchased eBooks'.</p>
+
+<p>You can also directly download it, by clicking the link below.</p>
+
+<p>
+<a href="http://fableomatic.appspot.com[link]">Download your eBook</a>
+</p>
+
+<p>
+Sincerely,<br/>
+<i>Your FableMe Team</i>
+</p>
+</div>
+        
+        """
+        
         link_pdf = ebook_links.get('PDF')
         link_epub = ebook_links.get('EPUB')   
         if (link_pdf is not None):
@@ -137,10 +160,13 @@ Your FableMe Team
             ebook_link = link_epub     
         body_field = body_field.replace('[name]', receiver)
         body_field = body_field.replace('[link]', ebook_link)
+        html_field = html_field.replace('[name]', receiver)
+        html_field = html_field.replace('[link]', ebook_link)
         mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
                       to=to_field,
                       subject="Your FableMe eBook is ready!",
-                      body=body_field)
+                      body=body_field,
+                      html=html_field)
         
     def __init__(self, user):
         self.user = user
