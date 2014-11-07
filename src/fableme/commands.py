@@ -38,6 +38,6 @@ class DeleteFable(webapp2.RequestHandler):
     @staticmethod    
     def delete_all(google_user):
         logging.debug('Command: deleting all users fables')
-        dbutils.Queries.delete_all_fables(google_user)
+        dbutils.Queries.delete_all_saved_fables(google_user)
         
         

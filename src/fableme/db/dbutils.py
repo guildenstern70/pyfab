@@ -56,9 +56,10 @@ class Queries():
         fable.delete()
         
     @staticmethod
-    def delete_all_fables(google_user):
+    def delete_all_saved_fables(google_user):
         fables = DbFable.all()
         fables.filter('user_email', google_user.email())
+        fables.filter('bought', False)
         db.delete(fables)
         
     

@@ -45,7 +45,6 @@
 		            	</tr>
 		            	<tr>
 		            		<td>Receive News?</td>
-		            		<!-- Receive news? {{receivenews}} -->
                             {% if receivenews == "True" %}
 		            		<td><input type="checkbox" name="receivenews" checked="checked"></td>
                             {% else %}
@@ -78,7 +77,7 @@
 		        <div class="content" data-slug="panel2" data-section-content>      
 					{% include "list_of_fables.html" %}
 					<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">
-					Delete all fables
+					Delete all saved fables
 					</a> 
 					<p>&nbsp;</p>   
 		        </div>
