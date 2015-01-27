@@ -24,10 +24,10 @@ from google.appengine.ext.webapp import blobstore_handlers
 class Print(FablePage):
     """ /print page """ 
     
-    def _prepare(self, user, fable_id):
+    def _prepare(self, user_email, fable_id):
         """ read the template """
-        self.fable = Fabulator(user, fable_id) 
-        db_fable = Fabulator.get_fable(user, fable_id)
+        self.fable = Fabulator(user_email, fable_id) 
+        db_fable = Fabulator.get_fable(user_email, fable_id)
         self.ebookproxy = GeneratorProxy('unknown', self.fable.the_fable)
         self.fable_contents = '\n' + db_fable.localized_title.upper() + '\n\n'
         self.fable_contents += db_fable.dedication + '\n'
@@ -38,8 +38,7 @@ class Print(FablePage):
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') 
-        
-        self._prepare(self.the_user, long(fable_id))
+        self._prepare(self.logged.email, int(fable_id))
         self.template_values['fable_id'] = fable_id
         self.template_values['fable_contents'] = self.fable_contents
         self.template_values['title'] = self.fable.the_fable.localized_title
@@ -54,29 +53,29 @@ class PrinteBook():
         When fable_format == EBOOK, every format is generated 
     """ 
     
-    def _prepare(self, user, fable_id, fable_format):
+    def _prepare(self, fable_id, fable_format):
         """ read the template and prepare for pdf creation """
-        self.fable = Fabulator(user, fable_id) 
+        self.fable = Fabulator(self.user_mail, fable_id) 
         self.ebookproxy = GeneratorProxy(fable_format, self.fable.the_fable)
         self.fable_contents = self.ebookproxy.load_template()
         
-    def _build_specific_format(self,  fable_id, fable_format, user):
+    def _build_specific_format(self,  fable_id, fable_format):
         """ Build file, save it and return download link """
-        self._prepare(user, long(fable_id), fable_format)
+        self._prepare(self.user_mail, int(fable_id), fable_format)
         self.ebookproxy.prepare_ebook()
         return self._download_url(fable_format)
     
-    def _build(self, fable_id, fable_format, user):
+    def _build(self, fable_id, fable_format):
         """ Returns a dictionary containing download links 
             for every format, ie: {'PDF': 'http://www.ddshkdsj.com/833890', 'EPUB': 'http://www.ddshkdsj.com/833891'} """
         download_links = {}
         if (fable_format == "EBOOK"):
             # PDF
-            download_links['PDF'] = self._build_specific_format(fable_id, 'PDF', user)
+            download_links['PDF'] = self._build_specific_format(fable_id, 'PDF')
             # EPUB
-            download_links['EPUB'] = self._build_specific_format(fable_id, 'EPUB', user)
+            download_links['EPUB'] = self._build_specific_format(fable_id, 'EPUB')
         else:   
-            download_links[fable_format] = self._build_specific_format(fable_id, fable_format, user)
+            download_links[fable_format] = self._build_specific_format(fable_id, fable_format)
         return download_links
         
     def _download_url(self, fable_format):
@@ -88,11 +87,11 @@ class PrinteBook():
         lang = self.fable.the_fable.language
         return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang, fable_format )
       
-    def printBook(self, fable_id, fable_format):
+    def printbook(self, fable_id, fable_format):
         logging.info('Initiating process print ebook id='+fable_id)
-        downlinks = self._build(fable_id, fable_format, self.user)
+        downlinks = self._build(fable_id, fable_format)
         # Update DB fable
-        dbfable = schema.DbFable.get_fable(self.user, long(fable_id))
+        dbfable = schema.DbFable.get_fable(self.user_mail, int(fable_id))
         dbfable.bought = True
         link_pdf = downlinks.get('PDF')
         link_epub = downlinks.get('EPUB')   
@@ -103,7 +102,7 @@ class PrinteBook():
         dbfable.purchased = datetime.datetime.now()
         dbfable.put()
         logging.info('Ended process pring ebook id='+fable_id)
-        dbuser = schema.DbFableUser.get_from_user(self.user)
+        dbuser = schema.DbFableUser.get_from_email(self.user_mail)
         logging.info('Sending email advice to '+dbuser.email)
         self.sendmail(dbuser, downlinks)
         
@@ -168,9 +167,9 @@ Sincerely,<br/>
                       body=body_field,
                       html=html_field)
         
-    def __init__(self, user):
-        self.user = user
-        self.user_db = schema.DbFableUser.get_from_user(user)
+    def __init__(self, user_email):
+        self.user_mail = user_email
+        self.user_db = schema.DbFableUser.get_from_email(user_email)
     
         
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):

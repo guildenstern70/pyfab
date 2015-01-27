@@ -14,10 +14,8 @@ import datetime
 import fableme.utils as utils
 import db.booktemplates
 
-from fableme.version import version
 from fableme.db.schema import DbFable
 from fableme.db.schema import DbFableUser
-from google.appengine.api import users
 
 class Steps(object):
     """ Assign template and DB values according to the Wizard step """
@@ -49,18 +47,18 @@ class Steps(object):
 class Fabulator(object):
     """ DbFable builder """
     
-    def __init__(self, google_user, fable_id):
+    def __init__(self, user_email, fable_id):
         """
             Constructs a Fabulator object.
             -google_user: the current google user
             -fable_id: the fable ID of the fable on DB
         """
-        self.the_user = google_user
+        self.the_user = DbFableUser.get_from_email(user_email)
         if (self.the_user != None):
             if (fable_id == '-1'):
-                self.the_fable = Fabulator.create_new_fable(self.the_user)
+                self.the_fable = Fabulator.create_new_fable(user_email)
             else:
-                self.the_fable = Fabulator.get_fable(self.the_user, fable_id)   
+                self.the_fable = Fabulator.get_fable(user_email, fable_id)   
             logging.debug('Built fabulator with Fable #'+str(fable_id))
         
     def templatevalues(self, step):
@@ -69,9 +67,8 @@ class Fabulator(object):
         template_values = {
             'fable_id': self.the_fable.id,
             'fable': self.the_fable,
-            'nickname': self.the_user.nickname(),
-            'logout_url':  users.create_logout_url("/"),
-            'version': version()
+            'nickname': self.the_user.nickname,
+            'logout_url':  '/logout'
         }
         if (step > 0): 
             step_setter = Steps(step)
@@ -152,31 +149,32 @@ class Fabulator(object):
             count += 1
     
     @staticmethod        
-    def create_new_fable(google_user):
+    def create_new_fable(user_email):
         """ Return a newly created DbFable """
-        return DbFable.create(google_user)
+        return DbFable.create(user_email)
     
     @staticmethod
-    def get_fable(google_user, fable_id):
+    def get_fable(user_email, fable_id):
         """ 
             Get the db_fable of the user with the 
             given id if it exists, else create one.
+            fable_id = int id of the fable
         """
-        dbfableuser = DbFableUser.get_from_user(google_user)
+        dbfableuser = DbFableUser.get_from_email(user_email)
         afable = None
         if (dbfableuser):
-            logging.debug('Found DbFable user ' + google_user.nickname())
+            logging.debug('Found DbFable user ' + dbfableuser.nickname)
             logging.debug('Looking for fable #' + str(fable_id))
-            storedfable = DbFable.get_fable(google_user, fable_id)
+            storedfable = DbFable.get_fable(user_email, fable_id)
             if (storedfable):
                 logging.debug('Fable #' + str(fable_id) + ' found.')
                 afable = storedfable
             else:
-                logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + google_user.nickname() +'. Creating one.')
-                afable = Fabulator.create_new_fable(google_user)
+                logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + dbfableuser.nickname +'. Creating one.')
+                raise StandardError("Unknown fable")
         else:
             logging.debug('DbFable user NOT FOUND!')
-            raise StandardError()
+            raise StandardError('DbFable user NOT FOUND')
         return afable
         
         

@@ -1,0 +1,100 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - Sign In{% endblock %}
+
+{% block extraheader %}
+    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+{% endblock %}
+
+{% block maincontent %}
+
+<div class="row">
+
+    <div class="large-8 push-4 columns">
+    
+        <div class="row">
+    
+            <div class="small-12 columns">
+
+                <form id="loginform" action="/" method="POST">
+                <input type="hidden" id="is_logged_into_app" value="{{loginobj.is_logged}}">
+
+        
+        {% if loginobj.is_logged %}
+        
+                <p>Welcome to FableMe, {{ loginobj.nick }}!<br>
+                <a href="{{logout_url}}">Logout</a></p>
+                
+                <input type="hidden" name="name" id="name" value="{{loginobj.name}}">
+                <input type="hidden" name="email" id="email" value="{{loginobj.email}}">
+                <input type="hidden" name="nick" id="nick" value="{{loginobj.nick}}">
+            
+        {% else %}
+        
+        
+                <div class="signup-panel text-center">
+                <strong> Welcome to FableMe!</strong>
+                <p>&nbsp;</p>
+                    
+                  <div class="row collapse">
+                    <div class="small-6 columns">
+                        <button class="button" style="background: #3b5998">Login with Facebook</button>
+                    </div>
+                    <div class="small-6 columns">
+                        <a href="{{google_login}}" class="button alert">Login with Google</a>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row collapse">
+                    <div class="small-3 columns">
+                       <label for="name" class="right inline">Username: &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="small-7  columns left">
+                      <input type="text" name="name" id="name" placeholder="Username or e-Mail">
+                    </div>
+                  </div>
+                  <div class="row collapse">
+                    <div class="small-3 columns ">
+                      <label for="password" class="right inline">Password: &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="small-7 columns left ">
+                      <input type="password" name="password" id="password" placeholder="Password">
+                    </div>
+                  </div>
+
+                  <div class="row collapse">
+                    <div class="small-12 columns text-center">
+                        <a href="#" class="button ">Login</a>
+                        <p>Need to register? <a href="/register">Sign up here &raquo;</a></p>
+                    </div>
+                    <input type="hidden" name="nick" id="nick">
+                    </div>
+                  </div>
+                
+        {% endif %}
+                
+                </form>
+            
+            </div><!-- large12 -->
+           
+        </div><!-- Row -->     
+        
+      </div><!-- Right bar -->
+    
+    <div class="large-4 pull-8 columns">
+        <div class="row hide-for-small">
+            <a href="#"><img src="/img/Anna.jpg" width="260px" style="margin-top: 30px" /></a> 
+            <br /><br /><br />
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+    </div><!-- Left bar -->
+    
+</div><!-- Row -->
+
+{% endblock %}

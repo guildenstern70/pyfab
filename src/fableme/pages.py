@@ -116,24 +116,62 @@ class Register(FablePage):
         if (receiveNews=='on'):
             r_news = True
         bdate = utils.GoogleUtils.string_to_date(birthDate)
-        DbFableUser.createuser(user, firstLastName, nickName, bdate, r_news)
+        DbFableUser.create(user, firstLastName, nickName, bdate, r_news)
           
     def post(self):
         user = users.get_current_user()
         self.savedata(user)
         self.redirect('/')
-        
-    @login_required  
+
     def get(self):
-        if (self.user_db):
-            self.redirect('/')
+        if self.logged.is_logged:
+            self.redirect('/') # User is already logged in
         else:
-            self.template_values['emailaddr'] = self.the_user.email()
             self.render() 
     
     def __init__(self, request, response):
-        FablePage.__init__(self, request, response, "register.html")
+        FablePage.__init__(self, request, response, "signup.html")
  
+ 
+class Login(FablePage):
+    """ /login fable page """
+    
+    def performlogin(self, name, email, nick):
+        logging.debug('User '+ nick +' wants to login: ' + email)
+        self.logged.login(name, nick, email)
+        self.session['user_email'] = email
+        self.redirect('/') # User is logged in
+        
+    def performgooglelogin(self, google_user):
+        logging.debug('User '+ google_user.nickname() +' wants to login from Google')
+        self.logged.login_from_google(google_user, users.is_current_user_admin())
+        self.session['user_email'] = str(google_user.email())
+        self.redirect('/') # User is logged in
+    
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            self.performgooglelogin(user) 
+        else:    
+            self.render()
+        
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "signin.html", request_authentication=False)
+        self.template_values['google_login'] = users.create_login_url()
+
+        
+class Logout(FablePage):
+    
+    def get(self):
+        self.session.pop('user_email', None)
+        user = users.get_current_user()
+        if user:
+            redir_url = users.create_logout_url('/')
+        else:
+            redir_url = '/'
+        self.redirect(redir_url)
+
+
 class AllFables(FablePage):
     """ /allfables fable page """
     
@@ -147,12 +185,11 @@ class AllFables(FablePage):
            
 class Create(FablePage):
     """ /create fable page """
-    
-    @login_required  
+     
     def get(self):
-        if (self.user_db):
-            self.template_values['nr_fables'] = self.user_db.nr_of_fables
-            self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
+        fables = dbutils.Queries.get_all_ready_fables(self.logged.email)
+        self.template_values['nr_fables'] = fables.count()
+        self.template_values['fables'] = fables
         self.template_values['return_page'] = 'create'
         self.render() 
     
@@ -161,35 +198,36 @@ class Create(FablePage):
         
 class MyAccount(FablePage):
     """ /myaccount fable page """
-    
-    @login_required  
+     
     def get(self):
         if (self.request.get('updated') == '1'):
             self.template_values['updated'] = 'True'
         panel = self.request.get('panel')
         if len(panel) != 1:
             panel = "2"
-        self.template_values['name'] = self.user_db.name
-        self.template_values['nickname'] = self.user_db.nickname
-        self.template_values['emailaddr'] = self.user_db.email
-        self.template_values['added'] = self.user_db.added
-        self.template_values['receivenews'] = str(self.user_db.receivenews)
+        user_db = DbFableUser.get_from_login(self.logged)
+        self.template_values['name'] = user_db.name
+        self.template_values['nickname'] = user_db.nickname
+        self.template_values['emailaddr'] = user_db.email
+        self.template_values['added'] = user_db.added
+        self.template_values['receivenews'] = user_db.receivenews
         self.template_values['return_page'] = 'myaccount?panel=2'
         self.template_values['panel'] = panel
-        self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
-        purchased_books = dbutils.Queries.get_my_bought_fables(self.the_user)
+        self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(user_db.email)
+        purchased_books = dbutils.Queries.get_my_bought_fables(user_db.email)
         logging.debug('User purchased ' + str(purchased_books.count()) + ' books.')
         self.template_values['bought_fables'] = purchased_books
         self.render()
         
     def post(self):
-        self.user_db.name = self.request.get('name')
-        self.user_db.nickname = self.request.get('nickname')
+        user_db = DbFableUser.get_from_login(self.logged)
+        user_db.name = self.request.get('name')
+        user_db.nickname = self.request.get('nickname')
         if (self.request.get('receivenews') == 'on'):
-            self.user_db.receivenews = True
+            user_db.receivenews = True
         else:
-            self.user_db.receivenews = False
-        logging.debug('Updating user ' + self.user_db.nickname + ' to DB')
+            user_db.receivenews = False
+        logging.debug('Updating user ' + user_db.nickname + ' to DB')
         self.user_db.put()
         self.redirect('/myaccount?updated=1&panel=1')
     
@@ -205,14 +243,13 @@ class HowItWorks(FablePage):
 class Step(FablePage):
     """ Handler for every /step page """  
     
-    @login_required
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
         step = self.request.get('s') # steps, zero base (first step = 0)
         refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
-        fable = fabulator.Fabulator(self.the_user, long(fable_id)) 
+        fable = fabulator.Fabulator(self.logged.email, fable_id) 
         if (values != None):
             fable.process(step, values, refresh) # Save step data into FableDb
         target_page = 'templates/step' + step + '.html'
@@ -227,7 +264,6 @@ class Step(FablePage):
 class Book(FablePage):
     """ Handler for every /book page """ 
   
-    @login_required
     def get(self):
         """ http get handler """
         book = self.request.get('bookid')
@@ -252,12 +288,11 @@ class HowEPub(FablePage):
 
 class Buy(FablePage):
     """ Handler for /buy page """ 
-    
-    @login_required
+
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
-        fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
+        fable = schema.DbFable.get_fable(self.logged.email, int(fable_id)) 
         fable_cover_gen = ""
         if fable.sex == 'M':
             fable_cover_gen = fable.template['bookimg_boy']
@@ -270,7 +305,7 @@ class Buy(FablePage):
         self.template_values['cover'] = fable_cover_gen
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
-        self.template_values['user_email'] = self.the_user.email()
+        self.template_values['user_email'] = self.logged.email
         self.template_values['ebook_price_cents'] = fable.template['price_eurocents']
         self.template_values['ebook_price_string'] = self._get_price_string(fable.template['price_eurocents'])
         self.render()
@@ -349,7 +384,7 @@ class Order(FablePage):
     
     def order_complete(self, fable_id, fable_format):
         printObj = printer.PrinteBook(self.the_user)
-        deferred.defer(printObj.printBook, fable_id, fable_format)
+        deferred.defer(printObj.printbook, fable_id, fable_format)
         
     def post(self):
         """ http post handler """
@@ -360,11 +395,12 @@ class Order(FablePage):
         logging.debug('Fable id > ' + fable_id)
         logging.debug('Stripe token > ' + token)
         logging.debug('Format > ' + fable_format)
-        fable = schema.DbFable.get_fable(self.the_user, long(fable_id)) 
+        fableid = int(fable_id)
+        fable = schema.DbFable.get_fable(self.logged.email, fableid) 
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
         
-        if ( self.perform_stripe_order( token, self.the_user.email(), fable_id) ):
+        if self.perform_stripe_order(token, self.logged.email, fableid):
             self.template_values['order_complete'] = True
             self.template_values['errormsg_1'] = '0'
             self.template_values['errormsg_1'] = '1'

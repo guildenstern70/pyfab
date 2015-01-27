@@ -13,76 +13,79 @@ import datetime
 import character
 import fableme.db.booktemplates as booktemplates
 
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 
-    
-class DbFableUser(db.Model):
+class DbFableUser(ndb.Model):
     """ DB Schema: DbFableUser """
     
-    user = db.UserProperty(required=True)
-    email = db.StringProperty(required=True)
-    name = db.StringProperty()
-    nickname = db.StringProperty()
-    added = db.DateTimeProperty(auto_now_add=True)
-    receivenews = db.BooleanProperty(default=True)
+    email = ndb.StringProperty(required=True)
+    name = ndb.StringProperty()
+    nickname = ndb.StringProperty()
+    added = ndb.DateTimeProperty(auto_now_add=True)
+    isadmin = ndb.BooleanProperty(default=False)
+    receivenews = ndb.BooleanProperty(default=True)
     
-    def __nr_of_fables(self):
-        _query = DbFable.all()
-        _query.ancestor(self)
-        _query.filter('user_email', self.email)
-        nr = _query.count()
-        logging.debug('User ' + self.nickname +' has ' + str(nr) + ' fables.')
-        return nr
+    @staticmethod
+    def get_from_login(logged_user):
+        """ Get the user record from login user """
+        user_key = ndb.Key('DbFableUser', logged_user.email)
+        return user_key.get()
     
-    nr_of_fables = property(__nr_of_fables, doc="""Gets the number of fables of a user.""")
+    @staticmethod
+    def get_from_email(email):
+        """ Get the user record from email """
+        user_key = ndb.Key('DbFableUser', email)
+        return user_key.get()
+    
+    @staticmethod
+    def create_from_login(logged_user):
+        """ Create a user record """
+        usermail = logged_user.email
+        nickname = logged_user.nick
+        name = logged_user.name
+        logging.debug('Request adding user from login: ' + usermail)
+        DbFableUser.create(usermail, name, nickname)
+        
+    @staticmethod
+    def create(usermail, username, nick):
+        user_key = ndb.Key(DbFableUser, usermail);
+        userdb = DbFableUser(key = user_key, email = usermail, name = username, 
+                        nickname = nick)
+        logging.debug('Adding user ' + usermail + ' to DB...')
+        userdb.put()
+        logging.debug('User updated or added. ')
     
     def __repr__(self):
-        return "DbFableUser [user="+self.email+"]"
+        return "DbFableUser [user="+self.email+", nick="+self.nickname+"]"
     
-    @staticmethod
-    def get_from_user(google_user):
-        """ Get the user record """
-        user_key = db.Key.from_path('DbFableUser', google_user.email())
-        return db.get(user_key)
-    
-    @staticmethod
-    def get_from_dbuser(db_user):
-        """ Get the user record """
-        user_key = db.Key.from_path('DbFableUser', db_user.email)
-        logging.debug('Getting Db User Key from ' + db_user.email + ' = ' + str(user_key))
-        return db.get(user_key)
-    
-    @staticmethod
-    def createuser(user, uname, unick, ubdate, unews):
-        """ Create a user record """
-        usermail = user.email()
-        userdb = DbFableUser(key_name = usermail, user = user, email = usermail, 
-                             name = uname, nickname = unick, birthDate = ubdate, receivenews = unews)
-        logging.debug('Adding user ' + usermail + ' to DB')
-        userdb.put()
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__)
+            and self.__dict__ == other.__dict__)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
         
         
-class DbFable(db.Model):
+class DbFable(ndb.Model):
     """ DB Schema: DbFable """
     
-    user_email = db.StringProperty(required=True)
-    template_id = db.IntegerProperty() # Foreign key to booktemplates template_id
-    sex = db.StringProperty()
-    name = db.StringProperty()
-    birthdate = db.DateProperty()
-    sender = db.StringProperty()
-    dedication = db.StringProperty()
-    language = db.StringProperty(default="EN")
-    created = db.DateTimeProperty(auto_now_add=True)
-    modified = db.DateTimeProperty(auto_now_add=True)
-    ready = db.BooleanProperty(default=False)
-    bought = db.BooleanProperty(default=False)
-    purchased = db.DateTimeProperty()
-    downlink_pdf = db.StringProperty()
-    downlink_epub = db.StringProperty()
+    template_id = ndb.IntegerProperty() # Foreign key to booktemplates template_id
+    sex = ndb.StringProperty()
+    name = ndb.StringProperty()
+    birthdate = ndb.DateProperty()
+    sender = ndb.StringProperty()
+    dedication = ndb.StringProperty()
+    language = ndb.StringProperty(default="EN")
+    created = ndb.DateTimeProperty(auto_now_add=True)
+    modified = ndb.DateTimeProperty(auto_now_add=True)
+    ready = ndb.BooleanProperty(default=False)
+    bought = ndb.BooleanProperty(default=False)
+    purchased = ndb.DateTimeProperty()
+    downlink_pdf = ndb.StringProperty()
+    downlink_epub = ndb.StringProperty()
     
     def __id(self):
-        return self.key().id()
+        return self.key.id()
     
     def __template(self):
         return booktemplates.get_book_template(self.template_id)
@@ -133,24 +136,34 @@ class DbFable(db.Model):
     recommendation = property(__recommandation, doc="""Get the fable recommendation""")
     language_desc = property(__language_desc, doc="""Get the fable language as a word""")
     localized_title = property(__localized_title, doc="""Get the localized fable title""")
-        
+     
     @staticmethod
-    def get_fable(google_user, fable_id):
-        """ Get the (first) fable of the given user """
-        user_db = DbFableUser.get_from_user(google_user)
-        fable = DbFable.get_by_id(fable_id, parent = user_db)
+    def get_fable_key(user_email, fable_id):
+        return ndb.Key('DbFableUser', user_email, 'DbFable', int(fable_id))
+           
+    @staticmethod
+    def get_fable(user_email, fable_id):
+        """ Get the fable of the given user
+            user_email = email of the user
+            fable_id = int id of the entity """
+        fable_key = ndb.Key('DbFableUser', user_email, 'DbFable', int(fable_id))
+        fable = fable_key.get()
+        if fable is not None:
+            logging.debug('Found Fable #'+str(fable)+' with template = '+str(fable.template_id))
+        else:
+            raise StandardError('Fable not found!')
         return fable
     
     @staticmethod
-    def create(google_user):
+    def create(user_email):
         """ Create a new DbFable for user """
-        user_db = DbFableUser.get_from_user(google_user)
+        user_db = DbFableUser.get_from_email(user_email)
         logging.debug('Creating NEW DbFable for user ' + str(user_db.nickname))
-        the_fable = DbFable(parent=user_db, user_email=user_db.email)
+        the_fable = DbFable(parent=user_db.key)
         the_fable.set_defaults()
         the_fable.put()
         return the_fable
-    
+  
     def set_defaults(self):
         self.sex = "M"
         self.name = ""
@@ -179,7 +192,7 @@ class DbFable(db.Model):
         return mismatch
     
     def __repr__(self):
-        return "DbFable [ID="+str(self.key())+"]"
+        return "DbFable [ID="+str(self.__id())+"]"
     
     
     

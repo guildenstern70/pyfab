@@ -16,6 +16,11 @@ import fableme.pages
 import fableme.commands
 import fableme.printer
 
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'bludream',
+}
+
 logging.getLogger().setLevel(logging.DEBUG)                     
 APPLICATION = webapp2.WSGIApplication(
                             [ ('/', fableme.pages.Index),
@@ -35,7 +40,9 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/print/book', fableme.printer.PrinteBook),
                               ('/register', fableme.pages.Register),
                               ('/serve/([^/]+)?', fableme.printer.ServeHandler), 
+                              ('/login', fableme.pages.Login),
+                              ('/logout', fableme.pages.Logout),
                               ('/step', fableme.pages.Step) ],
-                            debug=True)
+                            debug=True, config = config)
 
 

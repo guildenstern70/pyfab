@@ -60,3 +60,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .signin { color: #d87222; }  /* Orange color */
 /* Primary color = #255d47 */
+
+.signup-panel {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 30px;
+}

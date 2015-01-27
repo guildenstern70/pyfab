@@ -14,7 +14,7 @@
 
             <ul class="right">
                         
-                {% if nickname %}
+                {% if loginobj.is_logged %}
                 <li class="has-dropdown">
                     <a href="#">My FableMe</a>
                     <ul class="dropdown">
@@ -22,14 +22,13 @@
                             <a href="/myaccount">My account</a>
                         </li>
                         <li>
-                            <a href="{{logout_url}}">Sign out</a>
+                            <a href="/logout">Sign out</a>
                         </li>
                     </ul>
                 </li>
-                
                 {% else %}
                 <li>
-                    <a href="/register"><span class="signin">Sign In</span></a>
+                    <a href="/login"><span class="signin">Sign In</span></a>
                 </li>
                 {% endif %}
                 
