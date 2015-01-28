@@ -24,6 +24,9 @@ from google.appengine.ext.webapp import blobstore_handlers
 class Print(FablePage):
     """ /print page """ 
     
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'print.html')
+    
     def _prepare(self, user_email, fable_id):
         """ read the template """
         self.fable = Fabulator(user_email, fable_id) 
@@ -43,15 +46,17 @@ class Print(FablePage):
         self.template_values['fable_contents'] = self.fable_contents
         self.template_values['title'] = self.fable.the_fable.localized_title
         self.render()
-        
-    def __init__(self, request, response):
-        FablePage.__init__(self, request, response, 'print.html')
+
         
 class PrinteBook():
     """ /print/book page
         Valid values for fable_format: EPUB, PDF, EBOOK
         When fable_format == EBOOK, every format is generated 
     """ 
+    
+    def __init__(self, user_email):
+        self.user_mail = user_email
+        self.user_db = schema.DbFableUser.get_from_email(user_email)
     
     def _prepare(self, fable_id, fable_format):
         """ read the template and prepare for pdf creation """
@@ -61,7 +66,7 @@ class PrinteBook():
         
     def _build_specific_format(self,  fable_id, fable_format):
         """ Build file, save it and return download link """
-        self._prepare(self.user_mail, int(fable_id), fable_format)
+        self._prepare(int(fable_id), fable_format)
         self.ebookproxy.prepare_ebook()
         return self._download_url(fable_format)
     
@@ -166,10 +171,7 @@ Sincerely,<br/>
                       subject="Your FableMe eBook is ready!",
                       body=body_field,
                       html=html_field)
-        
-    def __init__(self, user_email):
-        self.user_mail = user_email
-        self.user_db = schema.DbFableUser.get_from_email(user_email)
+
     
         
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):

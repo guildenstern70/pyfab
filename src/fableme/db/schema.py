@@ -20,7 +20,7 @@ class DbFableUser(ndb.Model):
     
     email = ndb.StringProperty(required=True)
     name = ndb.StringProperty()
-    nickname = ndb.StringProperty()
+    password = ndb.StringProperty()
     added = ndb.DateTimeProperty(auto_now_add=True)
     isadmin = ndb.BooleanProperty(default=False)
     receivenews = ndb.BooleanProperty(default=True)
@@ -47,16 +47,16 @@ class DbFableUser(ndb.Model):
         DbFableUser.create(usermail, name, nickname)
         
     @staticmethod
-    def create(usermail, username, nick):
+    def create(usermail, username, pwd):
         user_key = ndb.Key(DbFableUser, usermail);
         userdb = DbFableUser(key = user_key, email = usermail, name = username, 
-                        nickname = nick)
+                        password = pwd)
         logging.debug('Adding user ' + usermail + ' to DB...')
         userdb.put()
         logging.debug('User updated or added. ')
     
     def __repr__(self):
-        return "DbFableUser [user="+self.email+", nick="+self.nickname+"]"
+        return "DbFableUser [user="+self.name+", email="+self.email+"]"
     
     def __eq__(self, other):
         return (isinstance(other, self.__class__)

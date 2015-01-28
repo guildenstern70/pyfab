@@ -12,7 +12,7 @@
 import logging
 import datetime
 import fableme.utils as utils
-import db.booktemplates
+import fableme.db.booktemplates
 
 from fableme.db.schema import DbFable
 from fableme.db.schema import DbFableUser
@@ -84,7 +84,7 @@ class Fabulator(object):
     
     def get_template(self):
         template_id = self.the_fable.template_id
-        book = db.booktemplates.Book(template_id)
+        book = fableme.db.booktemplates.Book(template_id)
         return book
     
     def get_character_pic(self, sex):
