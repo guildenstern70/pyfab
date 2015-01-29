@@ -19,6 +19,7 @@ import fableme.db.booktemplates as booktemplates
 import fableme.fabulator as fabulator
 import fableme.utils as utils
 import fableme.printer as printer
+import fableme.webuser as webuser
 
 from google.appengine.ext import deferred
 from google.appengine.ext.webapp.util import login_required
@@ -118,10 +119,9 @@ class Register(FablePage):
     """ /register page """
     
     def savepostdata(self):
-        username = self.request.get('name')
         email = self.request.get('email')
         password = self.request.get('password')
-        DbFableUser.create(email, username, password)
+        DbFableUser.create(email, password)
           
     def post(self):
         self.savepostdata()
@@ -141,19 +141,36 @@ class Register(FablePage):
 class Login(FablePage):
     """ /login fable page """
     
-    def performlogin(self, name, email, nick):
-        logging.debug('User '+ nick +' wants to login: ' + email)
-        self.logged.login(name, nick, email)
-        self.session['user_email'] = email
-        self.redirect('/') # User is logged in
+    def performlogin(self, email, password):
+        logging.debug('User '+ email +' wants to login: ')
+        # Security check
+        authorization = webuser.WebUser.authorize(email, password)
+        if authorization == webuser.LoginResults.KO_EMAIL:
+            self.redirect('/login?loginfailed=user')
+        elif authorization == webuser.LoginResults.KO_PWD:
+            self.redirect('/login?loginfailed=pwd')
+        else:
+            self.logged.login(email, (authorization == webuser.LoginResults.OK_ADMIN))
+            self.session['user_email'] = email
+            self.redirect('/') # User is logged in
         
     def performgooglelogin(self, google_user):
         logging.debug('User '+ google_user.nickname() +' wants to login from Google')
         self.logged.login_from_google(google_user, users.is_current_user_admin())
         self.session['user_email'] = str(google_user.email())
         self.redirect('/') # User is logged in
+        
+    def post(self):
+        user_email = self.request.get("email")
+        user_password = self.request.get("password")
+        self.performlogin(user_email, user_password)
     
     def get(self):
+        loginfailed = self.request.get("loginfailed")
+        if loginfailed == 'user':
+            self.template_values['unknownuser'] = True
+        elif loginfailed == 'pwd':
+            self.template_values['wrongpassword'] = True        
         user = users.get_current_user()
         if user:
             self.performgooglelogin(user) 
@@ -168,19 +185,28 @@ class Login(FablePage):
 class Logout(FablePage):
     """ /logout procedures """
     
+    def __logout(self):
+        self.logged.logout()
+        self.session.pop('user_email', None)
+        
+    
     def googlelogout(self):
         user = users.get_current_user()
+        self.__logout()
         if user:
             self.redirect(users.create_logout_url('/'))
-            
+    
+    def passwordlogout(self):
+        self.__logout()
+        self.redirect('/')
+        
     def get(self):
-        self.session.pop('user_email', None)
         user = users.get_current_user()
         if user:
             self.googlelogout()
         else:
-            pass
-    
+            self.passwordlogout()
+        
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, None, request_authentication=True)
         
@@ -219,8 +245,6 @@ class MyAccount(FablePage):
         if len(panel) != 1:
             panel = "2"
         user_db = DbFableUser.get_from_login(self.logged)
-        self.template_values['name'] = user_db.name
-        self.template_values['nickname'] = user_db.nickname
         self.template_values['emailaddr'] = user_db.email
         self.template_values['added'] = user_db.added
         self.template_values['receivenews'] = user_db.receivenews
@@ -234,13 +258,11 @@ class MyAccount(FablePage):
         
     def post(self):
         user_db = DbFableUser.get_from_login(self.logged)
-        user_db.name = self.request.get('name')
-        user_db.nickname = self.request.get('nickname')
         if (self.request.get('receivenews') == 'on'):
             user_db.receivenews = True
         else:
             user_db.receivenews = False
-        logging.debug('Updating user ' + user_db.nickname + ' to DB')
+        logging.debug('Updating user ' + user_db.email + ' to DB')
         self.user_db.put()
         self.redirect('/myaccount?updated=1&panel=1')
     

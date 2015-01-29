@@ -1,0 +1,52 @@
+{% extends "base_leftsidebar.html" %}
+
+{% block title %}FableMe - User registered{% endblock %}
+
+{% block extraheader %}
+    <link href="/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+{% endblock %}
+
+{% block maincontent %}
+<div class="row">
+
+    <div class="large-8 push-4 columns">
+    
+        <div class="row">
+            <h3>
+                Welcome to FableMe!
+            </h3>
+        </div>
+        <div class="row">
+            <div class="row">&nbsp;</div><div class="row">&nbsp;</div>
+            <p>Thank you!</p>
+            <section class="section">
+                <p>You are now a registered user of <b>FableMe</b>.</p>
+                <p>You will soon receive an e-mail to activate your registration.</p>
+            </section>
+        </div>
+        <div class="row">
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <a href="/" class="button">Home</a>
+        </div>
+
+    </div><!-- <div class="large-9 push-3 columns"> -->
+    
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-4 pull-8 columns">
+        <div class="row">
+            <a href="#"><img src="/img/Anna.jpg" width="260px" /></a> 
+            <br /><br /><br />
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+    </div>
+    
+</div><!-- div class="row" -->
+{% endblock %}
+

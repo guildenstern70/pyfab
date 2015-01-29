@@ -15,16 +15,16 @@ import fableme.db.booktemplates as booktemplates
 
 from google.appengine.ext import ndb
 
+
 class DbFableUser(ndb.Model):
     """ DB Schema: DbFableUser """
     
     email = ndb.StringProperty(required=True)
-    name = ndb.StringProperty()
     password = ndb.StringProperty()
     added = ndb.DateTimeProperty(auto_now_add=True)
     isadmin = ndb.BooleanProperty(default=False)
     receivenews = ndb.BooleanProperty(default=True)
-    
+
     @staticmethod
     def get_from_login(logged_user):
         """ Get the user record from login user """
@@ -38,25 +38,22 @@ class DbFableUser(ndb.Model):
         return user_key.get()
     
     @staticmethod
-    def create_from_login(logged_user):
+    def create_from_login(logged_user, password):
         """ Create a user record """
         usermail = logged_user.email
-        nickname = logged_user.nick
-        name = logged_user.name
         logging.debug('Request adding user from login: ' + usermail)
-        DbFableUser.create(usermail, name, nickname)
-        
+        DbFableUser.create(usermail, password)
+            
     @staticmethod
-    def create(usermail, username, pwd):
-        user_key = ndb.Key(DbFableUser, usermail);
-        userdb = DbFableUser(key = user_key, email = usermail, name = username, 
-                        password = pwd)
-        logging.debug('Adding user ' + usermail + ' to DB...')
+    def create(useremail, pwd):
+        user_key = ndb.Key(DbFableUser, useremail);
+        userdb = DbFableUser(key = user_key, email = useremail, password = pwd)
+        logging.debug('Adding user ' + useremail + ' to DB...')
         userdb.put()
         logging.debug('User updated or added. ')
     
     def __repr__(self):
-        return "DbFableUser [user="+self.name+", email="+self.email+"]"
+        return "DbFableUser [email="+self.email+"]"
     
     def __eq__(self, other):
         return (isinstance(other, self.__class__)
@@ -158,7 +155,7 @@ class DbFable(ndb.Model):
     def create(user_email):
         """ Create a new DbFable for user """
         user_db = DbFableUser.get_from_email(user_email)
-        logging.debug('Creating NEW DbFable for user ' + str(user_db.nickname))
+        logging.debug('Creating NEW DbFable for user ' + str(user_db.email))
         the_fable = DbFable(parent=user_db.key)
         the_fable.set_defaults()
         the_fable.put()

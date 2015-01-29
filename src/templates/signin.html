@@ -16,21 +16,7 @@
     
             <div class="small-12 columns">
 
-                <form id="loginform" action="/" method="POST">
-                <input type="hidden" id="is_logged_into_app" value="{{loginobj.is_logged}}">
-
-        
-        {% if loginobj.is_logged %}
-        
-                <p>Welcome to FableMe, {{ loginobj.nick }}!<br>
-                <a href="{{logout_url}}">Logout</a></p>
-                
-                <input type="hidden" name="name" id="name" value="{{loginobj.name}}">
-                <input type="hidden" name="email" id="email" value="{{loginobj.email}}">
-                <input type="hidden" name="nick" id="nick" value="{{loginobj.nick}}">
-            
-        {% else %}
-        
+                <form id="loginform" action="/login" method="POST">
         
                 <div class="signup-panel text-center">
                 <strong> Welcome to FableMe!</strong>
@@ -38,20 +24,21 @@
                     
                   <div class="row collapse">
                     <div class="small-6 columns">
-                        <button class="button" style="background: #3b5998">Login with Facebook</button>
+                        <button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign in with Facebook</button>
                     </div>
                     <div class="small-6 columns">
-                        <a href="{{google_login}}" class="button alert">Login with Google</a>
+                        <a href="{{google_login}}" class="button alert" style="font-family: Arial, helvetica">Sign in with Google</a>
                     </div>
                   </div>
                   <hr>
 
                   <div class="row collapse">
+                    <br>
                     <div class="small-3 columns">
-                       <label for="name" class="right inline">Username: &nbsp;&nbsp;</label>
+                       <label for="email" class="right inline">eMail: &nbsp;&nbsp;</label>
                     </div>
                     <div class="small-7  columns left">
-                      <input type="text" name="name" id="name" placeholder="Username or e-Mail">
+                      <input type="email" name="email" id="email" placeholder="your e-Mail address" required="true">
                     </div>
                   </div>
                   <div class="row collapse">
@@ -59,24 +46,39 @@
                       <label for="password" class="right inline">Password: &nbsp;&nbsp;</label>
                     </div>
                     <div class="small-7 columns left ">
-                      <input type="password" name="password" id="password" placeholder="Password">
+                      <input type="password" name="password" id="password" placeholder="Password" required="true">
                     </div>
                   </div>
 
                   <div class="row collapse">
                     <div class="small-12 columns text-center">
-                        <a href="#" class="button ">Login</a>
+                        <input type="submit" class="button" value="Login">
                         <p>Need to register? <a href="/register">Sign up here &raquo;</a></p>
                     </div>
                     <input type="hidden" name="nick" id="nick">
                     </div>
                   </div>
                 
-        {% endif %}
-                
                 </form>
+                
+        {% if unknownuser %}
+            <div data-alert class="alert-box alert">
+              <p><b>Unknown user</b></p>
+              <p>Need to register? <a href="/register">Sign up here &raquo;</a></p>
+              <a href="#" class="close">&times;</a>
+            </div>
+        {% endif %}
+        
+        {% if wrongpassword %}
+            <div data-alert class="alert-box alert">
+              <p><b>Wrong password.</b>&nbsp;
+              Did you <a href="#" style="color:white; text-decoration: underline;">forget your password?</a></p>
+              <a href="#" class="close">&times;</a>
+            </div>
+        {% endif %}
             
-            </div><!-- large12 -->
+            
+            </div><!-- small12 -->
            
         </div><!-- Row -->     
         
@@ -98,3 +100,8 @@
 </div><!-- Row -->
 
 {% endblock %}
+
+{% block extralatejavascripts %}
+<script src="js/foundation/foundation.alerts.js"></script>
+{% endblock extralatejavascripts %}
+

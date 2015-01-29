@@ -23,10 +23,10 @@
                         
                       <div class="row collapse">
                         <div class="small-6 columns">
-                            <button class="button" style="background: #3b5998">Sign up with Facebook</button>
+                            <button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign up with Facebook</button>
                         </div>
                         <div class="small-6 columns">
-                            <a href="{{google_login}}" class="button alert">Sign up with Google</a>
+                            <a href="{{google_login}}" class="button alert" style="font-family: Arial, helvetica">Sign up with Google</a>
                         </div>
                       </div>
                       <hr>
@@ -34,18 +34,10 @@
                       <form id="registerform" action="/register" method="POST">
                           <div class="row collapse">
                             <div class="small-3 columns">
-                               <label for="name" class="right inline">Username: &nbsp;&nbsp;</label>
-                            </div>
-                            <div class="small-7  columns left">
-                              <input type="text" name="name" id="name" placeholder="username" required="true">
-                            </div>
-                          </div>
-                          <div class="row collapse">
-                            <div class="small-3 columns">
-                              <label for="name" class="right inline">e-Mail: &nbsp;&nbsp;</label>
+                              <label for="name" class="right inline">Your e-Mail: &nbsp;&nbsp;</label>
                             </div>
                             <div class="small-7 columns left">
-                              <input type="email" placeholder="email" name="email" id="email" required="true">
+                              <input type="email" placeholder="your e-Mail address" name="email" id="email" required="true">
                             </div>
                           </div>
                           <div class="row collapse">
@@ -58,7 +50,7 @@
                           </div>
                           <div class="row collapse">
                             <div class="small-3 columns ">
-                              <label for="name" class="right inline">Ripeti: &nbsp;&nbsp;</label>
+                              <label for="name" class="right inline">Confirm: &nbsp;&nbsp;</label>
                             </div>
                             <div class="small-7 columns left ">
                               <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm password" required="true" >

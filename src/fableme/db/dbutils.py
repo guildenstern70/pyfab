@@ -54,22 +54,18 @@ class Queries():
         ndb.delete_multi(fables_keys)
         
     @staticmethod    
-    def update_or_register_user(logged_in_user):
+    def update_or_register_user(logged_in_user, password):
         logging.debug('Updating or registering user...')
         user_record = DbFableUser.get_from_login(logged_in_user)
-        if (user_record != None):
-            logging.debug('User found on DB: ' + str(user_record))
-            if (user_record.name != logged_in_user.name):
-                logging.debug('Updating name from ' + user_record.name + ' to ' + logged_in_user.name)
-                user_record.name = logged_in_user.name
-                user_record.put()
-            if (user_record.nickname != logged_in_user.nick):
-                logging.debug('Updating nick from ' + user_record.nickname + ' to ' + logged_in_user.nick)
-                user_record.nickname = logged_in_user.nick
-                user_record.put()
-        else:
+        if (user_record == None):
             logging.debug('User not found on DB: adding')
-            DbFableUser.create_from_login(logged_in_user)
+            DbFableUser.create_from_login(logged_in_user, password)
+        else:
+            if user_record.password != password:
+                logging.debug('New password detected: changing it')
+                user_record.password = password
+                user_record.put()
+                
 
         
     

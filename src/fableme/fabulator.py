@@ -67,7 +67,6 @@ class Fabulator(object):
         template_values = {
             'fable_id': self.the_fable.id,
             'fable': self.the_fable,
-            'nickname': self.the_user.nickname,
             'logout_url':  '/logout'
         }
         if (step > 0): 
@@ -163,14 +162,14 @@ class Fabulator(object):
         dbfableuser = DbFableUser.get_from_email(user_email)
         afable = None
         if (dbfableuser):
-            logging.debug('Found DbFable user ' + dbfableuser.nickname)
+            logging.debug('Found DbFable user ' + dbfableuser.email)
             logging.debug('Looking for fable #' + str(fable_id))
             storedfable = DbFable.get_fable(user_email, fable_id)
             if (storedfable):
                 logging.debug('Fable #' + str(fable_id) + ' found.')
                 afable = storedfable
             else:
-                logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + dbfableuser.nickname +'. Creating one.')
+                logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + dbfableuser.email +'. Creating one.')
                 raise StandardError("Unknown fable")
         else:
             logging.debug('DbFable user NOT FOUND!')

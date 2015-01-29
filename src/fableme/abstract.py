@@ -44,7 +44,7 @@ class FablePage(webapp2.RequestHandler):
         except KeyError:
             self.logged = webuser.WebUser()
         if self.logged.is_logged:
-            logging.debug('Logged in with ' + self.logged.nick)
+            logging.debug('Logged in with ' + self.logged.email)
         else:
             logging.debug('User not logged in')
     

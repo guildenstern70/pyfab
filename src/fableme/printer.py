@@ -20,6 +20,7 @@ from google.appengine.api import mail
 from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
+from fableme.webuser import WebUser
 
 class Print(FablePage):
     """ /print page """ 
@@ -36,8 +37,7 @@ class Print(FablePage):
         self.fable_contents += db_fable.dedication + '\n'
         self.fable_contents += db_fable.sender + '\n\n'
         self.fable_contents += self.ebookproxy.load_template()
-    
-    @login_required    
+       
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') 
@@ -85,12 +85,11 @@ class PrinteBook():
         
     def _download_url(self, fable_format):
         blobkey = self.ebookproxy.save_ebook() # this method returns physical file location
-        nick = self.fable.the_fable.name
+        emailbrief = WebUser.nick_from_email(self.user_db.email)
         titlebrief = self.fable.the_fable.template['title_brief']
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
-        userid = self.user_db.nickname
         lang = self.fable.the_fable.language
-        return '/serve/%s?brief=%s&nick=%s&lastmod=%s&userid=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, nick, lastmod, userid, titlebrief, lang, fable_format )
+        return '/serve/%s?brief=%s&lastmod=%s&bmail=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, lastmod, emailbrief, titlebrief, lang, fable_format )
       
     def printbook(self, fable_id, fable_format):
         logging.info('Initiating process print ebook id='+fable_id)
@@ -112,12 +111,8 @@ class PrinteBook():
         self.sendmail(dbuser, downlinks)
         
     def sendmail(self, dbuser, ebook_links):     
-        receiver = 'user'
-        if (dbuser.name):
-            receiver = dbuser.name.title()
-        elif (dbuser.nickname):
-            receiver = dbuser.nickname.title()
-        to_field = receiver + ' <' + dbuser.email + '>'
+        receiver = 'FableMe user'
+        to_field = dbuser.email
         body_field = """
 Dear [name],
 
@@ -181,9 +176,8 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     def get(self, resource):
         """ http get handler """
         briefname = self.request.get('brief')
-        nickname = self.request.get('nick')
+        briefmail = self.request.get('bmail')
         lastmod = self.request.get('lastmod')
-        userid = self.request.get('userid')
         lang = self.request.get('lang')
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
@@ -191,7 +185,7 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
         if (self.request.get('fmt')=='EPUB'):
             ext = '.epub'
         # deve contenere id utente, nome (corto) fiaba, nome bimbo, lingua fiaba, data generazione fiaba.
-        ebook_file_name = briefname + '_' + userid + '_' + nickname + '_' + lastmod + '_' + lang + ext
+        ebook_file_name = briefname + '_' + briefmail + '_' + lastmod + '_' + lang + ext
         self.send_blob(blob_info, save_as=ebook_file_name)
 
         
