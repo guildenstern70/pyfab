@@ -38,7 +38,7 @@ window.fbAsyncInit = function() {
 	console.log('>> fbAsyncInit');
 
 	FB.init({
-		appId : '732656233489141',
+		appId : '1597300683824253', // FableMe.com: '732656233489141',
 		xfbml : true,
 		version : 'v2.2'
 	});
@@ -71,7 +71,7 @@ function submitLogin(name, email, nick) {
 	console.log('Submitting login for '+email);
 	$('#name').val(name);
 	$('#email').val(email);
-	$('#nick').val(nick);
+	$('#loginsource').val('fb0');
 	$('#loginform').submit();
 }
 
@@ -109,10 +109,11 @@ function loggedInToFb() {
 		if ($('#is_logged_into_app').val() == 'False') {
 			// User is logged into FB but not into app
 			console.log('>> User logged into FB but not into APP');
-			submitLogin(response.name, response.email, response.first_name)
 		} else {
 			console.log('>> User logged into FB and into APP');
 		}
+		
+		submitLogin(response.name, response.email)
 		
 		
 	});

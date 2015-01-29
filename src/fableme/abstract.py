@@ -97,7 +97,7 @@ class FablePage(webapp2.RequestHandler):
     def _initialize_template(self):
         self.template_values = {
             'loginobj': self.logged,
-            'isadmin': users.is_current_user_admin(),
+            'isadmin': self.logged.isadmin,
             'version': version()
         }
 

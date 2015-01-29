@@ -1,3 +1,4 @@
+
 """ 
  FableMe.com
  A LittleLite Web Application
@@ -154,6 +155,25 @@ class Login(FablePage):
             self.session['user_email'] = email
             self.redirect('/') # User is logged in
         
+    def performfblogin(self, email):
+        logging.debug('FB Login Server Side')
+        if email is not None:
+            logging.debug('Trying to authenticate '+ email+ 'on DB...')
+            user_db = schema.DbFableUser.get_from_email(email)
+            if user_db is not None:
+                logging.debug('OK, user found: added on ' + str(user_db.added))
+                self.logged.login(email, False) # Non ci si puo loggare come admin da FB
+            else:
+                logging.debug('User not found. I am registering it.')
+                rndnumber = random.randint(1000,9999)
+                user_db = schema.DbFableUser.create(email, 'qRT7x'+str(rndnumber))
+                logging.debug('User created.')
+                self.logged.login(email, False)
+            self.redirect('/') # User is logged in
+        else:
+            logging.debug('FB Login without email: redirecting on register page')
+            self.redirect('/register')
+                     
     def performgooglelogin(self, google_user):
         logging.debug('User '+ google_user.nickname() +' wants to login from Google')
         self.logged.login_from_google(google_user, users.is_current_user_admin())
@@ -163,7 +183,11 @@ class Login(FablePage):
     def post(self):
         user_email = self.request.get("email")
         user_password = self.request.get("password")
-        self.performlogin(user_email, user_password)
+        source = self.request.get("loginsource")
+        if source == 'fb0':
+            self.performfblogin(user_email)
+        else:
+            self.performlogin(user_email, user_password)
     
     def get(self):
         loginfailed = self.request.get("loginfailed")

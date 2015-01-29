@@ -1,7 +1,6 @@
 import logging
 
 from fableme.db.schema import DbFableUser
-from fableme.db.dbutils import Queries
 
 
 class LoginResults(object):
@@ -46,7 +45,10 @@ class WebUser(object):
         self.__email = google_user.email()
         self.__isadmin = isadmin
         self.__logged = True
-        self.__update_or_create_on_db()
+        user_db = DbFableUser.get_from_email(self.__email)
+        if user_db is None:
+            logging.debug('User not found: creating one.')
+            DbFableUser.create(self.__email, 'ggl5x82393')
         
     def logout(self):
         self.__email = ''

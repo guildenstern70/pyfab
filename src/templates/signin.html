@@ -15,6 +15,8 @@
         <div class="row">
     
             <div class="small-12 columns">
+                <div id="fb-root"></div>
+                <script src="/js/facebook_login.js"></script>
 
                 <form id="loginform" action="/login" method="POST">
         
@@ -24,7 +26,11 @@
                     
                   <div class="row collapse">
                     <div class="small-6 columns">
-                        <button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign in with Facebook</button>
+                        <!--  button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign in with Facebook</button>-->
+                        <div class="fb-login-button" 
+                             data-max-rows="1" data-size="large" 
+                             data-show-faces="false" data-auto-logout-link="false"
+                             scope="public_profile,email" onlogin="checkLoginState();"></div>
                     </div>
                     <div class="small-6 columns">
                         <a href="{{google_login}}" class="button alert" style="font-family: Arial, helvetica">Sign in with Google</a>
@@ -52,6 +58,7 @@
 
                   <div class="row collapse">
                     <div class="small-12 columns text-center">
+                        <input type="hidden" id="loginsource" name="loginsource">
                         <input type="submit" class="button" value="Login">
                         <p>Need to register? <a href="/register">Sign up here &raquo;</a></p>
                     </div>
