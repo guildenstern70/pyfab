@@ -162,13 +162,13 @@ class Login(FablePage):
             user_db = schema.DbFableUser.get_from_email(email)
             if user_db is not None:
                 logging.debug('OK, user found: added on ' + str(user_db.added))
-                self.logged.login(email, False) # Non ci si puo loggare come admin da FB
+                self.session['user_email'] = email
             else:
                 logging.debug('User not found. I am registering it.')
                 rndnumber = random.randint(1000,9999)
                 user_db = schema.DbFableUser.create(email, 'qRT7x'+str(rndnumber))
                 logging.debug('User created.')
-                self.logged.login(email, False)
+            self.session['user_email'] = email
             self.redirect('/') # User is logged in
         else:
             logging.debug('FB Login without email: redirecting on register page')
@@ -176,7 +176,6 @@ class Login(FablePage):
                      
     def performgooglelogin(self, google_user):
         logging.debug('User '+ google_user.nickname() +' wants to login from Google')
-        self.logged.login_from_google(google_user, users.is_current_user_admin())
         self.session['user_email'] = str(google_user.email())
         self.redirect('/') # User is logged in
         
@@ -383,62 +382,60 @@ class Order(FablePage):
     def perform_stripe_order(self, token, customer_email, customer_fable_id):
         logging.debug('Beginning Stripe Order Management')
         
-        order_complete = True
-        
-        #order_complete = False
+        order_complete = False
         
         # Stripe API Key
-#         stripe.api_key = "sk_test_vojAPjPK6uORgf8fGejCkuGQ"
-#         
-#         logging.debug('Token is ' + token)
-#         
-#         try:
-#             logging.debug('Charging credit card for user ' + customer_email)
-#             charge = stripe.Charge.create(
-#                   amount=499, # amount in cents, again
-#                   currency="eur",
-#                   card=token,
-#                   description="Your purchase at FableMe.com")
-#             order_complete = True
-#             logging.debug('Issued an order for ' + str(charge.amount/100.0) + charge.currency)
-#             logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
-#             logging.debug('Transaction done.')
-#         except stripe.CardError, e:
-#             body = e.json_body
-#             err  = body['error']
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Err type: %s" % err['type'] + " - Err code: %s" % err['code']
-#             logging.error('STRIPE ERROR:' + "Type is: %s" % err['type'] )
-#             logging.error('STRIPE ERROR:' + "Code is: %s" % err['code'] )
-#             logging.error('STRIPE ERROR:' + "Param is: %s" % err['param'])
-#             logging.error('STRIPE ERROR:' + "Message is: %s" % err['message'])
-#         except stripe.error.InvalidRequestError, e:
-#             logging.error('STRIPE ERROR: Invalid parameters were supplied to Stripe API')
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Invalid parameters were supplied to Stripe API"
-#         except stripe.error.AuthenticationError, e:
-#             # Authentication with Stripe's API failed
-#             # (maybe you changed API keys recently)
-#             logging.error('STRIPE ERROR: Authentication with Stripe API failed')
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Invalid parameters were supplied to Stripe API"
-#         except stripe.error.APIConnectionError, e:
-#             # Network communication with Stripe failed
-#             logging.error('STRIPE ERROR: Network communication with Stripe failed')
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Network communication with Stripe failed"
-#         except stripe.error.StripeError, e:
-#             # Display a very generic error to the user, and maybe send
-#             # yourself an email
-#             logging.error('STRIPE ERROR: Generic stripe error')
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Generic stripe error"
-#         except Exception, e:
-#             # Something else happened, completely unrelated to Stripe
-#             logging.error('STRIPE ERROR: Generic error, non stripe')
-#             logging.exception(e) 
-#             self._errormsg1 = "Credit Card Transaction Error"
-#             self._errormsg2 = "Generic error"
+        stripe.api_key = "sk_test_vojAPjPK6uORgf8fGejCkuGQ"
+         
+        logging.debug('Token is ' + token)
+         
+        try:
+            logging.debug('Charging credit card for user ' + customer_email)
+            charge = stripe.Charge.create(
+                  amount=499, # amount in cents, again
+                  currency="eur",
+                  card=token,
+                  description="Your purchase at FableMe.com")
+            order_complete = True
+            logging.debug('Issued an order for ' + str(charge.amount/100.0) + charge.currency)
+            logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
+            logging.debug('Transaction done.')
+        except stripe.CardError, e:
+            body = e.json_body
+            err  = body['error']
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Err type: %s" % err['type'] + " - Err code: %s" % err['code']
+            logging.error('STRIPE ERROR:' + "Type is: %s" % err['type'] )
+            logging.error('STRIPE ERROR:' + "Code is: %s" % err['code'] )
+            logging.error('STRIPE ERROR:' + "Param is: %s" % err['param'])
+            logging.error('STRIPE ERROR:' + "Message is: %s" % err['message'])
+        except stripe.error.InvalidRequestError, e:
+            logging.error('STRIPE ERROR: Invalid parameters were supplied to Stripe API')
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Invalid parameters were supplied to Stripe API"
+        except stripe.error.AuthenticationError, e:
+            # Authentication with Stripe's API failed
+            # (maybe you changed API keys recently)
+            logging.error('STRIPE ERROR: Authentication with Stripe API failed')
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Invalid parameters were supplied to Stripe API"
+        except stripe.error.APIConnectionError, e:
+            # Network communication with Stripe failed
+            logging.error('STRIPE ERROR: Network communication with Stripe failed')
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Network communication with Stripe failed"
+        except stripe.error.StripeError, e:
+            # Display a very generic error to the user, and maybe send
+            # yourself an email
+            logging.error('STRIPE ERROR: Generic stripe error')
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Generic stripe error"
+        except Exception, e:
+            # Something else happened, completely unrelated to Stripe
+            logging.error('STRIPE ERROR: Generic error, non stripe')
+            logging.exception(e) 
+            self._errormsg1 = "Credit Card Transaction Error"
+            self._errormsg2 = "Generic error"
             
         return order_complete
  

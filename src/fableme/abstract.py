@@ -37,17 +37,29 @@ class FablePage(webapp2.RequestHandler):
             self.template_path = 'templates/'+template_filename
         self._initialize_template()
         
-    def _initialize_login(self):           
+    def _is_user_logged_in(self):
+        isloggedin = True
         try:
-            login_email = self.session['user_email']
-            self.logged = webuser.WebUser.fromEmail(login_email)
+            self.session['user_email']
         except KeyError:
-            self.logged = webuser.WebUser()
-        if self.logged.is_logged:
-            logging.debug('Logged in with ' + self.logged.email)
+            isloggedin = False
+        return isloggedin
+        
+    def _initialize_login(self):     
+        # Google Login
+        user = users.get_current_user()
+        self.logged = webuser.WebUser()
+        if user is not None:
+            self.session['user_email'] = str(user.email())
+            self.logged.login_from_google(user, users.is_current_user_admin())
+            logging.debug('Google logged in with ' + self.logged.email)
         else:
-            logging.debug('User not logged in')
-    
+            if self._is_user_logged_in():
+                self.logged.login(self.session['user_email'], False)
+                logging.debug('Logged in with ' + self.logged.email)
+            else:
+                logging.debug('User not logged in.')
+                   
     @webapp2.cached_property
     def session(self):
         # Returns a session using the default cookie key.

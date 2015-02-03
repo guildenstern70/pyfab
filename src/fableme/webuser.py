@@ -2,7 +2,6 @@ import logging
 
 from fableme.db.schema import DbFableUser
 
-
 class LoginResults(object):
     OK = 1
     OK_ADMIN = 2
