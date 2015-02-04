@@ -12,7 +12,7 @@
     <div class="row">
             
         <form id="step1_form" method="get" action="/step" novalidate data-abide>
-            <input type='hidden' name='s' value='2'> <input type='hidden' name='id' value='{{fable_id}}'>
+            <input type='hidden' name='s' value='2'> 
             
         <table>
         
@@ -37,7 +37,7 @@
 		            	<tr>
 				            <input type="button" value="Back" 
 				                   class="radius secondary button" 
-				                   onclick="location.href='/step?s=0&id={{fable_id}}';">&nbsp; 
+				                   onclick="location.href='/step?s=0';">&nbsp; 
 				            <input type="submit" value="Next" class="radius button">
 		            	</tr>
 		            </table>
@@ -53,8 +53,8 @@
 <div class="large-3 pull-9 columns hide-for-small">
     <h3>Steps</h3>
     <ul class="side-nav">
-        <li><a href="/step?s=0&id={{fable_id}}">1. Choose a template</a></li>
-        <li><a href="/step?s=1&id={{fable_id}}"><b>2. Choose a language</b></a></li>
+        <li><a href="/step?s=0">1. Choose a template</a></li>
+        <li><a href="/step?s=1"><b>2. Choose a language</b></a></li>
         <li><a href="#">3. Child information</a></li>
         <li><a href="#">4. Dedication</a></li>
         <li><a href="#">5. Summary</a></li>

@@ -42,8 +42,7 @@
                 </tr>
             </table>
             <input type="hidden" name="s" value="4">
-            <input type="hidden" name="id" value="{{fable_id}}">
-            <input type="button" value="Back" class="radius secondary button" onclick="location.href='/step?s=2&id={{fable_id}}';">&nbsp; 
+            <input type="button" value="Back" class="radius secondary button" onclick="location.href='/step?s=2';">&nbsp; 
             <input type="submit" value="Next" class="radius button">
         </form>
 
@@ -59,16 +58,16 @@
     <h3>Steps</h3>
         <ul class="side-nav">
             <li>
-                <a href="/step?s=0&id={{fable_id}}">1. Choose a template</a>
+                <a href="/step?s=0">1. Choose a template</a>
             </li>
             <li>
-                <a href="/step?s=1&id={{fable_id}}">2. Choose a language</a>
+                <a href="/step?s=1">2. Choose a language</a>
             </li>
             <li>
-                <a href="/step?s=2&id={{fable_id}}">3. Child information</a>
+                <a href="/step?s=2">3. Child information</a>
             </li>
             <li>
-                <a href="/step?s=3&id={{fable_id}}"><b>4. Dedication</b></a>
+                <a href="/step?s=3"><b>4. Dedication</b></a>
             </li>
             <li>
                 <a href="#">5. Summary</a>

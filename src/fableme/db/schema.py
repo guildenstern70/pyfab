@@ -147,8 +147,6 @@ class DbFable(ndb.Model):
         fable = fable_key.get()
         if fable is not None:
             logging.debug('Found Fable #'+str(fable)+' with template = '+str(fable.template_id))
-        else:
-            raise StandardError('Fable not found!')
         return fable
     
     @staticmethod
@@ -159,6 +157,7 @@ class DbFable(ndb.Model):
         the_fable = DbFable(parent=user_db.key)
         the_fable.set_defaults()
         the_fable.put()
+        logging.debug('New Fable created. ID='+str(the_fable.id))
         return the_fable
   
     def set_defaults(self):

@@ -90,13 +90,17 @@ class FablePage(webapp2.RequestHandler):
     def get(self):
         """ default http get handler """
         self.render()
+        
+    def get_user_db(self):
+        """ Get the DB entity of this user """
+        return DbFableUser.get_from_email(self.logged.email)
             
     def is_user_on_db(self):
         """ See if user is on db (asks DB every time).
             If you do not want to check DB another time,
             use if (self.user_db) """
         isondb = True
-        user_db = DbFableUser.get_from_email(self.logged.email)
+        user_db = self.get_user_db()
         if user_db == None:
             isondb = False
         return isondb

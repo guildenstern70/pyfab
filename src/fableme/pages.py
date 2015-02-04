@@ -267,7 +267,7 @@ class MyAccount(FablePage):
         panel = self.request.get('panel')
         if len(panel) != 1:
             panel = "2"
-        user_db = DbFableUser.get_from_login(self.logged)
+        user_db = self.get_user_db()
         self.template_values['emailaddr'] = user_db.email
         self.template_values['added'] = user_db.added
         self.template_values['receivenews'] = user_db.receivenews
@@ -280,13 +280,13 @@ class MyAccount(FablePage):
         self.render()
         
     def post(self):
-        user_db = DbFableUser.get_from_login(self.logged)
+        user_db = self.get_user_db()
         if (self.request.get('receivenews') == 'on'):
             user_db.receivenews = True
         else:
             user_db.receivenews = False
         logging.debug('Updating user ' + user_db.email + ' to DB')
-        self.user_db.put()
+        user_db.put()
         self.redirect('/myaccount?updated=1&panel=1')
     
     def __init__(self, request, response):
@@ -303,15 +303,20 @@ class Step(FablePage):
     
     def get(self):
         """ http get handler """
-        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        try:
+            # the fable to edit (-1: new fable)
+            fable_id = self.session['fable_id']
+        except KeyError:
+            fable_id = -1
         step = self.request.get('s') # steps, zero base (first step = 0)
         refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
-        fable = fabulator.Fabulator(self.logged.email, fable_id) 
+        fable = fabulator.Fabulator(self.logged.email, fable_id)
+        self.session['fable_id'] = fable.the_fable.id 
+        logging.debug('Saving session: fable_id='+ str(self.session['fable_id']))
         if (values != None):
-            fable.process(step, values, refresh) # Save step data into FableDb
+            fable_id = fable.process(step, values, refresh) # Save step data into FableDb                
         target_page = 'templates/step' + step + '.html'
-        logging.debug('Requesting page ' + target_page)
         template_vals = dict(self.template_values.items() + fable.templatevalues(int(step)).items())
         self.response.out.write(template.render(target_page, template_vals))
            
@@ -374,6 +379,23 @@ class Buy(FablePage):
         price = price_in_cents / 100.0  
         return "{:10.2f} EUR".format(price)
 
+
+class DeleteFable(FablePage): 
+    """ Delete a fable """
+    
+    def get(self):
+        """ http get handler """
+        user_email = self.session['user_email']
+        return_page = self.request.get('retpage')
+        fable_id = self.request.get('id')
+        if (fable_id == 'all'):
+            dbutils.Queries.delete_fable(user_email, long(fable_id))
+        else:
+            dbutils.Queries.delete_all_saved_fables(user_email)
+        self.redirect('/'+return_page)
+    
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, None)        
         
         
 class Order(FablePage):

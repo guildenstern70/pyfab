@@ -13,7 +13,6 @@ import logging
 import webapp2
 
 import fableme.pages
-import fableme.commands
 import fableme.printer
 
 config = {}
@@ -30,7 +29,7 @@ APPLICATION = webapp2.WSGIApplication(
                               ('/buy', fableme.pages.Buy),
                               ('/contacts', fableme.pages.Contacts),
                               ('/create', fableme.pages.Create),
-                              ('/deletefable', fableme.commands.DeleteFable),
+                              ('/deletefable', fableme.pages.DeleteFable),
                               ('/editexisting', fableme.pages.EditExisting),
                               ('/howitworks', fableme.pages.HowItWorks),
                               ('/howtoreadepub', fableme.pages.HowEPub),

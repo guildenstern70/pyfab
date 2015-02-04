@@ -55,19 +55,26 @@ class Fabulator(object):
         """
         self.the_user = DbFableUser.get_from_email(user_email)
         if (self.the_user != None):
-            if (fable_id == '-1'):
-                self.the_fable = Fabulator.create_new_fable(user_email)
+            if (fable_id < 0):
+                self._createnewfable(user_email)
             else:
-                self.the_fable = Fabulator.get_fable(user_email, fable_id)   
-            logging.debug('Built fabulator with Fable #'+str(fable_id))
+                self._getexistingfable(user_email, fable_id)
+                      
+    def _createnewfable(self, user_email):
+        self.the_fable = Fabulator.create_new_fable(user_email)
+        logging.debug('A new fable has been created and saved')
         
+    def _getexistingfable(self, user_email, fable_id):
+        self.the_fable = Fabulator.get_fable(user_email, fable_id)  
+        if self.the_fable == None:
+            self._createnewfable(user_email)
+        else:
+            logging.debug('A saved fable has been retrieved. Fable #'+str(fable_id))
+                     
     def templatevalues(self, step):
         """ Delivers template values for the next step """       
-        logging.debug('Building template values for step = ' + str(step))   
         template_values = {
-            'fable_id': self.the_fable.id,
-            'fable': self.the_fable,
-            'logout_url':  '/logout'
+            'fable': self.the_fable
         }
         if (step > 0): 
             step_setter = Steps(step)
@@ -99,7 +106,7 @@ class Fabulator(object):
     def process(self, step, values, refresh):
         """ Processes data in HTTP Request to be saved on DB
             Saves the attributes for each step of the process 
-            To do: step should be int """
+            Return: the ID of the fable processed or created """
         if (len(values) > 0):          
             self._loginfo(step, values, refresh)           
             if (refresh != ''):
@@ -119,11 +126,13 @@ class Fabulator(object):
                 self.the_fable.sender = values[0]         
                 self.the_fable.dedication = values[1]
                 self.the_fable.ready = True
-            self.update_fable_on_db()                
+            self.update_fable_on_db()    
+            return self.the_fable.id            
             
     def update_fable_on_db(self):
         self.the_fable.modified = datetime.datetime.now()
         self.the_fable.put()   
+        logging.debug('Fable Saved: ' + str(self.the_fable))
         
     def hero_heroine(self):
         """ Returns the string 'hero' if the sex is M """
@@ -170,10 +179,8 @@ class Fabulator(object):
                 afable = storedfable
             else:
                 logging.debug('Cannot find fable #'+ str(fable_id) +' for user ' + dbfableuser.email +'. Creating one.')
-                raise StandardError("Unknown fable")
         else:
             logging.debug('DbFable user NOT FOUND!')
-            raise StandardError('DbFable user NOT FOUND')
         return afable
         
         
