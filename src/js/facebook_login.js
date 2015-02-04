@@ -78,14 +78,29 @@ function submitLogin(name, email, nick) {
 function logoutFromFb() {
 	
 	console.log('>> logoutFromFb');
-	FB.logout(function(response) {
-		if (response)
-			console.log(response);
-		// user is now logged out
-		$('#is_logged_into_app').val('False');
-		console.log('>> user is logged out');
+	try
+	{
+		
+		FB.getLoginStatus(function(response) {
+			if (response.status != 'connected') {
+				console.log('Not connected to FB: logging out');
+				window.location.href = "/logout";
+			}
+		});
+		
+		FB.logout(function(response) {
+			if (response)
+				console.log(response);
+			// user is now logged out
+			console.log('>> user is logged out');
+			window.location.href = "/logout";
+		});
+	} 
+	catch(err)
+	{
+		console.log('HANDLED ERR>> '+ err);
 		window.location.href = "/logout";
-	});
+	}
 	
 }
 
