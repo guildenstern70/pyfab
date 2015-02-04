@@ -28,9 +28,7 @@ class Queries():
     @staticmethod
     def get_my_bought_fables(user_email):
         query = Queries.get_all_fables(user_email)
-        if query.get() is not None:
-            query.filter(DbFable.bought == True)
-        return query
+        return query.filter(DbFable.bought == True)
     
     @staticmethod
     def get_all_ready_fables(user_email):
