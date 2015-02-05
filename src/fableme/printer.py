@@ -41,6 +41,8 @@ class Print(FablePage):
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') 
+        # Reset session
+        self.session.pop('user_email', None)
         self._prepare(self.logged.email, int(fable_id))
         self.template_values['fable_id'] = fable_id
         self.template_values['fable_contents'] = self.fable_contents

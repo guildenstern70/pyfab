@@ -250,10 +250,12 @@ class Create(FablePage):
      
     def get(self):
         fables = dbutils.Queries.get_all_ready_fables(self.logged.email)
+        # Reset session
+        self.session.pop('user_email', None)
         self.template_values['nr_fables'] = fables.count()
         self.template_values['fables'] = fables
         self.template_values['return_page'] = 'create'
-        self.render() 
+        self.render()
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "create.html", request_authentication=True)
@@ -309,6 +311,9 @@ class Step(FablePage):
         except KeyError:
             fable_id = -1
         step = self.request.get('s') # steps, zero base (first step = 0)
+        if int(step) == 0:
+            fable_id = -1
+        logging.debug('Step '+ str(step) + ' with ID='+str(fable_id))
         refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
         fable = fabulator.Fabulator(self.logged.email, fable_id)
@@ -354,6 +359,8 @@ class Buy(FablePage):
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        # Reset session
+        self.session.pop('user_email', None)
         fable = schema.DbFable.get_fable(self.logged.email, int(fable_id)) 
         fable_cover_gen = ""
         if fable.sex == 'M':
@@ -388,7 +395,7 @@ class DeleteFable(FablePage):
         user_email = self.session['user_email']
         return_page = self.request.get('retpage')
         fable_id = self.request.get('id')
-        if (fable_id == 'all'):
+        if (fable_id != 'all'):
             dbutils.Queries.delete_fable(user_email, long(fable_id))
         else:
             dbutils.Queries.delete_all_saved_fables(user_email)
