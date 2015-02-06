@@ -15,6 +15,21 @@ indexes:
   properties:
   - name: bought
   - name: ready
+  - name: created
+
+- kind: DbFable
+  ancestor: yes
+  properties:
+  - name: bought
+  - name: ready
+  - name: created
+    direction: desc
+
+- kind: DbFable
+  ancestor: yes
+  properties:
+  - name: bought
+  - name: ready
   - name: user_email
   - name: created
     direction: desc

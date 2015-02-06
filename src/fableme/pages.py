@@ -250,8 +250,6 @@ class Create(FablePage):
      
     def get(self):
         fables = dbutils.Queries.get_all_ready_fables(self.logged.email)
-        # Reset session
-        self.session.pop('user_email', None)
         self.template_values['nr_fables'] = fables.count()
         self.template_values['fables'] = fables
         self.template_values['return_page'] = 'create'
@@ -277,7 +275,6 @@ class MyAccount(FablePage):
         self.template_values['panel'] = panel
         self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(user_db.email)
         purchased_books = dbutils.Queries.get_my_bought_fables(user_db.email)
-        logging.debug('User purchased ' + str(purchased_books.count()) + ' books.')
         self.template_values['bought_fables'] = purchased_books
         self.render()
         
@@ -359,8 +356,6 @@ class Buy(FablePage):
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
-        # Reset session
-        self.session.pop('user_email', None)
         fable = schema.DbFable.get_fable(self.logged.email, int(fable_id)) 
         fable_cover_gen = ""
         if fable.sex == 'M':

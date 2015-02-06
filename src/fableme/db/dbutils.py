@@ -28,15 +28,19 @@ class Queries():
     @staticmethod
     def get_my_bought_fables(user_email):
         query = Queries.get_all_fables(user_email)
-        return query.filter(DbFable.bought == True)
+        if query.get() is not None:
+            query = query.filter(DbFable.ready == True)
+            query = query.filter(DbFable.bought == True)
+            query = query.order(-DbFable.created)
+        return query
     
     @staticmethod
     def get_all_ready_fables(user_email):
         query = Queries.get_all_fables(user_email)
         if query.get() is not None:
-            query.filter(DbFable.ready == True)
-            query.filter(DbFable.bought == False)
-            query.order(-DbFable.created)
+            query = query.filter(DbFable.ready == True)
+            query = query.filter(DbFable.bought == False)
+            query = query.order(DbFable.created)
         return query
     
     @staticmethod
