@@ -33,6 +33,59 @@ function checkLoginState() {
 	});
 }
 
+//Here we run a very simple test of the Graph API after login is
+//successful. See statusChangeCallback() for when this call is made.
+function loggedInToFb() {
+	
+	console.log('>> loggedInToFb');
+	
+	console.log('Welcome!  Fetching your information.... ');
+	FB.api('/me', function(response) {
+		console.log('Successful login for: ' + response.name);
+		console.log(JSON.stringify(response));
+		$('#status').html('Thanks for logging in, ' + response.name + '!');
+		
+		if ($('#is_logged_into_app').val() == 'False') {
+			// User is logged into FB but not into app
+			console.log('>> User logged into FB but not into APP');
+		} else {
+			console.log('>> User logged into FB and into APP');
+		}
+		
+		submitLogin(response.name, response.email)
+		
+		
+	});
+}
+
+///
+/// Login with FaceBook
+///
+function fb_login(){
+    FB.login(function(response) {
+
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID; //get FB UID
+            loggedInToFb();
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'email,public_profile'
+    });
+}
+(function() {
+    var e = document.createElement('script');
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+}());
+
 window.fbAsyncInit = function() {
 	
 	console.log('>> fbAsyncInit');
@@ -105,27 +158,3 @@ function logoutFromFb() {
 	
 }
 
-// Here we run a very simple test of the Graph API after login is
-// successful. See statusChangeCallback() for when this call is made.
-function loggedInToFb() {
-	
-	console.log('>> loggedInToFb');
-	
-	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me', function(response) {
-		console.log('Successful login for: ' + response.name);
-		console.log(JSON.stringify(response));
-		$('#status').html('Thanks for logging in, ' + response.name + '!');
-		
-		if ($('#is_logged_into_app').val() == 'False') {
-			// User is logged into FB but not into app
-			console.log('>> User logged into FB but not into APP');
-		} else {
-			console.log('>> User logged into FB and into APP');
-		}
-		
-		submitLogin(response.name, response.email)
-		
-		
-	});
-}

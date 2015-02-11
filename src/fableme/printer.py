@@ -17,7 +17,6 @@ from fableme.abstract import FablePage
 from fableme.generatorhelper import GeneratorProxy
 from google.appengine.api import mail
 
-from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from fableme.webuser import WebUser
@@ -172,7 +171,6 @@ Sincerely,<br/>
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     """ Download the ebook """
     
-    @login_required
     def get(self, resource):
         """ http get handler """
         briefname = self.request.get('brief')

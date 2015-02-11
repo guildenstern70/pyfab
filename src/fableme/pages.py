@@ -18,12 +18,10 @@ import fableme.db.dbutils as dbutils
 import fableme.db.schema as schema
 import fableme.db.booktemplates as booktemplates
 import fableme.fabulator as fabulator
-import fableme.utils as utils
 import fableme.printer as printer
 import fableme.webuser as webuser
 
 from google.appengine.ext import deferred
-from google.appengine.ext.webapp.util import login_required
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from google.appengine.api import mail
@@ -83,8 +81,7 @@ class Contacts(FablePage):
 
 class EditExisting(FablePage):
     """ /editexisting page """
-    
-    @login_required  
+     
     def get(self):
         if (self.user_db):
             self.template_values['nr_fables'] = self.user_db.nr_of_fables
