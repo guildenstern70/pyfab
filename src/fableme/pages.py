@@ -127,7 +127,7 @@ class Register(FablePage):
         self.sendconfirmationmail(email, token)
         
     def sendconfirmationmail(self, email_to, token):
-        link = BasicUtils.get_production_domain() + '/register?token=' + token + '&mail=' + email_to
+        link = 'http://' + BasicUtils.get_production_domain() + '/register?token=' + token + '&mail=' + email_to
         body_field = """
 
 Thank you for registering at FableMe.com
