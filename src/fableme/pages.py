@@ -25,9 +25,10 @@ from google.appengine.ext import deferred
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from google.appengine.api import mail
-
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
+from fableme.utils import BasicUtils
+from email import email
 
 # Pages
 
@@ -55,7 +56,6 @@ class Contacts(FablePage):
         self.render()
         
     def sendcontactmail(self, email, name, problem, message):
-        
         from_field = name + ' <' + email + '>'
         body_field = message
         body_field += "\n================================="
@@ -108,6 +108,9 @@ class ThankYouReg(FablePage):
     """ /thankyou page """
     
     def get(self):
+        tokenized = self.request.get('tokenized') 
+        if tokenized:
+            self.template_values['tokenized'] = True
         self.render()
     
     def __init__(self, request, response):
@@ -116,20 +119,50 @@ class ThankYouReg(FablePage):
 class Register(FablePage):
     """ /register page """
     
-    def savepostdata(self):
+    def create_new_user(self):
+        token = str(random.randint(10000,99999))
         email = self.request.get('email')
         password = self.request.get('password')
-        DbFableUser.create(email, password)
+        DbFableUser.create_with_token(email, password, token)
+        self.sendconfirmationmail(email, token)
+        
+    def sendconfirmationmail(self, email_to, token):
+        link = BasicUtils.get_production_domain() + '/register?token=' + token + '&mail=' + email_to
+        body_field = """
+
+Thank you for registering at FableMe.com
+
+We have successfully received your membership registration and your personal profile has been created. 
+
+In order to to activate your account you must verify your email address. 
+Click here to verify your account: 
+{{link}}
+        
+        """
+        logging.debug('Mail link: ' + link)
+        mail.send_mail(sender = "FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to = email_to,
+                       subject = "FableMe.com - Registration confirmation",
+                       body = body_field.replace('{{link}}', link))
           
     def post(self):
-        self.savepostdata()
+        self.create_new_user()
         self.redirect('/thankyou')
 
     def get(self):
-        if self.logged.is_logged:
-            self.redirect('/') # User is already logged in
-        else:
-            self.render() 
+        token = self.request.get('token')
+        email = self.request.get('mail')
+        if token and email:
+            user = DbFableUser.get_from_email(email)
+            if user.remove_token(token):
+                logging.debug('Token successfully removed.')
+                self.session['user_email'] = email
+            self.redirect('/thankyou?tokenized=1')
+        else: 
+            if self.logged.is_logged:
+                self.redirect('/') # User is already logged in
+            else:
+                self.render() 
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "signup.html")

@@ -24,16 +24,7 @@
                     
                   <div class="row collapse">
                     <div class="small-6 columns">
-                        <!--
-                        <button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign in with Facebook</button> 
-                          -->
                         <a href="#" onclick="fb_login();"><img src="/img/connect_with_facebook.jpg" border="0" alt="Facebook Login"></a>
-                        <!-- 
-                        <div class="fb-login-button" 
-                             data-max-rows="1" data-size="large" 
-                             data-show-faces="false" data-auto-logout-link="false"
-                             scope="public_profile,email" onlogin="checkLoginState();"></div>
-                         -->
                     </div>
                     <div class="small-6 columns">
                         <a href="{{google_login}}"><img src="/img/connect_with_google.jpg" border="0" alt="Facebook Login"></a>
@@ -72,17 +63,17 @@
                 </form>
                 
         {% if unknownuser %}
-            <div data-alert class="alert-box alert">
+            <div data-alert class="alert-box secondary">
               <p><b>Unknown user</b></p>
-              <p>Need to register? <a href="/register">Sign up here &raquo;</a></p>
+              <p>Need to register? <br><a href="/register">Sign up here &raquo;</a></p>
               <a href="#" class="close">&times;</a>
             </div>
         {% endif %}
         
         {% if wrongpassword %}
-            <div data-alert class="alert-box alert">
+            <div data-alert class="alert-box warning">
               <p><b>Wrong password.</b>&nbsp;
-              Did you <a href="#" style="color:white; text-decoration: underline;">forget your password?</a></p>
+              <br>Did you <a href="#" style="color:white; text-decoration: underline;">forget your password?</a></p>
               <a href="#" class="close">&times;</a>
             </div>
         {% endif %}

@@ -135,7 +135,6 @@ function logoutFromFb() {
 	{		
 		FB.getLoginStatus(function(response) {			
 			console.log('>> Logging out FB status is ' + response.status);
-			
 			if (response.status != 'connected') {
 				console.log('Not connected to FB: logging out');
 				window.location.href = "/logout";

@@ -15,8 +15,13 @@ CHROME_DATE_FORMAT = '%Y-%m-%d'
 IE10_DATE_FORMAT = '%m/%d/%Y'
 OUTPUT_PATH = "output/"
 RESOURCES_PATH = "resources/"
+PRODUCTION_DOMAIN = "fableomatic.appspot.com"
 
 class BasicUtils(object):
+    
+    @staticmethod
+    def get_production_domain():
+        return PRODUCTION_DOMAIN
     
     @staticmethod
     def is_date_valid(inputstring, inputformat):

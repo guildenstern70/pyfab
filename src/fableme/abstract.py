@@ -50,11 +50,13 @@ class FablePage(webapp2.RequestHandler):
         user = users.get_current_user()
         self.logged = webuser.WebUser()
         if user is not None:
+            # User logged in with Google
             self.session['user_email'] = str(user.email())
             self.logged.login_from_google(user, users.is_current_user_admin())
             logging.debug('Google logged in with ' + self.logged.email)
         else:
             if self._is_user_logged_in():
+                # User logged in with custom
                 self.logged.login(self.session['user_email'], False)
                 logging.debug('Logged in with ' + self.logged.email)
             else:
@@ -72,17 +74,19 @@ class FablePage(webapp2.RequestHandler):
         return session
     
     def dispatch(self):
-        try:
-            # Dispatch the request.
-            webapp2.RequestHandler.dispatch(self)
-        finally:
-            # Save all sessions.
-            self.session_store.save_sessions(self.response)
+        if self.req_auth and not self._is_user_logged_in():
+            logging.debug('This page requires login.')
+            self.redirect('/register')
+        else:
+            try:
+                # Dispatch the request.
+                webapp2.RequestHandler.dispatch(self)
+            finally:
+                # Save all sessions.
+                self.session_store.save_sessions(self.response)
     
     def render(self):
         """ default http response handler """
-        if (self.req_auth):
-            self._authenticate_user()
         self.response.out.write(
             template.render(self.template_path, self.template_values)
             )
@@ -105,11 +109,6 @@ class FablePage(webapp2.RequestHandler):
             isondb = False
         return isondb
                     
-    def _authenticate_user(self):
-        """ Authenticate user on DB """
-        if not self.logged.is_logged:
-            self.redirect('/register')
-
     def _initialize_template(self):
         self.template_values = {
             'loginobj': self.logged,

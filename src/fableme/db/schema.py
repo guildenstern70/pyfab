@@ -24,6 +24,7 @@ class DbFableUser(ndb.Model):
     added = ndb.DateTimeProperty(auto_now_add=True)
     isadmin = ndb.BooleanProperty(default=False)
     receivenews = ndb.BooleanProperty(default=True)
+    token = ndb.StringProperty()
 
     @staticmethod
     def get_from_login(logged_user):
@@ -51,6 +52,25 @@ class DbFableUser(ndb.Model):
         logging.debug('Adding user ' + useremail + ' to DB...')
         userdb.put()
         logging.debug('User updated or added. ')
+        
+    @staticmethod
+    def create_with_token(useremail, pwd, auth_token):
+        user_key = ndb.Key(DbFableUser, useremail);
+        userdb = DbFableUser(key = user_key, email = useremail, password = pwd, token = auth_token)
+        logging.debug('Adding user ' + useremail + ' to DB... (with token)')
+        userdb.put()
+        logging.debug('User updated or added. ')
+        
+    def remove_token(self, auth_token):
+        token_removed = False
+        if auth_token == self.token:
+            logging.debug('Token verified. User is now authenticated.')
+            self.token = None
+            self.put()
+            token_removed = True
+        else:
+            logging.debug('Token NOT verified.')
+        return token_removed
     
     def __repr__(self):
         return "DbFableUser [email="+self.email+"]"

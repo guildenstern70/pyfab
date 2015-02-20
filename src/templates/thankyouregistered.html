@@ -21,7 +21,12 @@
             <p>Thank you!</p>
             <section class="section">
                 <p>You are now a registered user of <b>FableMe</b>.</p>
+                {% if tokenized %}
+                <br><br>
+                <p>Your e-Mail has been validated.</p>
+                {% else %}
                 <p>You will soon receive an e-mail to activate your registration.</p>
+                {% endif %}
             </section>
         </div>
         <div class="row">

@@ -18,21 +18,26 @@
      
         
                 <div class="signup-panel text-center">
-                    <strong> Welcome to FableMe!</strong>
+                    <strong> Sign up to FableMe!</strong>
                     <p>&nbsp;</p>
                         
                       <div class="row collapse">
                         <div class="small-6 columns">
-                            <button class="button" style="background: #3b5998; font-family: Arial, helvetica">Sign up with Facebook</button>
+                            <a href="#" onclick="fb_login();"><img src="/img/connect_with_facebook.jpg" border="0" alt="Facebook Login"></a>
                         </div>
                         <div class="small-6 columns">
-                            <a href="{{google_login}}" class="button alert" style="font-family: Arial, helvetica">Sign up with Google</a>
+                            <a href="{{google_login}}"><img src="/img/connect_with_google.jpg" border="0" alt="Facebook Login"></a>
                         </div>
                       </div>
-                      <hr>
     
                       <form id="registerform" action="/register" method="POST">
+                      <div class="row collapse">
+                        <div class="small-12 columns">
+                        <hr>
+                        </div>
+                      </div>
                           <div class="row collapse">
+                          <br>
                             <div class="small-3 columns">
                               <label for="name" class="right inline">Your e-Mail: &nbsp;&nbsp;</label>
                             </div>
@@ -65,9 +70,9 @@
                             </div>
                       </form>
                   
-                  </div>
+                </div>
                         
-            </div><!-- large12 -->
+            </div><!-- small-12 -->
            
         </div><!-- Row -->     
         
