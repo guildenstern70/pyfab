@@ -239,6 +239,44 @@ books = (
                              On the way he meets a strange man who gives him five magic beans in exchange for the cow. 
                              The beans grow into a huge beanstalk on top of which a giant lives. The boy steals from the giant 
                              a bag of gold, a magic hen, and a golden harp, and lives happily and rich with his mother....'''
+        },
+         { 
+            'template_id': 6,
+            'template_text_file': 'SleepingBeauty.txt',
+            'template_dir' : 'SleepingBeauty',
+            'title': 'Sleeping Beauty',
+            'title_brief': 'Sleeping Beauty',
+            'title_RO': u'Frumoasa din pădurea adormită',
+            'title_IT': 'La bella addormentata nel bosco',
+            'sku': 'SKU #83232',
+            'languages': 'English, Italian, Romanian',
+            'issuu_id': '8868387/6765671',
+            'cover_image': 'The_talisman_of_the_Badia.jpg',
+            'bookimg_girl': 'cover_badia.jpg',
+            'bookimg_boy': 'cover_badia.jpg',
+            'sex_recomm': 'M',
+            'default_sex': 'M',
+            'age_recomm_min': 5,
+            'age_recomm_max': 12,
+            'price_eurocents' : 199,
+            'sidebar_pic': 'Capture.jpg',
+            'prot_boy': 'prot_badia_boy.jpg',
+            'prot_girl': 'prot_badia_girl.jpg',
+            'author_img':'alessio.jpg',
+            'author_name': 'Jacob Grimm, Wilhelm Grimm',
+            'author_ill':'Teodora Reytor',
+            'author_desc': '''Alessio Saltarin is an italian writer of novels and short-stories.
+                              In his spare time he designs and programs videogames.''',
+            'desc_title': 'Sleeping Beauty',
+            'desc_desc': """A king slights the oldest fairy of thirteen in the kingdom and she curses the King's newborn princess 
+                            saying she will die on her fifteenth birthday by pricking her finger on a spinning wheel.  The twelfth softens 
+                            the curse so that the princess will only fall asleep for one hundred years.  The King has every spinning 
+                            wheel destroyed in the kingdom but on her fifteenth birthday, she pricks her finger, falling down in a deep sleep.  
+                            One hundred years later a Prince searches for the enchanted princess and kisses her awakening the kingdom 
+                            from the spell.""",
+            'desc_short': '''A king’s new born daughter is cursed by an evil fairy to die on her fifteenth birthday by pricking
+                             her finger on a spinning wheel. She does pricks her finger falling down in a deep sleep and one hundred 
+                             years later a princess awakens her with a kiss...'''
         }
     )
 
