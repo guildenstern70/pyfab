@@ -33,7 +33,7 @@ class FablePage(webapp2.RequestHandler):
         # Login
         self._initialize_login()
         # Template
-        if (template_filename):
+        if template_filename:
             self.template_path = 'templates/'+template_filename
         self._initialize_template()
         

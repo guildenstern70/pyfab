@@ -32,6 +32,7 @@ from email import email
 
 # Pages
 
+
 class Index(FablePage):
     """ /index page """
     
@@ -40,7 +41,8 @@ class Index(FablePage):
     
 TO_ADDRESS = 'info@fableme.com'
 CCN_ADDRESSES = ['alessiosaltarin@gmail.com', 'sdi78@yahoo.com']
-        
+
+
 class Contacts(FablePage):
     """ /contacts page """
         
@@ -115,7 +117,8 @@ class ThankYouReg(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "thankyouregistered.html")
-        
+
+
 class Register(FablePage):
     """ /register page """
     
@@ -320,13 +323,15 @@ class MyAccount(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "account.html")
-        
+
+
 class HowItWorks(FablePage):
     """ /howitworks fable page """
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "howitworks.html")
-    
+
+
 class Step(FablePage):
     """ Handler for every /step page """  
     
@@ -337,24 +342,26 @@ class Step(FablePage):
             fable_id = self.session['fable_id']
         except KeyError:
             fable_id = -1
-        step = self.request.get('s') # steps, zero base (first step = 0)
+        step = self.request.get('s')  # steps, zero base (first step = 0)
         if int(step) == 0:
             fable_id = -1
         logging.debug('Step '+ str(step) + ' with ID='+str(fable_id))
-        refresh = self.request.get('refresh') # if refresh has a value, the same step is refreshed
+        refresh = self.request.get('refresh')  # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
         fable = fabulator.Fabulator(self.logged.email, fable_id)
         self.session['fable_id'] = fable.the_fable.id 
         logging.debug('Saving session: fable_id='+ str(self.session['fable_id']))
-        if (values != None):
-            fable_id = fable.process(step, values, refresh) # Save step data into FableDb                
+        if values is not None:
+            fable_id = fable.process(step, values, refresh)  # Save step data into FableDb
         target_page = 'templates/step' + step + '.html'
         template_vals = dict(self.template_values.items() + fable.templatevalues(int(step)).items())
+        logging.info(str(template_vals))
         self.response.out.write(template.render(target_page, template_vals))
            
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'create.html', request_authentication=True)
-        
+
+
 class Book(FablePage):
     """ Handler for every /book page """ 
   
