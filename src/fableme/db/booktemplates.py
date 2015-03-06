@@ -128,22 +128,28 @@ books = (
         'sku': 'SKU #83232',
         'languages': 'English, Italian, Romanian',
         'issuu_id': '8868387/6765671',
-        'cover_image': 'The_talisman_of_the_Badia.jpg',
-        'bookimg_girl': 'cover_badia.jpg',
-        'bookimg_boy': 'cover_badia.jpg',
+        'cover_image': 'cover_cinderella.jpg',
+        'bookimg_girl': 'cover_cinderella.jpg',
+        'bookimg_boy': 'cover_cinderella.jpg',
         'sex_recomm': 'F',
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
         'price_eurocents': 199,
         'sidebar_pic': 'Capture.jpg',
-        'prot_boy': 'prot_badia_boy.jpg',
-        'prot_girl': 'prot_badia_girl.jpg',
-        'author_img': 'alessio.jpg',
+        'prot_boy': 'prot_cinderella_boy.jpg',
+        'prot_girl': 'prot_cinderella_girl.jpg',
+        'author_img': 'GrimmBrothers.jpg',
         'author_name': 'Jacob Grimm, Wilhelm Grimm',
         'author_ill': 'Teodora Reytor',
-        'author_desc': '''Alessio Saltarin is an italian writer of novels and short-stories.
-                              In his spare time he designs and programs videogames.''',
+        'author_desc': '''The Brothers Grimm (or Die Brüder Grimm), Jacob (1785–1863) and Wilhelm Grimm (1786–1859), were 
+                          German academics, linguists, cultural researchers, lexicographers and authors who together 
+                          specialized in collecting and publishing folklore during the 19th century. They were among the 
+                          best-known storytellers of folk tales, and popularized stories such as "Cinderella" 
+                          ("Aschenputtel"), "The Frog Prince" ("Der Froschkönig"), "Hansel and Gretel" 
+                          ("Hänsel und Gretel"), "Rapunzel", "Rumpelstiltskin" ("Rumpelstilzchen"), and "Snow White" 
+                          ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
+                          (Kinder- und Hausmärchen), was published in 1812.''',
         'desc_title': 'Cinderella',
         'desc_desc': """In a far away, long ago kingdom, Cinderella is living happily with her mother and father until her mother dies.
                             Cinderella's father remarries a cold, cruel woman who has two cruel daughters who turn her into a servant 
@@ -171,22 +177,28 @@ books = (
         'sku': 'SKU #83232',
         'languages': 'English, Italian, Romanian',
         'issuu_id': '8868387/6765671',
-        'cover_image': 'The_talisman_of_the_Badia.jpg',
-        'bookimg_girl': 'cover_badia.jpg',
-        'bookimg_boy': 'cover_badia.jpg',
+        'cover_image': 'cover_tomthumb.jpg',
+        'bookimg_girl': 'cover_tomthumb.jpg',
+        'bookimg_boy': 'cover_tomthumb.jpg',
         'sex_recomm': 'M',
         'default_sex': 'M',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
         'price_eurocents': 199,
         'sidebar_pic': 'Capture.jpg',
-        'prot_boy': 'prot_badia_boy.jpg',
-        'prot_girl': 'prot_badia_girl.jpg',
-        'author_img': 'alessio.jpg',
+        'prot_boy': 'prot_tomthumb_boy.jpg',
+        'prot_girl': 'prot_tomthumb_girl.jpg',
+        'author_img': 'GrimmBrothers.jpg',
         'author_name': 'Jacob Grimm, Wilhelm Grimm',
         'author_ill': 'Teodora Reytor',
-        'author_desc': '''Alessio Saltarin is an italian writer of novels and short-stories.
-                              In his spare time he designs and programs videogames.''',
+        'author_desc': '''The Brothers Grimm (or Die Brüder Grimm), Jacob (1785–1863) and Wilhelm Grimm (1786–1859), were 
+                          German academics, linguists, cultural researchers, lexicographers and authors who together 
+                          specialized in collecting and publishing folklore during the 19th century. They were among the 
+                          best-known storytellers of folk tales, and popularized stories such as "Cinderella" 
+                          ("Aschenputtel"), "The Frog Prince" ("Der Froschkönig"), "Hansel and Gretel" 
+                          ("Hänsel und Gretel"), "Rapunzel", "Rumpelstiltskin" ("Rumpelstilzchen"), and "Snow White" 
+                          ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
+                          (Kinder- und Hausmärchen), was published in 1812.''',
         'desc_title': 'Little Thumb',
         'desc_desc': """Little Thumb is a tale about a little boy who is as small as his mother’s thumb. The tale begins with
                             a farmer and his wife who are desperate for a child. The wife gets pregnant and after a while Thumb appears. 
@@ -209,22 +221,29 @@ books = (
         'sku': 'SKU #83232',
         'languages': 'English, Italian, Romanian',
         'issuu_id': '8868387/6765671',
-        'cover_image': 'The_talisman_of_the_Badia.jpg',
-        'bookimg_girl': 'cover_badia.jpg',
-        'bookimg_boy': 'cover_badia.jpg',
+        'cover_image': 'cover_jackbeanstalck.jpg',
+        'bookimg_girl': 'cover_jackbeanstalck.jpg',
+        'bookimg_boy': 'cover_jackbeanstalck.jpg',
         'sex_recomm': 'M',
         'default_sex': 'M',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
         'price_eurocents': 199,
         'sidebar_pic': 'Capture.jpg',
-        'prot_boy': 'prot_badia_boy.jpg',
-        'prot_girl': 'prot_badia_girl.jpg',
-        'author_img': 'alessio.jpg',
+        'prot_boy': 'prot_tomthumb_boy.jpg',
+        'prot_girl': 'prot_tomthumb_girl.jpg',
+        'author_img': 'JosephJacobs.jpg',
         'author_name': 'Joseph Jacobs ',
         'author_ill': 'Teodora Reytor',
-        'author_desc': '''Alessio Saltarin is an italian writer of novels and short-stories.
-                              In his spare time he designs and programs videogames.''',
+        'author_desc': ''' (29 August 1854 – 30 January 1916) was an Australian folklorist, literary critic, historian and 
+                            writer of English literature who became a notable collector and publisher of English Folklore. 
+                            His work went on to popularize some of the world's best known versions of English fairy tales 
+                            including "Jack and the Beanstalk", "Goldilocks and the three bears", "The Three Little Pigs", 
+                            "Jack the Giant Killer" and "The History of Tom Thumb". He published his English fairy tale 
+                            collections: English Fairy Tales in 1890 and More English Fairytales in 1894 but also went on
+                            after and in between both books to publish fairy tales collected from continental Europe 
+                            as well as Jewish, Celtic and Indian Fairytales which made him one of the most popular writers 
+                            of fairytales for the English language.''',
         'desc_title': 'The magical beanstalk',
         'desc_desc': """A poor boy lives with his mother out of selling to the market the milk from their cow. One day the cow
                             stops giving milk and the boy takes the cow to market to sell it. On the way he meets a strange man 
@@ -251,22 +270,28 @@ books = (
         'sku': 'SKU #83232',
         'languages': 'English, Italian, Romanian',
         'issuu_id': '8868387/6765671',
-        'cover_image': 'SleepingBeauty_cover.jpg',
-        'bookimg_girl': 'SleepingBeauty_cover.jpg',
-        'bookimg_boy': 'SleepingBeauty_cover.jpg',
+        'cover_image': 'cover_sleepingbeauty.jpg',
+        'bookimg_girl': 'cover_sleepingbeauty.jpg',
+        'bookimg_boy': 'cover_sleepingbeauty.jpg',
         'sex_recomm': 'F',
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
         'price_eurocents': 199,
         'sidebar_pic': 'Capture.jpg',
-        'prot_boy': 'prot_badia_boy.jpg',
-        'prot_girl': 'prot_badia_girl.jpg',
-        'author_img': 'alessio.jpg',
+        'prot_boy': 'prot_sleepingbeauty_boy.jpg',
+        'prot_girl': 'prot_sleepingbeauty_girl.jpg',
+        'author_img': 'GrimmBrothers.jpg',
         'author_name': 'Jacob Grimm, Wilhelm Grimm',
         'author_ill': 'Teodora Reytor',
-        'author_desc': '''Alessio Saltarin is an italian writer of novels and short-stories.
-                              In his spare time he designs and programs videogames.''',
+        'author_desc': '''The Brothers Grimm (or Die Brüder Grimm), Jacob (1785–1863) and Wilhelm Grimm (1786–1859), were 
+                          German academics, linguists, cultural researchers, lexicographers and authors who together 
+                          specialized in collecting and publishing folklore during the 19th century. They were among the 
+                          best-known storytellers of folk tales, and popularized stories such as "Cinderella" 
+                          ("Aschenputtel"), "The Frog Prince" ("Der Froschkönig"), "Hansel and Gretel" 
+                          ("Hänsel und Gretel"), "Rapunzel", "Rumpelstiltskin" ("Rumpelstilzchen"), and "Snow White" 
+                          ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
+                          (Kinder- und Hausmärchen), was published in 1812. ''',
         'desc_title': 'Sleeping Beauty',
         'desc_desc': """A king slights the oldest fairy of thirteen in the kingdom and she curses the King's newborn princess
                             saying she will die on her fifteenth birthday by pricking her finger on a spinning wheel.  The twelfth softens 
