@@ -459,7 +459,7 @@ class Order(FablePage):
                   description="Your purchase at FableMe.com")
             order_complete = True
             logging.debug('Issued an order for ' + str(charge.amount/100.0) + charge.currency)
-            logging.debug('Customer has succesfully purchased the Fable #' + customer_fable_id)
+            logging.debug('Customer has succesfully purchased the Fable #' + str(customer_fable_id))
             logging.debug('Transaction done.')
         except stripe.CardError, e:
             body = e.json_body
