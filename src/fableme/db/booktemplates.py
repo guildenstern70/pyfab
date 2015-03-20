@@ -302,6 +302,88 @@ books = (
         'desc_short': '''A king’s new born daughter is cursed by an evil fairy to die on her fifteenth birthday by pricking
                              her finger on a spinning wheel. She does pricks her finger falling down in a deep sleep and one hundred 
                              years later a princess awakens her with a kiss...'''
+    } ,
+    {
+        'template_id': 7,
+        'template_text_file': 'RedCap.txt',
+        'template_dir': 'RedCap',
+        'title': 'Red Cap',
+        'title_brief': 'Little Red Riding Hood',
+        'title_RO': u'Scufița roșie',
+        'title_IT': 'Cappuccetto rosso',
+        'sku': 'SKU #83232',
+        'languages': 'English, Italian, Romanian',
+        'issuu_id': '8868387/6765671',
+        'cover_image': 'cover_redcap.jpg',
+        'bookimg_girl': 'cover_redcap.jpg',
+        'bookimg_boy': 'cover_redcap.jpg',
+        'sex_recomm': 'F',
+        'default_sex': 'F',
+        'age_recomm_min': 5,
+        'age_recomm_max': 12,
+        'price_eurocents': 199,
+        'sidebar_pic': 'Capture.jpg',
+        'prot_boy': 'prot_redcap_boy.jpg',
+        'prot_girl': 'prot_redcap_girl.jpg',
+        'author_img': 'GrimmBrothers.jpg',
+        'author_name': 'Jacob Grimm, Wilhelm Grimm',
+        'author_ill': 'Teodora Reytor',
+        'author_desc': '''The Brothers Grimm (or Die Brüder Grimm), Jacob (1785–1863) and Wilhelm Grimm (1786–1859), were 
+                          German academics, linguists, cultural researchers, lexicographers and authors who together 
+                          specialized in collecting and publishing folklore during the 19th century. They were among the 
+                          best-known storytellers of folk tales, and popularized stories such as "Cinderella" 
+                          ("Aschenputtel"), "The Frog Prince" ("Der Froschkönig"), "Hansel and Gretel" 
+                          ("Hänsel und Gretel"), "Rapunzel", "Rumpelstiltskin" ("Rumpelstilzchen"), and "Snow White" 
+                          ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
+                          (Kinder- und Hausmärchen), was published in 1812. ''',
+        'desc_title': 'Red Cap',
+        'desc_desc': """This is the well-known story of a little girl, Little Red Riding Hood, who is sent by her mother to take 
+                        some food to her grandmother who is sick. In the woods she meets the wolf and she tells him where 
+                        she is going. The wolf goes ahead of her and eats her grandmother and then waits for Little Red Riding Hood to 
+                        come and eats her too. A woodcutter kills the wolf and rescues the girl and her grandmother.""",
+        'desc_short': '''This is the well-known story of a little girl, Little Red Riding Hood, who is sent by her mother to take 
+                         some food to her grandmother who is sick. Trouble begins when in the woods she meets the wolf...'''
+    },
+    {
+        'template_id': 8,
+        'template_text_file': 'Rapunzel.txt',
+        'template_dir': 'Rapunzel',
+        'title': 'Rapunzel',
+        'title_brief': 'Rapunzel',
+        'title_RO': u'Rapunzel',
+        'title_IT': 'Raperenzolo',
+        'sku': 'SKU #83232',
+        'languages': 'English, Italian, Romanian',
+        'issuu_id': '8868387/6765671',
+        'cover_image': 'cover_rapunzel.jpg',
+        'bookimg_girl': 'cover_rapunzel.jpg',
+        'bookimg_boy': 'cover_rapunzel.jpg',
+        'sex_recomm': 'F',
+        'default_sex': 'F',
+        'age_recomm_min': 5,
+        'age_recomm_max': 12,
+        'price_eurocents': 199,
+        'sidebar_pic': 'Capture.jpg',
+        'prot_boy': 'prot_rapunzel_boy.jpg',
+        'prot_girl': 'prot_rapunzel_girl.jpg',
+        'author_img': 'GrimmBrothers.jpg',
+        'author_name': 'Jacob Grimm, Wilhelm Grimm',
+        'author_ill': 'Teodora Reytor',
+        'author_desc': '''The Brothers Grimm (or Die Brüder Grimm), Jacob (1785–1863) and Wilhelm Grimm (1786–1859), were 
+                          German academics, linguists, cultural researchers, lexicographers and authors who together 
+                          specialized in collecting and publishing folklore during the 19th century. They were among the 
+                          best-known storytellers of folk tales, and popularized stories such as "Cinderella" 
+                          ("Aschenputtel"), "The Frog Prince" ("Der Froschkönig"), "Hansel and Gretel" 
+                          ("Hänsel und Gretel"), "Rapunzel", "Rumpelstiltskin" ("Rumpelstilzchen"), and "Snow White" 
+                          ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
+                          (Kinder- und Hausmärchen), was published in 1812. ''',
+        'desc_title': 'Rapunzel',
+        'desc_desc': """The story of Rapunzel begins with a husband stealing rapunzel from a sorceress’s garden for his wife. 
+                        He is caught in act by the angry sorceress and in return for sparing his life she demands that the husband 
+                        promise her the newborn child, whom she will name Rapunzel. There follows the well-known story of a 
+                        long-haired girl kept in an inaccessible tower, and a prince who finds her and wins her heart.""",
+        'desc_short': '''This is the well-known story of a long-haired girl kept raised by a sorceress in an inaccessible tower, 
+                         and a prince who finds her and wins her heart....'''
     }
 )
 
