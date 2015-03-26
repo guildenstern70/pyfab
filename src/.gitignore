@@ -1,7 +1,5 @@
 *.py[cod]
 /img
-/reportlab
 /upload_google.bat
-/stripe/
 /fpdf/
 
