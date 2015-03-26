@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="ita">
+  <head>
+    <meta content="f67bfcbc-977e-4ccc-8606-6f613c90c827" name="dtb:uid"/>
+    <meta content="2" name="dtb:depth"/>
+    <meta content="calibre (1.25.0)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>My voyage to Aragon</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="uee9a7d4c-0eed-4ff3-8902-f42224f6d23a" playOrder="1">
+      <navLabel>
+        <text>Avvio</text>
+      </navLabel>
+      <content src="titlepage.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>

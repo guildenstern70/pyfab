@@ -1,0 +1,58 @@
+.fableme {
+	display: block;
+	font-size: 1em;
+	line-height: 1.2;
+	padding-left: 0;
+	padding-right: 0;
+	margin: 0 5pt;
+	text-indent: 1.25em;
+}
+
+.fableimage img {
+    overflow:hidden;
+    width:100%;
+    height:auto;	
+}
+
+.booktitle {
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	margin: 5pt
+}
+
+.chaptertitle {
+	display: block;
+	font-size: 1.2em;
+	line-height: 1.2;
+	padding-left: 0;
+	padding-right: 0;
+	margin-top: 15pt;
+}
+
+.fableme1 {
+	display: block;
+	margin: 1em 0
+}
+
+.fableme2 {
+	height: auto;
+	width: auto
+}
+
+.fableme3 {
+	font-weight: bold
+}
+
+.fableme4 {
+	font-style: italic
+}
+
+.fablemecenter {
+	text-align: center
+}
+
+.fablemeright {
+	text-align: right
+}

@@ -1,11 +1,7 @@
 *.py[cod]
 /img
-/static
-/favicon.ico
 /reportlab
 /upload_google.bat
-/resources
 /stripe/
 /fpdf/
-/.idea/
 
