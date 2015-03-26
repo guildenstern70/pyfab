@@ -110,28 +110,28 @@ class Fabulator(object):
         return character_img
 
     def get_sex_or_age_mismatch(self):
-        return (self.the_fable.is_age_mismatch() or self.the_fable.is_sex_mismatch())
+        return self.the_fable.is_age_mismatch() or self.the_fable.is_sex_mismatch()
 
     def process(self, step, values, refresh):
         """ Processes data in HTTP Request to be saved on DB
             Saves the attributes for each step of the process 
             Return: the ID of the fable processed or created """
-        if (len(values) > 0):
+        if len(values) > 0:
             self._loginfo(step, values, refresh)
-            if (refresh != ''):
+            if refresh != '':
                 istep = int(step) + 1
                 step = str(istep)
-            if (step == '1'):
+            if step == '1':
                 self.the_fable.template_id = int(values[0])
-            elif (step == '2'):
+            elif step == '2':
                 self.the_fable.language = values[0]
-            elif (step == '3'):
+            elif step == '3':
                 self.the_fable.sex = values[0]
-                if (len(values) >= 2):
+                if len(values) >= 2:
                     self.the_fable.name = values[1].title()
-                if (len(values) == 3):
+                if len(values) == 3:
                     self.the_fable.birthdate = utils.GoogleUtils.string_to_date(values[2])
-            elif (step == '4'):
+            elif step == '4':
                 self.the_fable.sender = values[0]
                 self.the_fable.dedication = values[1]
                 self.the_fable.ready = True
@@ -146,7 +146,7 @@ class Fabulator(object):
     def hero_heroine(self):
         """ Returns the string 'hero' if the sex is M """
         heroheroine = 'heroine'
-        if (self.the_fable.sex == 'M'):
+        if self.the_fable.sex == 'M':
             heroheroine = 'hero'
         return heroheroine
 
@@ -156,7 +156,7 @@ class Fabulator(object):
 
     def _loginfo(self, step, values, refresh):
         count = 0
-        if (refresh == ''):
+        if refresh == '':
             logging.debug('Processing step ' + step)
         else:
             logging.debug('Refreshing step ' + step + ' Refresh = ' + refresh)
@@ -179,21 +179,16 @@ class Fabulator(object):
         """
         dbfableuser = DbFableUser.get_from_email(user_email)
         afable = None
-        if (dbfableuser):
+        if dbfableuser:
             logging.debug('Found DbFable user ' + dbfableuser.email)
             logging.debug('Looking for fable #' + str(fable_id))
             storedfable = DbFable.get_fable(user_email, fable_id)
-            if (storedfable):
+            if storedfable:
                 logging.debug('Fable #' + str(fable_id) + ' found.')
                 afable = storedfable
             else:
                 logging.debug(
-                    'Cannot find fable #' + str(fable_id) + ' for user ' + dbfableuser.email + '. Creating one.')
+                    'Cannot find fable #' + str(fable_id) + ' for user ' + dbfableuser.email)
         else:
             logging.debug('DbFable user NOT FOUND!')
         return afable
-        
-        
-    
-
-        

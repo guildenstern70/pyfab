@@ -15,12 +15,14 @@ from fableme.db.dbutils import Queries
 
 ITEMS_TO_FETCH = 10
 
+
 class Administration(FablePage):
     """ /admin/admin fable page """
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "admin.html")
-        
+
+
 class AdminUsers(FablePage):
     """ /admin/users fable page """
     

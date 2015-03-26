@@ -13,6 +13,7 @@
 import logging
 import stripe
 import random
+import string
 
 import fableme.db.dbutils as dbutils
 import fableme.db.schema as schema
@@ -28,7 +29,7 @@ from google.appengine.api import mail
 from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
 from fableme.utils import BasicUtils
-from email import email
+
 
 # Pages
 
@@ -85,7 +86,7 @@ class EditExisting(FablePage):
     """ /editexisting page """
      
     def get(self):
-        if (self.user_db):
+        if self.user_db:
             self.template_values['nr_fables'] = self.user_db.nr_of_fables
             self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
         self.template_values['return_page'] = 'create'
@@ -93,7 +94,8 @@ class EditExisting(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "editfable.html")
-        
+
+
 class Preview(FablePage):
     """ /preview page """
     
@@ -117,6 +119,49 @@ class ThankYouReg(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "thankyouregistered.html")
+
+
+class ForgotPassword(FablePage):
+    """ /forgotpwd page """
+
+    def sendforgotpassword(self, password):
+        body_field = """
+
+Your account's password at FableMe.com has been reset.
+
+Your new password is:
+{{pwd}}
+
+You are suggested to change your password at your next logon, by selecting
+'My FableMe / My Account' from the top bar menu.
+
+See you soon at
+http://www.fableme.com
+
+        """
+        mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to=self.email_address,
+                       subject="FableMe.com - Password Reset",
+                       body=body_field.replace('{{pwd}}', password))
+
+    def get(self):
+        self.email_address = self.request.get('email')
+        if self.email_address:
+            self.template_values['email_address'] = self.email_address
+        self._set_new_password()
+        self.render()
+
+    def _set_new_password(self):
+        newpwd = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+        logging.debug('New password is > '+newpwd)
+        email_user = DbFableUser.get_from_email(self.email_address)
+        email_user.password = newpwd
+        email_user.put()
+        self.sendforgotpassword(newpwd)
+
+    def __init__(self, request, response):
+        self.email_address = ""
+        FablePage.__init__(self, request, response, "forgotpassword.html")
 
 
 class Register(FablePage):
@@ -179,22 +224,22 @@ class Login(FablePage):
     """ /login fable page """
     
     def performlogin(self, email, password):
-        logging.debug('User '+ email +' wants to login: ')
+        logging.debug('User '+email+' wants to login: ')
         # Security check
         authorization = webuser.WebUser.authorize(email, password)
         if authorization == webuser.LoginResults.KO_EMAIL:
-            self.redirect('/login?loginfailed=user')
+            self.redirect('/login?loginfailed=user&mail='+email)
         elif authorization == webuser.LoginResults.KO_PWD:
-            self.redirect('/login?loginfailed=pwd')
+            self.redirect('/login?loginfailed=pwd&mail='+email)
         else:
             self.logged.login(email, (authorization == webuser.LoginResults.OK_ADMIN))
             self.session['user_email'] = email
-            self.redirect('/') # User is logged in
+            self.redirect('/')  # User is logged in
         
     def performfblogin(self, email):
         logging.debug('FB Login Server Side')
         if email is not None:
-            logging.debug('Trying to authenticate '+ email+ 'on DB...')
+            logging.debug('Trying to authenticate '+email+'on DB...')
             user_db = schema.DbFableUser.get_from_email(email)
             if user_db is not None:
                 logging.debug('OK, user found: added on ' + str(user_db.added))
@@ -205,15 +250,15 @@ class Login(FablePage):
                 user_db = schema.DbFableUser.create(email, 'qRT7x'+str(rndnumber))
                 logging.debug('User created.')
             self.session['user_email'] = email
-            self.redirect('/') # User is logged in
+            self.redirect('/')  # User is logged in
         else:
             logging.debug('FB Login without email: redirecting on register page')
             self.redirect('/register')
                      
     def performgooglelogin(self, google_user):
-        logging.debug('User '+ google_user.nickname() +' wants to login from Google')
+        logging.debug('User '+google_user.nickname()+' wants to login from Google')
         self.session['user_email'] = str(google_user.email())
-        self.redirect('/') # User is logged in
+        self.redirect('/')  # User is logged in
         
     def post(self):
         user_email = self.request.get("email")
@@ -226,10 +271,13 @@ class Login(FablePage):
     
     def get(self):
         loginfailed = self.request.get("loginfailed")
+        loginfailedmail = self.request.get("mail")
         if loginfailed == 'user':
             self.template_values['unknownuser'] = True
+            self.template_values['mail'] = loginfailedmail
         elif loginfailed == 'pwd':
-            self.template_values['wrongpassword'] = True        
+            self.template_values['wrongpassword'] = True
+            self.template_values['mail'] = loginfailedmail
         user = users.get_current_user()
         if user:
             self.performgooglelogin(user) 
@@ -247,8 +295,7 @@ class Logout(FablePage):
     def __logout(self):
         self.logged.logout()
         self.session.pop('user_email', None)
-        
-    
+
     def googlelogout(self):
         user = users.get_current_user()
         self.__logout()
@@ -280,7 +327,8 @@ class AllFables(FablePage):
         
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "allfables.html", request_authentication=False)
-           
+
+
 class Create(FablePage):
     """ /create fable page """
      
@@ -293,12 +341,13 @@ class Create(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "create.html", request_authentication=True)
-        
+
+
 class MyAccount(FablePage):
     """ /myaccount fable page """
      
     def get(self):
-        if (self.request.get('updated') == '1'):
+        if self.request.get('updated') == '1':
             self.template_values['updated'] = 'True'
         panel = self.request.get('panel')
         if len(panel) != 1:
@@ -316,7 +365,7 @@ class MyAccount(FablePage):
         
     def post(self):
         user_db = self.get_user_db()
-        if (self.request.get('receivenews') == 'on'):
+        if self.request.get('receivenews') == 'on':
             user_db.receivenews = True
         else:
             user_db.receivenews = False
@@ -336,19 +385,27 @@ class HowItWorks(FablePage):
 
 
 class Step(FablePage):
-    """ Handler for every /step page """  
-    
-    def get(self):
-        """ http get handler """
+    """ Handler for every /step page """
+
+    def _get_fable_id(self, id_param):
         try:
-            # the fable to edit (-1: new fable)
-            fable_id = self.session['fable_id']
+            if id_param == u"-1":
+                fable_id = -1
+            elif len(id_param) > 1:
+                fable_id = int(id_param)
+            else:
+                fable_id = self.session['fable_id']
         except KeyError:
             fable_id = -1
+        return fable_id
+
+    def get(self):
+        """ http get handler """
+        fable_id = self._get_fable_id(self.request.get('id'))
         step = self.request.get('s')  # steps, zero base (first step = 0)
         if int(step) == 0:
             fable_id = -1
-        logging.debug('Step '+ str(step) + ' with ID='+str(fable_id))
+        logging.debug('Step '+str(step)+' with ID='+str(fable_id))
         refresh = self.request.get('refresh')  # if refresh has a value, the same step is refreshed
         values = self.request.get_all('value')
         fable = fabulator.Fabulator(self.logged.email, fable_id)
@@ -379,7 +436,8 @@ class Book(FablePage):
                 
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
-        
+
+
 class HowEPub(FablePage):
     """ Handler for /howepub page """ 
   
@@ -390,20 +448,20 @@ class HowEPub(FablePage):
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'howepub.html')
 
+
 class Buy(FablePage):
     """ Handler for /buy page """ 
 
     def get(self):
         """ http get handler """
         fable_id = self.request.get('id') # the fable to edit (-1: new fable)
-        fable = schema.DbFable.get_fable(self.logged.email, int(fable_id)) 
-        fable_cover_gen = ""
+        fable = schema.DbFable.get_fable(self.logged.email, int(fable_id))
         if fable.sex == 'M':
             fable_cover_gen = fable.template['bookimg_boy']
         else:
             fable_cover_gen = fable.template['bookimg_girl']
             
-        if (fable.language != 'EN'):
+        if fable.language != 'EN':
             fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg'            
         self.template_values['fable'] = fable
         self.template_values['cover'] = fable_cover_gen
@@ -430,7 +488,7 @@ class DeleteFable(FablePage):
         user_email = self.session['user_email']
         return_page = self.request.get('retpage')
         fable_id = self.request.get('id')
-        if (fable_id != 'all'):
+        if fable_id != 'all':
             dbutils.Queries.delete_fable(user_email, long(fable_id))
         else:
             dbutils.Queries.delete_all_saved_fables(user_email)
@@ -502,11 +560,10 @@ class Order(FablePage):
             self._errormsg2 = "Generic error"
             
         return order_complete
- 
-    
+
     def order_complete(self, fable_id, fable_format):
-        printObj = printer.PrinteBook(self.logged.email)
-        deferred.defer(printObj.printbook, fable_id, fable_format)
+        print_obj = printer.PrinteBook(self.logged.email)
+        deferred.defer(print_obj.printbook, fable_id, fable_format)
         
     def post(self):
         """ http post handler """
@@ -532,13 +589,8 @@ class Order(FablePage):
             self.template_values['errormsg_1'] = self._errormsg1
             self.template_values['errormsg_1'] = self._errormsg2    
         self.render()
-        
-                
+
     def __init__(self, request, response):
         self._errormsg1 = ''
         self._errormsg2 = ''
         FablePage.__init__(self, request, response, 'orderplaced.html')
-
-
-
-        

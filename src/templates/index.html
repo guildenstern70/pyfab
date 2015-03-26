@@ -11,10 +11,10 @@
 	        <div class="slideshow-wrapper">
 	          <ul id="featured1" data-orbit data-options="timer_speed:5000; pause_on_hover: false">
 	            <li>
-	            	<img src="/img/illustration1.jpg" height="420" alt="FableMe.com"> 
+	            	<img src="/img/illustration1.jpg" alt="FableMe.com">
 	            </li>
 	            <li>
-	            	<img src="/img/illustration2.jpg" height="420" alt="FableMe.com">
+	            	<img src="/img/illustration2.jpg" alt="FableMe.com">
 	            </li>
 	          </ul>
 	        </div>
@@ -116,4 +116,9 @@
 
 {% block extralatejavascripts %}
 	<script src="/js/foundation/foundation.orbit.js"></script>
+	<script>
+	$(function(){
+      $(window).trigger("resize");
+    });
+    </script>
 {% endblock %}

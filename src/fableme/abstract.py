@@ -105,7 +105,7 @@ class FablePage(webapp2.RequestHandler):
             use if (self.user_db) """
         isondb = True
         user_db = self.get_user_db()
-        if user_db == None:
+        if user_db is None:
             isondb = False
         return isondb
                     

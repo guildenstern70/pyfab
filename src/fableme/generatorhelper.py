@@ -13,6 +13,7 @@ import logging
 import generators.pdfgenerator.loader as pdf_loader
 import generators.epubgenerator.loader as epub_loader
 
+
 class GeneratorProxy(object):
     """ Generator Helper class """
     
@@ -47,5 +48,3 @@ class GeneratorProxy(object):
             self.fable_loader.save(blob_store_file)
         files.finalize(file_name)
         return files.blobstore.get_blob_key(file_name)
-              
-        

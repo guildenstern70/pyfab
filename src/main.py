@@ -30,6 +30,7 @@ APPLICATION = webapp2.WSGIApplication(
      ('/create', fableme.pages.Create),
      ('/deletefable', fableme.pages.DeleteFable),
      ('/editexisting', fableme.pages.EditExisting),
+     ('/forgotpwd', fableme.pages.ForgotPassword),
      ('/howitworks', fableme.pages.HowItWorks),
      ('/howtoreadepub', fableme.pages.HowEPub),
      ('/order', fableme.pages.Order),

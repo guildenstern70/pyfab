@@ -173,7 +173,9 @@ class DbFable(ndb.Model):
         """ Get the fable of the given user
             user_email = email of the user
             fable_id = int id of the entity """
-        fable_key = ndb.Key('DbFableUser', user_email, 'DbFable', int(fable_id))
+        id_fable = int(fable_id)
+        logging.debug('Looking for DbFable #' + str(fable_id))
+        fable_key = ndb.Key('DbFableUser', user_email, 'DbFable', id_fable)
         fable = fable_key.get()
         if fable is not None:
             logging.debug('Found Fable #'+str(fable)+' with template = '+str(fable.template_id))
