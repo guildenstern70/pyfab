@@ -16,7 +16,13 @@
     
             <div class="small-12 columns">
      
-        
+                {% if exists %}
+                <div data-alert class="alert-box alert">
+                  User {{ exists }} is already registered. Please <a href="/login" style="color: yellow">login</a>.
+                  <a href="#" class="close">&times;</a>
+                </div>
+                {% endif %}
+
                 <div class="signup-panel text-center">
                     <strong> Sign up to FableMe!</strong>
                     <p>&nbsp;</p>

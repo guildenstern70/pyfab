@@ -47,19 +47,31 @@ class DbFableUser(ndb.Model):
             
     @staticmethod
     def create(useremail, pwd):
-        user_key = ndb.Key(DbFableUser, useremail);
-        userdb = DbFableUser(key = user_key, email = useremail, password = pwd)
-        logging.debug('Adding user ' + useremail + ' to DB...')
-        userdb.put()
-        logging.debug('User updated or added. ')
-        
+        user_key = ndb.Key(DbFableUser, useremail)
+        userdb = user_key.get()
+        if userdb is not None:
+            logging.debug('User already existed. ')
+            return False  # User already exists
+        else:
+            userdb = DbFableUser(key=user_key, email=useremail, password=pwd)
+            logging.debug('Adding user ' + useremail + ' to DB...')
+            userdb.put()
+            logging.debug('User updated or added. ')
+        return True
+
     @staticmethod
     def create_with_token(useremail, pwd, auth_token):
-        user_key = ndb.Key(DbFableUser, useremail);
-        userdb = DbFableUser(key = user_key, email = useremail, password = pwd, token = auth_token)
-        logging.debug('Adding user ' + useremail + ' to DB... (with token)')
-        userdb.put()
-        logging.debug('User updated or added. ')
+        user_key = ndb.Key(DbFableUser, useremail)
+        userdb = user_key.get()
+        if userdb is not None:
+            logging.debug('User already existed. ')
+            return False
+        else:
+            userdb = DbFableUser(key=user_key, email=useremail, password=pwd, token=auth_token)
+            logging.debug('Adding user ' + useremail + ' to DB... (with token)')
+            userdb.put()
+            logging.debug('User updated or added. ')
+        return True
         
     def remove_token(self, auth_token):
         token_removed = False
@@ -118,21 +130,19 @@ class DbFable(ndb.Model):
     
     def __localized_title(self):
         lang_code = self.language.lower()
-        locTitle = ""
-        if (lang_code == 'it'):
-            locTitle = self.template['title_IT']
-        elif (lang_code == 'ro'):
-            locTitle = self.template['title_RO']
+        if lang_code == 'it':
+            localized_title = self.template['title_IT']
+        elif lang_code == 'ro':
+            localized_title = self.template['title_RO']
         else:
-            locTitle = self.template['title']
-        return locTitle
+            localized_title = self.template['title']
+        return localized_title
     
     def __language_desc(self):
         lang_code = self.language.lower()
-        lang_desc = 'Unknown'
-        if (lang_code == 'it'):
+        if lang_code == 'it':
             lang_desc = 'Italian'
-        elif (lang_code == 'ro'):
+        elif lang_code == 'ro':
             lang_desc = 'Romanian'
         else:
             lang_desc = 'English'

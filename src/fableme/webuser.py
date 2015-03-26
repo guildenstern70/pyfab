@@ -2,11 +2,13 @@ import logging
 
 from fableme.db.schema import DbFableUser
 
+
 class LoginResults(object):
     OK = 1
     OK_ADMIN = 2
     KO_EMAIL = -10
     KO_PWD = -100
+
 
 class WebUser(object):
     
@@ -25,7 +27,7 @@ class WebUser(object):
     def authorize(email, password):
         logging.debug('Authorizing user: ' + email)
         user_db = DbFableUser.get_from_email(email)
-        if user_db == None:
+        if user_db is None:
             logging.debug('Unknown user')
             return LoginResults.KO_EMAIL
         if user_db.password != password:

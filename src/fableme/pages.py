@@ -121,15 +121,9 @@ class ThankYouReg(FablePage):
 
 class Register(FablePage):
     """ /register page """
-    
-    def create_new_user(self):
-        token = str(random.randint(10000,99999))
-        email = self.request.get('email')
-        password = self.request.get('password')
-        DbFableUser.create_with_token(email, password, token)
-        self.sendconfirmationmail(email, token)
-        
-    def sendconfirmationmail(self, email_to, token):
+
+    @staticmethod
+    def sendconfirmationmail(email_to, token):
         link = 'http://' + BasicUtils.get_production_domain() + '/register?token=' + token + '&mail=' + email_to
         body_field = """
 
@@ -143,27 +137,36 @@ Click here to verify your account:
         
         """
         logging.debug('Mail link: ' + link)
-        mail.send_mail(sender = "FableMe.com Support <support@fableomatic.appspotmail.com>",
-                       to = email_to,
-                       subject = "FableMe.com - Registration confirmation",
-                       body = body_field.replace('{{link}}', link))
+        mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to=email_to,
+                       subject="FableMe.com - Registration confirmation",
+                       body=body_field.replace('{{link}}', link))
           
     def post(self):
-        self.create_new_user()
-        self.redirect('/thankyou')
+        given_email = self.request.get('email')
+        token = str(random.randint(10000, 99999))
+        password = self.request.get('password')
+        if DbFableUser.create_with_token(given_email, password, token):
+            Register.sendconfirmationmail(given_email, token)
+            self.redirect('/thankyou')
+        else:
+            self.redirect('/register?user_exists='+given_email)
 
     def get(self):
         token = self.request.get('token')
-        email = self.request.get('mail')
-        if token and email:
-            user = DbFableUser.get_from_email(email)
+        given_email = self.request.get('mail')
+        user_exists = self.request.get('user_exists')
+        if token and given_email:
+            user = DbFableUser.get_from_email(given_email)
             if user.remove_token(token):
                 logging.debug('Token successfully removed.')
-                self.session['user_email'] = email
+                self.session['user_email'] = given_email
             self.redirect('/thankyou?tokenized=1')
-        else: 
+        else:
+            if user_exists is not None:
+                self.template_values['exists'] = user_exists
             if self.logged.is_logged:
-                self.redirect('/') # User is already logged in
+                self.redirect('/')  # User is already logged in
             else:
                 self.render() 
     
