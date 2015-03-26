@@ -32,6 +32,19 @@
 		            		<td><input type="text" value="{{emailaddr}}" readonly="readonly"></td>
 		            	</tr>
 		            	<tr>
+		            		<td>Password</td>
+		            		<td>
+		            		<div class="row collapse">
+                                <div class="small-9 columns">
+                                    <input type="password" value="{{password}}" readonly="readonly">
+                                  </div>
+                                  <div class="small-3 columns">
+                                    <a href="/changepassword" class="button postfix secondary">Change...</a>
+                                  </div>
+                                </div>
+		            		 </td>
+		            	</tr>
+		            	<tr>
 		            		<td>Member since</td>
 		            		<td><input type="date" value='{{added|date:"Y-m-d"}}' readonly="readonly"></td>
 		            	</tr>
@@ -65,7 +78,7 @@
             {% else %}
             <section>
             {% endif %}     
-		        <p class="title" data-section-title><a href="#panel2">My saved for later fables</a></p>
+		        <p class="title" data-section-title><a href="#panel2">My saved fables</a></p>
 		        <div class="content" data-slug="panel2" data-section-content>      
 					{% include "list_of_fables.html" %}
 					<a href="#" class="radius button secondary" data-reveal-id="areYouSure_all">

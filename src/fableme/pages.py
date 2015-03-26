@@ -354,6 +354,7 @@ class MyAccount(FablePage):
             panel = "2"
         user_db = self.get_user_db()
         self.template_values['emailaddr'] = user_db.email
+        self.template_values['password'] = user_db.password
         self.template_values['added'] = user_db.added
         self.template_values['receivenews'] = user_db.receivenews
         self.template_values['return_page'] = 'myaccount?panel=2'
@@ -375,6 +376,29 @@ class MyAccount(FablePage):
     
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "account.html")
+
+
+class ChangePassword(FablePage):
+    """ /changepassword fable page """
+
+    def get(self):
+        if self.request.get('wrongold') == '1':
+            self.template_values['wrongold'] = 'True'
+        self.render()
+
+    def post(self):
+        old_password = self.request.get('old-password')
+        new_password = self.request.get('password')
+        user_db = self.get_user_db()
+        if user_db.password == old_password:
+            user_db.password = new_password
+            user_db.put()
+            self.redirect('/myaccount?updated=1&panel=1')
+        else:
+            self.redirect('/changepassword?wrongold=1')
+
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, "changepassword.html")
 
 
 class HowItWorks(FablePage):

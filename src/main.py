@@ -26,6 +26,7 @@ APPLICATION = webapp2.WSGIApplication(
      ('/allfables', fableme.pages.AllFables),
      ('/book', fableme.pages.Book),
      ('/buy', fableme.pages.Buy),
+     ('/changepassword', fableme.pages.ChangePassword),
      ('/contacts', fableme.pages.Contacts),
      ('/create', fableme.pages.Create),
      ('/deletefable', fableme.pages.DeleteFable),
