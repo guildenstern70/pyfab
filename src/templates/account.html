@@ -25,6 +25,15 @@
             {% endif %}
 		        <p class="title" data-section-title><a href="#panel1">My profile</a></p>
 		        <div class="content" data-slug="panel1" data-section-content>
+		            <style>
+		                input[readonly="readonly"]
+                        {
+                            background-color:lightgray;
+                            padding: 4px;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                        }
+                    </style>
                     <form action="/myaccount" method="post">
 		            <table width="100%">
 		            	<tr>
@@ -48,17 +57,9 @@
 		            		<td>Member since</td>
 		            		<td><input type="date" value='{{added|date:"Y-m-d"}}' readonly="readonly"></td>
 		            	</tr>
-		            	<tr>
-		            		<td>Receive News?</td>
-                            {% if receivenews %}
-		            		<td><input type="checkbox" name="receivenews" checked="checked"></td>
-                            {% else %}
-                            <td><input type="checkbox" name="receivenews"></td>
-		            		{% endif %}
-		            	</tr>
 		            </table>
 		            <br />
-		            <button type="submit">Update</button>
+		            <!--<button type="submit">Update</button>-->
 					<p>&nbsp;</p>
                      <!-- Jusp updated? {{updated}} -->
                     {% if updated == "True" %}
