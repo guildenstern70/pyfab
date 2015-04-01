@@ -246,7 +246,7 @@ class Login(FablePage):
                 self.session['user_email'] = email
             else:
                 logging.debug('User not found. I am registering it.')
-                rndnumber = random.randint(1000,9999)
+                rndnumber = random.randint(1000, 9999)
                 user_db = schema.DbFableUser.create(email, 'qRT7x'+str(rndnumber))
                 logging.debug('User created.')
             self.session['user_email'] = email

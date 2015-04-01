@@ -8,9 +8,15 @@
     <div class="large-9 push-3 columns">
     
         <div class="row">
+            <style>
+                td.cover {
+                    vertical-align: top;
+                    width: 45%;
+                }
+            </style>
             <table>
                 <tr>
-                    <td width="45%" class="hide-for-small">
+                    <td class="cover hide-for-small">
                     	<fieldset>
                     		<legend>Cover</legend>
                             <!-- {{templatesex}} -->
@@ -107,9 +113,28 @@
 
       <div class="panel">
         <h4 class="hide-for-small">Fables</h4><hr/>
-        <h5 class="subheader"><a href="/book?bookid=1">My voyage to Aragon</a></h5>
-        <h5 class="subheader"><a href="/book?bookid=0">When I met the pirates</a></h5>
-        <h5 class="subheader"><a href="/book?bookid=2">The talisman of the Badia</a></h5>
+        <h5 class="subheader">Original:</h5>
+        <style>
+            ul.a {
+                font-size: smaller;
+                list-style-type: circle;
+                margin-left: 10px;
+            }
+        </style>
+        <ul class="a">
+            <li><a href="/book?bookid=1">My voyage to Aragon</a></li>
+            <li><a href="/book?bookid=0">When I met the pirates</a></li>
+            <li><a href="/book?bookid=2">The talisman of the Badia</a></li>
+        </ul>
+        <h5 class="subheader">Classic:</h5>
+        <ul class="a">
+            <li><a href="/book?bookid=3">Cinderella</a></li>
+            <li><a href="/book?bookid=4">Tom Thumb</a></li>
+            <li><a href="/book?bookid=5">The magical beanstalk</a></li>
+            <li><a href="/book?bookid=6">Sleeping Beauty</a></li>
+            <li><a href="/book?bookid=7">Red Cap</a></li>
+            <li><a href="/book?bookid=8">Rapunzel</a></li>
+        </ul>
       </div>
 
     </div>
@@ -121,7 +146,7 @@
   	<script src="/js/foundation/foundation.section.js"></script>
     <script>
       $(".xr").change(function() {
-    	  	imagePath = "/img/covers/{{fable.bookimg_boy}}";
+    	  	var imagePath = "/img/covers/{{fable.bookimg_boy}}";
     	  	if ($('#forgirl').is(':checked')) {
             	imagePath = "/img/covers/{{fable.bookimg_girl}}";
             }
