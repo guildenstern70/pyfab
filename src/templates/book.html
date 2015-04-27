@@ -6,7 +6,7 @@
 
     <!-- Main Content Section -->
     <div class="large-9 push-3 columns">
-    
+
         <div class="row">
             <style>
                 td.cover {
@@ -17,93 +17,108 @@
             <table>
                 <tr>
                     <td class="cover hide-for-small">
-                    	<fieldset>
-                    		<legend>Cover</legend>
+                        <fieldset>
+                            <legend>Cover</legend>
                             <!-- {{templatesex}} -->
-                        {% if templatesex == "M" %}
-                            <img id="cover_image" name="cover_image" src="/img/covers/{{fable.bookimg_boy}}" width="250" alt="{{fable.title}}" />
-                        {% else %}
-                            <img id="cover_image" name="cover_image" src="/img/covers/{{fable.bookimg_girl}}" width="250" alt="{{fable.title}}" />
-                        {% endif %}
-                         
-                    		<div align="center">
-                        {% if templatesex == "M" %}
-                            <div class="switch">
-                              <input class="xr" type="radio" id="forboy" value="boy" name="cover" checked>
-                              <label for="forboy" onclick="">Boys</label>
-                              <input class="xr" type="radio" id="forgirl" name="cover" >
-                              <label for="forgirl" onclick="">Girls</label>
-                              <span></span>
-                            </div>                       
-                        {% else %}
-                            <div class="switch">
-                              <input class="xr" type="radio" id="forboy" value="boy" name="cover">
-                              <label for="forboy" onclick="">Boys</label>
-                              <input class="xr" type="radio" id="forgirl" name="cover" checked>
-                              <label for="forgirl" onclick="">Girls</label>
-                              <span></span>
+                            {% if templatesex == "M" %}
+                                <img id="cover_image" name="cover_image" src="/img/covers/{{ fable.bookimg_boy }}"
+                                     width="250" alt="{{ fable.title }}"/>
+                            {% else %}
+                                <img id="cover_image" name="cover_image" src="/img/covers/{{ fable.bookimg_girl }}"
+                                     width="250" alt="{{ fable.title }}"/>
+                            {% endif %}
+
+                            <div align="center">
+                                {% if templatesex == "M" %}
+                                    <div class="switch">
+                                        <input class="xr" type="radio" id="forboy" value="boy" name="cover" checked>
+                                        <label for="forboy" onclick="">Boys</label>
+                                        <input class="xr" type="radio" id="forgirl" name="cover">
+                                        <label for="forgirl" onclick="">Girls</label>
+                                        <span></span>
+                                    </div>
+                                {% else %}
+                                    <div class="switch">
+                                        <input class="xr" type="radio" id="forboy" value="boy" name="cover">
+                                        <label for="forboy" onclick="">Boys</label>
+                                        <input class="xr" type="radio" id="forgirl" name="cover" checked>
+                                        <label for="forgirl" onclick="">Girls</label>
+                                        <span></span>
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                    		</div>
-                    	</fieldset>
+                        </fieldset>
                     </td>
                     <td>
-	                    {% include "fable_details.html" %} 
+                        {% include "fable_details.html" %}
                         <div class="hide-for-small">
                             <a href="/step?s=0" class="secondary radius button">Back to selection</a>
                             &nbsp;
-                            <a href="/step?value={{fable.template_id}}&s=1" class="radius button">Create this!</a>
+                            <a href="/step?value={{ fable.template_id }}&s=1" class="radius button">Create this!</a>
                         </div>
                         <div class="show-for-small">
                             <a href="/step?s=0" class="secondary radius button">Back</a>
-                                &nbsp;
-                                <a href="/step?value={{fable.template_id}}&s=1" class="radius button">Create</a>
+                            &nbsp;
+                            <a href="/step?value={{ fable.template_id }}&s=1" class="radius button">Create</a>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                	<td colspan="2">
-                	
-                		<div class="section-container tabs" data-section="tabs">
-	        	              
-				              <section class="active">
-				                <p class="title" data-section-title>
-				                	<a href="#">Reviews</a>
-				                </p>
-				                
-				                <div class="content" data-section-content>
-				                    
-				                    <article>
-				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Really touched</h3>
-				                    <p>Teresa Ansley from Chicago, IL</p>
-				                    <p>The baby can't appreciate them for the moment (these were presents for a newborn) but the new Mum was really touched. Highly recommend!</p>
-				                    </article>
-				                    
-				                    
-				                     <article>
-				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beyond impressed</h3>
-				                    <p>Giovanni Malago from Milan, Italy</p>
-				                    <p>I purchased the a story based on Peter and the Pirates and when I received it, I was beyond impressed. The quality and color of the illustrations is impeccable! I cannot wait to give this wonderful gift that I know the whole family will love for years.</p>
-				                    </article>
-				        
-				                    
-				                     <article>
-				                    <h3><img src="/img/5stars.png" />&nbsp;&nbsp;Beautiful Gift</h3>
-				                    <p>Jennifer Beckham from Dallas, TX</p>
-				                    <p>I have sent the My Very Own Name book to many friends and family as a gift for when their child is born. I was blessed to receive my own copy when my daughter was born in January. It simply is a special and educational way to celebrate a new baby!</p>
-				                    </article>
-				                    
-				                </div>
-				              </section>
-				              
-	              
-	    		</div><!-- div class="section-container tabs" -->
-                	
-                	</td>
+                    <td colspan="2">
+
+                        <div class="section-container tabs" data-section="tabs">
+
+                            <section class="active">
+                                <p class="title" data-section-title>
+                                    <a href="#">Reviews</a>
+                                </p>
+
+                                <div class="content" data-section-content>
+
+                                    <article>
+                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Really touched</h3>
+
+                                        <p>Teresa Ansley from Chicago, IL</p>
+
+                                        <p>The baby can't appreciate them for the moment (these were presents for a
+                                            newborn) but the new Mum was really touched. Highly recommend!</p>
+                                    </article>
+
+
+                                    <article>
+                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Beyond impressed</h3>
+
+                                        <p>Giovanni Malago from Milan, Italy</p>
+
+                                        <p>I purchased the a story based on Peter and the Pirates and when I received
+                                            it, I was beyond impressed. The quality and color of the illustrations is
+                                            impeccable! I cannot wait to give this wonderful gift that I know the whole
+                                            family will love for years.</p>
+                                    </article>
+
+
+                                    <article>
+                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Beautiful Gift</h3>
+
+                                        <p>Jennifer Beckham from Dallas, TX</p>
+
+                                        <p>I have sent the My Very Own Name book to many friends and family as a gift
+                                            for when their child is born. I was blessed to receive my own copy when my
+                                            daughter was born in January. It simply is a special and educational way to
+                                            celebrate a new baby!</p>
+                                    </article>
+
+                                </div>
+                            </section>
+
+
+                        </div>
+                        <!-- div class="section-container tabs" -->
+
+                    </td>
                 </tr>
             </table>
         </div>
-        
 
 
     </div><!-- class="large-9 push-3 columns"> -->
@@ -111,47 +126,48 @@
 
     <div class="large-3 pull-9 columns hide-for-small">
 
-      <div class="panel">
-        <h4 class="hide-for-small">Fables</h4><hr/>
-        <h5 class="subheader">Original:</h5>
-        <style>
-            ul.a {
-                font-size: smaller;
-                list-style-type: circle;
-                margin-left: 10px;
-            }
-        </style>
-        <ul class="a">
-            <li><a href="/book?bookid=1">My voyage to Aragon</a></li>
-            <li><a href="/book?bookid=0">When I met the pirates</a></li>
-            <li><a href="/book?bookid=2">The talisman of the Badia</a></li>
-        </ul>
-        <h5 class="subheader">Classic:</h5>
-        <ul class="a">
-            <li><a href="/book?bookid=3">Cinderella</a></li>
-            <li><a href="/book?bookid=4">Tom Thumb</a></li>
-            <li><a href="/book?bookid=5">The magical beanstalk</a></li>
-            <li><a href="/book?bookid=6">Sleeping Beauty</a></li>
-            <li><a href="/book?bookid=7">Red Cap</a></li>
-            <li><a href="/book?bookid=8">Rapunzel</a></li>
-        </ul>
-      </div>
+        <div class="panel">
+            <h4 class="hide-for-small">Fables</h4>
+            <hr/>
+            <h5 class="subheader">Our fables:</h5>
+            <style>
+                ul.a {
+                    font-size: smaller;
+                    list-style-type: circle;
+                    margin-left: 10px;
+                }
+            </style>
+            <ul class="a">
+                <li><a href="/book?bookid=1">My voyage to Aragon</a></li>
+                <li><a href="/book?bookid=0">When I met the pirates</a></li>
+                <li><a href="/book?bookid=2">The talisman of the Badia</a></li>
+            </ul>
+            <h5 class="subheader">Classic fables:</h5>
+            <ul class="a">
+                <li><a href="/book?bookid=3">Cinderella</a></li>
+                <li><a href="/book?bookid=4">Tom Thumb</a></li>
+                <li><a href="/book?bookid=5">The magical beanstalk</a></li>
+                <li><a href="/book?bookid=6">Sleeping Beauty</a></li>
+                <li><a href="/book?bookid=7">Red Cap</a></li>
+                <li><a href="/book?bookid=8">Rapunzel</a></li>
+            </ul>
+        </div>
 
     </div>
 
 {% endblock %}
 
 {% block extralatejavascripts %}
-	<script src="/js/foundation/foundation.abide.js"></script>
-  	<script src="/js/foundation/foundation.section.js"></script>
+    <script src="/js/foundation/foundation.abide.js"></script>
+    <script src="/js/foundation/foundation.section.js"></script>
     <script>
-      $(".xr").change(function() {
-    	  	var imagePath = "/img/covers/{{fable.bookimg_boy}}";
-    	  	if ($('#forgirl').is(':checked')) {
-            	imagePath = "/img/covers/{{fable.bookimg_girl}}";
+        $(".xr").change(function () {
+            var imagePath = "/img/covers/{{fable.bookimg_boy}}";
+            if ($('#forgirl').is(':checked')) {
+                imagePath = "/img/covers/{{fable.bookimg_girl}}";
             }
-      		$("#cover_image").attr("src", imagePath);
-      });
+            $("#cover_image").attr("src", imagePath);
+        });
     </script>
 {% endblock %}
 
