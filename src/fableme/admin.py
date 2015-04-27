@@ -8,10 +8,11 @@
 
 import logging
 import webapp2
+import fableme.db.dbutils
 
 from django.core.paginator import Paginator
 from fableme.abstract import FablePage
-from fableme.db.dbutils import Queries
+
 
 ITEMS_TO_FETCH = 10
 
@@ -30,7 +31,7 @@ class AdminUsers(FablePage):
         FablePage.__init__(self, request, response, "admin_users.html")
         
     def get(self, page=1):
-        data = Queries.get_all_users()
+        data = fableme.db.dbutils.get_all_users()
         paginator = Paginator(data, ITEMS_TO_FETCH)
         if page > paginator.num_pages:
             page = paginator.num_pages
@@ -51,7 +52,7 @@ class AdminFables(FablePage):
         FablePage.__init__(self, request, response, "admin_fables.html")
         
     def get(self, page=1):
-        data = Queries.get_universe_fables(self.the_user)
+        data = fableme.db.dbutils.get_universe_fables(self.the_user)
         paginator = Paginator(data, ITEMS_TO_FETCH)
         if page > paginator.num_pages:
             page = paginator.num_pages

@@ -4,13 +4,12 @@
     		<th>&nbsp;</th>
     		<th>Child Name</th>
             <th>Fable Template</th>
-    		<th>Language</th>
             <th>Purchased</th>
-    		<th>Download PDF</th>
-            <th>Download ePUB</th>
+    		<th>Download</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
-            <th>Click to purchase another format</th>          
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,29 +18,24 @@
 			<td><a href="#">{{forloop.counter}}</a></td>
 			<td>{{fable.name}}</td>
             <td>{{fable.template.title}}</td>
-			<td>{{fable.language}}</td>
-            <td>{{fable.purchased}}</td>   
-             
-            {% if fable.downlink_pdf %}
-                <td><a href="{{fable.downlink_pdf}}"><b>Download PDF&hellip;</b></a></td>  
-            {% else %}
-			    <td>-</td>	
-            {% endif %}
-            
-            {% if fable.downlink_epub %}
-                <td><a href="{{fable.downlink_epub}}"><b>Download ePub&hellip;</b></a></td>  
-            {% else %}
-                <td>-</td>  
-            {% endif %} 
+            <td>{{fable.purchased|date:"SHORT_DATE_FORMAT"}}</td>
+
+            <td>
+                <select name="download" onchange="location = this.options[this.selectedIndex].value;">
+                    <option selected="selected">...</option>
+                     {% if fable.downlink_pdf %}<option value="{{fable.downlink_pdf}}">Download PDF&hellip;</option>{% endif %}
+                     {% if fable.downlink_epub %}<option value="{{fable.downlink_epub}}">Download ePub&hellip;</option>{% endif %}
+                </select>
+            </td>
             
             {% if fable.downlink_pdf %}
-                <td><a href="{{fable.downlink_pdf}}"><img src="/img/generatepdf.png" width="30px" alt="Download PDF"></a></td>
+                <td><a href="{{fable.downlink_pdf}}"><img src="/img/generatepdf.png" width="50em" alt="Download PDF"></a></td>
             {% else %}
                 <td>&nbsp;</td>  
             {% endif %}
             
             {% if fable.downlink_epub %}
-                <td><a href="{{fable.downlink_epub}}"><img src="/img/epub.jpg" width="30px" alt="Download ePUB"></a></td>
+                <td><a href="{{fable.downlink_epub}}"><img src="/img/epub.jpg" width="50em" alt="Download ePUB"></a></td>
             {% else %}
                 <td>&nbsp;</td>  
             {% endif %}    
@@ -49,8 +43,10 @@
             {% if fable.downlink_pdf and fable.downlink_epub %}
                	<td>&nbsp;</td>  
             {% else %}
-                <td><a href="/buy?id={{fable.id}}">{{fable.template.title|truncatewords:5}}</a></td>
-            {% endif %}      
+                <td><a class="small button" href="/buy?id={{fable.id}}">Purchase other format</a></td>
+            {% endif %}
+
+            <td><a class="small button secondary" href="/review?bookid={{fable.template.template_id}}">Review</a></td>
               
 		</tr>
 	{% empty %}

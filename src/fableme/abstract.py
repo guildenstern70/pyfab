@@ -66,7 +66,7 @@ class FablePage(webapp2.RequestHandler):
     def session(self):
         # Returns a session using the default cookie key.
         session = None
-        if (self.session_store):
+        if self.session_store:
             session = self.session_store.get_session()
             logging.debug('Session found')
         else:

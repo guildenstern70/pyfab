@@ -1,0 +1,165 @@
+{% extends "base_center.html" %}
+
+{% block title %}FableMe - Review Fable{% endblock %}
+
+{% block extraheader %}
+    <link rel="stylesheet" href="/css/starrating.css">
+{% endblock %}
+
+{% block maincontent %}
+
+    <!-- Main Content Section -->
+    <div class="large-9 push-3 columns">
+
+        <div class="row">
+            <style>
+                td.cover {
+                    vertical-align: top;
+                    width: 45%;
+                }
+            </style>
+            <table>
+                <tr>
+                    <td class="cover hide-for-small">
+                        <fieldset>
+                            <legend>Cover</legend>
+                            <!-- {{templatesex}} -->
+                            {% if templatesex == "M" %}
+                                <img id="cover_image" name="cover_image" src="/img/covers/{{ fable.bookimg_boy }}"
+                                     width="250" alt="{{ fable.title }}"/>
+                            {% else %}
+                                <img id="cover_image" name="cover_image" src="/img/covers/{{ fable.bookimg_girl }}"
+                                     width="250" alt="{{ fable.title }}"/>
+                            {% endif %}
+
+                            <div align="center">
+                                {% if templatesex == "M" %}
+                                    <div class="switch">
+                                        <input class="xr" type="radio" id="forboy" value="boy" name="cover" checked>
+                                        <label for="forboy" onclick="">Boys</label>
+                                        <input class="xr" type="radio" id="forgirl" name="cover">
+                                        <label for="forgirl" onclick="">Girls</label>
+                                        <span></span>
+                                    </div>
+                                {% else %}
+                                    <div class="switch">
+                                        <input class="xr" type="radio" id="forboy" value="boy" name="cover">
+                                        <label for="forboy" onclick="">Boys</label>
+                                        <input class="xr" type="radio" id="forgirl" name="cover" checked>
+                                        <label for="forgirl" onclick="">Girls</label>
+                                        <span></span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                    </td>
+                    <td>
+                        {% include "fable_details.html" %}
+                        <div class="hide-for-small">
+                            <a href="/step?s=0" class="secondary radius button">Back to selection</a>
+                            &nbsp;
+                            <a href="/step?value={{ fable.template_id }}&s=1" class="radius button">Create this!</a>
+                        </div>
+                        <div class="show-for-small">
+                            <a href="/step?s=0" class="secondary radius button">Back</a>
+                            &nbsp;
+                            <a href="/step?value={{ fable.template_id }}&s=1" class="radius button">Create</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="panel radius">
+                            <h5>Review this fable</h5>
+                            <form id="review_fable" method="post" novalidate data-abide>
+                                <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                                    <div class="large-3 columns">
+                                        <label>Rating:</label>
+                                    </div>
+                                    <div class="large-9 columns">
+                                        <span class="starRating">
+                                            <input id="rating5" type="radio" name="rating" value="5">
+                                            <label for="rating5">5</label>
+                                            <input id="rating4" type="radio" name="rating" value="4">
+                                            <label for="rating4">4</label>
+                                            <input id="rating3" type="radio" name="rating" value="3" checked>
+                                            <label for="rating3">3</label>
+                                            <input id="rating2" type="radio" name="rating" value="2">
+                                            <label for="rating2">2</label>
+                                            <input id="rating1" type="radio" name="rating" value="1">
+                                            <label for="rating1">1</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="large-3 columns">
+                                        <label for="rev_title">Title:</label>
+                                    </div>
+                                    <div class="large-9 columns">
+                                        <input id="rev_title" type="text" placeholder="Review title" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="large-3 columns">
+                                        <label for="rev_description">Description:</label>
+                                    </div>
+                                    <div class="large-9 columns">
+                                        <textarea rows="10" id="rev_description"
+                                                  placeholder="Write here your review..." required>
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="large-12 columns right" align="right">
+                                        <input type="hidden" id="rev_template_id" value="{{ fable.template.template_id }}">
+                                        <input class="button secondary" type="submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div><!-- class="large-9 push-3 columns"> -->
+
+
+    <div class="large-3 pull-9 columns hide-for-small">
+
+        <div class="panel">
+            <h4 class="hide-for-small">Fables</h4>
+            <hr/>
+            <h5 class="subheader">Our fables:</h5>
+            <style>
+                ul.a {
+                    font-size: smaller;
+                    list-style-type: circle;
+                    margin-left: 10px;
+                }
+            </style>
+            <ul class="a">
+                <li><a href="/book?bookid=1">My voyage to Aragon</a></li>
+                <li><a href="/book?bookid=0">When I met the pirates</a></li>
+                <li><a href="/book?bookid=2">The talisman of the Badia</a></li>
+            </ul>
+            <h5 class="subheader">Classic fables:</h5>
+            <ul class="a">
+                <li><a href="/book?bookid=3">Cinderella</a></li>
+                <li><a href="/book?bookid=4">Tom Thumb</a></li>
+                <li><a href="/book?bookid=5">The magical beanstalk</a></li>
+                <li><a href="/book?bookid=6">Sleeping Beauty</a></li>
+                <li><a href="/book?bookid=7">Red Cap</a></li>
+                <li><a href="/book?bookid=8">Rapunzel</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extralatejavascripts %}
+    <script src="/js/foundation/foundation.abide.js"></script>
+{% endblock %}

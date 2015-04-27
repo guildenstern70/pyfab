@@ -88,7 +88,7 @@ class EditExisting(FablePage):
     def get(self):
         if self.user_db:
             self.template_values['nr_fables'] = self.user_db.nr_of_fables
-            self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(self.the_user)
+            self.template_values['fables'] = dbutils.get_all_ready_fables(self.the_user)
         self.template_values['return_page'] = 'create'
         self.render()
     
@@ -333,7 +333,7 @@ class Create(FablePage):
     """ /create fable page """
      
     def get(self):
-        fables = dbutils.Queries.get_all_ready_fables(self.logged.email)
+        fables = dbutils.get_all_ready_fables(self.logged.email)
         self.template_values['nr_fables'] = fables.count()
         self.template_values['fables'] = fables
         self.template_values['return_page'] = 'create'
@@ -359,8 +359,8 @@ class MyAccount(FablePage):
         self.template_values['receivenews'] = user_db.receivenews
         self.template_values['return_page'] = 'myaccount?panel=2'
         self.template_values['panel'] = panel
-        self.template_values['fables'] = dbutils.Queries.get_all_ready_fables(user_db.email)
-        purchased_books = dbutils.Queries.get_my_bought_fables(user_db.email)
+        self.template_values['fables'] = dbutils.get_all_ready_fables(user_db.email)
+        purchased_books = dbutils.get_my_bought_fables(user_db.email)
         self.template_values['bought_fables'] = purchased_books
         self.render()
         
@@ -447,19 +447,56 @@ class Step(FablePage):
 
 
 class Book(FablePage):
-    """ Handler for every /book page """ 
-  
+    """ Handler for every /book page """
+
     def get(self):
         """ http get handler """
         book = self.request.get('bookid')
-        book_obj = booktemplates.Book(int(book))     
+        book_obj = booktemplates.Book(int(book))
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = book_obj.default_sex
         self.template_values['book'] = book
         self.render()
-                
+
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
+
+
+class Review(FablePage):
+    """ Handler for review form page """
+
+    def _create_review(self, user_mail):
+        return schema.DbFableReview.create(user_mail, fable_template_id)
+
+    def post(self):
+        """ http post handler """
+        logging.debug('Review post handler')
+        self._template_id = self.request.get('rev_template_id')
+        self._title = self.request.get('rev_title')
+        self._description = self.request.get('rev_description')
+        self._rating = self.request.get('rating')
+        logging.debug('Fable template id > ' + self._template_id)
+        logging.debug('Review Title > ' + self._title)
+        logging.debug('Review Rating > ' + self._rating)
+        logging.debug('Review > ' + self._description)
+        self._create_review(self.logged.email)
+        self.render()
+
+    def get(self):
+        """ http get handler """
+        book = self.request.get('bookid')
+        book_obj = booktemplates.Book(int(book))
+        self.template_values['fable'] = book_obj
+        self.template_values['templatesex'] = book_obj.default_sex
+        self.template_values['book'] = book
+        self.render()
+
+    def __init__(self, request, response):
+        FablePage.__init__(self, request, response, 'review.html', request_authentication=True)
+        self._template_id = ""
+        self._title = ""
+        self._description = ""
+        self._rating = ""
 
 
 class HowEPub(FablePage):
@@ -478,7 +515,7 @@ class Buy(FablePage):
 
     def get(self):
         """ http get handler """
-        fable_id = self.request.get('id') # the fable to edit (-1: new fable)
+        fable_id = self.request.get('id')  # the fable to edit (-1: new fable)
         fable = schema.DbFable.get_fable(self.logged.email, int(fable_id))
         if fable.sex == 'M':
             fable_cover_gen = fable.template['bookimg_boy']
@@ -513,9 +550,9 @@ class DeleteFable(FablePage):
         return_page = self.request.get('retpage')
         fable_id = self.request.get('id')
         if fable_id != 'all':
-            dbutils.Queries.delete_fable(user_email, long(fable_id))
+            dbutils.delete_fable(user_email, long(fable_id))
         else:
-            dbutils.Queries.delete_all_saved_fables(user_email)
+            dbutils.delete_all_saved_fables(user_email)
         self.redirect('/'+return_page)
     
     def __init__(self, request, response):
@@ -538,10 +575,10 @@ class Order(FablePage):
         try:
             logging.debug('Charging credit card for user ' + customer_email)
             charge = stripe.Charge.create(
-                  amount=499, # amount in cents, again
-                  currency="eur",
-                  card=token,
-                  description="Your purchase at FableMe.com")
+                                          amount=499,  # amount in cents, again
+                                          currency="eur",
+                                          card=token,
+                                          description="Your purchase at FableMe.com")
             order_complete = True
             logging.debug('Issued an order for ' + str(charge.amount/100.0) + charge.currency)
             logging.debug('Customer has succesfully purchased the Fable #' + str(customer_fable_id))

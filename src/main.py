@@ -39,6 +39,7 @@ APPLICATION = webapp2.WSGIApplication(
      ('/print', fableme.printer.Print),
      ('/print/book', fableme.printer.PrinteBook),
      ('/register', fableme.pages.Register),
+     ('/review', fableme.pages.Review),
      ('/serve/([^/]+)?', fableme.printer.ServeHandler),
      ('/thankyou', fableme.pages.ThankYouReg),
      ('/login', fableme.pages.Login),

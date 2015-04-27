@@ -16,6 +16,29 @@ import fableme.db.booktemplates as booktemplates
 from google.appengine.ext import ndb
 
 
+class DbFableReview(ndb.Model):
+    """ DB Schema: Fable review from user """
+
+    stars = ndb.IntegerProperty(required=True)
+    title = ndb.StringProperty(required=True)
+    added = ndb.DateTimeProperty(auto_now_add=True)
+    review = ndb.StringProperty(required=True)
+    country = ndb.StringProperty()
+    user_email = ndb.StringProperty(required=True)
+    user_fullname = ndb.StringProperty(required=True)
+    accepted = ndb.BooleanProperty(default=False)
+
+    @staticmethod
+    def create(user_mail, template_id):
+        """ Create a new DbFable for user """
+        logging.debug('Creating NEW Fable Review for fable ' + str(template_id))
+        review = DbFableReview(parent=template_id)
+        review.user_email = user_mail
+        review.put()
+        logging.debug('New Review created by ' + user_mail + '. ID=' + str(review.id))
+        return review
+
+
 class DbFableUser(ndb.Model):
     """ DB Schema: DbFableUser """
     
@@ -88,8 +111,7 @@ class DbFableUser(ndb.Model):
         return "DbFableUser [email="+self.email+"]"
     
     def __eq__(self, other):
-        return (isinstance(other, self.__class__)
-            and self.__dict__ == other.__dict__)
+        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -98,7 +120,7 @@ class DbFableUser(ndb.Model):
 class DbFable(ndb.Model):
     """ DB Schema: DbFable """
     
-    template_id = ndb.IntegerProperty() # Foreign key to booktemplates template_id
+    template_id = ndb.IntegerProperty()  # Foreign key to booktemplates template_id
     sex = ndb.StringProperty()
     name = ndb.StringProperty()
     birthdate = ndb.DateProperty()
@@ -151,7 +173,7 @@ class DbFable(ndb.Model):
     def __recommandation(self):
         book = booktemplates.Book(self.template_id)
         sexonly = True
-        if (self.is_age_mismatch()):
+        if self.is_age_mismatch():
             sexonly = False
         return book.recommendation(sexonly)
                     
@@ -213,15 +235,11 @@ class DbFable(ndb.Model):
     def is_sex_mismatch(self):
         mismatch = False
         sex_recomm = self.__template()['sex_recomm']
-        if (sex_recomm != 'M' and sex_recomm != 'F'):
+        if sex_recomm != 'M' and sex_recomm != 'F':
             mismatch = False
-        elif (self.sex.lower() != sex_recomm.lower()):
+        elif self.sex.lower() != sex_recomm.lower():
             mismatch = True
         return mismatch
     
     def __repr__(self):
         return "DbFable [ID="+str(self.__id())+"]"
-    
-    
-    
-    
