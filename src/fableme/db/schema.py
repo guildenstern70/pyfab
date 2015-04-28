@@ -19,12 +19,12 @@ from google.appengine.ext import ndb
 class DbFableReview(ndb.Model):
     """ DB Schema: Fable review from user """
 
+    user_email = ndb.StringProperty(required=True)
+    fable_template_id = ndb.IntegerProperty(required=True)
     stars = ndb.IntegerProperty(required=True)
     title = ndb.StringProperty(required=True)
     added = ndb.DateTimeProperty(auto_now_add=True)
     review = ndb.StringProperty(required=True)
-    country = ndb.StringProperty()
-    user_email = ndb.StringProperty(required=True)
     user_fullname = ndb.StringProperty(required=True)
     accepted = ndb.BooleanProperty(default=False)
 
@@ -32,11 +32,21 @@ class DbFableReview(ndb.Model):
     def create(user_mail, template_id):
         """ Create a new DbFable for user """
         logging.debug('Creating NEW Fable Review for fable ' + str(template_id))
-        review = DbFableReview(parent=template_id)
+        review = DbFableReview(fable_template_id=int(template_id))
         review.user_email = user_mail
-        review.put()
-        logging.debug('New Review created by ' + user_mail + '. ID=' + str(review.id))
+        logging.debug('New Review created by ' + user_mail)
         return review
+
+    @staticmethod
+    def find_by_template_id(template_id):
+        return DbFableReview.query(DbFableReview.fable_template_id == int(template_id))
+
+    @staticmethod
+    def find_by_user(user_mail, template_id):
+        query = DbFableReview.query(DbFableReview.user_email == user_mail)
+        query = query.filter(DbFableReview.fable_template_id == int(template_id))
+        logging.debug('I found '+ str(query.count()) + ' reviews for '+user_mail+' and id='+str(template_id))
+        return query.get()
 
 
 class DbFableUser(ndb.Model):
@@ -227,8 +237,7 @@ class DbFable(ndb.Model):
     def is_age_mismatch(self):
         mismatch = False
         book_template = self.__template()
-        if ( (self.__age() > book_template['age_recomm_max']) 
-             or (self.__age() < book_template['age_recomm_min'])):
+        if self.__age() > book_template['age_recomm_max'] or (self.__age() < book_template['age_recomm_min']):
             mismatch = True
         return mismatch
     

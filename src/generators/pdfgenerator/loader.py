@@ -1,9 +1,9 @@
-'''
+"""
 FableGenerator
 fablegenerator.loader.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 from generators import chapter, templateloader
 
@@ -27,8 +27,8 @@ class SimpleLoader(templateloader.TemplateLoader):
                 self._parseFile()
                 self._addCover()
                 self.fable_doc.addTitle(self._title, self._dedication)
-                for chapter in self.chapters:
-                    self._buildChapter(self.fable_doc, chapter)
+                for xchapter in self.chapters:
+                    self._buildChapter(self.fable_doc, xchapter)
             else:
                 print 'CRITICAL Loader Error: empty contents.'
                 raise
@@ -36,16 +36,16 @@ class SimpleLoader(templateloader.TemplateLoader):
                 
     def get_images_path_to(self, filename):
         pics_folder = "F_PICS"
-        if (self._character.sex == 'M'):
+        if self._character.sex == 'M':
             pics_folder = "M_PICS"
         filepath_en = self._get_resources_path_lang()
         images_path = os.path.join(filepath_en, pics_folder)
         lang_code = self._language.language_code()
-        if (lang_code != "EN"):
+        if lang_code != "EN":
             finalpath_otherlang = os.path.normpath(os.path.join(filepath_en, lang_code))
             fullfilepath = os.path.join(finalpath_otherlang, pics_folder)
             path_to_file = os.path.join(fullfilepath, filename)
-            if (os.path.isfile(path_to_file)):
+            if os.path.isfile(path_to_file):
                 images_path = fullfilepath
         return os.path.join(images_path, filename)
     
@@ -92,7 +92,7 @@ class GoogleLoader(SimpleLoader):
     def save(self, file_h):
         saved = True
         try:
-            if (self.fable_doc):
+            if self.fable_doc:
                 self.fable_doc.save(file_h)
             else:
                 logging.warn('Aborting PDF save: fable_doc is null.')
@@ -109,7 +109,7 @@ class GoogleLoader(SimpleLoader):
         return self._template_file
     
     def _read_file_template(self):
-        readOk = True
+        read_ok = True
         try:
             template_googlepath = self._get_resources_path_to(self._template['template_text_file'])
             logging.debug('Reading from ' + template_googlepath + '...')
@@ -118,9 +118,9 @@ class GoogleLoader(SimpleLoader):
             fablefile.close()
             logging.debug('Reading file done.')
         except:
-            readOk = False
+            read_ok = False
             logging.error('*** Error reading fable template...')
             logging.error('*** %s', sys.exc_info())
-        return readOk
+        return read_ok
     
 

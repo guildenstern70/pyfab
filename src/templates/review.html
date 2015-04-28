@@ -70,52 +70,74 @@
                 <tr>
                     <td colspan="2">
                         <div class="panel radius">
-                            <h5>Review this fable</h5>
-                            <form id="review_fable" method="post" novalidate data-abide>
-                                <div class="row" style="margin-top: 30px; margin-bottom: 30px">
-                                    <div class="large-3 columns">
-                                        <label>Rating:</label>
+                            {% if review_received %}
+                                <h5>Thank you!</h5>
+                                <p>Your review has been submitted and will published by our staff in a few minutes.</p>
+                                <br>
+                                <a href="/">Back Home</a>
+                            {% else %}
+                                {% if review_processed %}
+                                    <h5>Thank you, administrator!</h5>
+                                    <p>The review of <a href="mailto:{{ author }}">{{ author }}</a> {{ review_message }}</p>
+                                    <br>
+                                    <a href="/">Back Home</a>
+                                {% else %}
+                                <h5>Review this fable</h5>
+                                <form id="review_fable" method="post" novalidate data-abide>
+                                    <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                                        <div class="large-3 columns">
+                                            <label>Rating:</label>
+                                        </div>
+                                        <div class="large-9 columns">
+                                            <span class="starRating">
+                                                <input id="rating5" type="radio" name="rating" value="5">
+                                                <label for="rating5">5</label>
+                                                <input id="rating4" type="radio" name="rating" value="4">
+                                                <label for="rating4">4</label>
+                                                <input id="rating3" type="radio" name="rating" value="3" checked>
+                                                <label for="rating3">3</label>
+                                                <input id="rating2" type="radio" name="rating" value="2">
+                                                <label for="rating2">2</label>
+                                                <input id="rating1" type="radio" name="rating" value="1">
+                                                <label for="rating1">1</label>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="large-9 columns">
-                                        <span class="starRating">
-                                            <input id="rating5" type="radio" name="rating" value="5">
-                                            <label for="rating5">5</label>
-                                            <input id="rating4" type="radio" name="rating" value="4">
-                                            <label for="rating4">4</label>
-                                            <input id="rating3" type="radio" name="rating" value="3" checked>
-                                            <label for="rating3">3</label>
-                                            <input id="rating2" type="radio" name="rating" value="2">
-                                            <label for="rating2">2</label>
-                                            <input id="rating1" type="radio" name="rating" value="1">
-                                            <label for="rating1">1</label>
-                                        </span>
+                                    <div class="row">
+                                        <div class="large-3 columns">
+                                            <label for="rev_title">Title:</label>
+                                        </div>
+                                        <div class="large-9 columns">
+                                            <input name="rev_title" id="rev_title" type="text" placeholder="The title of your review..." required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="large-3 columns">
-                                        <label for="rev_title">Title:</label>
+                                    <div class="row">
+                                        <div class="large-3 columns">
+                                            <label for="rev_name">Your name:</label>
+                                        </div>
+                                        <div class="large-9 columns">
+                                            <input name="rev_name" id="rev_name" type="text" placeholder="Your first and last name..." required>
+                                        </div>
                                     </div>
-                                    <div class="large-9 columns">
-                                        <input id="rev_title" type="text" placeholder="Review title" required>
+                                    <div class="row">
+                                        <div class="large-3 columns">
+                                            <label for="rev_description">Review:</label>
+                                        </div>
+                                        <div class="large-9 columns">
+                                            <textarea name="rev_description" rows="10" id="rev_description"
+                                                      placeholder="Write here your review..." required>
+                                            </textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="large-3 columns">
-                                        <label for="rev_description">Description:</label>
+                                    <div class="row">
+                                        <div class="large-12 columns right" align="right">
+                                            <input name="rev_template_id" type="hidden" id="rev_template_id" value="{{ book }}">
+                                            <input class="button secondary" type="submit">
+                                        </div>
                                     </div>
-                                    <div class="large-9 columns">
-                                        <textarea rows="10" id="rev_description"
-                                                  placeholder="Write here your review..." required>
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="large-12 columns right" align="right">
-                                        <input type="hidden" id="rev_template_id" value="{{ fable.template.template_id }}">
-                                        <input class="button secondary" type="submit">
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                                {%  endif %}
+                            {%  endif %}
                         </div>
 
                     </td>

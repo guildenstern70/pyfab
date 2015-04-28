@@ -65,7 +65,6 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-
                         <div class="section-container tabs" data-section="tabs">
 
                             <section class="active">
@@ -75,38 +74,28 @@
 
                                 <div class="content" data-section-content>
 
-                                    <article>
-                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Really touched</h3>
+                                <article>
+                                    {% for review in reviews %}
 
-                                        <p>Teresa Ansley from Chicago, IL</p>
+                                        <h3><img src="/img/{{ review.stars }}stars.gif" width="150px"/>&nbsp;&nbsp;
+                                        {{ review.title }}
+                                        </h3>
 
-                                        <p>The baby can't appreciate them for the moment (these were presents for a
-                                            newborn) but the new Mum was really touched. Highly recommend!</p>
-                                    </article>
-
-
-                                    <article>
-                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Beyond impressed</h3>
-
-                                        <p>Giovanni Malago from Milan, Italy</p>
-
-                                        <p>I purchased the a story based on Peter and the Pirates and when I received
-                                            it, I was beyond impressed. The quality and color of the illustrations is
-                                            impeccable! I cannot wait to give this wonderful gift that I know the whole
-                                            family will love for years.</p>
-                                    </article>
+                                        {% if review.user_fullname %}
+                                            <p class="toptitle">{{ review.user_fullname }}
+                                        {% else %}
+                                            <p class="toptitle">by Anonymous user
+                                        {% endif %}  on {{ review.added|date:"d M Y" }}</p>
 
 
-                                    <article>
-                                        <h3><img src="/img/5stars.png"/>&nbsp;&nbsp;Beautiful Gift</h3>
+                                        <p>{{ review.review }}</p>
 
-                                        <p>Jennifer Beckham from Dallas, TX</p>
+                                    {% empty %}
 
-                                        <p>I have sent the My Very Own Name book to many friends and family as a gift
-                                            for when their child is born. I was blessed to receive my own copy when my
-                                            daughter was born in January. It simply is a special and educational way to
-                                            celebrate a new baby!</p>
-                                    </article>
+                                        <p>This fable has no reviews yet.</p>
+
+                                    {% endfor %}
+                                 </article>
 
                                 </div>
                             </section>

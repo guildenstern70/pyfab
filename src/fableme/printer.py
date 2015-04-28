@@ -152,22 +152,21 @@ Sincerely,<br/>
         
         link_pdf = ebook_links.get('PDF')
         link_epub = ebook_links.get('EPUB')   
-        if (link_pdf is not None):
+        if link_pdf is not None:
             ebook_link = link_pdf
-        if (link_epub is not None):
+        if link_epub is not None:
             ebook_link = link_epub     
         body_field = body_field.replace('[name]', receiver)
         body_field = body_field.replace('[link]', ebook_link)
         html_field = html_field.replace('[name]', receiver)
         html_field = html_field.replace('[link]', ebook_link)
         mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
-                      to=to_field,
-                      subject="Your FableMe eBook is ready!",
-                      body=body_field,
-                      html=html_field)
+                       to=to_field,
+                       subject="Your FableMe eBook is ready!",
+                       body=body_field,
+                       html=html_field)
 
-    
-        
+
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     """ Download the ebook """
     

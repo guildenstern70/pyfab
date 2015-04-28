@@ -30,18 +30,18 @@ from fableme.abstract import FablePage
 from fableme.db.schema import DbFableUser
 from fableme.utils import BasicUtils
 
+# Constants
+TO_ADDRESS = 'info@fableme.com'
+CCN_ADDRESSES = ['alessiosaltarin@gmail.com', 'sdi78@yahoo.com']
+ACCEPT_LINK = '/review?accept=[1]&rv_mail=[2]&rv_tmp_id=[3]'
 
 # Pages
 
 
 class Index(FablePage):
     """ /index page """
-    
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "index.html")
-    
-TO_ADDRESS = 'info@fableme.com'
-CCN_ADDRESSES = ['alessiosaltarin@gmail.com', 'sdi78@yahoo.com']
 
 
 class Contacts(FablePage):
@@ -49,6 +49,8 @@ class Contacts(FablePage):
         
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, "contacts.html")
+        self._x = 0
+        self._y = 0
         
     def get(self):
         self._x = random.randint(1, 10)
@@ -58,18 +60,19 @@ class Contacts(FablePage):
         self.template_values['xyxy'] = self._x + self._y
         self.render()
         
-    def sendcontactmail(self, email, name, problem, message):
+    @staticmethod
+    def sendcontactmail(email, name, problem, message):
         from_field = name + ' <' + email + '>'
         body_field = message
         body_field += "\n================================="
         body_field += "\n Send answer to: "
         body_field += "\n " + from_field
         body_field += "\n================================="
-        mail.send_mail(sender = "FableMe.com Support <support@fableomatic.appspotmail.com>",
-                       to = TO_ADDRESS,
-                       bcc = CCN_ADDRESSES,
-                       subject = "[FABLEME - "+ problem +"] Support request from " + name,
-                       body = body_field)
+        mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to=TO_ADDRESS,
+                       bcc=CCN_ADDRESSES,
+                       subject="[FABLEME - "+ problem +"] Support request from " + name,
+                       body=body_field)
         
     def post(self):
         email_contact = self.request.get('contactEmail').strip()
@@ -77,7 +80,7 @@ class Contacts(FablePage):
         email_problem = self.request.get('contactProblem').strip()
         email_message = self.request.get('mailMessage').strip()
         logging.debug('Sending contact mail')
-        self.sendcontactmail(email_contact, email_name, email_problem, email_message)
+        Contacts.sendcontactmail(email_contact, email_name, email_problem, email_message)
         logging.debug('Done.')
         self.redirect('/contacts?sentmail=y')
         
@@ -186,7 +189,7 @@ Click here to verify your account:
                        to=email_to,
                        subject="FableMe.com - Registration confirmation",
                        body=body_field.replace('{{link}}', link))
-          
+
     def post(self):
         given_email = self.request.get('email')
         token = str(random.randint(10000, 99999))
@@ -453,6 +456,7 @@ class Book(FablePage):
         """ http get handler """
         book = self.request.get('bookid')
         book_obj = booktemplates.Book(int(book))
+        self.template_values['reviews'] = schema.DbFableReview.find_by_template_id(book)
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = book_obj.default_sex
         self.template_values['book'] = book
@@ -466,29 +470,145 @@ class Review(FablePage):
     """ Handler for review form page """
 
     def _create_review(self, user_mail):
-        return schema.DbFableReview.create(user_mail, fable_template_id)
+        new_review = schema.DbFableReview.create(user_mail, self._template_id)
+        new_review.stars = int(self._rating)
+        new_review.title = self._title
+        new_review.user_fullname = self._author
+        new_review.review = self._description
+        new_review.put()
+        Review.send_review_advise(user_mail, new_review)
+
+    @staticmethod
+    def _build_link(accept, xmail, xid):
+        link = 'http://' + BasicUtils.get_production_domain() + ACCEPT_LINK
+        link = link.replace('[1]', accept)
+        link = link.replace('[2]', xmail)
+        return link.replace('[3]', str(xid))
+
+    @staticmethod
+    def send_review_advise(user_mail, new_review):
+
+        fable = booktemplates.get_book_template(new_review.fable_template_id)
+        html_field = """
+<div>
+<p>Dear Administrators of FableMe.com,</p>
+
+<p>We have stored a new review from user <a href='mailto:[[email]]'>[[email]]</a>:</p>
+
+<table border="1">
+    <tr>
+        <td>Fable:</td>
+        <td>[[fable]]</td>
+    </tr>
+    <tr>
+        <td>Sender:</td>
+        <td>[[email]]</td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td>[[name]]</td>
+    </tr>
+    <tr>
+        <td>Rating:</td>
+        <td>[[rating]]</td>
+    </tr>
+    <tr>
+        <td>Review title:</td>
+        <td>[[title]]</td>
+    </tr>
+    <tr>
+        <td>Review:</td>
+        <td>[[review]]</td>
+    </tr>
+</table>
+
+<br>
+
+<ul>
+<li>
+    <a href="[[ok_link]]">Click here to accept and publish this review</a>
+</li>
+<li>
+    <a href="[[ko_link]]">Click here to deny and delete this review</a>
+</li>
+</ul><br>
+
+<p>Sincerely,<br>
+    <i>your FableMe robot.</i></p>
+
+</div>
+
+        """
+        html_field = html_field.replace('[[email]]', user_mail)
+        html_field = html_field.replace('[[fable]]', fable['title'])
+        html_field = html_field.replace('[[name]]', new_review.user_fullname)
+        html_field = html_field.replace('[[rating]]', str(new_review.stars))
+        html_field = html_field.replace('[[title]]', new_review.title)
+        html_field = html_field.replace('[[review]]', new_review.review)
+        html_field = html_field.replace('[[ok_link]]', Review._build_link('ok', user_mail, new_review.fable_template_id))
+        html_field = html_field.replace('[[ko_link]]', Review._build_link('ko', user_mail, new_review.fable_template_id))
+        logging.debug(html_field)
+        mail.send_mail(sender="FableMe.com Support <support@fableomatic.appspotmail.com>",
+                       to=CCN_ADDRESSES,
+                       subject="FableMe.com - Received review",
+                       body=html_field,
+                       html=html_field)
+
+    def _process_review(self, user_mail, is_accepted):
+        pending_review = schema.DbFableReview.find_by_user(user_mail, self._template_id)
+        if pending_review is not None:
+            self.template_values['author'] = user_mail
+            if is_accepted:
+                logging.debug('The review has been published.')
+                msg = 'has been accepted and published.'
+                pending_review.accepted = True
+                pending_review.put()
+            else:
+                msg = 'has been deleted.'
+                logging.debug('The review has been deleted.')
+                pending_review.key.delete()
+        else:
+            logging.debug('The review cannot be found.')
+            msg = 'The review is not on the database.'
+        return msg
 
     def post(self):
         """ http post handler """
         logging.debug('Review post handler')
         self._template_id = self.request.get('rev_template_id')
         self._title = self.request.get('rev_title')
+        self._author = self.request.get('rev_name')
         self._description = self.request.get('rev_description')
         self._rating = self.request.get('rating')
         logging.debug('Fable template id > ' + self._template_id)
         logging.debug('Review Title > ' + self._title)
+        logging.debug('Review Author > ' + self._author)
         logging.debug('Review Rating > ' + self._rating)
         logging.debug('Review > ' + self._description)
         self._create_review(self.logged.email)
-        self.render()
+        self.template_values['review_received'] = True
+        self._default_render()
 
     def get(self):
         """ http get handler """
-        book = self.request.get('bookid')
-        book_obj = booktemplates.Book(int(book))
+        self._template_id = self.request.get('bookid')
+        process_review = self.request.get('accept')
+        if process_review != "":
+            user_mail = self.request.get('rv_mail')
+            self._template_id = self.request.get('rv_tmp_id')
+            if process_review == 'ok':
+                msg = self._process_review(user_mail, is_accepted=True)
+            else:
+                msg = self._process_review(user_mail, is_accepted=False)
+            self.template_values['review_message'] = msg
+            self.template_values['review_processed'] = True
+        self._default_render()
+
+    def _default_render(self):
+        book_obj = booktemplates.Book(int(self._template_id))
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = book_obj.default_sex
-        self.template_values['book'] = book
+        self.template_values['book'] = self._template_id
         self.render()
 
     def __init__(self, request, response):
@@ -497,6 +617,7 @@ class Review(FablePage):
         self._title = ""
         self._description = ""
         self._rating = ""
+        self._author = ""
 
 
 class HowEPub(FablePage):

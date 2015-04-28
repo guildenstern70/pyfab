@@ -17,6 +17,7 @@ OUTPUT_PATH = "output/"
 RESOURCES_PATH = "resources/"
 PRODUCTION_DOMAIN = "fableomatic.appspot.com"
 
+
 class BasicUtils(object):
     
     @staticmethod
@@ -53,10 +54,10 @@ class BasicUtils(object):
     def string_to_date(inputstring):
         """ Convert a string read from an <input type='date'> to a date """
         retdt = None   
-        if (BasicUtils.is_date_valid(inputstring, CHROME_DATE_FORMAT)):
+        if BasicUtils.is_date_valid(inputstring, CHROME_DATE_FORMAT):
             logging.debug('Trying to convert #' + inputstring + '#: it seems a CHROME date...') 
             retdt = BasicUtils.convert_date(inputstring, CHROME_DATE_FORMAT)
-        elif (BasicUtils.is_date_valid(inputstring, IE10_DATE_FORMAT)): 
+        elif BasicUtils.is_date_valid(inputstring, IE10_DATE_FORMAT):
             logging.debug('Trying to convert #' + inputstring + '# it seems a IE10 date...') 
             retdt = BasicUtils.convert_date(inputstring, IE10_DATE_FORMAT)
         else:
