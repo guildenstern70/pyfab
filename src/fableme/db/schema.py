@@ -31,15 +31,19 @@ class DbFableReview(ndb.Model):
     @staticmethod
     def create(user_mail, template_id):
         """ Create a new DbFable for user """
-        logging.debug('Creating NEW Fable Review for fable ' + str(template_id))
-        review = DbFableReview(fable_template_id=int(template_id))
-        review.user_email = user_mail
-        logging.debug('New Review created by ' + user_mail)
+        review = DbFableReview.find_by_user(user_mail, template_id)
+        if review is None:
+            review = DbFableReview(fable_template_id=int(template_id))
+            review.user_email = user_mail
+            logging.debug('New Review created by ' + user_mail)
+        else:
+            logging.debug('Review existed: updating.')
         return review
 
     @staticmethod
     def find_by_template_id(template_id):
-        return DbFableReview.query(DbFableReview.fable_template_id == int(template_id))
+        query = DbFableReview.query(DbFableReview.fable_template_id == int(template_id))
+        return query.filter(DbFableReview.accepted == True)
 
     @staticmethod
     def find_by_user(user_mail, template_id):

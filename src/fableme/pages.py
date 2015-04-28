@@ -35,8 +35,6 @@ TO_ADDRESS = 'info@fableme.com'
 CCN_ADDRESSES = ['alessiosaltarin@gmail.com', 'sdi78@yahoo.com']
 ACCEPT_LINK = '/review?accept=[1]&rv_mail=[2]&rv_tmp_id=[3]'
 
-# Pages
-
 
 class Index(FablePage):
     """ /index page """
