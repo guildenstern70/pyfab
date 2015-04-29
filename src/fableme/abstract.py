@@ -9,6 +9,7 @@
 import webapp2
 import logging
 import webuser
+import urllib
 
 from webapp2_extras import sessions
 from google.appengine.ext.webapp import template
@@ -25,7 +26,7 @@ class FablePage(webapp2.RequestHandler):
         # Set self.request, self.response and self.app.
         self.initialize(request, response)
         # Base class initialization
-        self.logged = None # Web User - login info
+        self.logged = None  # Web User - login info
         self.template_values = {}
         self.req_auth = request_authentication
         # Session
@@ -76,7 +77,8 @@ class FablePage(webapp2.RequestHandler):
     def dispatch(self):
         if self.req_auth and not self._is_user_logged_in():
             logging.debug('This page requires login.')
-            self.redirect('/register')
+            original_qs = urllib.quote_plus(self.request.path_qs)
+            self.redirect('/register?qs='+original_qs)
         else:
             try:
                 # Dispatch the request.

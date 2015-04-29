@@ -14,6 +14,7 @@ import logging
 import stripe
 import random
 import string
+import urllib
 
 import fableme.db.dbutils as dbutils
 import fableme.db.schema as schema
@@ -199,9 +200,14 @@ Click here to verify your account:
             self.redirect('/register?user_exists='+given_email)
 
     def get(self):
+        qs = None
+        qsq = self.request.get('qs')
         token = self.request.get('token')
         given_email = self.request.get('mail')
         user_exists = self.request.get('user_exists')
+        if len(qsq) > 0:
+            qs = urllib.unquote_plus(qsq)
+            self.template_values['google_login'] = users.create_login_url(dest_url=qs)
         if token and given_email:
             user = DbFableUser.get_from_email(given_email)
             if user.remove_token(token):
@@ -212,7 +218,10 @@ Click here to verify your account:
             if user_exists is not None:
                 self.template_values['exists'] = user_exists
             if self.logged.is_logged:
-                self.redirect('/')  # User is already logged in
+                redir = '/'
+                if qs is not None:
+                    redir = qs
+                self.redirect(redir)  # User is already logged in
             else:
                 self.render() 
     
