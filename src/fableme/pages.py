@@ -200,7 +200,7 @@ Click here to verify your account:
             self.redirect('/register?user_exists='+given_email)
 
     def get(self):
-        qs = None
+        qs = None  # Destination after signing up/in
         qsq = self.request.get('qs')
         token = self.request.get('token')
         given_email = self.request.get('mail')
@@ -536,7 +536,7 @@ class Review(FablePage):
     <a href="[[ok_link]]">Click here to accept and publish this review</a>
 </li>
 <li>
-    <a href="[[ko_link]]">Click here to deny and delete this review</a>
+    <a href="[[ko_link]]">Click here to reject this review</a>
 </li>
 </ul><br>
 
@@ -569,11 +569,11 @@ class Review(FablePage):
                 logging.debug('The review has been published.')
                 msg = 'has been accepted and published.'
                 pending_review.accepted = True
-                pending_review.put()
             else:
-                msg = 'has been deleted.'
-                logging.debug('The review has been deleted.')
-                pending_review.key.delete()
+                msg = 'has been hidden.'
+                logging.debug('The review has been rejected.')
+                pending_review.accepted = True
+            pending_review.put()
         else:
             logging.debug('The review cannot be found.')
             msg = 'The review is not on the database.'
