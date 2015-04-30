@@ -572,7 +572,7 @@ class Review(FablePage):
             else:
                 msg = 'has been hidden.'
                 logging.debug('The review has been rejected.')
-                pending_review.accepted = True
+                pending_review.accepted = False
             pending_review.put()
         else:
             logging.debug('The review cannot be found.')
