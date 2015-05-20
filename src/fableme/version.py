@@ -6,13 +6,12 @@
 
 """
 
-# Global variables
+# Version variables
 VERSION_MAJOR = 0
 VERSION_MINOR = 9
-VERSION_BUILD = 9125
+VERSION_BUILD = 9207
 
-
-# Global methods
+# Get version
 def version():
     """ FableMe version """
     return str(VERSION_MAJOR)+"."+str(VERSION_MINOR)+"."+str(VERSION_BUILD)

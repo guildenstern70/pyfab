@@ -5,63 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb356c1d-9549-419c-8796-87ab6804fea5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_flat_10_000000_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-icons_222222_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-icons_228ef1_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-icons_ef8c08_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-icons_ffd27a_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-facebook-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-facebook-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-facebook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-google-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-google-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-google.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-googleplus-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-googleplus-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-googleplus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-instagram-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-instagram-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-instagram.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-linkedin-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-linkedin-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-linkedin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-pinterest-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-pinterest-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-pinterest.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-tumblr-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-tumblr-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-tumblr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-twitter-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-twitter-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-twitter.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-vimeo-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-vimeo-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-vimeo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-youtube-m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-youtube-s.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-youtube.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/jquery-ui-1.10.0.custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/ui-lightness/jquery-ui-1.10.0.custom.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-facebook.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-google.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-googleplus.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-instagram.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-linkedin.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-pinterest.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-tumblr.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-twitter.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-vimeo.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/webicons/webicon-youtube.svg" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/css/webicons_old.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fableme/version.py" afterPath="$PROJECT_DIR$/src/fableme/version.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyfab.iws" />
@@ -121,10 +65,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webicons.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="version.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/fableme/version.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24844721">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webicons.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/webicons.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7826087">
+            <state vertical-scroll-proportion="0.0">
               <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
               <folding />
             </state>
@@ -172,7 +126,6 @@
         <option value="$PROJECT_DIR$/src/templates/review.html" />
         <option value="$PROJECT_DIR$/src/fableme/db/schema.py" />
         <option value="$PROJECT_DIR$/src/fableme/abstract.py" />
-        <option value="$PROJECT_DIR$/src/fableme/version.py" />
         <option value="$PROJECT_DIR$/src/fableme/pages.py" />
         <option value="$PROJECT_DIR$/src/css/upload_google.sh" />
         <option value="$PROJECT_DIR$/src/fableme/writer.py" />
@@ -181,6 +134,7 @@
         <option value="$PROJECT_DIR$/src/fableme/pdfhelper.py" />
         <option value="$PROJECT_DIR$/src/fableme/generatorhelper.py" />
         <option value="$PROJECT_DIR$/src/fableme/printer.py" />
+        <option value="$PROJECT_DIR$/src/fableme/version.py" />
       </list>
     </option>
   </component>
@@ -694,7 +648,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432132594252</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="UI CSS">
+      <created>1432132814772</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1432132814772</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -712,7 +672,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25035867" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2876614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2876614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32674572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -756,7 +716,8 @@
     <MESSAGE value="Registration check on review - reject fix" />
     <MESSAGE value="Registration check on review - reject fix 2" />
     <MESSAGE value="Saving file to Google Cloud Storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Saving file to Google Cloud Storage" />
+    <MESSAGE value="UI CSS" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI CSS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1041,14 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fableme/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1139,8 +1092,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/webicons.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7826087">
+        <state vertical-scroll-proportion="0.0">
           <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fableme/version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24844721">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
         </state>
       </provider>
