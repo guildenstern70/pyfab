@@ -77,7 +77,7 @@ class WebUser(object):
         return nick
             
     @classmethod   
-    def fromEmail(cls, user_email):
+    def from_email(cls, user_email):
         logging.debug('Checking user: '+user_email)
         dbuser = DbFableUser.get_from_email(user_email)
         webuser = WebUser()
@@ -92,6 +92,4 @@ class WebUser(object):
         return DbFableUser.get_from_email(self.__email)
            
     is_logged = property(__is_logged, __set_logged,
-                     doc="""Gets or sets if the user is logged.""")
-    
-    
+                         doc="""Gets or sets if the user is logged.""")

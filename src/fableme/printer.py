@@ -179,11 +179,9 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
         briefmail = self.request.get('bmail')
         lastmod = self.request.get('lastmod')
         lang = self.request.get('lang')
-        resource = str(urllib.unquote(resource))
-        blob_info = blobstore.BlobInfo.get(resource)
         ext = '.pdf'
-        if self.request.get('fmt')=='EPUB':
+        if self.request.get('fmt') == 'EPUB':
             ext = '.epub'
         # deve contenere id utente, nome (corto) fiaba, nome bimbo, lingua fiaba, data generazione fiaba.
         ebook_file_name = briefname + '_' + briefmail + '_' + lastmod + '_' + lang + ext
-        self.send_blob(blob_info, save_as=ebook_file_name)
+        self.send_blob(resource, save_as=ebook_file_name)
