@@ -12,7 +12,6 @@ from __future__ import with_statement  # WARNING: THIS MUST BE FIRST LINE
 import logging
 import fableme.db.booktemplates as booktemplates
 
-from google.appengine.api import files
 from fableme.generatorhelper import GeneratorProxy
 
 

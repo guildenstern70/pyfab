@@ -68,19 +68,20 @@ class WebUser(object):
         return self.__isadmin
     
     def __repr__(self):
-        return 'WebUser '+ self.__email
+        return 'WebUser ' + self.__email
     
     @staticmethod
     def nick_from_email(email):
         at_index = email.index('@')
-        return email[0:at_index]
+        nick = email[0:at_index] + '_' + email[at_index+1:]
+        return nick
             
     @classmethod   
     def fromEmail(cls, user_email):
         logging.debug('Checking user: '+user_email)
         dbuser = DbFableUser.get_from_email(user_email)
         webuser = WebUser()
-        if dbuser != None:
+        if dbuser is not None:
             logging.debug('User found on DB!')
             webuser.login(user_email, dbuser.isadmin)
         else:

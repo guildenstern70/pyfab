@@ -53,7 +53,6 @@ class BasicUtils(object):
     @staticmethod
     def string_to_date(inputstring):
         """ Convert a string read from an <input type='date'> to a date """
-        retdt = None   
         if BasicUtils.is_date_valid(inputstring, CHROME_DATE_FORMAT):
             logging.debug('Trying to convert #' + inputstring + '#: it seems a CHROME date...') 
             retdt = BasicUtils.convert_date(inputstring, CHROME_DATE_FORMAT)
@@ -62,7 +61,7 @@ class BasicUtils(object):
             retdt = BasicUtils.convert_date(inputstring, IE10_DATE_FORMAT)
         else:
             logging.debug('Cannot convert date. Defaulting to 01/01/2000')
-            retdt = datetime.date(2000,01,01)
+            retdt = datetime.date(2000, 01, 01)
         return retdt
 
     @staticmethod
@@ -94,7 +93,7 @@ class GoogleUtils(BasicUtils):
     def get_from_resources(filename):
         """ Get a file stored in RESOURCE_PATH under Google App Engine """
         filepath = GoogleUtils.get_from_relative_resources(filename)
-        return GoogleUtils.__get_google_app_path(filepath) 
+        return GoogleUtils.__get_google_app_path(filepath)
 
     @staticmethod
     def __get_google_app_path(filepath):

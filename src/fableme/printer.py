@@ -73,7 +73,7 @@ class PrinteBook():
         """ Returns a dictionary containing download links 
             for every format, ie: {'PDF': 'http://www.ddshkdsj.com/833890', 'EPUB': 'http://www.ddshkdsj.com/833891'} """
         download_links = {}
-        if (fable_format == "EBOOK"):
+        if fable_format == "EBOOK":
             # PDF
             download_links['PDF'] = self._build_specific_format(fable_id, 'PDF')
             # EPUB
@@ -83,12 +83,15 @@ class PrinteBook():
         return download_links
         
     def _download_url(self, fable_format):
-        blobkey = self.ebookproxy.save_ebook() # this method returns physical file location
-        emailbrief = WebUser.nick_from_email(self.user_db.email)
+        username = WebUser.nick_from_email(self.user_db.email)
         titlebrief = self.fable.the_fable.template['title_brief']
         lastmod = self.fable.the_fable.modified.strftime("%d%m%y%H%M%S")
         lang = self.fable.the_fable.language
-        return '/serve/%s?brief=%s&lastmod=%s&bmail=%s&title=%s&lang=%s&fmt=%s' % ( blobkey, titlebrief, lastmod, emailbrief, titlebrief, lang, fable_format )
+        ext = '.' + fable_format.lower()
+        ebook_file_name = titlebrief + '_' + username + '_' + lastmod + '_' + lang + ext
+        blobkey = self.ebookproxy.save_ebook(ebook_file_name)
+        return '/serve/%s?brief=%s&lastmod=%s&bmail=%s&title=%s&lang=%s&fmt=%s' % \
+               (blobkey, titlebrief, lastmod, username, titlebrief, lang, fable_format)
       
     def printbook(self, fable_id, fable_format):
         logging.info('Initiating process print ebook id='+fable_id)
@@ -98,9 +101,9 @@ class PrinteBook():
         dbfable.bought = True
         link_pdf = downlinks.get('PDF')
         link_epub = downlinks.get('EPUB')   
-        if (link_pdf is not None):
+        if link_pdf is not None:
             dbfable.downlink_pdf = link_pdf
-        if (link_epub is not None):
+        if link_epub is not None:
             dbfable.downlink_epub = link_epub
         dbfable.purchased = datetime.datetime.now()
         dbfable.put()
@@ -179,11 +182,8 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
         ext = '.pdf'
-        if (self.request.get('fmt')=='EPUB'):
+        if self.request.get('fmt')=='EPUB':
             ext = '.epub'
         # deve contenere id utente, nome (corto) fiaba, nome bimbo, lingua fiaba, data generazione fiaba.
         ebook_file_name = briefname + '_' + briefmail + '_' + lastmod + '_' + lang + ext
         self.send_blob(blob_info, save_as=ebook_file_name)
-
-        
-        
