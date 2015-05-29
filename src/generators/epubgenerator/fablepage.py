@@ -28,7 +28,7 @@ class EPubFableDoc(textformatter.TextFormatter):
         self._index = ""
         self._titlepage = ""
         self._id_counter = 1
-        self._language = "en-US";
+        self._language = "en-US"
         self._title = fabletitle
         self._init_epubfiles()
         
@@ -56,7 +56,7 @@ class EPubFableDoc(textformatter.TextFormatter):
     def prepareImageFromText(self, imageTextDescription, loader):
         imageFileName = None
         try:
-            if (imageTextDescription[5] == '['):
+            if imageTextDescription[5] == '[':
                 imageFileName = imageTextDescription[6:imageTextDescription.find(']')].split(',')
                 imageFilePath = loader.get_images_path_to(imageFileName[0])
                 self._zipfilelist.append(imageFilePath)
@@ -90,7 +90,7 @@ class EPubFableDoc(textformatter.TextFormatter):
         self._story += PAGE_BREAK
     
     def addParagraphOrImage(self, text, loader):
-        if (text.startswith('**IMG')):
+        if text.startswith('**IMG'):
             self._id_counter += 1
             idname = 'id' + str(self._id_counter)
             imageName = self.prepareImageFromText(text, loader)    
@@ -105,7 +105,7 @@ class EPubFableDoc(textformatter.TextFormatter):
         else:
             _template = """<p class="fableme1">{ptext}</p>"""
             _template = _template.replace('{ptext}', text)
-        if (_template != None):
+        if _template is not None:
             self._story += _template
         else:
             logging.critical('*Warning: image is None!')

@@ -1,12 +1,13 @@
-'''
+"""
 FableGenerator
 stylesheet.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 from reportlab.lib.styles import StyleSheet1, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER #, TA_RIGHT
+from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.colors import darkblue
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -24,7 +25,7 @@ _baseFontNameBI = 'CalibriBoldItalics'
 class PdfStyler(object):
     
     def __init__(self, standalone):
-        if (standalone):
+        if standalone:
             pdfmetrics.registerFont(TTFont(_baseFontName, 'calibri.ttf'))
             pdfmetrics.registerFont(TTFont(_baseFontNameB, 'calibrib.ttf'))
             pdfmetrics.registerFont(TTFont(_baseFontNameI, 'calibrii.ttf'))
@@ -44,6 +45,7 @@ class PdfStyler(object):
         stylesheet.add(ParagraphStyle(name='Normal',
                                       fontName=_baseFontName,
                                       firstLineIndent=5,
+                                      alignment=TA_JUSTIFY,
                                       fontSize=16,
                                       leading=24,
                                       spaceBefore=4,
@@ -56,7 +58,7 @@ class PdfStyler(object):
                        )
         stylesheet.add(ParagraphStyle(name='Italic',
                                       parent=stylesheet['BodyText'],
-                                      fontName = _baseFontNameI)
+                                      fontName=_baseFontNameI)
                        )
     
         stylesheet.add(ParagraphStyle(name='Title',
@@ -70,7 +72,7 @@ class PdfStyler(object):
         
         stylesheet.add(ParagraphStyle(name='Dedication',
                                       parent=stylesheet['Normal'],
-                                      fontName = _baseFontNameI,
+                                      fontName=_baseFontNameI,
                                       fontSize=16,
                                       leading=24,
                                       spaceBefore=8,
@@ -81,7 +83,7 @@ class PdfStyler(object):
     
         stylesheet.add(ParagraphStyle(name='Chapter',
                                       parent=stylesheet['Normal'],
-                                      fontName = _baseFontNameI,
+                                      fontName=_baseFontNameI,
                                       fontSize=18,
                                       leading=18,
                                       spaceBefore=12,
@@ -109,7 +111,7 @@ class PdfStyler(object):
     
         stylesheet.add(ParagraphStyle(name='Heading5',
                                       parent=stylesheet['Normal'],
-                                      fontName = _baseFontNameB,
+                                      fontName=_baseFontNameB,
                                       fontSize=9,
                                       leading=10.8,
                                       spaceBefore=8,
@@ -118,7 +120,7 @@ class PdfStyler(object):
     
         stylesheet.add(ParagraphStyle(name='Heading6',
                                       parent=stylesheet['Normal'],
-                                      fontName = _baseFontNameB,
+                                      fontName=_baseFontNameB,
                                       fontSize=7,
                                       leading=8.4,
                                       spaceBefore=6,

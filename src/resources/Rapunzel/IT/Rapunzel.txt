@@ -7,7 +7,7 @@ Un giorno la donna stava alla finestra e, guardando il giardino, vide in un’ai
 "Ah! Morirò se non riesco a mangiare un po' di quei raperonzoli che crescono nel giardino dietro casa nostra." 
 
 L'uomo, che amava la propria moglie, pensò fra sè: "Costi quel che costi, devi riuscire a portargliene qualcuno." 
-
+**IMG[0001.jpg,17,21]
 Così, una sera, scavalcò il muro, colse in tutta fretta una manciata di raperonzoli e li portò a sua moglie. La donna li preparò subito in insalata e li mangiò con avidità. Ma i raperonzoli le erano piaciuti a tal punto che il giorno dopo la sua voglia si triplicò. L'uomo capì che non si sarebbe tranquillizzata, così entrò nuovamente di soppiatto nel giardino. Ma con suo grande spavento si vide davanti la maga. 
 
 "Come ti permetti?" chiese lei furiosa, "Entrare nel mio giardino e rubarne i frutti? Pagherai per questo!"
@@ -20,25 +20,27 @@ Impaurito, l'uomo accettò.
 
 Capitolo 2. La promessa va mantenuta
 
-Un anno più tardi la moglie dell’uomo partorì une bella bambina che chiamarono {name}. Poi però comparve la maga e se la portò via. La maga chiamò {name} Raperenzolo, dal nome dell’ortaggio che aveva scatenato tutto, e la portò in una torre altissima in mezzo ad una foresta. La maga lasciò crescere i capelli di Raperenzolo lunghi lunghi. C’era un motivo nascosto per il quale i capelli della bimba non venivano mai tagliati: finché aveva i capelli lunghi, un incantesimo teneva la torre chiusa.  Infatti, la torre non aveva né scala né porta, ma solo una minuscola finestrella in alto. Quando la maga voleva salirvi, da sotto chiamava: 
+Un anno più tardi la moglie dell’uomo partorì una bella bambina che chiamarono {name}. Poi però comparve la maga e se la portò via. La maga chiamò {name} Raperenzolo, dal nome dell’ortaggio che aveva scatenato tutto, e la portò in una torre altissima in mezzo ad una foresta. La maga lasciò crescere i capelli di Raperenzolo lunghi lunghi. C’era un motivo nascosto per il quale i capelli della bimba non venivano mai tagliati: finché aveva i capelli lunghi, un incantesimo teneva la torre chiusa.  Infatti, la torre non aveva né scala né porta, ma solo una minuscola finestrella in alto. Quando la maga voleva salirvi, da sotto chiamava:
 
-<i>"Oh Raperonzolo, sciogli i tuoi capelli 
-che per salir mi servirò di quelli."</i>
+<i>"Oh Raperonzolo, sciogli i tuoi capelli</i>
+<i>che per salir mi servirò di quelli."</i>
 
 I capelli di Raperonzolo erano lunghi e bellissimi, sottili come oro filato. Quando la maga chiamava, ella scioglieva le sue trecce, annodava i capelli in alto, al contrafforte della finestra, in modo che essi ricadessero per una lunghezza di venti braccia, e la maga ci si arrampicava. 
 
-Anni dopo, un giorno un giovane principe venne a trovarsi nel bosco dov’era la torre, e la udì cantare con una voce così dolce che subito se ne innamorò. Egli si disperava poiché la torre non aveva porta e nessuna scala era alta a sufficienza. Tuttavia ogni giorno si recava nel bosco, finché vide giungere la maga che così parlò:
+Anni dopo, un giorno un giovane principe venne a trovarsi nel bosco dov’era la torre, e la udì cantare con una voce così dolce che subito se ne innamorò. Egli si disperava poiché la torre non aveva porta e nessuna scala era alta a sufficienza.
+**IMG[0001.jpg,17,21]
+Tuttavia ogni giorno si recava nel bosco, finché vide giungere la maga che così parlò:
 
-<i>"Oh Raperonzolo, sciogli i tuoi capelli 
-che per salir mi servirò di quelli!"</i>
+<i>"Oh Raperonzolo, sciogli i tuoi capelli</i>
+<i>che per salir mi servirò di quelli!"</i>
 
 Così egli capì grazie a quale artificio si poteva penetrare nella torre. Si era bene impresso nella mente le parole che occorreva pronunciare, e il giorno seguente, all'imbrunire, andò alla torre e gridò: 
 
-<i>"Oh Raperonzolo, sciogli i tuoi capelli 
-che per salir mi servirò di quelli!"</i>
+<i>"Oh Raperonzolo, sciogli i tuoi capelli</i>
+<i>che per salir mi servirò di quelli!"</i>
 
 Ed ecco, ella sciolse i suoi capelli e non appena questi toccarono terra egli vi si aggrappò saldamente e fu sollevato in alto. 
-
+**IMG[0002.jpg,17,21]
 {name}  da principio si spaventò, non aveva mai visto un altro essere umano nella sua vita  tranne la sua matrigna, la maga. 
 
 "Non avere paura, vengo da amico!", disse il principe. "Ho sentito la tua bellissima canzone ed ho voluto conoscerti di persona".
@@ -63,8 +65,8 @@ E allora afferrò le belle trecce di Raperenzolo, le avvolse due o tre volte int
 
 La sera stessa quando il principe arrivò e disse: 
 
-<i>"Oh Raperonzolo, sciogli i tuoi capelli 
-che per salir mi servirò di quelli!"</i>
+<i>"Oh Raperonzolo, sciogli i tuoi capelli </i>
+<i>che per salir mi servirò di quelli!"</i>
 
 la maga lasciò cadere a terra i capelli dalla sua mano. 
 
@@ -73,7 +75,7 @@ Come fu sorpreso il principe quando si trovò la maga al posto dell'amata {name}
 "Sai una cosa?" disse la maga furibonda "per te, Raperenzolo è perduta per sempre!" 
 
 E sempre furiosa, con le forbici tagliò a pezzettini i capelli. Il principe cadde all’indietro e poi per terra. 
-
+**IMG[0003.jpg,17,21]
 Tagliando però la chioma di Raperenzolo , la signora Gothel distrusse l’incantesimo. La cesta di ferro si aprì, e nella torre comparve una porta e delle scale. Così {name} scese veloce, giù, dove il principe stava disteso e senza muoversi. Quando lo vide così si mise a piangere.
 
 "Mio principe, torna da me!" diceva lei mentre lo abbracciava.

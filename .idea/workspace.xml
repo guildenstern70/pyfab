@@ -4,10 +4,78 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb356c1d-9549-419c-8796-87ab6804fea5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fableme/printer.py" afterPath="$PROJECT_DIR$/src/fableme/printer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/upload_google.sh" afterPath="$PROJECT_DIR$/src/upload_google.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fableme/webuser.py" afterPath="$PROJECT_DIR$/src/fableme/webuser.py" />
+    <list default="true" id="cb356c1d-9549-419c-8796-87ab6804fea5" name="Default" comment="GCS fix">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0001.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0001.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0002.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0002.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0003.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/0003.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/img/5stars.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/cover_alessio.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/cover_original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/img/covers/cover_rapunzel_it.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/img/covers/cover_rapunzel_ro.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/img/covers/cover_redcap_it.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/img/covers/cover_redcap_ro.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/F_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/F_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/M_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/M_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/F_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/Rapunzel.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/M_PICS/Rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/cover_badia.jpg" afterPath="$PROJECT_DIR$/src/img/cover_badia.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/cover_rapunzel.jpg" afterPath="$PROJECT_DIR$/src/img/cover_rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/covers/cover_rapunzel.jpg" afterPath="$PROJECT_DIR$/src/img/covers/cover_rapunzel.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/prot_rapunzel_boy.jpg" afterPath="$PROJECT_DIR$/src/img/prot_rapunzel_boy.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/prot_rapunzel_boy.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/prot_rapunzel_boy.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/img/prot_rapunzel_girl.jpg" afterPath="$PROJECT_DIR$/src/img/prot_rapunzel_girl.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/prot_rapunzel_girl.jpg" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/prot_rapunzel_girl.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/Rapunzel.txt" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/Rapunzel.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/IT/Rapunzel.txt" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/IT/Rapunzel.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Rapunzel/RO/Rapunzel.txt" afterPath="$PROJECT_DIR$/src/resources/Rapunzel/RO/Rapunzel.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generators/epubgenerator/fablepage.py" afterPath="$PROJECT_DIR$/src/generators/epubgenerator/fablepage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generators/pdfgenerator/stylesheet.py" afterPath="$PROJECT_DIR$/src/generators/pdfgenerator/stylesheet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyfab.iws" />
@@ -22,7 +90,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/pyfab$FableMe_GAE.coverage" NAME="FableMe GAE Coverage Results" MODIFIED="1432132185246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/pyfab$FableMe_GAE.coverage" NAME="FableMe GAE Coverage Results" MODIFIED="1432913309424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -45,11 +113,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload_google.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="upload_google.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/upload_google.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.032051284">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fablepage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/generators/epubgenerator/fablepage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.062111802">
+              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -110,6 +188,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -148,6 +227,7 @@
         <option value="$PROJECT_DIR$/src/fableme/webuser.py" />
         <option value="$PROJECT_DIR$/src/fableme/printer.py" />
         <option value="$PROJECT_DIR$/src/upload_google.sh" />
+        <option value="$PROJECT_DIR$/src/generators/epubgenerator/fablepage.py" />
       </list>
     </option>
   </component>
@@ -220,6 +300,64 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generators" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyfab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generators" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epubgenerator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -673,31 +811,37 @@
       <option name="project" value="LOCAL" />
       <updated>1432133145938</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="GCS fix">
+      <created>1432134596314</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1432134596314</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34650856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36758894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44678056" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35479632" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34650856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25035867" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2876614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29196557" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44678056" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32674572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32674572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35479632" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36758894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -738,7 +882,8 @@
     <MESSAGE value="Saving file to Google Cloud Storage" />
     <MESSAGE value="UI CSS" />
     <MESSAGE value="New version" />
-    <option name="LAST_COMMIT_MESSAGE" value="New version" />
+    <MESSAGE value="GCS fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="GCS fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -757,6 +902,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/fableme/webuser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -983,7 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="58" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -991,7 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="400" column="51" selection-start-line="400" selection-start-column="33" selection-end-line="400" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -999,9 +1150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#92#106#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,7 +1157,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1505" column="0" selection-start-line="1505" selection-start-column="0" selection-end-line="1505" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,7 +1165,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
-            <element signature="e#69#83#0" expanded="true" />
+            <element signature="e#69#83#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1027,9 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="575" column="32" selection-start-line="575" selection-start-column="32" selection-end-line="575" selection-end-column="32" />
-          <folding>
-            <element signature="e#93#107#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1037,7 +1181,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,9 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36504424">
           <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding>
-            <element signature="e#67#76#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1121,8 +1261,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/upload_google.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.032051284">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generators/epubgenerator/fablepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.062111802">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding />
         </state>
       </provider>

@@ -22,21 +22,21 @@ In his fear the man agreed to everything.
 
 Chapter 2. Keeping a promise
 
-A year later the woman gave birth to a beautiful baby girl and they named her {name}. But then the sorceress appeared and took her away. She called {name} Rapunzel, after the herb that started it all, and raised her in a tower that stood in a forest. The sorceress let Rapunzel’s hair grow so long that it reached from wall to wall. But there was a wicked reason why her hair was never cut. As long as it kept growing, a spell locked the tower shut. The only entrance to the tower was a tiny little window at it’s very top. 
+A year later the woman gave birth to a beautiful baby girl and they named her {name}. But then the sorceress appeared and took her away. She called {name} Rapunzel, after the herb that started it all, and raised her in a tower that stood in a forest. The sorceress let Rapunzel’s hair grow so long that it reached from wall to wall. But there was a wicked reason why her hair was never cut. As long as it kept growing, a spell locked the tower shut. The only entrance to the tower was a tiny little window at it’s very top.
 
 When the sorceress wanted to enter, she stood below and called out: 
 
-<i>"Rapunzel, Rapunzel,
-Let down your hair to me."</i>
+<i>"Rapunzel, Rapunzel,</i>
+<i>let down your hair to me."</i>
 
 Rapunzel had splendid long hair, as fine as spun gold. When she heard the sorceress's voice, she untied her braids, wound them around a window hook, let her hair fall twenty yards to the ground, and the sorceress climbed up it.
 
 A few years later it happened that a king's son was riding through the forest. As he approached the tower he heard a song so beautiful that he stopped to listen. It was Rapunzel, who was passing the time by singing with her sweet voice. The prince wanted to climb up to her, and looked for a door in the tower, but none was to be found. 
-
+**IMG[0001.jpg,17,21]
 He rode home, but the song had so touched his heart that he returned to the forest every day and listened to it. One time, as he was thus standing behind a tree, he saw the sorceress approach, and heard her say: 
 
-<i>"Rapunzel, Rapunzel,
-Let down your hair to me."</i>
+<i>"Rapunzel, Rapunzel, </i>
+<i>let down your hair to me."</i>
 
 Then Rapunzel let down her strands of hair, and the sorceress climbed up them to her.
 
@@ -44,11 +44,11 @@ Then Rapunzel let down her strands of hair, and the sorceress climbed up them to
 
 And the next day, just as it was beginning to get dark, he went to the tower and called out: 
 
-<i>"Rapunzel, Rapunzel,
-Let down your hair to me."</i>
+<i>"Rapunzel, Rapunzel, </i>
+<i>let down your hair to me."</i>
 
 The hair fell down, and the prince climbed up. At first {name} was terribly frightened when a man such as she had never seen before came in to her. 
-
+**IMG[0002.jpg,17,21]
 "Don’t be afraid, I'm friendly!", said the prince. "I heard your sweet, sweet song, and I wanted so much to meet you in person."
 
 "I've never met other people. I only lived in this tower, trapped here since forever and I do not know how to get down" explained Rapunzel. "I'd love to see the world, find what lies beyond the trees."
@@ -71,8 +71,8 @@ In her anger she grabbed Rapunzel's beautiful hair, wrapped it a few times aroun
 
 That evening when the prince called out: 
 
-<i>"Rapunzel, Rapunzel,
-Let down your hair to me."</i>
+<i>"Rapunzel, Rapunzel,</i>
+<i>let down your hair to me."</i>
 
 the sorceress let down Rapunzel’s cut hair.
 
@@ -81,6 +81,7 @@ The prince climbed up, but above, instead of his beloved {name}, he found the Fr
 "Aha! So you’re the one who wants to take Rapunzel away from me" she cried scornfully. "You have lost Rapunzel. You will never see her again!"
 
 In anger, brandishing sharp scissors, she cut the hair in pieces. The prince jerked back in shock and tumbled to the ground far beneath.
+**IMG[0003.jpg,17,21]
 
 But in cutting Rapunzel’s long hair, Frau Gothel destroyed her spell. The steel chest opened, and a door and stairs appeared in the tower. So {name} ran down to where the prince fell. The prince lay still and silent. Tears streaked Rapunzel's face.
 
