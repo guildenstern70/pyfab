@@ -9,7 +9,7 @@
 # Version variables
 VERSION_MAJOR = 0
 VERSION_MINOR = 9
-VERSION_BUILD = 9207
+VERSION_BUILD = 9212
 
 # Get version
 def version():
