@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_DE.py
 Requires: num2word_base.py
 Version: 0.4
@@ -29,7 +29,7 @@ History
     0.4: Use high ascii characters instead of low ascii approximations
          add to_currency() and to_year()
 
-'''
+"""
 from num2word_EU import Num2Word_EU
 
 #//TODO: Use German error messages

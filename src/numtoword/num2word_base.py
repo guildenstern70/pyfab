@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_base.py
 Version: 1.0
 
@@ -17,7 +17,7 @@ Licence:
 History:
     1.1: add to_splitnum() and inflect()
          add to_year() and to_currency() stubs
-'''
+"""
 
 
 from __future__ import generators

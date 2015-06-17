@@ -1,23 +1,23 @@
-'''
+"""
 FableGenerator
 languages.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 chapter_string_EN = "Chapter"
 chapter_string_IT = "Capitolo"
 chapter_string_RO = "Capitolul"
     
 class Language(object):
-    '''
+    """
     Language class. Supported languages (passed in the constructor as identifiers):
     
     "EN" : English
     "IT" : Italian
     "RO" : Romanian 
     
-    '''
+    """
     
     def __init__(self, language):
         self.__set_language(language)

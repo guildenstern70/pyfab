@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_FR.py
 Requires: num2word_EU.py
 Version: 0.5
@@ -30,7 +30,7 @@ History:
     0.5: Use high ascii characters instead of low ascii approximations
          String interpolation where it makes things clearer
          to_currency() added [to_year works by default]
-'''
+"""
 from num2word_EU import Num2Word_EU
 
 #//TODO: error messages in French
@@ -74,8 +74,8 @@ class Num2Word_FR(Num2Word_EU):
         return ("%s %s"%(ctext, ntext), cnum + nnum)
 
 
-    # Is this right for such things as 1001 - "mille unième" instead of
-    # "mille premier"??  "millième"??
+    # Is this right for such things as 1001 - "mille uniï¿½me" instead of
+    # "mille premier"??  "milliï¿½me"??
 
     def to_ordinal(self,value):
         self.verify_ordinal(value)

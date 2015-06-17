@@ -25,7 +25,7 @@ class Steps(object):
         self.current_step = step
         self.template_keys = [
             ['fable_template', 'language'],
-            ['heroheroine', 'heropicture_boy', 'heropicture_girl', 'birthdate'],
+            ['heroheroine', 'heroname', 'heropicture_boy', 'heropicture_girl', 'birthdate'],
             ['sender', 'dedication'],
             ['template_title', 'heroheroine', 'sexagemismatch']
         ]
@@ -81,7 +81,7 @@ class Fabulator(object):
             step_setter = Steps(step)
             map_of_values = {
                 1: [self.get_template(), self.the_fable.language],
-                2: [self.hero_heroine(), self.get_character_pic('M'), self.get_character_pic('F'),
+                2: [self.hero_heroine(), self.the_fable.name, self.get_character_pic('M'), self.get_character_pic('F'),
                     self.the_fable.birthdate],
                 3: [self.the_fable.sender, self.the_fable.dedication],
                 4: [self.the_fable.template['title'], self.hero_heroine(), self.get_sex_or_age_mismatch()]
@@ -126,10 +126,12 @@ class Fabulator(object):
             elif step == '2':
                 self.the_fable.language = values[0]
             elif step == '3':
-                self.the_fable.sex = values[0]
-                if len(values) >= 2:
+                if len(values) == 2:
+                    self.the_fable.name = values[0].title()
+                    self.the_fable.birthdate = utils.GoogleUtils.string_to_date(values[1])
+                elif len(values) == 3:
+                    self.the_fable.sex = values[0]
                     self.the_fable.name = values[1].title()
-                if len(values) == 3:
                     self.the_fable.birthdate = utils.GoogleUtils.string_to_date(values[2])
             elif step == '4':
                 self.the_fable.sender = values[0]

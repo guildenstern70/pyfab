@@ -12,9 +12,9 @@ known_tags = ['<i>', '</i>', '<b>',
               '</b>', '<bi>', '</bi>', '<para>', '</para>', '<br/>']
 
 class Replacer(object):
-    '''
+    """
     Logic to replace tags to actual word in template
-    '''
+    """
 
     def __init__(self, template, character):
         self.fable_template = template
@@ -23,14 +23,14 @@ class Replacer(object):
         self.character_age = character.age
         
     def get_replacements(self):
-        ''' Return a dictionary: <tag>: replacement word '''
+        """ Return a dictionary: <tag>: replacement word """
         self.tags = self._extract_tags_from_template()
         print '-- Found %i tags...' % len(self.tags)
         replacements = self._build_dictionary()
         return replacements
         
     def _extract_tags_from_template(self):
-        ''' Return a set (unique list) of tags found in a template '''
+        """ Return a set (unique list) of tags found in a template """
         intag = False
         tag = ""
         tags_found = set()
@@ -52,9 +52,9 @@ class Replacer(object):
         return tag_dict
     
     def _tag_replace(self, sex, tag):
-        ''' A tag with underscore <his_her> is turned into 'his' if male, else 'her'
+        """ A tag with underscore <his_her> is turned into 'his' if male, else 'her'
             A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' 
-            If a tag is in the list known_tags it is NOT replaced/processed '''
+            If a tag is in the list known_tags it is NOT replaced/processed """
         to_be_replaced = ''
         replace_tag = True
         
@@ -78,12 +78,12 @@ class Replacer(object):
         return to_be_replaced
     
     def _element_translate(self, elem):
-        ''' Elem is a tag containing a word (M,F substitution has been already done).
+        """ Elem is a tag containing a word (M,F substitution has been already done).
             If tag contains <name> return the character's name.
             If tag contains <age> returns the character's age (in letters, ie: six)
             If tag containg <ageord> returns the character's age in ordinal (in letters, ie: sixth)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
-            keys, such as: name '''
+            keys, such as: name """
         return {
             'name': self.character_name,
             'age': to_card(self.character_age),

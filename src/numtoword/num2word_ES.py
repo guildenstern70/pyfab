@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_ES.py
 Requires: num2word_EU.py
 Version: 0.3
@@ -28,7 +28,7 @@ History:
     0.3: Use high ascii characters instead of low ascii approximations
          String interpolation where it makes things clearer
          add to_currency()
-'''
+"""
 from num2word_EU import Num2Word_EU
 
 #//TODO: correct orthographics

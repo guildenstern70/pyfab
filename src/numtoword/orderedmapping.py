@@ -1,4 +1,4 @@
-'''
+"""
 Module: orderedmapping.py
 Version: 1.0
 
@@ -11,7 +11,7 @@ Copyright:
 Licence:
     This module is distributed under the Lesser General Public Licence.
     http://www.opensource.org/licenses/lgpl-license.php
-'''
+"""
 from __future__ import generators
 class OrderedMapping(dict):
     def __init__(self, *pairs):

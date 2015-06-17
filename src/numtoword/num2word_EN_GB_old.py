@@ -1,4 +1,4 @@
-'''
+"""
 Module: num2word_EN_GB_old.py
 Requires: num2word_EN_GB_old.py
 Version: 0.3
@@ -24,7 +24,7 @@ History:
 
 Todo:
     Currency (pounds/shillings/pence)
-'''
+"""
 from num2word_EN_GB import Num2Word_EN_GB
 
 class Num2Word_EN_GB_old(Num2Word_EN_GB):

@@ -14,9 +14,9 @@ FINAL_TAG_SYMBOL = '}'
 #Known_tags = ['<i>', '</i>', '<b>', '</b>', '<bi>', '</bi>', '<para>', '</para>', '<br/>']
 
 class Replacer(object):
-    '''
+    """
     Logic to replace tags to actual word in template
-    '''
+    """
 
     def __init__(self, template, character, lang_code):
         self.fable_template = template
@@ -26,13 +26,13 @@ class Replacer(object):
         self.lang = lang_code
         
     def get_replacements(self):
-        ''' Return a dictionary: <tag>: replacement word '''
+        """ Return a dictionary: <tag>: replacement word """
         self.tags = self._extract_tags_from_template()
         replacements = self._build_dictionary()
         return replacements
         
     def _extract_tags_from_template(self):
-        ''' Return a set (unique list) of tags found in a template '''
+        """ Return a set (unique list) of tags found in a template """
         intag = False
         tag = ""
         tags_found = set()
@@ -54,8 +54,8 @@ class Replacer(object):
         return tag_dict
     
     def _tag_replace(self, sex, tag):
-        ''' A tag with underscore <his_her> is turned into 'his' if male, else 'her'
-            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' '''
+        """ A tag with underscore <his_her> is turned into 'his' if male, else 'her'
+            A tag without underscore is processed turning the key into the value, ie.: <name> => 'Alessio' """
         to_be_replaced = ''
 
         underindex = tag.find('_') 
@@ -71,14 +71,14 @@ class Replacer(object):
         return to_be_replaced
     
     def _element_translate(self, elem):
-        ''' Elem is a tag containing a word (M,F substitution has been already done).
+        """ Elem is a tag containing a word (M,F substitution has been already done).
             If tag contains <name> return the character's name.
             If tag contains <age> returns the character's age (in letters, ie: six)
             If tag contains <ageplus> returns the character's age + 1 (in letters, ie: seven)
             If tag containg <ageord> returns the character's age in ordinal (in letters, ie: sixth)
             If tag contains <ageplusord> returns the character's age in ordinal + 1 (in letters, ie: seventh)
             This procedure analyzes the tag element and it translates it if it matches certain pre-defined
-            keys, such as: name '''
+            keys, such as: name """
         
         n2w = numtoword.Num2Word(self.lang).create()
             

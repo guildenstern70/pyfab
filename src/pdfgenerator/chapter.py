@@ -1,9 +1,9 @@
-'''
+"""
 PDFGenerator
 chapter.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 class FableChapter():
     

@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_EU.py
 Requires: num2word_base.py
 Version: 1.1
@@ -20,7 +20,7 @@ Data from:
 
 History:
     1.1: add to_currency()
-'''
+"""
 from num2word_base import Num2Word_Base
 
 class Num2Word_EU(Num2Word_Base):

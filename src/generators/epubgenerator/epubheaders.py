@@ -1,9 +1,9 @@
-'''
+"""
 FableGenerator
 epubgenerator.epubheaders.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 EPUB_XHTML_TITLEPAGE = """<?xml version='1.0' encoding='utf-8'?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">

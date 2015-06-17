@@ -1,9 +1,9 @@
-'''
+"""
 PDFGenerator
 fablepage.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 import stylesheet
 import logging

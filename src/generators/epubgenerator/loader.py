@@ -1,9 +1,9 @@
-'''
+"""
 FableGenerator
 epubgenerator.loader.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 import fablepage
 import os

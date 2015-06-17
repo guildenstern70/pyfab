@@ -1,9 +1,9 @@
-'''
+"""
 FableGenerator
 chapter.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 class FableChapter():
     

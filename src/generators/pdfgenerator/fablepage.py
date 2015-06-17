@@ -1,11 +1,11 @@
 # coding=utf-8
 
-'''
+"""
 FableGenerator
 fablepage.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 import logging
 import fabletemplate

@@ -1,11 +1,11 @@
 from abc import abstractmethod
 
-'''
+"""
 FableGenerator
 generators.textformatter.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 
 class TextFormatter(object):

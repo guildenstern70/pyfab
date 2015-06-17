@@ -1,9 +1,9 @@
-'''
+"""
 PDFGenerator
 doctemplate.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 from reportlab.platypus.frames import Frame
 from reportlab.pdfgen import canvas
@@ -21,8 +21,8 @@ class FableMeDocTemplate(BaseDocTemplate):
     _invalidInitArgs = ('pageTemplates',)
     
     def handle_pageBegin(self):
-        '''override base method to add a change of page template after the firstpage.
-        '''
+        """override base method to add a change of page template after the firstpage.
+        """
         self._handle_pageBegin()
         self._handle_nextPageTemplate('Later')
 

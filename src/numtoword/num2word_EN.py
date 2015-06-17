@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_EN.py
 Requires: num2word_EU.py
 Version: 1.2
@@ -36,7 +36,7 @@ History:
          to_year() and to_currency() added
          
     1.1: to_ordinal_num() fixed for 11,12,13   
-'''
+"""
 from __future__ import division 
 import num2word_EU
 

@@ -1,9 +1,9 @@
-'''
+"""
 PDFGenerator
 stylesheet.py
 
 @author: Alessio Saltarin
-'''
+"""
 
 from reportlab.lib.styles import StyleSheet1, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER

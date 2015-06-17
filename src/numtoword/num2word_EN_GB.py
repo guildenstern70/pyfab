@@ -1,6 +1,6 @@
 # coding=utf-8
 
-'''
+"""
 Module: num2word_EN_GB.py
 Requires: num2word_EN.py
 Version: 1.0
@@ -32,7 +32,7 @@ Usage:
 
 History:
     1.0: Split from num2word_EN with the addition of to_currency()
-'''
+"""
 
 from num2word_EN import Num2Word_EN
 
