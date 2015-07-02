@@ -7,19 +7,15 @@
 """
 
 import logging
-import urllib
 import datetime
-
 import fableme.db.schema as schema
-
 from fableme.fabulator import Fabulator
 from fableme.abstract import FablePage
 from fableme.generatorhelper import GeneratorProxy
 from google.appengine.api import mail
-
-from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from fableme.webuser import WebUser
+
 
 class Print(FablePage):
     """ /print page """ 

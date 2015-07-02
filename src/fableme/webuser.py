@@ -1,5 +1,13 @@
-import logging
+"""
 
+ FableMe.com
+ A LittleLite Web Application
+
+ webuser.py
+
+"""
+
+import logging
 from fableme.db.schema import DbFableUser
 
 

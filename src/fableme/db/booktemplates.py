@@ -308,7 +308,7 @@ books = (
         'template_text_file': 'RedCap.txt',
         'template_dir': 'RedCap',
         'title': 'Red Cap',
-        'title_brief': 'Little Red Riding Hood',
+        'title_brief': 'RedCap',
         'title_RO': u'Scufița roșie',
         'title_IT': 'Cappuccetto rosso',
         'sku': 'SKU #83232',
