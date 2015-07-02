@@ -653,18 +653,29 @@ class Buy(FablePage):
         if fable.language != 'EN':
             fable_cover_gen = fable_cover_gen[:-4] + '_' + fable.language + '.jpg'            
         self.template_values['fable'] = fable
+        self.template_values['fable_lang'] = Buy._get_fable_language(fable.language)
         self.template_values['cover'] = fable_cover_gen
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
         self.template_values['user_email'] = self.logged.email
         self.template_values['ebook_price_cents'] = fable.template['price_eurocents']
-        self.template_values['ebook_price_string'] = self._get_price_string(fable.template['price_eurocents'])
+        self.template_values['ebook_price_string'] = Buy._get_price_string(fable.template['price_eurocents'])
         self.render()
                 
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'buy.html')
-        
-    def _get_price_string(self, price_in_cents):  
+
+    @staticmethod
+    def _get_fable_language(lang_id):
+        response = 'engligh'
+        if lang_id=='IT':
+            response = 'italian'
+        elif lang_id=='RO':
+            response = 'romanian'
+        return response
+
+    @staticmethod
+    def _get_price_string(price_in_cents):
         price = price_in_cents / 100.0  
         return "{:10.2f} EUR".format(price)
 

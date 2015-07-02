@@ -42,9 +42,8 @@ class AdminUsers(FablePage):
         self.template_values['page'] = page
         self.template_values['total_users'] = data.count()
         self.render()
-        
-        
-        
+
+
 class AdminFables(FablePage):
     """ /admin/fables fable page """
     

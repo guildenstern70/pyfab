@@ -26,17 +26,18 @@ class PdfStyler(object):
     
     def __init__(self, standalone):
         if standalone:
-            pdfmetrics.registerFont(TTFont(_baseFontName, 'calibri.ttf'))
-            pdfmetrics.registerFont(TTFont(_baseFontNameB, 'calibrib.ttf'))
-            pdfmetrics.registerFont(TTFont(_baseFontNameI, 'calibrii.ttf'))
-            pdfmetrics.registerFont(TTFont(_baseFontNameBI, 'calibriz.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontName, 'resources/calibri.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameB, 'resources/calibrib.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameI, 'resources/calibrii.ttf'))
+            pdfmetrics.registerFont(TTFont(_baseFontNameBI, 'resources/calibriz.ttf'))
         else:
             pdfmetrics.registerFont(TTFont(_baseFontName, utils.GoogleUtils.get_from_resources('calibri.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameB, utils.GoogleUtils.get_from_resources('calibrib.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameI, utils.GoogleUtils.get_from_resources('calibrii.ttf')))
             pdfmetrics.registerFont(TTFont(_baseFontNameBI, utils.GoogleUtils.get_from_resources('calibriz.ttf')))
         registerFontFamily(_baseFontName, normal=_baseFontName,bold=_baseFontNameB,italic=_baseFontNameI,boldItalic=_baseFontNameBI)
-    
+
+   
     def fableMeStyleSheet(self):
         """Returns the FableMe stylesheet """
         

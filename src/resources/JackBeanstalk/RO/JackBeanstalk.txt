@@ -33,6 +33,7 @@ Odată ca niciodată, trăiau într-o casă sărăcacioasă, de piatră, o vaduv
 "Da, spun adevărul. și dacă n-o fi așa, o să-ți dau vaca înapoi". 
 
 "Prea-bine", căzu de acord {name} atras de presupusa magie a boabelor. Îi dădu vaca străinului și luă boabele de fasole. 
+**IMG[0001.jpg,17,21]
 
 Mama lui se bucură când îl văzu acasă așa de repede.
 
@@ -47,6 +48,7 @@ Mama lui se bucură când îl văzu acasă așa de repede.
 Dar nu apucă sa termine ce avea de spus că mamă-sa se luă cu mâinile de păr. 
 
 "Ți-ai pierdut mințile fiule! Și acuma din ce o să trăim? Cu banuții de pe vacă am fi putut cumpăra o altă vacă mai tânară care să ne dea lapte proaspăt, sau am fi putut deschide o tavernă. Acum o să murim de foame. Nesăbuitule, n-ar fi trebuit să am încredere în tine!"
+**IMG[0002.jpg,17,21]
 
 Furioasă tare, femeia înhăță cele cinci boabe de fasole și le aruncă pe fereastră. După care amândoi se duseră la culcare fără să cineze.
 
@@ -79,6 +81,7 @@ Abia reuși {name} să se ascundă în cuptor că zmeul intră pe ușă. Era aș
 Zmeul păru să-i dea crezare, nu mai spuse nimic de copil, și după ce se sătură de mâncat, scoase din cămară un sac mare plin cu galbeni și se apucă să-i numere. Și numără, și numără, și numără, până adormi cu capul pe masă.
 
 {name} ieși ușurel din cuptor având grijă să nu facă zgomot ca să nu-l trezească pe zmeu, își umplu traista de bani și ieși repede din castel. Găsi cu ușurință drumul spre vrejul de fasole și coborî mai sprinten și mai repede decât se așteptase.
+**IMG[0003.jpg,17,21]
 
 "Hai că am avut noroc", își zicea el în timp ce cobora, "noroc că și zmeoaica s-a dus la culcare, altfel cum aș fi putut eu să ies din castel fără să fiu văzut și cu traista plină de bani?" 
 

@@ -31,6 +31,7 @@ Il lupo pensò fra sé: “Questa bimba tenerella è un buon boccone prelibato p
 Fece un pezzetto di strada con {name}, poi disse: 
 
 "Guarda un po' quanti bei fiori ci sono nel bosco, Cappuccetto Rosso; perché‚ non ti guardi attorno? Credo che tu non senta neppure come cantano dolcemente gli uccellini! Te ne stai tutta seria come se andassi a scuola, ed è così allegro nel bosco!" 
+**IMG[0001.jpg,17,21]
 
 Cappuccetto Rosso alzò gli occhi e quando vide i raggi del sole filtrare attraverso gli alberi, e tutto intorno pieno di bei fiori, pensò: “Se porto alla nonna un mazzo di fiori, le farà piacere; è così presto che arrivo ancora in tempo.”
 
@@ -55,6 +56,7 @@ Allora si avvicinò al letto e scostò le cortine: la nonna era coricata con la 
 "Oh, nonna, che orecchie grandi hai!" 
 
 "Per sentirti meglio." 
+**IMG[0002.jpg,17,21]
 
 "Oh, nonna, che occhi grossi hai!" 
 
@@ -73,6 +75,7 @@ Poi, con la pancia bella piena, si rimise a letto, s'addormentò e incominciò a
 Proprio allora passò lì davanti un cacciatore e pensò fra sé: "Come russa la vecchia! Devi darle un'occhiata per vedere se ha bisogno di qualcosa." 
 
 Entrò nella stanza e avvicinandosi al letto vide il lupo che cercava da tempo. Stava per puntare lo schioppo quando gli venne in mente che forse il lupo aveva ingoiato la nonna e che poteva ancora salvarla. Così non sparò, ma prese un paio di forbici e aprì la pancia del lupo addormentato. Dopo due tagli vide brillare il cappuccetto rosso, e dopo altri due {name} saltò fuori gridando:  "Che paura ho avuto! Era così buio nella pancia del lupo!" 
+**IMG[0003.jpg,17,21]
 
 Poi venne fuori anche la nonna, che era ancora viva. E Cappuccetto Rosso andò a prendere dei gran pietroni con cui riempirono il ventre del lupo; quando egli si svegliò fece per correr via, ma le pietre erano così pesanti che subito cadde a terra e morì.
 

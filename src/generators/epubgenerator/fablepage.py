@@ -66,12 +66,12 @@ class EPubFableDoc(textformatter.TextFormatter):
         return imageFileName[0]
     
     def addTitle(self, text, dedication):
-        _template = """<p class="fableme1">&#160;</p><p class="fableme4 fablemecenter">FableMe.com</p>
+        _template = u"""<p class="fableme1">&#160;</p><p class="fableme4 fablemecenter">FableMe.com</p>
         <div class="booktitle">{title}</div><p class="fableme1">&#160;</p>
         <p class="fableme1">&#160;</p><p class="fableme1">&#160;</p>
         <p class="fableme4 fablemecenter">{dedication}</p>"""
-        _template = _template.replace('{title}', text)
-        dedicPar = ""
+        _template = _template.replace('{title}', unicode(text))
+        dedicPar = u""
         for dedicLine in dedication.split('***'):
             dedicPar += dedicLine
             dedicPar += "<br/>"
@@ -81,9 +81,11 @@ class EPubFableDoc(textformatter.TextFormatter):
         self._story += _template
     
     def addChapterTitle(self, chapter_title):
-        _template = """<div class="chaptertitle"><p class="fableme1">&#160;</p><i class="fableme4">{chaptertitle}</i></div>"""
-        _template = _template.replace('{chaptertitle}', chapter_title)
-        _template += """<p class="fableme1">&#160;</p>"""
+        _template = u"""<div class="chaptertitle">
+                          <p class="fableme1">&#160;</p>
+                          <i class="fableme4">{chaptertitle}</i></div>"""
+        _template = _template.replace('{chaptertitle}', unicode(chapter_title))
+        _template += u"""<p class="fableme1">&#160;</p>"""
         self._story += _template
     
     def addPageBreak(self):

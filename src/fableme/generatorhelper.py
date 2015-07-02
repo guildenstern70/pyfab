@@ -45,14 +45,6 @@ class GeneratorProxy(object):
         logging.debug('... OK done. Filename = ' + savedfile)
         return savedfile
 
-    """ OLD BLOBSTORE SAVE
-    def _save_to_blob(self):
-        file_name = files.blobstore.create('application/octet-stream')  
-        with files.open(file_name, 'a') as blob_store_file:
-            self.fable_loader.save(blob_store_file)
-        files.finalize(file_name)
-        return files.blobstore.get_blob_key(file_name) """
-
     def _save_to_cloud_store(self, filename):
         logging.info("Saving file " + filename + " to GCS.")
         bucket_name = os.environ.get('BUCKET_NAME',

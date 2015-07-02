@@ -33,6 +33,7 @@ E cosi fece: prese la mucca e si avviò verso il mercato. Lungo la strada, {name
 "Sì, dico la verità. E se non sarà cosi, ti ridarò la mucca." 
 
 "Va bene," rispose {name}, e attratto dalla supposta magia di quei fagioli, cedette la mucca ed ebbe i fagioli. 
+**IMG[0001.jpg,17,21]
 
 Giunto a casa, la madre si rallegrò.
 
@@ -47,6 +48,7 @@ Giunto a casa, la madre si rallegrò.
 Ma non riuscì a finire la frase che la madre si mise le mani nei capelli.
 
 "Ma tu sei ammattito, figlio mio! E adesso con cosa vivremo? Con i soldi avremmo comperato una mucca giovane, che ci avrebbe dato del buon latte fresco. Così invece siamo alla fame. Sciagurato ragazzo, non dovevo fidarmi di te!".
+**IMG[0002.jpg,17,21]
 
 Incollerita, la donna afferrò i cinque fagioli e li fece volare fuori dalla finestra. Poi entrambi andarono a dormire, senza nemmeno cenare.
 
@@ -79,6 +81,7 @@ di lor mi papperò gli ossucci."
 "Ci dev'essere un bambino, in questa casa", sbottò.
 
 Dal forno dove si era rifugiato, {name} tremava di paura.
+**IMG[0003.jpg,17,21]
 
 "Un bambino?", finse di stupirsi l'orchessa. "Tu straluni ogni giorno di più. Di che bambini e bambini vai cianciando? Stai diventando vecchio, caro mio!" E intanto, per distrarre il consorte, gli mise davanti la cena, che consisteva in tre vitelli e in un barilotto di vino.
 

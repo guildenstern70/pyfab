@@ -24,7 +24,7 @@
                     
                         <h2>{{fable.localized_title}}</h2>
                         <p> &nbsp;
-                        Specifically printed in {{fable.language}} for <i>{{fable.character.to_nice_string}}</i></p>
+                        Specifically printed in {{fable_lang}} for <i>{{fable.character.to_nice_string}}</i></p>
                     
                     </div>
                     
@@ -40,11 +40,6 @@
                                <li>
                                     {{ebook_price_string}}
                                </li>
-                               <!-- 
-                               <li>
-                                    <a href="#" class="secondary radius button">Preview</a>&nbsp;
-                               </li>
-                                -->
                                <li>
                                 {% if fable.downlink_pdf %}
                						You have already bought the PDF format for this fable! 

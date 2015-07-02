@@ -37,11 +37,5 @@ class Writer(object):
         self._read_file_template()
         self.ebook_object = GeneratorProxy(self.dbfable, ebook_format, self.fable_contents)
         self.ebook_object.prepare_ebook()  
-        return self.ebook_object.contents   
-     
-    
+        return self.ebook_object.contents
 
-
-
-        
-        

@@ -9,7 +9,7 @@
 # Global variables
 VERSION_MAJOR = 0
 VERSION_MINOR = 9
-VERSION_BUILD = 9217
+VERSION_BUILD = 9400
 
 # Global methods
 def version():
