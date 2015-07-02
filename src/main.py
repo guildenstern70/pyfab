@@ -2,7 +2,7 @@
  
  FableMe.com 
  A LittleLite Web Application
- (c) 2013-14
+ (c) 2013-15
  
  main.py
  
@@ -10,7 +10,6 @@
 
 import logging
 import webapp2
-
 import fableme.pages
 import fableme.printer
 
