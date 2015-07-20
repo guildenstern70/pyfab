@@ -65,45 +65,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="section-container tabs" data-section="tabs">
-
-                            <section class="active">
-                                <p class="title" data-section-title>
-                                    <a href="#">Reviews</a>
-                                </p>
-
-                                <div class="content" data-section-content>
-
-                                <article>
-                                    {% for review in reviews %}
-
-                                        <h3><img src="/img/{{ review.stars }}stars.gif" width="150px"/>&nbsp;&nbsp;
-                                        {{ review.title }}
-                                        </h3>
-
-                                        {% if review.user_fullname %}
-                                            <p class="toptitle">{{ review.user_fullname }}
-                                        {% else %}
-                                            <p class="toptitle">by Anonymous user
-                                        {% endif %}  on {{ review.added|date:"d M Y" }}</p>
-
-
-                                        <p>{{ review.review }}</p>
-
-                                    {% empty %}
-
-                                        <p>This fable has no reviews yet.</p>
-
-                                    {% endfor %}
-                                 </article>
-
-                                </div>
-                            </section>
-
-
-                        </div>
-                        <!-- div class="section-container tabs" -->
-
+                        {% include 'review_item.html' %}
                     </td>
                 </tr>
             </table>

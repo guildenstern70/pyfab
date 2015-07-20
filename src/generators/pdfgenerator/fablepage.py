@@ -17,22 +17,25 @@ from reportlab.platypus import Paragraph, Spacer, PageBreak, Image
 from reportlab.lib.units import cm
 from reportlab.lib import pdfencrypt
 
-_W, _H = (21*cm, 29.7*cm) # This is the A4 size
-_WF, _HF = (17*cm, 25*cm) # This is the size of a full size flowable
+_W, _H = (21*cm, 29.7*cm)  # This is the A4 size
+_WF, _HF = (17*cm, 25*cm)  # This is the size of a full size flowable
 LEFT_MARGIN = 1.5*cm
 BASE_FONT = stylesheet._baseFontName
 
-def firstPages(canvas, doc):
+
+def first_pages(canvas, doc):
     canvas.saveState()
     canvas.setFont(BASE_FONT, 9)
     canvas.restoreState()
-    
-def laterPages(canvas, doc):
+
+
+def later_pages(canvas, doc):
     canvas.saveState()
     canvas.setFont(BASE_FONT, 9)
-    canvas.drawCentredString(_W/2, 820, 'FableMe - %s' % doc.title)
+    canvas.drawCentredString(_W/2, 820, 'FableMe.com')
     canvas.drawCentredString(_W/2, 40, '- %d -' % doc.page)
     canvas.restoreState()
+
 
 class PdfFableDoc(textformatter.TextFormatter):
     
@@ -51,8 +54,8 @@ class PdfFableDoc(textformatter.TextFormatter):
         styler = stylesheet.PdfStyler(standalone)
         self._styles = styler.fableMeStyleSheet()
         
-    def addCover(self, coverImageFile):
-        image = Image(coverImageFile, _WF, _HF)
+    def addCover(self, cover_image):
+        image = Image(cover_image, _WF, _HF)
         image.vAlign = 'TOP'
         self._story.append(image)
         self._story.append(PageBreak())
@@ -68,7 +71,7 @@ class PdfFableDoc(textformatter.TextFormatter):
         """ 
         image = None
         try:
-            if (imageTextDescription[5] == '['):
+            if imageTextDescription[5] == '[':
                 imageFileDesc = imageTextDescription[6:imageTextDescription.find(']')].split(',')
                 imageFileName = loader.get_images_path_to(imageFileDesc[0])
                 imageFileWidth = float(imageFileDesc[1])
@@ -86,8 +89,8 @@ class PdfFableDoc(textformatter.TextFormatter):
         self._story.append(p)
         self._story.append(Spacer(1, 2.2*cm))
         for dedicLine in dedication.split('***'):
-            dedicPar = Paragraph(dedicLine, self._styles['Dedication'])
-            self._story.append(dedicPar)
+            dedication = Paragraph(dedicLine, self._styles['Dedication'])
+            self._story.append(dedication)
         self._story.append(Spacer(1, 1.2*cm))
         self._story.append(PageBreak())
         
@@ -100,23 +103,19 @@ class PdfFableDoc(textformatter.TextFormatter):
         self._story.append(PageBreak())
         
     def addParagraphOrImage(self, text, loader):
-        if (text.startswith('**IMG')):
+        if text.startswith('**IMG'):
             flowable = self.getImageFromText(text, loader)
         else:
             flowable = Paragraph(text, self._styles["Normal"])
-        if (flowable != None):
+        if flowable is not None:
             self._story.append(flowable)
             self._story.append(Spacer(1, 0.2*cm))
         else:
             logging.critical('*Warning: image is None!')
             
     def build(self):
-        self._doc.build(onFirstPage=firstPages, onLaterPages=laterPages)
+        self._doc.build(onFirstPage=first_pages, onLaterPages=later_pages)
         
     def save(self, filename):
         self._doc.save(self._story, filename)
-        
-        
-        
-    
-    
+

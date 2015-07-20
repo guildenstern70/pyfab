@@ -27,6 +27,27 @@ class DbFableReview(ndb.Model):
     review = ndb.StringProperty(required=True)
     user_fullname = ndb.StringProperty(required=True)
     accepted = ndb.BooleanProperty(default=False)
+    likes = ndb.IntegerProperty(default=0)
+    likes_users = ndb.TextProperty()
+
+    def did_i_like_it(self, my_mail):
+        if self.likes < 1:
+            return False
+        likes_users = self.likes_users.split(';')
+        if my_mail in likes_users:
+            return True
+        return False
+
+    @classmethod
+    def like_it(cls, review_id, user_mail):
+        review_obj = ndb.Key(urlsafe=review_id).get()
+        review_obj.likes = int(review_obj.likes) + 1
+        if review_obj.likes_users is None:
+            review_obj.likes_users = user_mail
+        else:
+            review_obj.likes_users = review_obj.likes_users + ';' + user_mail
+        review_obj.put()
+        return int(review_obj.likes)
 
     @staticmethod
     def create(user_mail, template_id):
@@ -49,7 +70,6 @@ class DbFableReview(ndb.Model):
     def find_by_user(user_mail, template_id):
         query = DbFableReview.query(DbFableReview.user_email == user_mail)
         query = query.filter(DbFableReview.fable_template_id == int(template_id))
-        logging.debug('I found '+ str(query.count()) + ' reviews for '+user_mail+' and id='+str(template_id))
         return query.get()
 
 

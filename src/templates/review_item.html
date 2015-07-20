@@ -1,0 +1,66 @@
+<div class="panel" style="background: white">
+    <h4>Reviews</h4>
+    {% for review in reviews %}
+    <fieldset>
+        <legend>
+            {% if review.user_fullname %}
+                {{ review.user_fullname }}
+            {% else %}
+                by Anonymous user
+            {% endif %}  on {{ review.added|date:"d M Y" }}
+        </legend>
+
+    <style scoped>
+        table tr:nth-of-type(even) {
+            background-color: transparent !important;
+        }
+    </style>
+    <table width="100%">
+        <tr>
+            <td width="180px"><img src="/img/{{ review.stars }}stars.gif" width="150px"/></td>
+            <td>
+                <p><b>{{review.title}}</b></p>
+                <p>{{ review.review }}</p>
+                <p id="xlike" style="color: lightgray">{{ review.likes }} users likes this review.</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <script>
+
+                    var ilikeit = function(id, email) {
+
+                        console.log("Calling likeit with");
+                        console.log("ID = " + id);
+                        console.log("email = " + email);
+
+                        $.post( "/likeit",
+
+                                { "review_id": id, "like_mail": email},
+
+                                function( data ) {
+                                    var result = JSON.parse(data);
+                                    $( "#xlike" ).html( result.likes + ' users likes this review' );
+                                }
+                        );
+
+                    };
+
+                </script>
+                {% if ilikedit %}
+                    <strong>
+                        <img src="img/likeit.jpg" width="20"><span style="color: #3b5998"> I like it!</span>
+                    </strong>
+                {% else %}
+                    <a onclick="ilikeit('{{ review.key.urlsafe }}','{{ user_email }}')">
+                        <img src="img/likeit.jpg" width="20"> I like it!
+                    </a>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    {% empty %}
+        <p>This fable has no reviews yet.</p>
+    </fieldset>
+    {% endfor %}
+</div>

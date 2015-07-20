@@ -5,7 +5,8 @@ chapter.py
 @author: Alessio Saltarin
 """
 
-class FableChapter():
+
+class FableChapter:
     
     def __init__(self):
         self._chapter_title = ""

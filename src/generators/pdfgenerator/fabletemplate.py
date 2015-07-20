@@ -50,4 +50,4 @@ class FableMeDocTemplate(BaseDocTemplate):
             
     def save(self, flowables, file_h, canvasmaker=canvas.Canvas):
         BaseDocTemplate.build(self, flowables, filename=file_h, canvasmaker=canvasmaker)
-        
+

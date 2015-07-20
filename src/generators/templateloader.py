@@ -51,7 +51,7 @@ class TemplateLoader(object):
     def save(self):
         saved = True
         try:
-            if (self.fable_doc):
+            if self.fable_doc:
                 self.fable_doc.save(self._ebook_file)
             else:
                 logging.error('*** ABORTING')
@@ -165,8 +165,3 @@ class TemplateLoader(object):
         self._character = character
         self.fable_doc = None
         self.chapters = []
-
-    
-    
-    
-    

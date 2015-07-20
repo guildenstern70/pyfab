@@ -459,15 +459,27 @@ class Step(FablePage):
 class Book(FablePage):
     """ Handler for every /book page """
 
-    def get(self):
-        """ http get handler """
-        book = self.request.get('bookid')
+    def _render_page(self, book):
         book_obj = booktemplates.Book(int(book))
         self.template_values['reviews'] = schema.DbFableReview.find_by_template_id(book)
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = book_obj.default_sex
         self.template_values['book'] = book
         self.render()
+
+    def get(self):
+        """ http get handler """
+        book = self.request.get('bookid')
+        user_email = self.get_user_db().email
+        self.template_values['user_email'] = user_email
+        purchased_books = dbutils.get_my_bought_fables(user_email)
+        if purchased_books is not None:  # if user has bought the book, he can leave a review
+            book_purchased_qry = purchased_books.filter(schema.DbFable.template_id == int(book))
+            if book_purchased_qry.get() is not None:
+                if schema.DbFableReview.find_by_user(user_email, book) is None:
+                    self.redirect('/review?bookid='+book)
+                    return
+        self._render_page(book)
 
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
@@ -599,17 +611,25 @@ class Review(FablePage):
     def get(self):
         """ http get handler """
         self._template_id = self.request.get('bookid')
-        process_review = self.request.get('accept')
-        if process_review != "":
-            user_mail = self.request.get('rv_mail')
-            self._template_id = self.request.get('rv_tmp_id')
-            if process_review == 'ok':
-                msg = self._process_review(user_mail, is_accepted=True)
-            else:
-                msg = self._process_review(user_mail, is_accepted=False)
-            self.template_values['review_message'] = msg
-            self.template_values['review_processed'] = True
-        self._default_render()
+        user_email = self.get_user_db().email
+        if schema.DbFableReview.find_by_user(user_email, self._template_id) is not None:
+            self.redirect('/book?bookid=' + self._template_id)
+        else:
+            self.template_values['user_email'] = user_email
+            if schema.DbFableReview.did_i_like_it(user_email):
+                self.template_values['ilikedit'] = True
+            self.template_values['reviews'] = schema.DbFableReview.find_by_template_id(int(self._template_id))
+            process_review = self.request.get('accept')
+            if process_review != "":
+                user_mail = self.request.get('rv_mail')
+                self._template_id = self.request.get('rv_tmp_id')
+                if process_review == 'ok':
+                    msg = self._process_review(user_mail, is_accepted=True)
+                else:
+                    msg = self._process_review(user_mail, is_accepted=False)
+                self.template_values['review_message'] = msg
+                self.template_values['review_processed'] = True
+            self._default_render()
 
     def _default_render(self):
         book_obj = booktemplates.Book(int(self._template_id))

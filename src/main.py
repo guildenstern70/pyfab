@@ -11,6 +11,7 @@
 import logging
 import webapp2
 import fableme.pages
+import fableme.services
 import fableme.printer
 
 config = {}
@@ -33,6 +34,7 @@ APPLICATION = webapp2.WSGIApplication(
      ('/forgotpwd', fableme.pages.ForgotPassword),
      ('/howitworks', fableme.pages.HowItWorks),
      ('/howtoreadepub', fableme.pages.HowEPub),
+     ('/likeit', fableme.services.LikeItHandler),
      ('/order', fableme.pages.Order),
      ('/preview', fableme.pages.Preview),
      ('/print', fableme.printer.Print),
