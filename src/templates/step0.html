@@ -17,7 +17,7 @@
 
         <form method="get" action="/step">
 
-            <div class="section-container tabs" data-section>
+            <div class="section-container auto" data-section>
                 <section class="active">
                     <p class="title" data-section-title><b><a href="#panel1">FableMe Tales</a></b></p>
 
@@ -25,27 +25,31 @@
                         {% for book in fableme_books %}
                             <div class="row">
                                 <div class="large-6 columns" align="center">
-                                    <a href="book?bookid={{ book.0.template_id }}">
-                                        <img src="/img/{{ book.0.bookimg_boy }}" alt="{{ book.0.title }}"/>
-                                    </a>
-
-                                    <div class="hide-for-small">
-                                        <a href="book?bookid={{ book.0.template_id }}" class="small round button">Read
-                                            more...</a>
-                                    </div>
-                                    <div class="show-for-small">&nbsp;</div>
-                                </div>
-                                {% if book.1 %}
-                                    <div class="large-6 columns" align="center">
-                                        <a href="book?bookid={{ book.1.template_id }}">
-                                            <img src="/img/{{ book.1.bookimg_boy }}" alt="{{ book.1.title }}"/>
+                                    <div class="panel">
+                                        <a href="book?bookid={{ book.0.template_id }}">
+                                            <img src="/img/{{ book.0.bookimg_boy }}" alt="{{ book.0.title }}"/>
                                         </a>
 
                                         <div class="hide-for-small">
-                                            <a href="book?bookid={{ book.1.template_id }}" class="small round button">Read
+                                            <a href="book?bookid={{ book.0.template_id }}" class="small round button">Read
                                                 more...</a>
                                         </div>
                                         <div class="show-for-small">&nbsp;</div>
+                                    </div>
+                                </div>
+                                {% if book.1 %}
+                                    <div class="large-6 columns" align="center">
+                                        <div class="panel">
+                                            <a href="book?bookid={{ book.1.template_id }}">
+                                                <img src="/img/{{ book.1.bookimg_boy }}" alt="{{ book.1.title }}"/>
+                                            </a>
+
+                                            <div class="hide-for-small">
+                                                <a href="book?bookid={{ book.1.template_id }}" class="small round button">Read
+                                                    more...</a>
+                                            </div>
+                                            <div class="show-for-small">&nbsp;</div>
+                                        </div>
                                     </div>
                                 {% endif %}
                             </div>
@@ -61,27 +65,31 @@
                         {% for book in classic_books %}
                             <div class="row">
                                 <div class="large-6 columns" align="center">
-                                    <a href="book?bookid={{ book.0.template_id }}">
-                                        <img src="/img/{{ book.0.bookimg_boy }}" alt="{{ book.0.title }}"/>
-                                    </a>
-
-                                    <div class="hide-for-small">
-                                        <a href="book?bookid={{ book.0.template_id }}" class="small round button">Read
-                                            more...</a>
-                                    </div>
-                                    <div class="show-for-small">&nbsp;</div>
-                                </div>
-                                {% if book.1 %}
-                                    <div class="large-6 columns" align="center">
-                                        <a href="book?bookid={{ book.1.template_id }}">
-                                            <img src="/img/{{ book.1.bookimg_boy }}" alt="{{ book.1.title }}"/>
+                                    <div class="panel">
+                                        <a href="book?bookid={{ book.0.template_id }}">
+                                            <img src="/img/{{ book.0.bookimg_boy }}" alt="{{ book.0.title }}"/>
                                         </a>
 
                                         <div class="hide-for-small">
-                                            <a href="book?bookid={{ book.1.template_id }}" class="small round button">Read
+                                            <a href="book?bookid={{ book.0.template_id }}" class="small round button">Read
                                                 more...</a>
                                         </div>
                                         <div class="show-for-small">&nbsp;</div>
+                                    </div>
+                                </div>
+                                {% if book.1 %}
+                                    <div class="large-6 columns" align="center">
+                                        <div class="panel">
+                                            <a href="book?bookid={{ book.1.template_id }}">
+                                                <img src="/img/{{ book.1.bookimg_boy }}" alt="{{ book.1.title }}"/>
+                                            </a>
+
+                                            <div class="hide-for-small">
+                                                <a href="book?bookid={{ book.1.template_id }}" class="small round button">Read
+                                                    more...</a>
+                                            </div>
+                                            <div class="show-for-small">&nbsp;</div>
+                                        </div>
                                     </div>
                                 {% endif %}
                             </div>
