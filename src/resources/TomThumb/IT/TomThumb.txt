@@ -6,11 +6,13 @@ C'era una volta un povero contadino che una sera se ne stava seduto accanto al f
 
 "Sì",  rispose la donna sospirando, "fosse anche uno solo e pure piccolissimo, non più grande di un pollice, sarei già contenta, e gli vorremmo un gran bene.".
 
-Ora avvenne che la donna rimase incinta, e dopo sette mesi diede alla luce un bambino, perfettamente formato, ma non più grande di un pollice. Allora essi dissero:
+Ora avvenne che la donna rimase incinta, e dopo nove mesi diede alla luce un bambino, perfettamente formato, ma non più grande di un pollice. Allora essi dissero:
 
 "E' proprio come lo abbiamo desiderato, e sarà il nostro caro figlioletto, e per la sua statura lo chiameremo {name} Pollicino."
 
 Non gli lesinarono il cibo, tuttavia il bimbo non crebbe e rimase com'era al momento della nascita. Aveva uno sguardo intelligente e si mostrò ben presto un ometto attento e giudizioso, che riusciva in tutto quello che intraprendeva. 
+
+**IMG[0001.jpg,15,17]
 
 Un giorno il contadino si preparava ad andare nel bosco a tagliar legna, e mormorò: 
 
@@ -31,7 +33,6 @@ Quando giunse l'ora, la madre aiutò Pollicino a sistemarsi nell'orecchio del ca
 "Uh e oh! a destra e a sinistra!". 
 
 Tutto andò regolarmente come se ci fosse stato un cavaliere, e il carro se ne andava dritto verso il bosco. Ora avvenne che a una svolta, mentre il piccino gridava: "A sinistra!" passarono di lì due forestieri. 
-**IMG[0001.jpg,17,21]
 
 "Dio mio!", disse l'uno "che è mai questo? C'è un carro e un cavaliere invisibile che guida il cavallo!" 
 
@@ -48,7 +49,6 @@ Il contadino afferrò il cavallo con la sinistra, e con la destra tirò giù dal
 Si avvicinarono al contadino e dissero: 
 
 "Vendeteci l'omino, lo tratteremo bene!". 
-**IMG[0002.jpg,17,21]
 
 "No" rispose il padre "non do questo pezzo del mio cuore per tutto l'oro del mondo." 
 
@@ -81,7 +81,6 @@ L'uomo si tolse il cappello, e mise il piccino in un campo lungo la strada; e qu
 Quelli corsero e frugarono la tana con i bastoni, ma era fatica sprecata: {name} Pollicino strisciava sempre più giù, e siccome presto fu notte fonda, dovettero andarsene pieni di rabbia e con la borsa vuota. Quando {name} Pollicino si accorse che se ne erano andati, venne fuori dalla galleria sotterranea. 
 
 "E' pericoloso camminare per i campi al buio", disse, "è così facile rompersi l'osso del collo!" 
-**IMG[0003.jpg,17,21]
 
 Per fortuna s'imbatté in un guscio di lumaca: 
 
@@ -133,6 +132,8 @@ Pollicino si era arrampicato fra gli steli del fieno, dove aveva trovato un bel 
 
 Ma capì ben presto dove si trovava. Allora cercò di fare attenzione in modo da non finire fra i denti ed essere stritolato; poi dovette lasciarsi scivolare nello stomaco. 
 
+**IMG[0002.jpg,15,17]
+
 "Nello stanzino hanno dimenticato le finestre!", disse, "e non ci entra il sole, e non si può neanche avere un lume!". 
 
 Quella nuova sistemazione non gli garbava affatto, e quel che era peggio, dall’apertura continuava a entrare altro fieno e lo spazio si faceva più stretto. Alla fine, impaurito, gridò con quanto fiato aveva in gola: 
@@ -182,6 +183,8 @@ E disse alla donna di mettere via la falce per non fargli del male. Poi diede un
 "Ah, babbo, sono stato in una tana di sorcio, nella pancia di una mucca e nel ventre di un lupo, adesso rimango con voi." 
 
 "E noi non ti venderemo più per tutto l'oro del mondo!" 
+
+**IMG[0003.jpg,15,17]
 
 Allora abbracciarono e baciarono il loro Pollicino, gli diedero da bere e da mangiare e gli fecero fare dei vestiti nuovi perché i suoi si erano sciupati nel viaggio.
 <para alignment="right" fontsize="16"><i>The End</i></para>

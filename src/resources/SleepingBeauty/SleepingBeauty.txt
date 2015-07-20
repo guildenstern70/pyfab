@@ -11,7 +11,8 @@ But it happened once that when the Queen was bathing in the river, there came a 
 And as the frog foretold, so it happened; the Queen bore a daughter {name}, and she was so beautiful that the King could not contain himself for joy, and he ordained a great feast. Not only did he bid to it his relations, friends, and acquaintances, but also the wise women, that they might be kind and favorable to the child. There were thirteen of them in his kingdom, but as he had only provided twelve golden plates for them to eat from, one of them had to be left out.
 
 However, the feast was celebrated with all splendor; and as it drew to an end, the wise women stood forward to present to the child their wonderful gifts: one bestowed virtue, one beauty, a third riches, and so on, whatever there is in the world to wish for. And when eleven of them had said their say, in came the uninvited thirteenth, burning to revenge herself, and without greeting or respect, she cried with a loud voice: 
-**IMG[0001.jpg,17,21]
+
+**IMG[0001.jpg,15,17]
 
 "In the fifteenth year of her age the Princess shall prick herself with a spindle and shall fall down dead." And without speaking one more word she turned away and left the hall.
 
@@ -31,8 +32,9 @@ It happened one day, she being already fifteen years old, that the King and Quee
 
 "What thing is that that twists round so briskly?" asked the maiden, and taking the spindle into her hand she began to spin; but no sooner had she touched it than the evil prophecy was fulfilled, and she pricked her finger with it. 
 
-In that very moment she fell back upon the bed that stood there, and lay in a deep sleep, and this sleep fell upon the whole castle. The King and Queen, who had returned and were in the great hall fell fast asleep, and with them the whole court. The horses in their stalls, the dogs in the yard, the pigeons on the roof, the flies on the wall, the very fire that flickered on the hearth, became still, and slept like the rest; and the meat on the spit ceased roasting, and the cook, who was going to pull the scullion’s hair for some mistake he had made, let him go, and went to sleep. And the wind ceased, and not a leaf fell from the trees about the castle.
 **IMG[0002.jpg,17,21]
+
+In that very moment she fell back upon the bed that stood there, and lay in a deep sleep, and this sleep fell upon the whole castle. The King and Queen, who had returned and were in the great hall fell fast asleep, and with them the whole court. The horses in their stalls, the dogs in the yard, the pigeons on the roof, the flies on the wall, the very fire that flickered on the hearth, became still, and slept like the rest; and the meat on the spit ceased roasting, and the cook, who was going to pull the scullion’s hair for some mistake he had made, let him go, and went to sleep. And the wind ceased, and not a leaf fell from the trees about the castle.
 
 Then round about that place there grew a hedge of thorns thicker every year, until at last the whole castle was hidden from view, and nothing of it could be seen but the vane on the roof.
 
@@ -46,12 +48,13 @@ The good old man tried to dissuade him, but he would not listen to his words.
 
 For now the hundred years were at an end, and the day had come when {name} should be awakened. When the Prince drew near the hedge of thorns, it was changed into a hedge of beautiful large flowers, which parted and bent aside to let him pass, and then closed behind him in a thick hedge. When he reached the castle-yard, he saw the horses and brindled hunting-dogs lying asleep, and on the roof the pigeons were sitting with their heads under their wings. And when he came indoors, the flies on the wall were asleep, the cook in the kitchen had his hand uplifted to strike the scullion, and the  kitchen maid had the black fowl on her lap ready to pluck. 
 
-Then he mounted higher, and saw in the hall the whole court lying asleep, and above them, on their thrones, slept the King and the Queen. And still he went farther, and all was so quiet that he could hear his own breathing, and at last he came to the tower, and went up the winding stair, and opened the door of the little room where Rosamond lay.
+Then he mounted higher, and saw in the hall the whole court lying asleep, and above them, on their thrones, slept the King and the Queen. And still he went farther, and all was so quiet that he could hear his own breathing, and at last he came to the tower, and went up the winding stair, and opened the door of the little room where {name} lay.
+
+**IMG[0003.jpg,15,17]
 
 And when he saw her looking so lovely in her sleep, he could not turn away his eyes; and presently he stooped and kissed her, and {name} awaked, and opened her eyes, and looked very kindly on him. And she rose, and they went forth together, the King and the Queen and whole court waked up, and gazed on each other with great eyes of wonderment. And the horses in the yard got up and shook themselves, the hounds sprang up and wagged their tails, the pigeons on the roof drew their heads from under their wings, looked round, and flew into the field, the flies on the wall crept on a little farther, the kitchen fire leapt up and blazed, and cooked the meat, the joint on the spit began to roast, the cook gave the scullion such a box on the ear that he roared out, and the maid went on plucking the fowl.
-**IMG[0003.jpg,17,21]
 
-Then the wedding of the Prince and {name}was held with all splendor, and they lived very happily together until their lives’ end.
+Then the wedding of the Prince and {name} was held with all splendor, and they lived very happily together until their lives’ end.
 
 <para alignment="right" fontsize="16"><i>The End</i></para>
 END-OF-FILE

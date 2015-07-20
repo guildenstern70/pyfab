@@ -8,7 +8,11 @@ La fanciulla andava ogni giorno alla tomba della madre e piangeva lacrime amare.
 
 La donna aveva due figlie che portò con sé in casa, e costoro erano belle e bianche di viso, ma brutte e nere di cuore. Per la figliastra incominciarono giorni tristi. 
 
-"Che vuole quella buona a nulla in salotto?" dicevano. "Chi mangia il pane deve guadagnarselo: fuori, sguattera!" Le presero i suoi bei vestiti, le diedero da indossare una vecchia palandrana grigia e la condussero in cucina deridendola. 
+"Che vuole quella buona a nulla in salotto?" dicevano. "Chi mangia il pane deve guadagnarselo: fuori, sguattera!" 
+
+Le presero i suoi bei vestiti, le diedero da indossare una vecchia palandrana grigia e la condussero in cucina deridendola. 
+
+**IMG[0001.jpg,15,17]
 
 Lì doveva sgobbare per bene: si alzava prima che facesse giorno, portava l'acqua, accendeva il fuoco, cucinava e lavava. Per giunta le sorelle gliene facevano di tutti i colori, la schernivano e le versavano ceci e lenticchie nella cenere, sicché doveva raccoglierli a uno a uno. La sera, quando era stanca, non andava a letto, ma doveva coricarsi nella cenere accanto al focolare. E siccome era sempre sporca e impolverata, la chiamavano Cenerentola.
 
@@ -29,6 +33,8 @@ Rimasta sola, {name} andò alla tomba della madre sotto il nocciolo e pianse.
 E mentre piangeva una luce straordinaria si diffuse intorno e vi comparve una bellissima fata. Le asciugò le lacrime e le disse:
 
 "Non piangere {name}, io sono la  tua madrina e non c’è desiderio che la mia bacchetta magica non possa esaudire. Se desideri andare al ballo, vai nell’orto, raccogli la zucca più grande che trovi e portala davanti all’ingresso della casa. Portami anche due lucertole, sei topi e un gatto."
+
+**IMG[0002.jpg,15,17]
 
 {name} trovò strana la richiesta della fata ma fece come richiesto. Nell’orto raccolse una grande zucca e prese due lucertole, in cantina prese sei topi, poi prese il gatto che oziava sulla stufa e portò tutto quanto davanti alla fata. Costei li toccò con la sua bacchetta magica e meraviglia! La zucca divenne una bellissima carrozza, i topi sei cavalli bianchi, le lucertole due servitori e il gatto un cocchiere. Poi la fata toccò con la sua bacchetta Cenerentola e i suoi vecchi e brutti vestiti divennero un bellissimo abito d'oro e d'argento e scarpette trapunte di seta e d'argento. 
 
@@ -68,7 +74,11 @@ Il principe gli disse di mandarla a prendere, ma la matrigna rispose: "Ah no, è
 
 Ma egli lo volle assolutamente e dovettero chiamare Cenerentola. {name} prima si lavò ben bene le mani e il viso, poi andò e si inchinò davanti al principe che le porse la scarpina d'oro. Allora ella si tolse dal piede il pesante zoccolo, l'infilò nella scarpetta e spinse un poco: le stava a pennello. 
 
-E quando si alzò, egli la riconobbe e disse: "Questa è la mia sposa!" 
+E quando si alzò, egli la riconobbe e disse: 
+
+"Questa è la mia sposa!" 
+
+**IMG[0003.jpg,15,17]
 
 La matrigna e le due sorellastre si spaventarono e impallidirono dall'ira, ma egli mise Cenerentola sul cavallo e se ne andò con lei. 
 

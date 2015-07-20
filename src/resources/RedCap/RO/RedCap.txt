@@ -31,7 +31,7 @@ Lupul îşi zise în sinea lui: "Fragedă-i fetiţa asta! Ce mai îmbucătură p
 Mai merse lupul o bucată de drum alături de {name} şi apoi începu să-i spună cu glas mieros:
 
 "Scufiţă Roşie, ia te uită ce flori frumoase strălucesc în jurul tău! Şi tu nici nu le iei în seamă măcar… Şi mie mi se pare că n-auzi nici ce dulce cântă păsărelele! Atât de serioasă păşeşti pe drum, de parcă te-ai duce la şcoală. Şi e atât de plăcut să hoinăreşti şi să zburzi prin pădure; e atâta veselie!"
-**IMG[0001.jpg,17,21]
+**IMG[0001.jpg,15,17]
 
 Scufiţa Roşie ridică privirea şi când văzu cum jucau razele soarelui printre crengile copacilor, când privi mai cu luare-aminte la florile frumoase care creşteau pretutindeni, îşi spuse în sinea ei: "Mare bucurie i-aş face bunicii dacă i-aş duce şi-un buchet de flori proaspete! E atât de dimineaţă, că nu mi-e teamă c-am să întârzii!"
 
@@ -56,13 +56,13 @@ De îndată ce intră în odaie, o cuprinse neliniştea; totul i se părea atât
 Scufiţa Roşie se apropie atunci de pat şi dădu perdelele la o parte. Bunicuţa stătea întinsă în pat, cu scufia trasă peste ochi, şi avea o înfăţişare atât de ciudată, încât fetiţa întrebă:
 
 "Vai, bunicuţo, da’ de ce ai urechi atât de mari?"
-**IMG[0002.jpg,17,21]
 
 "Ca să te pot auzi mai bine."
 
 "Vai, bunicuţo, da’ de ce ai ochi atât de mari?"
 
 "Ca să te pot vedea mai bine."
+**IMG[0002.jpg,15,17]
 
 "Vai, bunicuţo, da’ de ce ai mâini atât de mari?"
 
@@ -77,7 +77,6 @@ N-apucă să sfârşească ultimul cuvânt, că şi sări jos din pat şi-o îng
 După ce-şi potoli foamea, lupul se culcă din nou în pat şi, prinzându-l somnul, adormi şi începu să sforăie de se cutremurau pereţii. Şi se întâmplă ca tocmai atunci să treacă prin faţa casei un vânător. Auzi el horcăiturile şi-şi spuse:
 
 "Bre, da’ tare mai sforăie bătrâna! Nu cumva i-o fi rău?" Intră în casă şi, când se apropie de pat, îl văzu pe lup tolănit acolo.
-**IMG[0003.jpg,17,21]
 
 "Ei drăcie, nu-mi închipuiam c-o să te găsesc aici, ticălos bătrân! izbucni vânătorul. De când te caut!
 
@@ -87,7 +86,8 @@ După ce-şi potoli foamea, lupul se culcă din nou în pat şi, prinzându-l so
 
 Când se trezi, lupul voi s-o ia la sănătoasa, dar pietroaiele atârnau atât de greu, că dihania se prăbuşi la pământ şi dădu ortul popii.
 
-Cei trei nu-şi mai încăpeau în piele de bucurie. Bunicuţa mâncă cozonacul şi bău vinul pe care-1 aduse fetiţa şi pe dată se înzdrăveni. Iar Scufiţa Roşie gândi în sinea ei, parcă mustrându-se: "De-aci înainte n-o să mă mai abat niciodată din drum când oi merge singură prin pădure, ci o să ascult de poveţele mamei!"
+**IMG[0003.jpg,15,17]
+Cei trei nu-şi mai încăpeau în piele de bucurie. Bunicuţa mâncă cozonacul şi bău vinul pe care-l aduse fetiţa şi pe dată se înzdrăveni. Iar Scufiţa Roşie gândi în sinea ei, parcă mustrându-se: "De-aci înainte n-o să mă mai abat niciodată din drum când oi merge singură prin pădure, ci o să ascult de poveţele mamei!"
 <para alignment="right" fontsize="16"><i>Sfârșit</i></para>
 END-OF-FILE
 

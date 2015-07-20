@@ -2,13 +2,15 @@ Chapter 1. A wish came true
 
 There was once a poor countryman who used to sit in the chimney-corner all evening and poke the fire, while his wife sat at her spinning-wheel. And he used to say:
 
-"How dull it is without any children about us; our house is so quiet, and other people's houses so noisy and merry!" 
+"How dull it is without any children; our house is so quiet, and other people's houses so noisy and merry!" 
 
 "Yes," answered his wife, and sighed, "if we could only have one, and that one ever so little, no bigger than my thumb, how happy I should be! It would, indeed, be having our heart's desire." 
 
 Now, it happened that after a while the woman had a child who was perfect in all his limbs, but no bigger than a thumb. Then the parents said: 
 
 "He is just what we wished for, and we will love him very much," and they named him according to his stature, {name} Thumb. And though they gave him plenty of nourishment, he grew no bigger, but remained exactly the same size as when he was first born; and he had very good faculties, and was very quick and prudent, so that all he did prospered.
+
+**IMG[0001.jpg,15,17]
 
 One day his father made ready to go into the forest to cut wood, and he said, as if to himself: 
 
@@ -31,7 +33,6 @@ Now it happened just as they turned a corner, and the little fellow was calling 
 "Look," said one of them, "how is this? There goes a waggon, and the driver is calling to the horse, and yet he is nowhere to be seen." 
 
 "It is very strange," said the other, "we will follow the waggon, and see where it belongs." 
-**IMG[0001.jpg,17,21]
 
 And the wagon went right through the wood, up to the place where the wood had been hewed. When {name} Thumb caught sight of his father, he cried out: 
 
@@ -48,7 +49,6 @@ So they went up to the woodcutter, and said:
 "No," answered the father; "he is the apple of my eye, and not for all the money in the world would I sell him." 
 
 But {name} Thumb, when he heard what was going on, climbed up by his father's coat tails, and, perching himself on his shoulder, he whispered in his ear:  
-**IMG[0002.jpg,17,21]
 
 "Father, you might as well let me go. I will soon come back again." 
 
@@ -81,7 +81,6 @@ Before he had time to get to sleep, he heard two men pass by, and one was saying
 "How is this?" said one of the thieves, quite frightened, "I hear someone speak!" 
 
 So they stood still and listened, and {name} Thumb spoke again. 
-**IMG[0003.jpg,17,21]
 
 "Take me with you; I will show you how to do it!" 
 
@@ -117,11 +116,14 @@ Then the listening maid heard him distinctly that time, and jumped out of bed, a
 
 So {name} Thumb crept among the hay, and found a comfortable nook to sleep in, where he intended to remain until it was day, and then to go home to his father and mother. But other things were to befall him; indeed, there is nothing but trouble and worry in this world! The maid got up at dawn of day to feed the cows. The first place she went to was the barn, where she took up an armful of hay, and it happened to be the very heap in which {name} Thumb lay asleep. And he was so fast asleep, that he was aware of nothing, and never waked until he was in the mouth of the cow, who had taken him up with the hay. 
 
+
 "Oh dear," cried he, "how is it that I have got into a mill!" 
 
 He soon found out where he was, and he had to be very careful not to get between the cow's teeth, and at last he had to descend into the cow's stomach. 
 
-"The windows were forgotten when this little room was built," said he, "and the sunshine cannot get in; there is no light to be had." 
+**IMG[0002.jpg,15,17]
+
+"The windows were forgotten when this little room was built," said he, "and the sunshine cannot get in; there is no light here." 
 
 His quarters were in every way unpleasant to him, and, what was the worst, new hay was constantly coming in, and the space was being filled up. At last he cried out in his extremity, as loud as he could:
 
@@ -170,6 +172,8 @@ Then the father called out full of joy.
 "And where have you been all this time?" asked his father. 
 
 "Oh, I have been in a mouse-hole and a snail's shell, in a cow's stomach and a wolfs inside: now, I think, I will stay at home." 
+
+**IMG[0003.jpg,15,17]
 
 "And we will not part with you for all the kingdoms of the world" cried the parents, as they kissed and hugged their dear little {name} Thumb. And they gave him something to eat and drink, and a new suit of clothes, as his old ones were soiled with travel.
 <para alignment="right" fontsize="16"><i>The End</i></para>

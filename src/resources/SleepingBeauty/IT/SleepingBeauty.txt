@@ -11,7 +11,8 @@ Un giorno, mentre la regina faceva il bagno, ecco che un gambero saltò fuori da
 La profezia del gambero si avverò e la regina partorì una bimba {name}, ed era così bella che il re non stava più nella pelle dalla gioia e ordinò una gran festa. Non invitò soltanto i suoi parenti, amici e conoscenti, ma anche le fate perché‚ fossero benevole e propizie alla neonata. Nel suo regno ve n'erano tredici, ma siccome egli possedeva soltanto dodici piatti d'oro per il pranzo, dovette rinunciare a invitarne una. 
 
 Dopo la festa, le fate diedero alla bimba i loro doni meravigliosi: la prima le donò la virtù, la seconda la bellezza, la terza la ricchezza, e così via, tutto ciò che si può desiderare al mondo. Undici fate avevano già formulato il loro auspicio, quando giunse la tredicesima che voleva vendicarsi perché non era stata invitata. Ella disse ad alta voce: 
-**IMG[0001.jpg,17,21]
+
+**IMG[0001.jpg,15,17]
 
 "A quindici anni, la principessa si pungerà con un fuso e cadrà a terra morta." 
 
@@ -25,14 +26,15 @@ Capitolo 2. L’incantesimo
 
 Ora avvenne che proprio il giorno in cui compì quindici anni, il re e la regina erano fuori ed {name} rimase sola nel castello. Giro dappertutto, visitò ogni stanza a piacer suo e giunse infine a una vecchia torre. Salì una stretta scaletta che la condusse fino a una porticina. Nella serratura c'era una chiave arrugginita e quand'ella la girò, la porta si spalancò: in una piccola stanzetta c'era una vecchia con un fuso che filava con solerzia il suo lino. 
 
-"Oh, nonnina," disse la principessa, "che cosa stai facendo?" 
+"Buongiorno nonnina," disse la principessa, "che cosa stai facendo?" 
 
 "Filo," rispose la vecchia, e assentì con il capo. 
 
 "Come gira quest'aggeggio!" esclamò la fanciulla, e prese in mano il filo per filare anche lei. Ma non appena lo toccò, si compì l'incantesimo ed ella si punse un dito. 
 
+**IMG[0002.jpg,15,17]
+
 Come sentì la puntura, cadde a terra in un sonno profondo. E il re e la regina, che stavano rincasando, si addormentarono anch'essi con tutta la corte. I cavalli si addormentarono nelle stalle, i cani nel cortile, le colombe sul tetto, le mosche sulla parete; persino il fuoco che fiammeggiava nel camino si smorzò e si assopì, l'arrosto smise di sfrigolare e il cuoco, che voleva prendere per i capelli uno sguattero colto in flagrante, lo lasciò andare e si addormentò anche lui. Tutto ciò che aveva parvenza di vita, tacque e dormì. 
-**IMG[0002.jpg,17,21]
 
 Intorno al castello crebbe una siepe di fitte spine, che ogni anno diventava sempre più alta finché‚ arrivò a cingerlo completamente e a ricoprirlo tutto; così non se ne vide più nulla, neanche le bandiere sul tetto. 
 
@@ -48,8 +50,9 @@ Ora, proprio il giorno in cui il principe tentò l'impresa erano trascorsi cento
 
 Egli andò oltre e vide dormire tutta la corte e in alto, sul trono, dormivano il re e la regina. Proseguì ancora e il silenzio era tale che egli udiva il proprio respiro. Finalmente giunse alla torre e aprì la porta della cameretta in cui dormiva {name}. Giaceva là, ed era così bella che egli non riusciva a distoglierne lo sguardo. Si chinò e le diede un bacio. 
 
+**IMG[0003.jpg,15,17]
+
 E, come l'ebbe baciata, {name} aprì gli occhi, si svegliò e lo guardò tutta ridente. Allora scesero insieme e il re, la regina e tutta la corte si svegliarono e si guardarono l'un l'altro stupiti. I cavalli in cortile si alzarono e si scrollarono; i cani da caccia saltarono su scodinzolando; le colombe sul tetto levarono la testina da sotto l'ala, si guardarono intorno e volarono nei campi; le mosche ripresero a muoversi sulle pareti; il fuoco in cucina si ravvivò, si mise ad ardere e continuò a cuocere il pranzo; l'arrosto ricominciò a sfrigolare, il cuoco diede allo sguattero uno schiaffo che lo fece gridare, e la serva finì di spennare il pollo. 
-**IMG[0003.jpg,17,21]
 
 Poi furono celebrate con gran fasto le nozze del principe e di {name}, che vissero felici fino alla morte.
 <para alignment="right" fontsize="16"><i>Fine</i></para>

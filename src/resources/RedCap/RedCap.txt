@@ -31,7 +31,7 @@ The wolf thought to himself, "Now that sweet young thing is a tasty bite for me.
 He walked along a little while with {name}, then he said:
 
 "Little Red Cap, just look at the beautiful flowers that are all around us. Why don't you go and take a look? And I don't believe you can hear how beautifully the birds are singing. You are walking along as though you were on your way to school. It is very beautiful in the woods."
-**IMG[0001.jpg,17,21]
+**IMG[0001.jpg,15,17]
 
 Little Red Cap opened her eyes and when she saw the sunbeams dancing through the trees and how the ground was covered with beautiful flowers, she thought, "If a take a fresh bouquet to grandmother, she will be very pleased. Anyway, it is still early, and I'll be home on time."
 
@@ -56,11 +56,11 @@ Then she went to the bed and pulled back the curtains. Grandmother was lying the
 "Oh, grandmother, what big ears you have!"
 
 "All the better to hear you with."
-**IMG[0002.jpg,17,21]
 
 "Oh, grandmother, what big eyes you have!" 
 
 "All the better to see you with." 
+**IMG[0002.jpg,15,17]
 
 "Oh, grandmother, what big hands you have!" 
 
@@ -77,10 +77,10 @@ A huntsman was just passing by. He thought, "The old woman is snoring so loudly.
 He stepped into the parlor, and when he approached the bed, he saw the wolf lying there. "So here I find you, you old sinner," he said. "I have been hunting for you a long time."
 
 He was about to aim his rifle when it occurred to him that the wolf might have eaten the grandmother, and that she still might be rescued. So instead of shooting, he took a pair of scissors and began to cut open the wolf's belly. After a few cuts he saw the red cap shining through, and after a few more cuts {name} jumped out, crying, "Oh, I was so frightened! It was so dark inside the wolf's body!" 
-**IMG[0003.jpg,17,21]
 
 And then the grandmother came out as well, alive but hardly able to breathe. Then Little Red Cap fetched some large stones. She filled the wolf's body with them, and when he woke up and tried to run away, the stones were so heavy that he immediately fell down dead. 
 
+**IMG[0003.jpg,15,17]
 The three of them were happy. The huntsman skinned the wolf and went home with the pelt. The grandmother ate the cake and drank the wine that Little Red Cap had brought. And Little Red Cap thought, "As long as I live, I will never leave the path and run off into the woods by myself if mother tells me not to." 
 
 <para alignment="right" fontsize="16"><i>The End</i></para>

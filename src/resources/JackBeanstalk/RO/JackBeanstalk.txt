@@ -33,7 +33,8 @@ Odată ca niciodată, trăiau într-o casă sărăcacioasă, de piatră, o vaduv
 "Da, spun adevărul. și dacă n-o fi așa, o să-ți dau vaca înapoi". 
 
 "Prea-bine", căzu de acord {name} atras de presupusa magie a boabelor. Îi dădu vaca străinului și luă boabele de fasole. 
-**IMG[0001.jpg,17,21]
+
+**IMG[0001.jpg,15,17]
 
 Mama lui se bucură când îl văzu acasă așa de repede.
 
@@ -48,7 +49,6 @@ Mama lui se bucură când îl văzu acasă așa de repede.
 Dar nu apucă sa termine ce avea de spus că mamă-sa se luă cu mâinile de păr. 
 
 "Ți-ai pierdut mințile fiule! Și acuma din ce o să trăim? Cu banuții de pe vacă am fi putut cumpăra o altă vacă mai tânară care să ne dea lapte proaspăt, sau am fi putut deschide o tavernă. Acum o să murim de foame. Nesăbuitule, n-ar fi trebuit să am încredere în tine!"
-**IMG[0002.jpg,17,21]
 
 Furioasă tare, femeia înhăță cele cinci boabe de fasole și le aruncă pe fereastră. După care amândoi se duseră la culcare fără să cineze.
 
@@ -66,6 +66,8 @@ Ușa castelului era foarte mare, la fel și scara internă, camerele și ferestr
 
 Vocea cea puternică aparținea stăpânii castelului, o zmeoaică, nevasta unui zmeu. Dar în timp ce zmeul era fioros și puternic, și nu pregeta să se hrăneasca cu carne de om ori de câte ori vreunul îi ieșea în cale, zmeoaica era blândă, avea inima bună iar baiatul care îi statea în față îi fu imediat simpatic.
 
+**IMG[0002.jpg,15,17]
+
 Așa că-l puse pe {name} la masa și îi dădu să mănânce și să bea pe săturate. Dar fu întrerupt din ospăț de un mare zgomot care se auzea de afară și care făcea să se clatine palatul: bagă de seamă zmeul se întoarcea acasă cu pași grei ca de elefant.   
 
 "Auzi, se întoarce bărbatul meu, ascunde-te repede", îi zise zmeoaica.
@@ -81,7 +83,6 @@ Abia reuși {name} să se ascundă în cuptor că zmeul intră pe ușă. Era aș
 Zmeul păru să-i dea crezare, nu mai spuse nimic de copil, și după ce se sătură de mâncat, scoase din cămară un sac mare plin cu galbeni și se apucă să-i numere. Și numără, și numără, și numără, până adormi cu capul pe masă.
 
 {name} ieși ușurel din cuptor având grijă să nu facă zgomot ca să nu-l trezească pe zmeu, își umplu traista de bani și ieși repede din castel. Găsi cu ușurință drumul spre vrejul de fasole și coborî mai sprinten și mai repede decât se așteptase.
-**IMG[0003.jpg,17,21]
 
 "Hai că am avut noroc", își zicea el în timp ce cobora, "noroc că și zmeoaica s-a dus la culcare, altfel cum aș fi putut eu să ies din castel fără să fiu văzut și cu traista plină de bani?" 
 
@@ -114,6 +115,8 @@ Zmeoaica grăia adevarul, ea nu văzuse nici un străin pe-acolo. Vorbea așa de
 "Dragul mamii, o să iesim din sărăcie cu găina asta!", se bucură maica-sa.
 
 "Așa-i mamă", răspunse {name} care se dovedise a fi mult mai isteț decât crezuse maică-sa. 
+
+**IMG[0003.jpg,15,17]
 
 Timpul trecu dar {name} tânjea să-i mai facă o vizită uriașului, curios să vadă ce minunății ar mai putea găsi în castelul lui. Așa că într-o dimineață se sculă devreme și o luă în sus pe vrej, până ajunse la castel, unde fără să fie văzut de nimeni se ascunse într-o oală de pe vatră.
 
