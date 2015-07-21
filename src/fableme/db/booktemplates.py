@@ -24,7 +24,7 @@ books = (
         'age_recomm_max': 12,
         'price_eurocents': 499,
         'author_img': 'dana.jpg',
-        'author_name': 'Anna Petrescu',
+        'author_name': 'FableMe',
         'author_ill': 'Noha Elhady',
         'author_desc': """Anna Petrescu is Chief Officer at FableMe, and a recognized writer
                               of fables and novels for teenagers. She has a beautiful daughter, 
@@ -62,7 +62,7 @@ books = (
         'prot_boy': 'prot_voyage_boy.jpg',
         'prot_girl': 'prot_voyage_girl.jpg',
         'author_img': 'dana.jpg',
-        'author_name': 'Anna Petrescu',
+        'author_name': 'FableMe',
         'author_ill': 'Noha Elhady',
         'author_desc': """Anna Petrescu is Chief Officer at FableMe, and a recognized writer
                                   of fables and novels for teenagers. She has a beautiful daughter, 
@@ -103,7 +103,7 @@ books = (
         'prot_boy': 'prot_badia_boy.jpg',
         'prot_girl': 'prot_badia_girl.jpg',
         'author_img': 'alessio.jpg',
-        'author_name': 'Alessio Saltarin',
+        'author_name': 'FableMe',
         'author_ill': 'Teodora Reytor',
         'author_desc': """Alessio Saltarin is an italian writer of novels and short-stories.
                               In his spare time he designs and programs videogames.""",
