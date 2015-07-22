@@ -456,12 +456,32 @@ class Step(FablePage):
         FablePage.__init__(self, request, response, 'create.html', request_authentication=True)
 
 
+def _reviews_i_liked(reviews, umail):
+    """
+    Utility function used by Book and Review
+    :param reviews: List of DbFableReviews
+    :param umail: Mail of the current user
+    :return: A new list enriched with 'ilikedit' attribuyte
+    """
+    if reviews is not None:
+        liked_reviews = []
+        for review in reviews:
+            new_review = review.to_dict()
+            new_review['urlid'] = review.key.urlsafe()
+            if review.did_i_like_it(umail):
+                new_review['ilikedit'] = True
+            else:
+                new_review['ilikedit'] = False
+            liked_reviews.append(new_review)
+    return liked_reviews
+
+
 class Book(FablePage):
     """ Handler for every /book page """
 
-    def _render_page(self, book):
+    def _render_page(self, book, reviews):
         book_obj = booktemplates.Book(int(book))
-        self.template_values['reviews'] = schema.DbFableReview.find_by_template_id(book)
+        self.template_values['reviews'] = reviews
         self.template_values['fable'] = book_obj
         self.template_values['templatesex'] = book_obj.default_sex
         self.template_values['book'] = book
@@ -472,6 +492,8 @@ class Book(FablePage):
         book = self.request.get('bookid')
         user_email = self.get_user_db().email
         self.template_values['user_email'] = user_email
+        raw_reviews = schema.DbFableReview.find_by_template_id(int(book))
+        reviews = _reviews_i_liked(raw_reviews, user_email)
         purchased_books = dbutils.get_my_bought_fables(user_email)
         if purchased_books is not None:  # if user has bought the book, he can leave a review
             book_purchased_qry = purchased_books.filter(schema.DbFable.template_id == int(book))
@@ -479,7 +501,7 @@ class Book(FablePage):
                 if schema.DbFableReview.find_by_user(user_email, book) is None:
                     self.redirect('/review?bookid='+book)
                     return
-        self._render_page(book)
+        self._render_page(book, reviews)
 
     def __init__(self, request, response):
         FablePage.__init__(self, request, response, 'book.html')
@@ -599,13 +621,9 @@ class Review(FablePage):
         self._author = self.request.get('rev_name')
         self._description = self.request.get('rev_description')
         self._rating = self.request.get('rating')
-        logging.debug('Fable template id > ' + self._template_id)
-        logging.debug('Review Title > ' + self._title)
-        logging.debug('Review Author > ' + self._author)
-        logging.debug('Review Rating > ' + self._rating)
-        logging.debug('Review > ' + self._description)
         self._create_review(self.logged.email)
         self.template_values['review_received'] = True
+        self.template_values['reviews'] = None
         self._default_render()
 
     def get(self):
@@ -616,9 +634,8 @@ class Review(FablePage):
             self.redirect('/book?bookid=' + self._template_id)
         else:
             self.template_values['user_email'] = user_email
-            if schema.DbFableReview.did_i_like_it(user_email):
-                self.template_values['ilikedit'] = True
-            self.template_values['reviews'] = schema.DbFableReview.find_by_template_id(int(self._template_id))
+            reviews = schema.DbFableReview.find_by_template_id(int(self._template_id))
+            self.template_values['reviews'] = _reviews_i_liked(reviews, user_email)
             process_review = self.request.get('accept')
             if process_review != "":
                 user_mail = self.request.get('rv_mail')

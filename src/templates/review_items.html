@@ -40,6 +40,8 @@
 
                                 function( data ) {
                                     var result = JSON.parse(data);
+                                    $("#likeita").removeAttr('onclick');
+                                    $("#likeita").html('I just liked it!');
                                     $( "#xlike" ).html( result.likes + ' users likes this review' );
                                 }
                         );
@@ -47,12 +49,10 @@
                     };
 
                 </script>
-                {% if ilikedit %}
-                    <strong>
-                        <img src="img/likeit.jpg" width="20"><span style="color: #3b5998"> I like it!</span>
-                    </strong>
+                {% if review.ilikedit %}
+                        <img src="img/likeit.jpg" width="20"><span style="color: #3b5998; font-weight: bold"> I already liked it!</span>
                 {% else %}
-                    <a onclick="ilikeit('{{ review.key.urlsafe }}','{{ user_email }}')">
+                    <a id="likeita" onclick="ilikeit('{{ review.urlid }}','{{ user_email }}')">
                         <img src="img/likeit.jpg" width="20"> I like it!
                     </a>
                 {% endif %}
