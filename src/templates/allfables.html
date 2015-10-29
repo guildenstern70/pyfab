@@ -4,59 +4,95 @@
 
 {% block maincontent %}
 
-    <!-- Main Content Section -->
-    <!-- This has been source ordered to come first in the markup (and on small devices) 
-    but to be to the right of the nav on larger screens -->
-    <div class="large-12 columns">
-        <div class="row">
+    <div class="row">
+        <div class="large-12 columns">
             <h3>
                 FableMe: Fables Catalogue
             </h3>
             <p>These are the fables available...</p>
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="section-container auto" data-section>
+                <section class="active">
+                    <p class="title" data-section-title>
+                        <b><a href="#panel1">FableMe Tales</a></b>
+                    </p>
+                    <div class="content" data-section-content>
+                        {% for fable in fableme_books %}
+                            <div class="row">
+                                <div class="large-3 small-3 columns">
+                                    <div class="orbit-container">
+                                        <ul class="example-orbit" data-orbit
+                                                data-options="timer: false; bullets:false;slide_number: false">
+                                          <li>
+                                            <img src="/img/covers/{{fable.bookimg_boy}}" alt="Cover for boys" />
+                                            <div class="orbit-caption">
+                                              For boys.
+                                            </div>
+                                          </li>
+                                          <li class="active">
+                                            <img src="/img/covers/{{fable.bookimg_girl}}" alt="Cover for girls" />
+                                            <div class="orbit-caption">
+                                              For girls.
+                                            </div>
+                                          </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="large-1 small-1 columns">
+                                    &nbsp;
+                                </div>
+                                <div class="large-8 small-8 columns">
+                                 {% include "fable_details_create.html" %}
+                                </div>
+                            <hr>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                <section>
+                    <p class="title" data-section-title>
+                      <b><a href="#panel2">Classic Fairy Tales</a></b>
+                    </p>
+                    <div class="content" data-section-content>
+                        {% for fable in classic_books %}
+                            <div class="row">
+                                <div class="large-3 small-3 columns">
+                                    <img src="/img/covers/{{fable.bookimg_boy}}" alt="Cover" />
+                                </div>
+                                <div class="large-1 small-1 columns">
+                                    &nbsp;
+                                </div>
+                                <div class="large-8 small-8 columns">
+                                 {% include "fable_details_create.html" %}
+                                </div>
+                            <hr>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
 
-                    <table>
-                    
-					{% for fable in fables %}
-					<tr>
-						<td width="45%" class="hide-for-small">
-						
-							<table>
-								<tr>
-									<td><img src="/img/covers/{{fable.bookimg_boy}}" width="200" alt="Cover for boys"></td>
-									<td><img src="/img/covers/{{fable.bookimg_girl}}" width="200" alt="Cover for girls"></td>
-								</tr>
-								<tr>
-									<td>Cover for boys</td>
-									<td>Cover for girls</td>
-								</tr>
-							</table>
-						
-						</td>
-						
-						<td>
-						      {% include "fable_details_create.html" %} 	
-						</td>
-						
-					
-					</tr>
-					<tr><td colspan="2"><hr></td></tr>
-					
-					{% endfor %}
-                    
-                     </table>
-
-              
         </div>
-        <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
             <h3>
                 &nbsp;
             </h3>
         </div>
-
     </div>
 
     
 {% endblock %}
+
+{% block extralatejavascripts %}
+    <script src="js/foundation/foundation.section.js"></script>
+    <script src="js/foundation/foundation.orbit.js"></script>
+{% endblock %}
+
+
 

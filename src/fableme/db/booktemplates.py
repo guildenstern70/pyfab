@@ -135,7 +135,7 @@ books = (
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_cinderella_boy.jpg',
         'prot_girl': 'prot_cinderella_girl.jpg',
@@ -151,20 +151,15 @@ books = (
                           ("Schneewittchen"). Their first collection of folk tales, Children's and Household Tales 
                           (Kinder- und Hausmärchen), was published in 1812.""",
         'desc_title': 'Cinderella',
-        'desc_desc': """In a far away, long ago kingdom, Cinderella is living happily with her mother and father until her mother dies.
+        'desc_desc': """Cinderella is living happily with her mother and father until her mother dies.
                             Cinderella's father remarries a cold, cruel woman who has two cruel daughters who turn her into a servant 
                             in her own house. Meanwhile, across town in the castle, the King invites every eligible maiden in the 
                             kingdom to a fancy ball, where his son will be able to choose his bride. Cinderella has no suitable 
                             party dress for a ball but a fairy godmother helps her. At the ball Cinderella dances with the Prince
-                            who falls in love with her. However, at the stroke of midnight Cinderella must leave the ball as her 
-                            clothes will turn back to rags after 12 o’clock and as she rushes out she leaves one of her shoes behind. 
-                            The prince tries the shoe on lots of women throughout the land until he finds Cinderella. 
-                            They get married and live happily ever after. """,
+                            who falls in love with her. However, at the stroke of midnight ... """,
         'desc_short': """Cinderella is the story of a girl that after the death of her mother becomes a servant for her step mother
                              and two step sisters. With the help of a fairy godmother she turns into a beautiful princess and goes 
-                             to the ball at the castle where the prince falls in love with her. When the clock turns midnight she has 
-                             to go and she loses her shoe. The prince searches the owner of the shoe in the entire kingdom, finds her 
-                             and marries her..."""
+                             to the ball at the castle where the prince falls in love with her. When the clock turns..."""
     },
     {
         'template_id': 4,
@@ -184,7 +179,7 @@ books = (
         'default_sex': 'M',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_tomthumb_boy.jpg',
         'prot_girl': 'prot_tomthumb_girl.jpg',
@@ -228,7 +223,7 @@ books = (
         'default_sex': 'M',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_tomthumb_boy.jpg',
         'prot_girl': 'prot_tomthumb_girl.jpg',
@@ -249,15 +244,10 @@ books = (
                             stops giving milk and the boy takes the cow to market to sell it. On the way he meets a strange man 
                             who gives him five magic beans in exchange for the cow. His angry mother throws the beans into the garden. 
                             Overnight the beans grow into a huge beanstalk and the boy climbs up. At the top he
-                            finds a castle where a giant and his wife live. The giant likes to eat children
-                            so the boy hides in the oven. He goes up the beanstalk three times. When the
-                            giant is sleeping, the boy steals a bag of gold, a magic hen, and a golden harp.
-                            The third time, the giant wakes up and chases him down the beanstalk. The boy and his mother cut down 
-                            the beanstalk and the giant falls to his death. """,
+                            finds a castle where a giant and his wife live... """,
         'desc_short': """A poor boy living with his mother takes their only cow to the market to sell it.
                              On the way he meets a strange man who gives him five magic beans in exchange for the cow. 
-                             The beans grow into a huge beanstalk on top of which a giant lives. The boy steals from the giant 
-                             a bag of gold, a magic hen, and a golden harp, and lives happily and rich with his mother...."""
+                             The beans grow into a huge beanstalk on top of which a giant lives..."""
     },
     {
         'template_id': 6,
@@ -277,7 +267,7 @@ books = (
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_sleepingbeauty_boy.jpg',
         'prot_girl': 'prot_sleepingbeauty_girl.jpg',
@@ -295,14 +285,11 @@ books = (
         'desc_title': 'Sleeping Beauty',
         'desc_desc': """A king slights the oldest fairy of thirteen in the kingdom and she curses the King's newborn princess
                             saying she will die on her fifteenth birthday by pricking her finger on a spinning wheel.  The twelfth softens 
-                            the curse so that the princess will only fall asleep for one hundred years.  The King has every spinning 
-                            wheel destroyed in the kingdom but on her fifteenth birthday, she pricks her finger, falling down in a deep sleep.  
-                            One hundred years later a Prince searches for the enchanted princess and kisses her awakening the kingdom 
-                            from the spell.""",
+                            the curse so that the princess will only fall asleep for one hundred years...""",
         'desc_short': """A king’s new born daughter is cursed by an evil fairy to die on her fifteenth birthday by pricking
                              her finger on a spinning wheel. She does pricks her finger falling down in a deep sleep and one hundred 
                              years later a princess awakens her with a kiss..."""
-    } ,
+    },
     {
         'template_id': 7,
         'template_text_file': 'RedCap.txt',
@@ -321,7 +308,7 @@ books = (
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_redcap_boy.jpg',
         'prot_girl': 'prot_redcap_girl.jpg',
@@ -362,7 +349,7 @@ books = (
         'default_sex': 'F',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 99,
         'sidebar_pic': 'Capture.jpg',
         'prot_boy': 'prot_rapunzel_boy.jpg',
         'prot_girl': 'prot_rapunzel_girl.jpg',

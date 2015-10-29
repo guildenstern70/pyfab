@@ -331,8 +331,10 @@ class AllFables(FablePage):
     """ /allfables fable page """
     
     def get(self):
-        books = booktemplates.get_all_books()
-        self.template_values['fables'] = books
+        fableme_fables = booktemplates.get_fableme_books()
+        classic_fables = booktemplates.get_classic_books()
+        self.template_values['fableme_books'] = fableme_fables
+        self.template_values['classic_books'] = classic_fables
         self.render()
         
     def __init__(self, request, response):
