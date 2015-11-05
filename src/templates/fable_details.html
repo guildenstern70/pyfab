@@ -1,26 +1,32 @@
 
-<h3>
-    <a href="/book?bookid={{fable.template_id}}"><span id="fabletitle">{{fable.title}}</span></a>
-</h3>
-<p>&nbsp;</p>
-<ul style="margin-left: 20px">
-    <li>Available in {{fable.languages}}</li>
-    <li>Written by: {{fable.author_name}}</li>
-    <li>Illustrated by: {{fable.author_ill}}<br /><br /></li>
-    <li>{{fable.recommendation}}<br /><br /></li>
-    
-    <li>{{fable.desc_desc}}</li>
-</ul>
-<ul style="margin-left: 20px">
-    <li>
-        <a href="/preview?issuu={{fable.issuu_id}}" target="_blank">Book preview</a>
-    </li>    
-</ul>
-<div id="bookPreview" class="reveal-modal">
-      <h2>Awesome. I have it.</h2>
-      <p class="lead">Your couch.  It is mine.</p>
-      <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
-      <a class="close-reveal-modal">&#215;</a>
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <h3 class="fablemegreen">
+       {{fable.title}}
+    </h3>
+    <div class="pricetag">{{ fable.price }}</div>
+  </div>
 </div>
+
+<div class="row">
+    <div class="small-12 large-12 columns">
+        <article style="font-size: smaller">
+            <ul class="no-bullet">
+                <li>Available in {{fable.languages}}</li>
+                <li>Written by: {{fable.author_name}}</li>
+                <li>Illustrated by: {{fable.author_ill}}<br /><br /></li>
+                <li>{{fable.recommendation}}<br /><br /></li>
+                <li>{{fable.desc_desc}}</li>
+            </ul>
+            <ul class="no-bullet">
+                <li>
+                    <a href="/preview?issuu={{fable.issuu_id}}" target="_blank">Book preview</a>
+                </li>
+            </ul>
+        </article>
+    </div>
+
+</div>
+
 
 

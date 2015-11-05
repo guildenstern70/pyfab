@@ -383,6 +383,11 @@ class Book(object):
         for k, v in self.dictionary.items():
             setattr(self, k, v)
 
+    @property
+    def price(self):
+        book_price = float(self.dictionary.get('price_eurocents') / 100.0)
+        return '€ {0:.2f}'.format(book_price)
+
     def recommendation(self, sexonly=False):
         recomm = "Recommended for "
         age_min = self.dictionary['age_recomm_min']
