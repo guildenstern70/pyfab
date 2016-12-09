@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-appcfg.py update .
+gcloud config set project fableomatic
+gcloud app deploy
+

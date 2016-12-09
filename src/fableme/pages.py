@@ -465,8 +465,8 @@ def _reviews_i_liked(reviews, umail):
     :param umail: Mail of the current user
     :return: A new list enriched with 'ilikedit' attribuyte
     """
+    liked_reviews = []
     if reviews is not None:
-        liked_reviews = []
         for review in reviews:
             new_review = review.to_dict()
             new_review['urlid'] = review.key.urlsafe()

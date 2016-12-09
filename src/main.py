@@ -14,10 +14,9 @@ import fableme.pages
 import fableme.services
 import fableme.printer
 
-config = {}
-config['webapp2_extras.sessions'] = {
-    'secret_key': 'bludream',
-}
+config = {'webapp2_extras.sessions': {
+ 'secret_key': 'bludream',
+}}
 
 logging.getLogger().setLevel(logging.DEBUG)
 APPLICATION = webapp2.WSGIApplication(
