@@ -43,7 +43,7 @@ class Print(FablePage):
         self.render()
 
         
-class PrinteBook():
+class PrinteBook:
     """ /print/book page
         Valid values for fable_format: EPUB, PDF, EBOOK
         When fable_format == EBOOK, every format is generated 

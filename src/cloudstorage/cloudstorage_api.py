@@ -14,18 +14,14 @@
 
 """File Interface for Google Cloud Storage."""
 
-
-
 from __future__ import with_statement
-
-
 
 __all__ = ['delete',
            'listbucket',
            'open',
            'stat',
            'compose',
-          ]
+           ]
 
 import logging
 import StringIO
@@ -40,7 +36,6 @@ from . import errors
 from . import storage_api
 
 
-
 def open(filename,
          mode='r',
          content_type=None,
@@ -49,7 +44,7 @@ def open(filename,
          read_buffer_size=storage_api.ReadBuffer.DEFAULT_BUFFER_SIZE,
          retry_params=None,
          _account_id=None):
-  """Opens a Google Cloud Storage file and returns it as a File-like object.
+    """Opens a Google Cloud Storage file and returns it as a File-like object.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -84,28 +79,28 @@ def open(filename,
     ValueError: invalid open mode or if content_type or options are specified
       in reading mode.
   """
-  common.validate_file_path(filename)
-  api = storage_api._get_storage_api(retry_params=retry_params,
-                                     account_id=_account_id)
-  filename = api_utils._quote_filename(filename)
+    common.validate_file_path(filename)
+    api = storage_api._get_storage_api(retry_params=retry_params,
+                                       account_id=_account_id)
+    filename = api_utils._quote_filename(filename)
 
-  if mode == 'w':
-    common.validate_options(options)
-    return storage_api.StreamingBuffer(api, filename, content_type, options)
-  elif mode == 'r':
-    if content_type or options:
-      raise ValueError('Options and content_type can only be specified '
-                       'for writing mode.')
-    return storage_api.ReadBuffer(api,
-                                  filename,
-                                  offset=offset,
-                                  buffer_size=read_buffer_size)
-  else:
-    raise ValueError('Invalid mode %s.' % mode)
+    if mode == 'w':
+        common.validate_options(options)
+        return storage_api.StreamingBuffer(api, filename, content_type, options)
+    elif mode == 'r':
+        if content_type or options:
+            raise ValueError('Options and content_type can only be specified '
+                             'for writing mode.')
+        return storage_api.ReadBuffer(api,
+                                      filename,
+                                      offset=offset,
+                                      buffer_size=read_buffer_size)
+    else:
+        raise ValueError('Invalid mode %s.' % mode)
 
 
 def delete(filename, retry_params=None, _account_id=None):
-  """Delete a Google Cloud Storage file.
+    """Delete a Google Cloud Storage file.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -116,17 +111,17 @@ def delete(filename, retry_params=None, _account_id=None):
   Raises:
     errors.NotFoundError: if the file doesn't exist prior to deletion.
   """
-  api = storage_api._get_storage_api(retry_params=retry_params,
-                                     account_id=_account_id)
-  common.validate_file_path(filename)
-  filename = api_utils._quote_filename(filename)
-  status, resp_headers, content = api.delete_object(filename)
-  errors.check_status(status, [204], filename, resp_headers=resp_headers,
-                      body=content)
+    api = storage_api._get_storage_api(retry_params=retry_params,
+                                       account_id=_account_id)
+    common.validate_file_path(filename)
+    filename = api_utils._quote_filename(filename)
+    status, resp_headers, content = api.delete_object(filename)
+    errors.check_status(status, [204], filename, resp_headers=resp_headers,
+                        body=content)
 
 
 def stat(filename, retry_params=None, _account_id=None):
-  """Get GCSFileStat of a Google Cloud storage file.
+    """Get GCSFileStat of a Google Cloud storage file.
 
   Args:
     filename: A Google Cloud Storage filename of form '/bucket/filename'.
@@ -141,26 +136,26 @@ def stat(filename, retry_params=None, _account_id=None):
     errors.AuthorizationError: if authorization failed.
     errors.NotFoundError: if an object that's expected to exist doesn't.
   """
-  common.validate_file_path(filename)
-  api = storage_api._get_storage_api(retry_params=retry_params,
-                                     account_id=_account_id)
-  status, headers, content = api.head_object(
-      api_utils._quote_filename(filename))
-  errors.check_status(status, [200], filename, resp_headers=headers,
-                      body=content)
-  file_stat = common.GCSFileStat(
-      filename=filename,
-      st_size=common.get_stored_content_length(headers),
-      st_ctime=common.http_time_to_posix(headers.get('last-modified')),
-      etag=headers.get('etag'),
-      content_type=headers.get('content-type'),
-      metadata=common.get_metadata(headers))
+    common.validate_file_path(filename)
+    api = storage_api._get_storage_api(retry_params=retry_params,
+                                       account_id=_account_id)
+    status, headers, content = api.head_object(
+        api_utils._quote_filename(filename))
+    errors.check_status(status, [200], filename, resp_headers=headers,
+                        body=content)
+    file_stat = common.GCSFileStat(
+        filename=filename,
+        st_size=common.get_stored_content_length(headers),
+        st_ctime=common.http_time_to_posix(headers.get('last-modified')),
+        etag=headers.get('etag'),
+        content_type=headers.get('content-type'),
+        metadata=common.get_metadata(headers))
 
-  return file_stat
+    return file_stat
 
 
 def _copy2(src, dst, metadata=None, retry_params=None):
-  """Copy the file content from src to dst.
+    """Copy the file content from src to dst.
 
   Internal use only!
 
@@ -176,26 +171,26 @@ def _copy2(src, dst, metadata=None, retry_params=None):
     errors.AuthorizationError: if authorization failed.
     errors.NotFoundError: if an object that's expected to exist doesn't.
   """
-  common.validate_file_path(src)
-  common.validate_file_path(dst)
+    common.validate_file_path(src)
+    common.validate_file_path(dst)
 
-  if metadata is None:
-    metadata = {}
-    copy_meta = 'COPY'
-  else:
-    copy_meta = 'REPLACE'
-  metadata.update({'x-goog-copy-source': src,
-                   'x-goog-metadata-directive': copy_meta})
+    if metadata is None:
+        metadata = {}
+        copy_meta = 'COPY'
+    else:
+        copy_meta = 'REPLACE'
+    metadata.update({'x-goog-copy-source': src,
+                     'x-goog-metadata-directive': copy_meta})
 
-  api = storage_api._get_storage_api(retry_params=retry_params)
-  status, resp_headers, content = api.put_object(
-      api_utils._quote_filename(dst), headers=metadata)
-  errors.check_status(status, [200], src, metadata, resp_headers, body=content)
+    api = storage_api._get_storage_api(retry_params=retry_params)
+    status, resp_headers, content = api.put_object(
+        api_utils._quote_filename(dst), headers=metadata)
+    errors.check_status(status, [200], src, metadata, resp_headers, body=content)
 
 
 def listbucket(path_prefix, marker=None, prefix=None, max_keys=None,
                delimiter=None, retry_params=None, _account_id=None):
-  """Returns a GCSFileStat iterator over a bucket.
+    """Returns a GCSFileStat iterator over a bucket.
 
   Optional arguments can limit the result to a subset of files under bucket.
 
@@ -257,33 +252,34 @@ def listbucket(path_prefix, marker=None, prefix=None, max_keys=None,
 
     The last name yielded can be used as next call's marker.
   """
-  if prefix:
-    common.validate_bucket_path(path_prefix)
-    bucket = path_prefix
-  else:
-    bucket, prefix = common._process_path_prefix(path_prefix)
+    if prefix:
+        common.validate_bucket_path(path_prefix)
+        bucket = path_prefix
+    else:
+        bucket, prefix = common._process_path_prefix(path_prefix)
 
-  if marker and marker.startswith(bucket):
-    marker = marker[len(bucket) + 1:]
+    if marker and marker.startswith(bucket):
+        marker = marker[len(bucket) + 1:]
 
-  api = storage_api._get_storage_api(retry_params=retry_params,
-                                     account_id=_account_id)
-  options = {}
-  if marker:
-    options['marker'] = marker
-  if max_keys:
-    options['max-keys'] = max_keys
-  if prefix:
-    options['prefix'] = prefix
-  if delimiter:
-    options['delimiter'] = delimiter
+    api = storage_api._get_storage_api(retry_params=retry_params,
+                                       account_id=_account_id)
+    options = {}
+    if marker:
+        options['marker'] = marker
+    if max_keys:
+        options['max-keys'] = max_keys
+    if prefix:
+        options['prefix'] = prefix
+    if delimiter:
+        options['delimiter'] = delimiter
 
-  return _Bucket(api, bucket, options)
+    return _Bucket(api, bucket, options)
+
 
 # pylint: disable=too-many-locals, too-many-branches, too-many-statements
 def compose(list_of_files, destination_file, files_metadata=None,
             content_type=None, retry_params=None, _account_id=None):
-  """Runs the GCS Compose on the given files.
+    """Runs the GCS Compose on the given files.
 
   Merges between 2 and 32 files into one file. Composite files may even
   be built from other existing composites, provided that the total
@@ -304,32 +300,32 @@ def compose(list_of_files, destination_file, files_metadata=None,
   Raises:
     ValueError: If the number of files is outside the range of 2-32.
   """
-  api = storage_api._get_storage_api(retry_params=retry_params,
-                                     account_id=_account_id)
+    api = storage_api._get_storage_api(retry_params=retry_params,
+                                       account_id=_account_id)
 
-  # Needed until cloudstorage_stub.py is updated to accept compose requests
-  # TODO(rbruyere@gmail.com): When patched remove the True flow from this if.
+    # Needed until cloudstorage_stub.py is updated to accept compose requests
+    # TODO(rbruyere@gmail.com): When patched remove the True flow from this if.
 
-  if os.getenv('SERVER_SOFTWARE').startswith('Dev'):
-    def _temp_func(file_list, destination_file, content_type):
-      """Dev server stub remove when the dev server accepts compose requests."""
-      bucket = '/' + destination_file.split('/')[1] + '/'
-      with open(destination_file, 'w', content_type=content_type) as gcs_merge:
-        for source_file in file_list:
-          with open(bucket + source_file['Name'], 'r') as gcs_source:
-            gcs_merge.write(gcs_source.read())
+    if os.getenv('SERVER_SOFTWARE').startswith('Dev'):
+        def _temp_func(file_list, destination_file, content_type):
+            """Dev server stub remove when the dev server accepts compose requests."""
+            bucket = '/' + destination_file.split('/')[1] + '/'
+            with open(destination_file, 'w', content_type=content_type) as gcs_merge:
+                for source_file in file_list:
+                    with open(bucket + source_file['Name'], 'r') as gcs_source:
+                        gcs_merge.write(gcs_source.read())
 
-    compose_object = _temp_func
-  else:
-    compose_object = api.compose_object
-  file_list, _ = _validate_compose_list(destination_file,
-                                        list_of_files,
-                                        files_metadata, 32)
-  compose_object(file_list, destination_file, content_type)
+        compose_object = _temp_func
+    else:
+        compose_object = api.compose_object
+    file_list, _ = _validate_compose_list(destination_file,
+                                          list_of_files,
+                                          files_metadata, 32)
+    compose_object(file_list, destination_file, content_type)
 
 
 def _file_exists(destination):
-  """Checks if a file exists.
+    """Checks if a file exists.
   Tries to open the file.
   If it succeeds returns True otherwise False.
 
@@ -339,16 +335,16 @@ def _file_exists(destination):
   Returns:
     True if the file is accessible otherwise False.
   """
-  try:
-    with open(destination, "r"):
-      return True
-  except errors.NotFoundError:
-    return False
+    try:
+        with open(destination, "r"):
+            return True
+    except errors.NotFoundError:
+        return False
 
 
 def _validate_compose_list(destination_file, file_list,
                            files_metadata=None, number_of_files=32):
-  """Validates the file_list and merges the file_list, files_metadata.
+    """Validates the file_list and merges the file_list, files_metadata.
 
   Args:
     destination: Path to the file (ie. /destination_bucket/destination_file).
@@ -361,141 +357,141 @@ def _validate_compose_list(destination_file, file_list,
       list_of_files: Ready to use dict version of the list.
       bucket: bucket name extracted from the file paths.
   """
-  common.validate_file_path(destination_file)
-  bucket = destination_file[0:(destination_file.index('/', 1) + 1)]
-  try:
-    if isinstance(file_list, types.StringTypes):
-      raise TypeError
-    list_len = len(file_list)
-  except TypeError:
-    raise TypeError('file_list must be a list')
+    common.validate_file_path(destination_file)
+    bucket = destination_file[0:(destination_file.index('/', 1) + 1)]
+    try:
+        if isinstance(file_list, types.StringTypes):
+            raise TypeError
+        list_len = len(file_list)
+    except TypeError:
+        raise TypeError('file_list must be a list')
 
-  if list_len > number_of_files:
-    raise ValueError(
-          'Compose attempted to create composite with too many'
-           '(%i) components; limit is (%i).' % (list_len, number_of_files))
-  if list_len <= 1:
-    raise ValueError('Compose operation requires at'
-                     ' least two components; %i provided.' % list_len)
+    if list_len > number_of_files:
+        raise ValueError(
+            'Compose attempted to create composite with too many'
+            '(%i) components; limit is (%i).' % (list_len, number_of_files))
+    if list_len <= 1:
+        raise ValueError('Compose operation requires at'
+                         ' least two components; %i provided.' % list_len)
 
-  if files_metadata is None:
-    files_metadata = []
-  elif len(files_metadata) > list_len:
-    raise ValueError('files_metadata contains more entries(%i)'
-                     ' than file_list(%i)'
-                     % (len(files_metadata), list_len))
-  list_of_files = []
-  for source_file, meta_data in itertools.izip_longest(file_list,
-                                                       files_metadata):
-    if not isinstance(source_file, str):
-      raise TypeError('Each item of file_list must be a string')
-    if source_file.startswith('/'):
-      logging.warn('Detected a "/" at the start of the file, '
-                   'Unless the file name contains a "/" it '
-                   ' may cause files to be misread')
-    if source_file.startswith(bucket):
-      logging.warn('Detected bucket name at the start of the file, '
-                   'must not specify the bucket when listing file_names.'
-                   ' May cause files to be misread')
-    common.validate_file_path(bucket + source_file)
+    if files_metadata is None:
+        files_metadata = []
+    elif len(files_metadata) > list_len:
+        raise ValueError('files_metadata contains more entries(%i)'
+                         ' than file_list(%i)'
+                         % (len(files_metadata), list_len))
+    list_of_files = []
+    for source_file, meta_data in itertools.izip_longest(file_list,
+                                                         files_metadata):
+        if not isinstance(source_file, str):
+            raise TypeError('Each item of file_list must be a string')
+        if source_file.startswith('/'):
+            logging.warn('Detected a "/" at the start of the file, '
+                         'Unless the file name contains a "/" it '
+                         ' may cause files to be misread')
+        if source_file.startswith(bucket):
+            logging.warn('Detected bucket name at the start of the file, '
+                         'must not specify the bucket when listing file_names.'
+                         ' May cause files to be misread')
+        common.validate_file_path(bucket + source_file)
 
-    list_entry = {}
+        list_entry = {}
 
-    if meta_data is not None:
-      list_entry.update(meta_data)
-    list_entry["Name"] = source_file
-    list_of_files.append(list_entry)
+        if meta_data is not None:
+            list_entry.update(meta_data)
+        list_entry["Name"] = source_file
+        list_of_files.append(list_entry)
 
-  return list_of_files, bucket
+    return list_of_files, bucket
 
 
 class _Bucket(object):
-  """A wrapper for a GCS bucket as the return value of listbucket."""
+    """A wrapper for a GCS bucket as the return value of listbucket."""
 
-  def __init__(self, api, path, options):
-    """Initialize.
+    def __init__(self, api, path, options):
+        """Initialize.
 
     Args:
       api: storage_api instance.
       path: bucket path of form '/bucket'.
       options: a dict of listbucket options. Please see listbucket doc.
     """
-    self._init(api, path, options)
+        self._init(api, path, options)
 
-  def _init(self, api, path, options):
-    self._api = api
-    self._path = path
-    self._options = options.copy()
-    self._get_bucket_fut = self._api.get_bucket_async(
-        self._path + '?' + urllib.urlencode(self._options))
-    self._last_yield = None
-    self._new_max_keys = self._options.get('max-keys')
+    def _init(self, api, path, options):
+        self._api = api
+        self._path = path
+        self._options = options.copy()
+        self._get_bucket_fut = self._api.get_bucket_async(
+            self._path + '?' + urllib.urlencode(self._options))
+        self._last_yield = None
+        self._new_max_keys = self._options.get('max-keys')
 
-  def __getstate__(self):
-    options = self._options
-    if self._last_yield:
-      options['marker'] = self._last_yield.filename[len(self._path) + 1:]
-    if self._new_max_keys is not None:
-      options['max-keys'] = self._new_max_keys
-    return {'api': self._api,
-            'path': self._path,
-            'options': options}
+    def __getstate__(self):
+        options = self._options
+        if self._last_yield:
+            options['marker'] = self._last_yield.filename[len(self._path) + 1:]
+        if self._new_max_keys is not None:
+            options['max-keys'] = self._new_max_keys
+        return {'api': self._api,
+                'path': self._path,
+                'options': options}
 
-  def __setstate__(self, state):
-    self._init(state['api'], state['path'], state['options'])
+    def __setstate__(self, state):
+        self._init(state['api'], state['path'], state['options'])
 
-  def __iter__(self):
-    """Iter over the bucket.
+    def __iter__(self):
+        """Iter over the bucket.
 
     Yields:
       GCSFileStat: a GCSFileStat for an object in the bucket.
         They are ordered by GCSFileStat.filename.
     """
-    total = 0
-    max_keys = self._options.get('max-keys')
+        total = 0
+        max_keys = self._options.get('max-keys')
 
-    while self._get_bucket_fut:
-      status, resp_headers, content = self._get_bucket_fut.get_result()
-      errors.check_status(status, [200], self._path, resp_headers=resp_headers,
-                          body=content, extras=self._options)
+        while self._get_bucket_fut:
+            status, resp_headers, content = self._get_bucket_fut.get_result()
+            errors.check_status(status, [200], self._path, resp_headers=resp_headers,
+                                body=content, extras=self._options)
 
-      if self._should_get_another_batch(content):
-        self._get_bucket_fut = self._api.get_bucket_async(
-            self._path + '?' + urllib.urlencode(self._options))
-      else:
-        self._get_bucket_fut = None
+            if self._should_get_another_batch(content):
+                self._get_bucket_fut = self._api.get_bucket_async(
+                    self._path + '?' + urllib.urlencode(self._options))
+            else:
+                self._get_bucket_fut = None
 
-      root = ET.fromstring(content)
-      dirs = self._next_dir_gen(root)
-      files = self._next_file_gen(root)
-      next_file = files.next()
-      next_dir = dirs.next()
+            root = ET.fromstring(content)
+            dirs = self._next_dir_gen(root)
+            files = self._next_file_gen(root)
+            next_file = files.next()
+            next_dir = dirs.next()
 
-      while ((max_keys is None or total < max_keys) and
-             not (next_file is None and next_dir is None)):
-        total += 1
-        if next_file is None:
-          self._last_yield = next_dir
-          next_dir = dirs.next()
-        elif next_dir is None:
-          self._last_yield = next_file
-          next_file = files.next()
-        elif next_dir < next_file:
-          self._last_yield = next_dir
-          next_dir = dirs.next()
-        elif next_file < next_dir:
-          self._last_yield = next_file
-          next_file = files.next()
-        else:
-          logging.error(
-              'Should never reach. next file is %r. next dir is %r.',
-              next_file, next_dir)
-        if self._new_max_keys:
-          self._new_max_keys -= 1
-        yield self._last_yield
+            while ((max_keys is None or total < max_keys) and
+                       not (next_file is None and next_dir is None)):
+                total += 1
+                if next_file is None:
+                    self._last_yield = next_dir
+                    next_dir = dirs.next()
+                elif next_dir is None:
+                    self._last_yield = next_file
+                    next_file = files.next()
+                elif next_dir < next_file:
+                    self._last_yield = next_dir
+                    next_dir = dirs.next()
+                elif next_file < next_dir:
+                    self._last_yield = next_file
+                    next_file = files.next()
+                else:
+                    logging.error(
+                        'Should never reach. next file is %r. next dir is %r.',
+                        next_file, next_dir)
+                if self._new_max_keys:
+                    self._new_max_keys -= 1
+                yield self._last_yield
 
-  def _next_file_gen(self, root):
-    """Generator for next file element in the document.
+    def _next_file_gen(self, root):
+        """Generator for next file element in the document.
 
     Args:
       root: root element of the XML tree.
@@ -503,24 +499,24 @@ class _Bucket(object):
     Yields:
       GCSFileStat for the next file.
     """
-    for e in root.getiterator(common._T_CONTENTS):
-      st_ctime, size, etag, key = None, None, None, None
-      for child in e.getiterator('*'):
-        if child.tag == common._T_LAST_MODIFIED:
-          st_ctime = common.dt_str_to_posix(child.text)
-        elif child.tag == common._T_ETAG:
-          etag = child.text
-        elif child.tag == common._T_SIZE:
-          size = child.text
-        elif child.tag == common._T_KEY:
-          key = child.text
-      yield common.GCSFileStat(self._path + '/' + key,
-                               size, etag, st_ctime)
-      e.clear()
-    yield None
+        for e in root.getiterator(common._T_CONTENTS):
+            st_ctime, size, etag, key = None, None, None, None
+            for child in e.getiterator('*'):
+                if child.tag == common._T_LAST_MODIFIED:
+                    st_ctime = common.dt_str_to_posix(child.text)
+                elif child.tag == common._T_ETAG:
+                    etag = child.text
+                elif child.tag == common._T_SIZE:
+                    size = child.text
+                elif child.tag == common._T_KEY:
+                    key = child.text
+            yield common.GCSFileStat(self._path + '/' + key,
+                                     size, etag, st_ctime)
+            e.clear()
+        yield None
 
-  def _next_dir_gen(self, root):
-    """Generator for next directory element in the document.
+    def _next_dir_gen(self, root):
+        """Generator for next directory element in the document.
 
     Args:
       root: root element in the XML tree.
@@ -528,15 +524,15 @@ class _Bucket(object):
     Yields:
       GCSFileStat for the next directory.
     """
-    for e in root.getiterator(common._T_COMMON_PREFIXES):
-      yield common.GCSFileStat(
-          self._path + '/' + e.find(common._T_PREFIX).text,
-          st_size=None, etag=None, st_ctime=None, is_dir=True)
-      e.clear()
-    yield None
+        for e in root.getiterator(common._T_COMMON_PREFIXES):
+            yield common.GCSFileStat(
+                self._path + '/' + e.find(common._T_PREFIX).text,
+                st_size=None, etag=None, st_ctime=None, is_dir=True)
+            e.clear()
+        yield None
 
-  def _should_get_another_batch(self, content):
-    """Whether to issue another GET bucket call.
+    def _should_get_another_batch(self, content):
+        """Whether to issue another GET bucket call.
 
     Args:
       content: response XML.
@@ -545,25 +541,25 @@ class _Bucket(object):
       True if should, also update self._options for the next request.
       False otherwise.
     """
-    if ('max-keys' in self._options and
-        self._options['max-keys'] <= common._MAX_GET_BUCKET_RESULT):
-      return False
+        if ('max-keys' in self._options and
+                    self._options['max-keys'] <= common._MAX_GET_BUCKET_RESULT):
+            return False
 
-    elements = self._find_elements(
-        content, set([common._T_IS_TRUNCATED,
-                      common._T_NEXT_MARKER]))
-    if elements.get(common._T_IS_TRUNCATED, 'false').lower() != 'true':
-      return False
+        elements = self._find_elements(
+            content, set([common._T_IS_TRUNCATED,
+                          common._T_NEXT_MARKER]))
+        if elements.get(common._T_IS_TRUNCATED, 'false').lower() != 'true':
+            return False
 
-    next_marker = elements.get(common._T_NEXT_MARKER)
-    if next_marker is None:
-      self._options.pop('marker', None)
-      return False
-    self._options['marker'] = next_marker
-    return True
+        next_marker = elements.get(common._T_NEXT_MARKER)
+        if next_marker is None:
+            self._options.pop('marker', None)
+            return False
+        self._options['marker'] = next_marker
+        return True
 
-  def _find_elements(self, result, elements):
-    """Find interesting elements from XML.
+    def _find_elements(self, result, elements):
+        """Find interesting elements from XML.
 
     This function tries to only look for specified elements
     without parsing the entire XML. The specified elements is better
@@ -576,12 +572,12 @@ class _Bucket(object):
     Returns:
       A dict from element tag to element value.
     """
-    element_mapping = {}
-    result = StringIO.StringIO(result)
-    for _, e in ET.iterparse(result, events=('end',)):
-      if not elements:
-        break
-      if e.tag in elements:
-        element_mapping[e.tag] = e.text
-        elements.remove(e.tag)
-    return element_mapping
+        element_mapping = {}
+        result = StringIO.StringIO(result)
+        for _, e in ET.iterparse(result, events=('end',)):
+            if not elements:
+                break
+            if e.tag in elements:
+                element_mapping[e.tag] = e.text
+                elements.remove(e.tag)
+        return element_mapping

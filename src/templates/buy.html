@@ -44,7 +44,11 @@
                                 {% if fable.downlink_pdf %}
                						You have already bought the PDF format for this fable! 
                					{% else %}
-               						<button id="customButton_pdf" class="radius button">Purchase</button>
+                                    {% if ebook_price_string == "FREE!" %}
+               						    <a href="/print/book?id={{fable_id}}&fmt=PDF" class="radius button">Download</a>
+                                    {% else %}
+                                        <button id="customButton_pdf" class="radius button">Purchase</button>
+                                    {% endif %}
                					{% endif %}
                                </li>
                            </ul>
@@ -73,7 +77,12 @@
                                	{% if fable.downlink_epub %}
                						You have already bought the ePub format for this fable!  
                					{% else %}
-               						<button id="customButton_epub" class="radius button">Purchase</button>
+                                    {% if ebook_price_string == "FREE!" %}
+               						    <a href="/print/book?id={{fable_id}}&fmt=EPUB" class="radius button">Download</a>
+                                    {% else %}
+                                        <button id="customButton_epub" class="radius button">Purchase</button>
+                                    {% endif %}
+
                					{% endif %}
                                </li> 
 
@@ -98,7 +107,7 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-<script src="https://checkout.stripe.com/checkout.js"></script>  
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <script>
 
   var STRIPE_PK = 'pk_test_Ofj68pEBZiRjxa0y8b4JPD4w';

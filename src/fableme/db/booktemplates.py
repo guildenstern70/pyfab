@@ -22,7 +22,7 @@ books = (
         'default_sex': 'MF',
         'age_recomm_min': 5,
         'age_recomm_max': 12,
-        'price_eurocents': 199,
+        'price_eurocents': 0,
         'author_img': 'dana.jpg',
         'author_name': 'FableMe',
         'author_ill': 'Noha Elhady',
@@ -385,6 +385,8 @@ class Book(object):
 
     @property
     def price(self):
+        if self.dictionary.get('price_eurocents') == 0:
+            return "FREE!"
         book_price = float(self.dictionary.get('price_eurocents') / 100.0)
         return '€ {0:.2f}'.format(book_price)
 

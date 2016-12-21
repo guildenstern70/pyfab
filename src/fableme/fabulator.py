@@ -117,7 +117,7 @@ class Fabulator(object):
             Saves the attributes for each step of the process 
             Return: the ID of the fable processed or created """
         if len(values) > 0:
-            self._loginfo(step, values, refresh)
+            Fabulator._loginfo(step, values, refresh)
             if refresh != '':
                 istep = int(step) + 1
                 step = str(istep)
@@ -156,7 +156,8 @@ class Fabulator(object):
         """ Closes the instance by deleting the DbFable entity """
         self.the_fable.delete()
 
-    def _loginfo(self, step, values, refresh):
+    @staticmethod
+    def _loginfo(step, values, refresh):
         count = 0
         if refresh == '':
             logging.debug('Processing step ' + step)

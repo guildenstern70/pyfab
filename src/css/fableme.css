@@ -25,16 +25,16 @@ textarea {
 }
 
 body {
-    font-family: "Paprika", Helvetica, Arial, sans-serif;
+    font-family: "Paprika", cursive;
     font-size: 90%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Paprika", Helvetica, Arial, sans-serif;
+    font-family: "Paprika", cursive;
 }
 
 select {
-    font-family: "Paprika", Helvetica, Arial, sans-serif;
+    font-family: "Paprika", cursive;
 }
 
 #loading {

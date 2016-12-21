@@ -4,7 +4,7 @@ import random
 import re
 import string
 import sys
-import unittest
+import unittest2
 
 from mock import patch, Mock
 
@@ -26,6 +26,12 @@ DUMMY_CHARGE = {
     'amount': 100,
     'currency': 'usd',
     'card': DUMMY_CARD
+}
+
+DUMMY_DISPUTE = {
+    'status': 'needs_response',
+    'currency': 'usd',
+    'metadata': {}
 }
 
 DUMMY_PLAN = {
@@ -53,6 +59,10 @@ DUMMY_TRANSFER = {
     'amount': 400,
     'currency': 'usd',
     'recipient': 'self'
+}
+
+DUMMY_APPLE_PAY_DOMAIN = {
+    'domain_name': 'test.com',
 }
 
 DUMMY_INVOICE_ITEM = {
@@ -109,7 +119,7 @@ SAMPLE_INVOICE = stripe.util.json.loads("""
 """)
 
 
-class StripeTestCase(unittest.TestCase):
+class StripeTestCase(unittest2.TestCase):
     RESTORE_ATTRIBUTES = ('api_version', 'api_key')
 
     def setUp(self):
@@ -136,7 +146,7 @@ class StripeTestCase(unittest.TestCase):
     def assertRaisesRegexp(self, exception, regexp, callable, *args, **kwargs):
         try:
             callable(*args, **kwargs)
-        except exception, err:
+        except exception as err:
             if regexp is None:
                 return True
 
@@ -192,6 +202,13 @@ class StripeApiTestCase(StripeTestCase):
 
     def mock_response(self, res):
         self.requestor_mock.request = Mock(return_value=(res, 'reskey'))
+
+
+class StripeResourceTest(StripeApiTestCase):
+
+    def setUp(self):
+        super(StripeResourceTest, self).setUp()
+        self.mock_response({})
 
 
 class MyResource(stripe.resource.APIResource):
