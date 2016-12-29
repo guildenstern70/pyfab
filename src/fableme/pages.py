@@ -746,6 +746,33 @@ class DeleteFable(FablePage):
         FablePage.__init__(self, request, response, None)
 
 
+class GetFreeBook(FablePage):
+
+    def __init__(self, request, response):
+        logging.debug('GetFreeBook init')
+        FablePage.__init__(self, request, response, 'orderplaced.html')
+
+    def prepare_download(self, fable_id, fable_format):
+        logging.debug('Prepare download for free book')
+        print_obj = printer.PrinteBook(self.logged.email)
+        deferred.defer(print_obj.printbook, fable_id, fable_format)
+
+    def get(self):
+        """ http get handler """
+        logging.debug('Get free book handler')
+        fable_id = self.request.get('id')  # the fable to edit (-1: new fable)
+        fable_format = self.request.get('fmt')
+        logging.debug('Fable id > ' + fable_id)
+        logging.debug('Format > ' + fable_format)
+        fableid = int(fable_id)
+        fable = schema.DbFable.get_fable(self.logged.email, fableid)
+        self.prepare_download(fable_id, fable_format)
+        self.template_values['template'] = fable.template
+        self.template_values['templatesex'] = fable.sex
+        self.template_values['order_complete'] = True
+        self.render()
+
+
 class Order(FablePage):
     """ Handler for /buy page """
 
