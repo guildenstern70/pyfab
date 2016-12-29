@@ -750,13 +750,12 @@ class Order(FablePage):
     """ Handler for /buy page """
 
     def perform_stripe_order(self, token, customer_email, customer_fable_id):
-        logging.debug('Beginning Stripe Order Management')
+        logging.debug('Beginning Perform Stripe Order')
 
         order_complete = False
 
         # Stripe API Key
         stripe.api_key = "sk_test_BDbwF7BGNKPw8DQZiXQNoldX"
-
         logging.debug('Token is ' + token)
 
         try:
@@ -768,7 +767,7 @@ class Order(FablePage):
                 description="Your purchase at FableMe.com")
             order_complete = True
             logging.debug('Issued an order for ' + str(charge.amount / 100.0) + charge.currency)
-            logging.debug('Customer has succesfully purchased the Fable #' + str(customer_fable_id))
+            logging.debug('Customer has successfully purchased the Fable #' + str(customer_fable_id))
             logging.debug('Transaction done.')
         except stripe.CardError as e:
             body = e.json_body
@@ -793,13 +792,13 @@ class Order(FablePage):
             # Network communication with Stripe failed
             logging.error('STRIPE ERROR: Network communication with Stripe failed')
             self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Network communication with Stripe failed"
+            self._errormsg2 = "Network communication with Stripe failed: " + e.message
         except stripe.error.StripeError as e:
             # Display a very generic error to the user, and maybe send
             # yourself an email
             logging.error('STRIPE ERROR: Generic stripe error')
             self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Generic stripe error"
+            self._errormsg2 = "Generic stripe error: " + e.message
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
             logging.error('STRIPE ERROR: Generic error, non stripe')
@@ -810,6 +809,7 @@ class Order(FablePage):
         return order_complete
 
     def order_complete(self, fable_id, fable_format):
+        logging.debug('Order complete')
         print_obj = printer.PrinteBook(self.logged.email)
         deferred.defer(print_obj.printbook, fable_id, fable_format)
 
@@ -836,9 +836,12 @@ class Order(FablePage):
             self.template_values['order_complete'] = False
             self.template_values['errormsg_1'] = self._errormsg1
             self.template_values['errormsg_1'] = self._errormsg2
+            logging.error(self._errormsg1)
+            logging.error(self._errormsg2)
         self.render()
 
     def __init__(self, request, response):
         self._errormsg1 = ''
         self._errormsg2 = ''
+        logging.debug('Order init')
         FablePage.__init__(self, request, response, 'orderplaced.html')
