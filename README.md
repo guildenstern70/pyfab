@@ -6,6 +6,7 @@
 
 ###Upload
 
+    cd src
     gcloud config set project fableomatic
     gcloud app deploy
 
