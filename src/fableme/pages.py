@@ -749,7 +749,7 @@ class DeleteFable(FablePage):
 class Order(FablePage):
     """ Handler for /buy page """
 
-    def perform_stripe_order(self, token, customer_email, customer_fable_id):
+    def perform_stripe_order(self, token, customer_email, customer_fable_id, fable_price_in_cents):
         logging.debug('Beginning Perform Stripe Order')
 
         order_complete = False
@@ -761,7 +761,7 @@ class Order(FablePage):
         try:
             logging.debug('Charging credit card for user ' + customer_email)
             charge = stripe.Charge.create(
-                amount=499,  # amount in cents, again
+                amount=fable_price_in_cents,  # amount in cents, again
                 currency="eur",
                 card=token,
                 description="Your purchase at FableMe.com")
@@ -824,10 +824,11 @@ class Order(FablePage):
         logging.debug('Format > ' + fable_format)
         fableid = int(fable_id)
         fable = schema.DbFable.get_fable(self.logged.email, fableid)
+        fable_price = fable.template['price_eurocents']
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
 
-        if self.perform_stripe_order(token, self.logged.email, fableid):
+        if self.perform_stripe_order(token, self.logged.email, fableid, fable_price):
             self.template_values['order_complete'] = True
             self.template_values['errormsg_1'] = '0'
             self.template_values['errormsg_1'] = '1'

@@ -44,12 +44,14 @@ class Print(FablePage):
 
         
 class PrinteBook:
-    """ /print/book page
+    """
+        Print book procedure
         Valid values for fable_format: EPUB, PDF, EBOOK
         When fable_format == EBOOK, every format is generated 
     """ 
     
     def __init__(self, user_email):
+        logging.debug('Init Print eBook: user='+user_email)
         self.user_mail = user_email
         self.user_db = schema.DbFableUser.get_from_email(user_email)
     
