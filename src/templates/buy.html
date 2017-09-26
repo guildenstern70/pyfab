@@ -45,7 +45,7 @@
                						You have already bought the PDF format for this fable! 
                					{% else %}
                                     {% if ebook_price_string == "FREE!" %}
-               						    <a href="/print/book?id={{fable_id}}&fmt=PDF" class="radius button">Download</a>
+               						    <a href="/order?id={{fable_id}}&fmt=PDF" class="radius button">Download</a>
                                     {% else %}
                                         <button id="customButton_pdf" class="radius button">Purchase</button>
                                     {% endif %}
@@ -78,7 +78,7 @@
                						You have already bought the ePub format for this fable!  
                					{% else %}
                                     {% if ebook_price_string == "FREE!" %}
-               						    <a href="/print/book?id={{fable_id}}&fmt=EPUB" class="radius button">Download</a>
+               						    <a href="/order?id={{fable_id}}&fmt=EPUB" class="radius button">Download</a>
                                     {% else %}
                                         <button id="customButton_epub" class="radius button">Purchase</button>
                                     {% endif %}

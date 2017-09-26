@@ -275,7 +275,9 @@ class Login(FablePage):
         user_password = self.request.get("password")
         source = self.request.get("loginsource")
         if source == 'fb0':
-            self.performfblogin(user_email)
+            logging.info('Login from FB for ' + user_email + ' is disabled.')
+            self.redirect('/')
+            # self.performfblogin(user_email)
         else:
             self.performlogin(user_email, user_password)
 
@@ -749,93 +751,18 @@ class DeleteFable(FablePage):
 class Order(FablePage):
     """ Handler for /buy page """
 
-    def perform_stripe_order(self, token, customer_email, customer_fable_id):
-        logging.debug('Beginning Stripe Order Management')
-
-        order_complete = False
-
-        # Stripe API Key
-        stripe.api_key = "sk_test_BDbwF7BGNKPw8DQZiXQNoldX"
-
-        logging.debug('Token is ' + token)
-
-        try:
-            logging.debug('Charging credit card for user ' + customer_email)
-            charge = stripe.Charge.create(
-                amount=499,  # amount in cents, again
-                currency="eur",
-                card=token,
-                description="Your purchase at FableMe.com")
-            order_complete = True
-            logging.debug('Issued an order for ' + str(charge.amount / 100.0) + charge.currency)
-            logging.debug('Customer has succesfully purchased the Fable #' + str(customer_fable_id))
-            logging.debug('Transaction done.')
-        except stripe.CardError as e:
-            body = e.json_body
-            err = body['error']
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Err type: %s" % err['type'] + " - Err code: %s" % err['code']
-            logging.error('STRIPE ERROR:' + "Type is: %s" % err['type'])
-            logging.error('STRIPE ERROR:' + "Code is: %s" % err['code'])
-            logging.error('STRIPE ERROR:' + "Param is: %s" % err['param'])
-            logging.error('STRIPE ERROR:' + "Message is: %s" % err['message'])
-        except stripe.error.InvalidRequestError as e:
-            logging.error('STRIPE ERROR: Invalid parameters were supplied to Stripe API')
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Invalid parameters were supplied to Stripe API: " + e.message
-        except stripe.error.AuthenticationError as e:
-            # Authentication with Stripe's API failed
-            # (maybe you changed API keys recently)
-            logging.error('STRIPE ERROR: Authentication with Stripe API failed')
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Invalid parameters were supplied to Stripe API: " + e.message
-        except stripe.error.APIConnectionError as e:
-            # Network communication with Stripe failed
-            logging.error('STRIPE ERROR: Network communication with Stripe failed')
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Network communication with Stripe failed"
-        except stripe.error.StripeError as e:
-            # Display a very generic error to the user, and maybe send
-            # yourself an email
-            logging.error('STRIPE ERROR: Generic stripe error')
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Generic stripe error"
-        except Exception as e:
-            # Something else happened, completely unrelated to Stripe
-            logging.error('STRIPE ERROR: Generic error, non stripe')
-            logging.exception(e)
-            self._errormsg1 = "Credit Card Transaction Error"
-            self._errormsg2 = "Generic error"
-
-        return order_complete
-
     def order_complete(self, fable_id, fable_format):
         print_obj = printer.PrinteBook(self.logged.email)
         deferred.defer(print_obj.printbook, fable_id, fable_format)
 
-    def post(self):
-        """ http post handler """
-        logging.debug('Order post handler')
+    def get(self):
         fable_id = self.request.get('id')  # the fable to edit (-1: new fable)
         fable_format = self.request.get('fmt')
-        token = self.request.get('stripeToken')
-        logging.debug('Fable id > ' + fable_id)
-        logging.debug('Stripe token > ' + token)
-        logging.debug('Format > ' + fable_format)
-        fableid = int(fable_id)
-        fable = schema.DbFable.get_fable(self.logged.email, fableid)
+        fable = schema.DbFable.get_fable(self.logged.email, fable_id)
         self.template_values['template'] = fable.template
         self.template_values['templatesex'] = fable.sex
-
-        if self.perform_stripe_order(token, self.logged.email, fableid):
-            self.template_values['order_complete'] = True
-            self.template_values['errormsg_1'] = '0'
-            self.template_values['errormsg_1'] = '1'
-            self.order_complete(fable_id, fable_format)
-        else:
-            self.template_values['order_complete'] = False
-            self.template_values['errormsg_1'] = self._errormsg1
-            self.template_values['errormsg_1'] = self._errormsg2
+        self.template_values['order_complete'] = True
+        self.order_complete(fable_id, fable_format)
         self.render()
 
     def __init__(self, request, response):
