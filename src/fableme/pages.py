@@ -494,17 +494,19 @@ class Book(FablePage):
     def get(self):
         """ http get handler """
         book = self.request.get('bookid')
-        user_email = self.get_user_db().email
-        self.template_values['user_email'] = user_email
-        raw_reviews = schema.DbFableReview.find_by_template_id(int(book))
-        reviews = _reviews_i_liked(raw_reviews, user_email)
-        purchased_books = dbutils.get_my_bought_fables(user_email)
-        if purchased_books is not None:  # if user has bought the book, he can leave a review
-            book_purchased_qry = purchased_books.filter(schema.DbFable.template_id == int(book))
-            if book_purchased_qry.get() is not None:
-                if schema.DbFableReview.find_by_user(user_email, book) is None:
-                    self.redirect('/review?bookid=' + book)
-                    return
+        reviews = None
+        if self.logged.is_logged:
+            user_email = self.get_user_db().email
+            self.template_values['user_email'] = user_email
+            raw_reviews = schema.DbFableReview.find_by_template_id(int(book))
+            reviews = _reviews_i_liked(raw_reviews, user_email)
+            purchased_books = dbutils.get_my_bought_fables(user_email)
+            if purchased_books is not None:  # if user has bought the book, he can leave a review
+                book_purchased_qry = purchased_books.filter(schema.DbFable.template_id == int(book))
+                if book_purchased_qry.get() is not None:
+                    if schema.DbFableReview.find_by_user(user_email, book) is None:
+                        self.redirect('/review?bookid=' + book)
+                        return
         self._render_page(book, reviews)
 
     def __init__(self, request, response):
