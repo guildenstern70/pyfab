@@ -37,7 +37,7 @@ function loggedInToFb() {
 function fblogin(){
     FB.login(function(response) {
 
-        console.log('>> fblogin');
+        console.log('>> fblogin new');
 
         if (response.authResponse) {
             console.log('FB recognizes user');
