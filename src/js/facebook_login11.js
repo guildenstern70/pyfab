@@ -12,9 +12,11 @@ function submitLogin(name, email, nick) {
 function loggedInToFb() {
 
 	console.log('>> loggedInToFb');
-
 	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me', function(response) {
+
+	var fburl = '/me?fields=name,email';
+
+	FB.api(fburl, function(response) {
 		console.log('Successful login for: ' + response.name);
 		console.log(JSON.stringify(response));
 		console.log('Thanks for logging in, ' + response.name + ' (' + response.email + ')');
@@ -38,17 +40,15 @@ function fblogin(){
         console.log('>> fblogin');
 
         if (response.authResponse) {
-            console.log('Successful login for: ' + response.name);
-		    console.log(JSON.stringify(response));
-		    console.log('Thanks for logging in, ' + response.name + ' (' + response.email + ')');
-		    submitLogin(response.name, response.email)
+            console.log('FB recognizes user');
+            loggedInToFb();
         } else {
             //user hit cancel button
             console.log('User cancelled login or did not fully authorize.');
         }
 
 
-    }, { scope: 'email' });
+    }, { scope: 'email,public_profile' });
 
 }
 
