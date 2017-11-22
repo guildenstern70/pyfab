@@ -17,7 +17,7 @@ function loggedInToFb() {
 	FB.api('/me', function(response) {
 		console.log('Successful login for: ' + response.name);
 		console.log(JSON.stringify(response));
-		$('#status').html('Thanks for logging in, ' + response.name + '!');
+		console.log('Thanks for logging in, ' + response.name + ' (' + response.email + ')');
 
 		if ($('#is_logged_into_app').val() == 'False') {
 			// User is logged into FB but not into app
@@ -30,6 +30,24 @@ function loggedInToFb() {
 
 
 	});
+}
+
+function fblogin(){
+    FB.login(function(response) {
+
+        console.log('>> fblogin');
+
+        if (response.authResponse) {
+            console.log('FB recognizes user');
+            loggedInToFb();
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'email,public_profile'
+    });
 }
 
 function statusChangeCallback(response) {
