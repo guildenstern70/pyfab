@@ -38,16 +38,18 @@ function fblogin(){
         console.log('>> fblogin');
 
         if (response.authResponse) {
-            console.log('FB recognizes user');
-            loggedInToFb();
+            console.log('Successful login for: ' + response.name);
+		    console.log(JSON.stringify(response));
+		    console.log('Thanks for logging in, ' + response.name + ' (' + response.email + ')');
+		    submitLogin(response.name, response.email)
         } else {
             //user hit cancel button
             console.log('User cancelled login or did not fully authorize.');
-
         }
-    }, {
-        scope: 'email,public_profile'
-    });
+
+
+    }, { scope: 'email' });
+
 }
 
 function statusChangeCallback(response) {
