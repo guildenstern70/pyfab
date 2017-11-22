@@ -1,3 +1,14 @@
+function submitLogin(name, email, nick) {
+
+	console.log('>> submit login');
+
+	console.log('Submitting login for '+email);
+	$('#name').val(name);
+	$('#email').val(email);
+	$('#loginsource').val('fb0');
+	$('#loginform').submit();
+}
+
 function loggedInToFb() {
 
 	console.log('>> loggedInToFb');
@@ -51,6 +62,35 @@ function checkLoginState() {
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
 	});
+
+}
+
+function logoutFromEverything() {
+
+	console.log('>> logoutFromFb');
+	try
+	{
+		FB.getLoginStatus(function(response) {
+			console.log('>> Logging out FB status is ' + response.status);
+			if (response.status != 'connected') {
+				console.log('Not connected to FB: logging out');
+				window.location.href = "/logout";
+			}
+		});
+
+		FB.logout(function(response) {
+			if (response)
+				console.log(response);
+			// user is now logged out
+			console.log('>> user is logged out');
+			window.location.href = "/logout";
+		});
+	}
+	catch(err)
+	{
+		console.log('HANDLED ERR>> '+ err);
+		window.location.href = "/logout";
+	}
 
 }
 
