@@ -1,8 +1,8 @@
+.DS_Store
 **/*.py[cod]
-**/.DS_Store
 .idea/**
 **/desktop.ini
-*.pyc
+
 
 
 

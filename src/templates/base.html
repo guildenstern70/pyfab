@@ -1,5 +1,10 @@
 {% extends "skeleton.html" %}
 
+
+{% block earlyjavascripts %}
+<script src="/js/facebook_login11.js"></script>
+{% endblock %}
+
 {% block nav %}
   {% include "menu.html" %}
 {% endblock %}
@@ -19,8 +24,7 @@
 </script>
 <script src="/js/foundation/foundation.js"></script>
 <script src="/js/foundation/foundation.topbar.js"></script>
-<script src="/js/vendor/custom.modernizr.js"></script><!-- Needed by WebIcons e Input Dates -->	    
-<!--<script src="/js/facebook_login.js"></script>-->
+<script src="/js/vendor/custom.modernizr.js"></script><!-- Needed by WebIcons e Input Dates -->
 {% block extralatejavascripts %}	
 {% endblock extralatejavascripts %}
 
