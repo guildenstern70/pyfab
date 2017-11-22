@@ -275,9 +275,7 @@ class Login(FablePage):
         user_password = self.request.get("password")
         source = self.request.get("loginsource")
         if source == 'fb0':
-            logging.info('Login from FB for ' + user_email + ' is disabled.')
-            self.redirect('/')
-            # self.performfblogin(user_email)
+            self.performfblogin(user_email)
         else:
             self.performlogin(user_email, user_password)
 
