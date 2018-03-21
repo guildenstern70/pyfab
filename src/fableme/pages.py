@@ -10,7 +10,6 @@
 
 
 import logging
-import stripe
 import random
 import string
 import urllib

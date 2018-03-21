@@ -9,22 +9,21 @@ import num2word_RO
 class Num2Word(object):
     
     def __init__(self, language='EN'):
-        " Constructor "
+        """ Constructor """
         self._lang = language
     
     def create(self):
-        n2w = None
-        if (self._lang == 'EN'):
-            n2w = num2word_EN.Num2Word_EN()
-        elif (self._lang == 'IT'):
-            n2w = num2word_IT.Num2Word_IT()
-        elif (self._lang == 'RO'):
-            n2w = num2word_RO.Num2Word_RO()
-        elif (self._lang == 'FR'):
-            n2w = num2word_FR.Num2Word_FR()
+        if self._lang == 'EN':
+            numtoword = num2word_EN.Num2Word_EN()
+        elif self._lang == 'IT':
+            numtoword = num2word_IT.Num2Word_IT()
+        elif self._lang == 'RO':
+            numtoword = num2word_RO.Num2Word_RO()
+        elif self._lang == 'FR':
+            numtoword = num2word_FR.Num2Word_FR()
         else:
             raise Exception("Unsupported language in Num2Word. Currently supported: EN, RO, IT, FR")
-        return n2w
+        return numtoword
 
 
 if __name__ == '__main__':
@@ -41,6 +40,3 @@ if __name__ == '__main__':
     print('45th => ' + to_ord(45))
     print('72 => ' + to_ordnum(72))
     print('1972 => ' + to_year(1972))
-    
-
-    
