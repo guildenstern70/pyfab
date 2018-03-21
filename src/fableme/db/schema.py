@@ -251,7 +251,7 @@ class DbFable(ndb.Model):
     def set_defaults(self):
         self.sex = "M"
         self.name = ""
-        self.birthdate = datetime.date(2005,01,01)
+        self.birthdate = datetime.date(2014, 01, 01)
         self.sender = "From mom and dad"
         self.dedication = "With love"
         

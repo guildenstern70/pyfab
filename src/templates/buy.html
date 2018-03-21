@@ -1,6 +1,6 @@
 {% extends "base_center.html" %}
 
-{% block title %}FableMe - Buy eBook{% endblock %}
+{% block title %}FableMe - Get eBook{% endblock %}
 
 {% block maincontent %}
 
@@ -45,7 +45,7 @@
                						You have already bought the PDF format for this fable! 
                					{% else %}
                                     {% if ebook_price_string == "FREE!" %}
-               						    <a href="/order?id={{fable_id}}&fmt=PDF" class="radius button">Download</a>
+               						    <a href="/order?id={{fable_id}}&fmt=PDF" class="radius button">Get PDF</a>
                                     {% else %}
                                         <button id="customButton_pdf" class="radius button">Purchase</button>
                                     {% endif %}
@@ -68,17 +68,12 @@
                                <li>
                                     {{ebook_price_string}}
                                </li>
-                               <!-- 
-                               <li>
-                                    <a href="#" class="secondary radius button">Preview</a>&nbsp;
-                               </li>
-                                -->
                                <li>
                                	{% if fable.downlink_epub %}
                						You have already bought the ePub format for this fable!  
                					{% else %}
                                     {% if ebook_price_string == "FREE!" %}
-               						    <a href="/order?id={{fable_id}}&fmt=EPUB" class="radius button">Download</a>
+               						    <a href="/order?id={{fable_id}}&fmt=EPUB" class="radius button">Get ePub</a>
                                     {% else %}
                                         <button id="customButton_epub" class="radius button">Purchase</button>
                                     {% endif %}
@@ -90,13 +85,7 @@
                                               
                            </fieldset>
                     </div>
-                    
-                    <form id="orderform" action="/order" method="POST">
-                        <input id="id" name="id" type="hidden" value="{{fable.id}}">
-                        <input id="fmt" name="fmt" type="hidden" value="unknown">
-                        <input id="stripeToken" name="stripeToken" type="hidden" value="unknown">
-                    </form>
-                    
+
            </div>
                        
         </div>
@@ -107,59 +96,5 @@
 {% endblock %}
 
 {% block extralatejavascripts %}
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<script>
-
-  var STRIPE_PK = 'pk_test_9xUAh8Iti2qgRuYkaOH27hmN';
-
-  var handler_pdf = StripeCheckout.configure({
-    key: STRIPE_PK,
-    image: 'img/pdf_img.png',
-    token: function(token) {
-    	  console.log(JSON.stringify(token));
-          $('#fmt').val('PDF');
-          $('#stripeToken').val(token.id);
-          $('#orderform').submit();
-    }
-  });
-  
-  var handler_epub = StripeCheckout.configure({
-	    key: STRIPE_PK,
-	    image: 'img/epub.jpg',
-	    token: function(token) {
-	      $('#fmt').val('EPUB');
-	      $('#stripeToken').val(token.id);
-	      $('#orderform').submit();
-	    }
-  });
-  
-  $( "#customButton_pdf" ).click(function(e) {
-	  // Open Checkout with further options
-	    handler_pdf.open({
-	      name: 'FableMe Shop',
-	      description: 'PDF eBook ({{ebook_price_string}})',
-	      currency: 'EUR',
-	      amount: {{ebook_price_cents}},
-	      email: '{{user_email}}'
-	    });
-	    e.preventDefault();
-  });
-  
-  $( "#customButton_epub" ).click(function(e) {
-	// Open Checkout with further options
-	    handler_epub.open({
-	      name: 'FableMe Shop',
-	      description: 'ePUB eBook ({{ebook_price_string}})',
-	      currency: 'EUR',
-	      amount: {{ebook_price_cents}},
-	      email: '{{user_email}}'
-	    });
-	    e.preventDefault();
-  });
-  
-
-
-</script>
-
 {% endblock %}
 
