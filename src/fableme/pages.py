@@ -531,7 +531,6 @@ class Review(FablePage):
 
     @staticmethod
     def send_review_advise(user_mail, new_review):
-
         fable = booktemplates.get_book_template(new_review.fable_template_id)
         html_field = """
 <div>
@@ -635,23 +634,25 @@ class Review(FablePage):
         """ http get handler """
         self._template_id = self.request.get('bookid')
         user_email = self.get_user_db().email
-        if schema.DbFableReview.find_by_user(user_email, self._template_id) is not None:
-            self.redirect('/book?bookid=' + self._template_id)
+        self.template_values['user_email'] = user_email
+        if self._template_id != "":
+            if schema.DbFableReview.find_by_user(user_email, self._template_id) is not None:
+                self.redirect('/book?bookid=' + self._template_id)
         else:
-            self.template_values['user_email'] = user_email
-            reviews = schema.DbFableReview.find_by_template_id(int(self._template_id))
-            self.template_values['reviews'] = _reviews_i_liked(reviews, user_email)
-            process_review = self.request.get('accept')
-            if process_review != "":
-                user_mail = self.request.get('rv_mail')
-                self._template_id = self.request.get('rv_tmp_id')
-                if process_review == 'ok':
-                    msg = self._process_review(user_mail, is_accepted=True)
-                else:
-                    msg = self._process_review(user_mail, is_accepted=False)
-                self.template_values['review_message'] = msg
-                self.template_values['review_processed'] = True
-            self._default_render()
+            self._template_id = self.request.get('rv_tmp_id')
+            if self._template_id != "":
+                reviews = schema.DbFableReview.find_by_template_id(int(self._template_id))
+                self.template_values['reviews'] = _reviews_i_liked(reviews, user_email)
+                process_review = self.request.get('accept')
+                if process_review != "":
+                    user_mail = self.request.get('rv_mail')
+                    if process_review == 'ok':
+                        msg = self._process_review(user_mail, is_accepted=True)
+                    else:
+                        msg = self._process_review(user_mail, is_accepted=False)
+                    self.template_values['review_message'] = msg
+                    self.template_values['review_processed'] = True
+        self._default_render()
 
     def _default_render(self):
         book_obj = booktemplates.Book(int(self._template_id))

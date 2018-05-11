@@ -51,7 +51,7 @@ class DbFableReview(ndb.Model):
 
     @staticmethod
     def create(user_mail, template_id):
-        """ Create a new DbFable for user """
+        """ Create a new DbFableReview """
         review = DbFableReview.find_by_user(user_mail, template_id)
         if review is None:
             review = DbFableReview(fable_template_id=int(template_id))
