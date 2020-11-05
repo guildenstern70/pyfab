@@ -10,13 +10,13 @@ libraries:
 
 handlers:
 - url: /css
-  static_dir: css
+  static_dir: static/css
   
 - url: /img
-  static_dir: img
+  static_dir: static/img
   
 - url: /js
-  static_dir: js
+  static_dir: static/js
   
 - url: /favicon.ico
   static_files: static/favicon.ico

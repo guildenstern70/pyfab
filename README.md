@@ -15,8 +15,11 @@
     dev_appserver.py .
 
 ###Dependencies
-DJANGO 1.2 - 
-https://docs.djangoproject.com (Django 1.2)
+DJANGO 1.4 - 
+https://docs.djangoproject.com (Django 1.4)
+
+WEBAPP2 -
+https://webapp2.readthedocs.io/en/latest/
 
 ZURB - 
 http://foundation.zurb.com/download.php (Zurb Foundation v.4.2)
